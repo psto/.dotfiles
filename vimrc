@@ -35,17 +35,22 @@ let g:ctrlp_cmd = 'CtrlP'
 
 " spell check with <F4> and <F5>
 map <F4> :setlocal spell! spelllang=en_gb<CR>
-map <F5> :setlocal spell spelllang=pl<CR>
+"map <F5> :setlocal spell spelllang=pl<CR>
 
 execute pathogen#infect()
 filetype plugin indent on
 set incsearch " show search results as I type
-set ruler laststatus=2 number relativenumber title hlsearch
-syntax on " show syntax highlighting
-set t_Co=256
+set ruler laststatus=2 number relativenumber title hlsearch ignorecase
 set showmatch
 set tabstop=4 softtabstop=0 expandtab shiftwidth=2 smarttab
 set wrap
+set t_Co=256
+
+"needed for vim solarized theme
+syntax enable " show syntax highlighting
+set background=light
+let g:solarized_termcolors=256
+colorscheme solarized
 
 " turning Goyo plugin with a different key
 map <F2> :Goyo <CR>
@@ -65,3 +70,16 @@ if exists('+colorcolumn')
   set colorcolumn=80
   endif
 
+" enable mouse selection
+set mouse=a
+
+" execute current ruby file
+:map <leader>r :!ruby %<cr>
+
+" trim whitespace function
+fun! TrimWhitespace()
+    let l:save = winsaveview()
+    %s/\s\+$//e
+    call winrestview(l:save)
+endfun
+:noremap <Leader>w :call TrimWhitespace()<CR>
