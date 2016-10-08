@@ -59,6 +59,14 @@ map <F2> :Goyo <CR>
 nmap <F1> <nop>
 imap <F1> <nop>
 
+" precs <ctr> + s to save document
+nmap <c-s> :w<CR>
+imap <c-s> <Esc>:w<CR>a
+vmap <c-s> <Esc>:w<CR>
+
+" press 'j' twice to exit insert mode
+imap jj <ESC>
+
 " set up some custom colors
 highlight clear SignColumn
 highlight ColorColumn  ctermbg=237
