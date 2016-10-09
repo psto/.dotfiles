@@ -1,6 +1,9 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+" set leader key to comma
+let mapleader = ","
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -67,6 +70,9 @@ vmap <c-s> <Esc>:w<CR>
 " press 'j' twice to exit insert mode
 imap jj <ESC>
 
+" switch between the last two files
+nnoremap <leader><leader> <c-^>
+
 " set up some custom colors
 highlight clear SignColumn
 highlight ColorColumn  ctermbg=237
@@ -91,3 +97,4 @@ fun! TrimWhitespace()
     call winrestview(l:save)
 endfun
 :noremap <Leader>w :call TrimWhitespace()<CR>
+
