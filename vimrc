@@ -36,6 +36,9 @@ set runtimepath^=~/.vim/bundle/ctrlp.vim
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 
+" vim can access system clipboard to copy/paste
+set clipboard=unnamed
+
 " spell check with <F4> and <F5>
 map <F4> :setlocal spell! spelllang=en_gb<CR>
 "map <F5> :setlocal spell spelllang=pl<CR>
@@ -87,8 +90,18 @@ if exists('+colorcolumn')
 " enable mouse selection
 set mouse=a
 
+" syntax checker plugin settings
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_loc_list_height=3
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
 " execute current ruby file
 :map <leader>r :!ruby %<cr>
+
+" execute rubocop (style checker) for ruby
+map <leader>R :!rubocop %<cr>
 
 " trim whitespace function
 fun! TrimWhitespace()
@@ -97,4 +110,3 @@ fun! TrimWhitespace()
     call winrestview(l:save)
 endfun
 :noremap <Leader>w :call TrimWhitespace()<CR>
-
