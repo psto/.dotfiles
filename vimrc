@@ -110,6 +110,11 @@ set background=dark
 set t_Co=16
 colorscheme solarized
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" STATUS LINE
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set statusline=%F%m%r%h%w\ %{fugitive#statusline()}\ [%l,%c]\ [%L,%p%%]
+
 " hint to keep lines short
 if exists('+colorcolumn')
   set colorcolumn=80
