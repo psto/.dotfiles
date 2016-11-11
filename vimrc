@@ -103,6 +103,18 @@ augroup vimrcEx
   autocmd! FileType *.slim set sw=2 sts=2 et
 augroup END
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" COLOR
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set background=dark
+set t_Co=16
+colorscheme solarized
+
+" hint to keep lines short
+if exists('+colorcolumn')
+  set colorcolumn=80
+endif
+
 " keep all backup and swap files in common directory
 set backupdir=~/.vim/tmp/backup//
 set directory=~/.vim/tmp/swap//
@@ -119,12 +131,6 @@ set clipboard=unnamed
 " spell check with <F4> and <F5>
 map <F4> :setlocal spell! spelllang=en_gb<CR>
 "map <F5> :setlocal spell spelllang=pl<CR>
-
-"needed for vim solarized theme
-syntax enable " show syntax highlighting
-set background=light
-let g:solarized_termcolors=256
-colorscheme solarized
 
 " turning Goyo plugin with a different key
 map <F2> :Goyo <CR>
