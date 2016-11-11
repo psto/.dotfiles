@@ -63,6 +63,11 @@ set ignorecase smartcase
 set listchars=tab:▸\ ,nbsp:⋅,trail:⋅
 set list
 
+" keep all backup and swap files in common directory
+set backupdir=~/.vim/tmp/backup//
+set directory=~/.vim/tmp/swap//
+set undodir=~/.vim/tmp/undo//
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CUSTOM AUTOCMDS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -109,6 +114,11 @@ augroup END
 set background=dark
 set t_Co=16
 colorscheme solarized
+
+" hint to keep lines short
+if exists('+colorcolumn')
+  set colorcolumn=80
+endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " STATUS LINE
