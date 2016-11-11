@@ -32,6 +32,42 @@ Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" BASIC EDITING CONFIGURATION
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" enable mouse selection
+set mouse=a
+" vim can access system clipboard to copy/paste
+set clipboard=unnamedplus
+" enable highlighting for syntax
+syntax on
+" enable file type detection.
+filetype plugin indent on
+" enable relative number ruler
+set ruler laststatus=2 number relativenumber title
+set smarttab
+set wrap
+set history=10000
+set expandtab
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set autoindent
+set showmatch
+" show search results as I type
+set incsearch
+set hlsearch
+" make searches case-sensitive only if they contain upper-case characters
+set ignorecase smartcase
+" show spaces
+set listchars=tab:▸\ ,nbsp:⋅,trail:⋅
+set list
+
+" keep all backup and swap files in common directory
+set backupdir=~/.vim/tmp/backup//
+set directory=~/.vim/tmp/swap//
+set undodir=~/.vim/tmp/undo//
+
 " run ctrlp.vim plugin and set the shorcuts
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 let g:ctrlp_map = '<c-p>'
@@ -43,15 +79,6 @@ set clipboard=unnamed
 " spell check with <F4> and <F5>
 map <F4> :setlocal spell! spelllang=en_gb<CR>
 "map <F5> :setlocal spell spelllang=pl<CR>
-
-execute pathogen#infect()
-filetype plugin indent on
-set incsearch " show search results as I type
-set ruler laststatus=2 number relativenumber title hlsearch ignorecase
-set showmatch
-set tabstop=4 softtabstop=0 expandtab shiftwidth=2 smarttab
-set wrap
-set t_Co=256
 
 "needed for vim solarized theme
 syntax enable " show syntax highlighting
