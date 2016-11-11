@@ -4,6 +4,9 @@ filetype off                  " required
 " set leader key to comma
 let mapleader = ","
 
+" initialize pathogen
+execute pathogen#infect()
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -12,24 +15,22 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'mattn/emmet-vim'
-Plugin 'pangloss/vim-javascript'
-Plugin 'scrooloose/nerdtree'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-endwise'
-Plugin 'ervandew/supertab'
-Plugin 'lokaltog/vim-powerline'
 Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-fugitive'
+Plugin 'ervandew/supertab'
 Plugin 'junegunn/goyo.vim'
 Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
 Plugin 'tomtom/tcomment_vim'
-" plugins for snipmate
+Plugin 'scrooloose/syntastic'
+Plugin 'vim-airline/vim-airline'
+" required by snipmate
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
-Plugin 'scrooloose/syntastic'
 
 " run ctrlp.vim plugin and set the shorcuts
 set runtimepath^=~/.vim/bundle/ctrlp.vim
