@@ -179,37 +179,61 @@ function! ToggleBackground()
 endfunction
 map <leader>b :call ToggleBackground()<CR>
 
-" hint to keep lines short
-if exists('+colorcolumn')
-  set colorcolumn=80
-endif
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" RUNNING TESTS
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! RunTests(filename)
+  " Write the file and run tests for the given filename
+  :w
+  :silent !clear
+  if match(a:filename, '\.feature$') != -1
+    exec ":!bundle exec cucumber " . a:filename
+  elseif match(a:filename, '_test\.rb$') != -1
+    if filereadable("script/testrb")
+      exec ":!script/testrb " . a:filename
+    else
+      exec ":!ruby -Itest " . a:filename
+    end
+  else
+    if filereadable("Gemfile")
+      exec ":!bundle exec rspec --color " . a:filename
+    else
+      exec ":!rspec --color " . a:filename
+    end
+  end
+endfunction
 
-" keep all backup and swap files in common directory
-set backupdir=~/.vim/tmp/backup//
-set directory=~/.vim/tmp/swap//
-set undodir=~/.vim/tmp/undo//
+function! SetTestFile()
+  " set the spec file that tests will be run for.
+  let t:grb_test_file=@%
+endfunction
 
-" run ctrlp.vim plugin and set the shorcuts
-set runtimepath^=~/.vim/bundle/ctrlp.vim
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-
-" vim can access system clipboard to copy/paste
-set clipboard=unnamed
-
-" set up some custom colors
-highlight clear SignColumn
-highlight ColorColumn  ctermbg=237
-hi clear SpellBad
-hi SpellBad cterm=underline,bold ctermfg=red
-
-" hint to keep lines short
-if exists('+colorcolumn')
-  set colorcolumn=80
+function! RunTestFile(...)
+  if a:0
+    let command_suffix = a:1
+  else
+    let command_suffix = ""
   endif
 
-" enable mouse selection
-set mouse=a
+  " run the tests for the previously-marked file.
+  let in_test_file = match(expand("%"), '\(.feature\|_spec.rb\|_test.rb\)$') != -1
+  if in_test_file
+    call SetTestFile()
+  elseif !exists("t:grb_test_file")
+    return
+  end
+  call RunTests(t:grb_test_file . command_suffix)
+endfunction
 
+function! RunNearestTest()
+  let spec_line_number = line('.')
+  call RunTestFile(":" . spec_line_number . " -b")
+endfunction
 
+" run test runner
+map <leader>t :call RunTestFile()<cr>
+" Run only the example under the cursor
+map <leader>T :call RunNearestTest()<cr>
+" Run all test files
+map <leader>a :call RunTests('spec')<cr>
 
