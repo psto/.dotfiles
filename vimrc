@@ -150,7 +150,7 @@ vmap <c-s> <Esc>:w<CR>
 nnoremap <leader><leader> <c-^>
 
 " execute current ruby file
-map <leader>r :!ruby %<cr>
+map <leader>r :!clear;ruby %<cr>
 
 " execute rubocop (style checker) for ruby
 map <leader>R :!rubocop %<cr>
