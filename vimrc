@@ -4,6 +4,8 @@ filetype off                  " required
 " set leader key to comma
 let mapleader = ","
 
+set shell=bash
+
 " initialize pathogen
 execute pathogen#infect()
 
@@ -114,7 +116,7 @@ augroup END
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " COLOR
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set background=dark
+set background=light
 set t_Co=16
 colorscheme solarized
 
@@ -157,7 +159,7 @@ map <leader>R :!rubocop %<cr>
 
 " spell check with <F4> and <F5>
 map <F4> :setlocal spell! spelllang=en_gb<CR>
-"map <F5> :setlocal spell spelllang=pl<CR>
+map <F5> :setlocal spell spelllang=pl<CR>
 
 " run ctrlp.vim plugin and set the shorcuts
 set runtimepath^=~/.vim/bundle/ctrlp.vim
@@ -209,7 +211,7 @@ function! RunTests(filename)
     end
   else
     if filereadable("Gemfile")
-      exec ":!bundle exec rspec --color " . a:filename
+      exec ":!bundle exec bin/rspec --color " . a:filename
     else
       exec ":!rspec --color " . a:filename
     end
