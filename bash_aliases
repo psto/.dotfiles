@@ -12,8 +12,5 @@ alias agi='sudo apt-get install'
 alias agr='sudo apt-get remove'
 alias agu='sudo apt-get update'
 
-# shortcut for clearing screen
-alias c='clear'
-
 # pry console in rails
 alias "pryr"="pry -r ./config/environment"

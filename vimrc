@@ -175,6 +175,9 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_loc_list_height=3
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+" don't show annoying message
+let g:syntastic_eruby_ruby_quiet_messages =
+    \ {'regex': 'possibly useless use of a variable in void context'}
 
 " trim whitespace function
 fun! TrimWhitespace()
