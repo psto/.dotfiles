@@ -15,8 +15,8 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'ervandew/supertab'
-Plug 'kien/ctrlp.vim'
-"Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'godlygeek/tabular'
@@ -70,8 +70,8 @@ set backupdir=~/.local/share/nvim/backup//
 set directory=~/.local/share/nvim/swap//
 set undodir=~/..local/share/nvim/undo//
 
-" using FZF
-" set rtp+=~/.fzf
+" fzf shorcut
+nnoremap <silent> <C-p> :FZF -m<cr>
 
 " automatically resize focused window
 "let &winwidth = 84
