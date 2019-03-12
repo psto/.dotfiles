@@ -34,6 +34,12 @@ alias ytfile='youtube-dl -c --title -f 18 --batch-file' # /path/to/file
 # play audio with mpv and remember last played position
 alias mpvsp='mpv --save-position-on-quit'
 
+# terminal pomodoro timer
+alias pomodoro='sleep 25m && mpv --no-video open-ended.mp3 && sleep 5m && mpv --no-video open-ended.mp3'
+
+# connect to proton VPN
+alias protonus='cd ~/snap/protonVPN/ && openvpn us-free-01.protonvpn.com.tcp.ovpn'
+
 # SHORTCUTS
 alias downloads='cd ~/Downloads'
 alias work='cd ~/workspace'
