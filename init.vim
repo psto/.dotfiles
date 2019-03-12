@@ -30,12 +30,6 @@ Plug 'iCyMind/NeoSolarized'
 Plug 'jelera/vim-javascript-syntax'
 Plug 'digitaltoad/vim-pug'
 
-"Autocomplete
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] }
-Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
-Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
-
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
@@ -139,21 +133,6 @@ let g:ale_sign_warning = '!'
 let g:ale_list_window_size = 5
 nnoremap <silent> <leader>ne :ALENextWrap<CR>
 nnoremap <silent> <leader>pe :ALEPreviousWrap<CR>
-
-" deoplete and autocomplete setup
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#omni#functions = {}
-let g:deoplete#omni#functions.javascript = [
-  \ 'tern#Complete',
-  \ 'jspc#omni'
-\]
-set completeopt=longest,menuone,preview
-let g:deoplete#sources = {}
-let g:deoplete#sources['javascript.jsx'] = ['file', 'ultisnips', 'ternjs']
-let g:tern#command = ['tern']
-let g:tern#arguments = ['--persistent']
-autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 "Limelight integration with Goyo
 autocmd! User GoyoEnter Limelight
