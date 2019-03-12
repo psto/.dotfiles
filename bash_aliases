@@ -12,5 +12,10 @@ alias agi='sudo apt-get install'
 alias agr='sudo apt-get remove'
 alias agu='sudo apt-get update'
 
-# pry console in rails
-alias "pryr"="pry -r ./config/environment"
+# git aliases
+alias gs='git status '
+alias ga='git add '
+alias gb='git branch '
+alias gc='git commit'
+alias gd='git diff'
+alias go='git checkout '
