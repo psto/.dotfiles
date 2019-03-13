@@ -35,7 +35,7 @@ alias ytfile='youtube-dl -c --title -f 18 --batch-file' # /path/to/file
 alias mpvsp='mpv --save-position-on-quit'
 
 # terminal pomodoro timer
-alias pomodoro='sleep 25m && mpv --no-video open-ended.mp3 && sleep 5m && mpv --no-video open-ended.mp3'
+alias pomodoro='notify-send "start 🍅" && sleep 5 && mpv --no-video ~/Music/open-ended.mp3 && notify-send "break time 😌" && sleep 1 && notify-send "🚨 end break 🚨" && mpv --no-video ~/Music/open-ended.mp3'
 
 # connect to proton VPN
 alias protonus='cd ~/snap/protonVPN/ && openvpn us-free-01.protonvpn.com.tcp.ovpn'
