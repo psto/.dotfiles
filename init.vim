@@ -23,7 +23,6 @@ Plug 'godlygeek/tabular'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tomtom/tcomment_vim'
 Plug 'scrooloose/syntastic'
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'w0rp/ale'
 Plug 'moll/vim-node'
 Plug 'iCyMind/NeoSolarized'
@@ -102,7 +101,7 @@ augroup vimrcEx
   " autocmd FileType html,eruby if g:html_indent_tags !~ '\\|p\>' | let g:html_indent_tags .= '\|p\|li\|dt\|dd' | endif
 
   " Don't syntax highlight markdown because it's often wrong
-  autocmd! FileType mkd setlocal syn=off
+  " autocmd! FileType mkd setlocal syn=off
 
   " Leave the return key alone when in command line windows, since it's used
   " to run commands there.
@@ -110,7 +109,7 @@ augroup vimrcEx
   autocmd! CmdwinLeave * :call MapCR()
 
   " *.md is markdown
-  autocmd! BufNewFile,BufRead *.md setlocal ft=
+  autocmd! BufNewFile,BufRead *.md setlocal ft=markdown
 
   " indent slim two spaces, not four
   autocmd! FileType *.slim set sw=2 sts=2 et
@@ -187,6 +186,34 @@ nnoremap <esc> :noh<return><esc>
 
 " switch between the last two files
 nnoremap <leader><leader> <c-^>
+
+" Removing the directory banner
+let g:netrw_banner = 0
+
+" set width of directory explorer to 25% of the page
+let g:netrw_winsize = 25
+
+" toggle netrw
+let g:NetrwIsOpen=0
+
+function! ToggleNetrw()
+    if g:NetrwIsOpen
+        let i = bufnr("$")
+        while (i >= 1)
+            if (getbufvar(i, "&filetype") == "netrw")
+                silent exe "bwipeout " . i
+            endif
+            let i-=1
+        endwhile
+        let g:NetrwIsOpen=0
+    else
+        let g:NetrwIsOpen=1
+        silent Lexplore
+    endif
+endfunction
+
+" Netrw shortcut
+noremap <silent> <C-n> :call ToggleNetrw()<CR>
 
 " execute current ruby file
 map <leader>r :!clear;ruby %<cr>
@@ -293,10 +320,8 @@ map <leader>T :call RunNearestTest()<cr>
 " Run all test files
 map <leader>a :call RunTests('spec')<cr>
 
+
 """"""""""""""
 
 " Fix strange character for insert in neoVim
 :set guicursor=
-
-" Nerdtree toggle
-map <C-n> :NERDTreeToggle<CR>
