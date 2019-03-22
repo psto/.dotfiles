@@ -15,3 +15,6 @@ end
 set PATH $HOME/.rbenv/bin $PATH
 set PATH $HOME/.rbenv/shims $PATH
 rbenv rehash >/dev/null ^&1
+
+# for fzf
+set PATH $PATH ~/.fzf/bin

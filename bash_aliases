@@ -43,6 +43,9 @@ alias pomodoro='notify-send "start 🍅" && sleep 5 && mpv --no-video ~/Music/op
 # connect to proton VPN
 alias protonus='cd ~/snap/protonVPN/ && openvpn us-free-01.protonvpn.com.tcp.ovpn'
 
+# ranger alias
+alias r='ranger'
+
 # SHORTCUTS
 alias downloads='cd ~/Downloads'
 alias work='cd ~/workspace'
