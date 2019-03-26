@@ -4,7 +4,7 @@ set $mod Mod4
 font pango:Ubuntu 11
 
 # #---Basic Definitions---# #
-for_window [class="^.*"] border pixel 2
+for_window [class="^.*"] border pixel 1
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -69,18 +69,22 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # switch to workspace
-bindsym $mod+1 workspace "1: 💻"
-bindsym $mod+2 workspace "2: 🌐"
-bindsym $mod+3 workspace "3: 📁"
-bindsym $mod+4 workspace "4: 🎶"
-bindsym $mod+5 workspace "5: ⚙"
+bindsym $mod+1 workspace "1: $_"
+bindsym $mod+2 workspace "2: 🦊"
+bindsym $mod+3 workspace "3: "
+bindsym $mod+4 workspace "4: ⚒"
+bindsym $mod+5 workspace "5: ♪"
+bindsym $mod+6 workspace "6: "
+bindsym $mod+7 workspace "7: ⚙"
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace "1: 💻"
-bindsym $mod+Shift+2 move container to workspace "2: 🌐"
-bindsym $mod+Shift+3 move container to workspace "3: 📁"
-bindsym $mod+Shift+4 move container to workspace "4: 🎶"
-bindsym $mod+Shift+5 move container to workspace "5: ⚙"
+bindsym $mod+Shift+1 move container to workspace "1: $_"
+bindsym $mod+Shift+2 move container to workspace "2: 🦊"
+bindsym $mod+Shift+3 move container to workspace "3: "
+bindsym $mod+Shift+4 move container to workspace "4: ⚒"
+bindsym $mod+Shift+5 move container to workspace "5: ♪"
+bindsym $mod+Shift+6 move container to workspace "6: "
+bindsym $mod+Shift+7 move container to workspace "7: ⚙"
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -116,12 +120,12 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # open firefox
-bindsym $mod+Shift+w exec --no-startup-id firefox
+bindsym $mod+Shift+w exec firefox
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        font pango:Ubuntu Bold 9
+        font pango:Ubuntu 9
         status_command i3status
         position top
         mode dock
@@ -139,8 +143,10 @@ bar {
         }
 }
 
+# colors for focused window
+client.focused #383c4a #383c4a #383c4a
+
 # enable GTK theme
-# exec --no-startup-id gnome-settings-daemon
 exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
 
 # enable network mangement applet
@@ -153,7 +159,7 @@ exec --no-startup-id feh --bg-fill ~/Pictures/wallpapers/street-japan-night.jpg
 exec --no-startup-id redshift
 
 # run compton on startup
-exec --no-startup-id compton --config ~/.config/compton.conf
+exec --no-startup-id compton --config ~/.config/compton.conf -b
 
 # kill default notifications
 exec killall -q gsd-print-notifications

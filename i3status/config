@@ -6,35 +6,54 @@ general {
 }
 
 order += "cpu_temperature 0"
+order += "cpu_usage 0"
 order += "disk /"
 order += "wireless wlp2s0"
 order += "volume master"
-order += "battery 1"
+order += "battery all"
 order += "tztime local"
 
 cpu_temperature 0 {
-        format = "<span background='#ff5555'> %degrees °C </span>"
+        format = "  %degrees °C "
         path = "/sys/class/thermal/thermal_zone0/temp"
 }
 
+cpu_usage {
+        format = "   %usage "
+}
+
 disk "/" {
-        format = "<span background='#cccc00'> %free Free </span>"
+        format = " %free Free "
 }
 
 wireless wlp2s0 {
-        format_up = "<span background='#bd93f9'> %essid </span>"
-        format_down = "<span background='#bd93f9'> Disconnected </span>"
+        format_up = " %essid "
+        format_down = " Disconnected "
 }
 
 volume master {
-        format = "<span background='#ff79c6'>♪: %volume </span>"
-        format_muted = "♪: 🔇 "
+        format = "♪: %volume "
+        format_muted = " 🔇 "
         device = "default"
         mixer = "Master"
         mixer_idx = 0
 }
 
+battery all {
+        format = " %status %percentage %remaining "
+    status_chr = "⚡ "
+    status_bat = "🔋 "
+        status_unk = "? "
+        status_full = "☻ "
+
+    low_threshold = 11
+    threshold_type = percentage
+    integer_battery_capacity = true
+    last_full_capacity = true
+    hide_seconds = true
+}
+
 tztime local {
-        format = "<span background='#0099ff'> %time </span>"
+        format = " %time "
         format_time = "%a %-d %b %H:%M"
 }
