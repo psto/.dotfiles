@@ -11,6 +11,7 @@ order += "disk /"
 order += "wireless wlp2s0"
 order += "volume master"
 order += "battery all"
+order += "tztime berlin"
 order += "tztime local"
 
 cpu_temperature 0 {
@@ -53,7 +54,13 @@ battery all {
     hide_seconds = true
 }
 
+tztime berlin {
+        format = "%a %-d %b"
+        timezone = "Europe/Berlin"
+}
+
+
 tztime local {
-        format = " %time "
-        format_time = "%a %-d %b %H:%M"
+        format = "<span foreground='#ffffff' font='Ubuntu Bold'> %time </span>"
+        format_time = "%H:%M:%S"
 }
