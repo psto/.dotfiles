@@ -188,3 +188,11 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightne
 bindsym Control+Print exec gnome-screenshot
 # capture and save selection
 bindsym Shift+Print exec "sleep 0.2; gnome-screenshot -a"
+
+# workspace assignments
+assign [class="Firefox"]            $ws2
+assign [class="Spotify"]            $ws5
+assign [class="Thunderbird"]        $ws6
+assign [class="riot-web"]           $ws8
+assign [class="Slack"]              $ws8
+assign [class="discord"]            $ws8
