@@ -172,17 +172,17 @@ exec killall -q gsd-print-notifications
 # lock screen
 bindsym $mod+Shift+o exec "gnome-screensaver-command --lock "
 
-# open nnn
-bindsym $mod+n exec i3-sensible-terminal -e nnn
+# open ranger
+bindsym $mod+n exec i3-sensible-terminal -e ranger
 
-# Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%  #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+# Audio controls
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5% && pactl set-sink-volume 1 +5%    #increase sound volume
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5% && pactl set-sink-volume 1 -5%    #decrease sound volume
+bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle && pactl set-sink-volume 1 toggle       # mute sound
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10     # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10   # decrease screen brightness
 
 # capture and save entire screen
 bindsym Control+Print exec gnome-screenshot
@@ -190,9 +190,9 @@ bindsym Control+Print exec gnome-screenshot
 bindsym Shift+Print exec "sleep 0.2; gnome-screenshot -a"
 
 # workspace assignments
-assign [class="Firefox"]            $ws2
-assign [class="Spotify"]            $ws5
-assign [class="Thunderbird"]        $ws6
+assign [class="firefox"]            $ws2
+assign [class="spotify"]            $ws5
+assign [class="thunderbird"]        $ws6
 assign [class="riot-web"]           $ws8
-assign [class="Slack"]              $ws8
+assign [class="slack"]              $ws8
 assign [class="discord"]            $ws8
