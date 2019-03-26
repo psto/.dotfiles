@@ -170,6 +170,9 @@ exec --no-startup-id dunst
 # lock screen
 bindsym $mod+Shift+o exec "gnome-screensaver-command --lock "
 
+# open nnn
+bindsym $mod+n exec i3-sensible-terminal -e nnn
+
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
@@ -178,3 +181,8 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute s
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+
+# capture and save entire screen
+bindsym Control+Print exec gnome-screenshot
+# capture and save selection
+bindsym Shift+Print exec "sleep 0.2; gnome-screenshot -a"
