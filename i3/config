@@ -19,6 +19,8 @@ bindsym $mod+Shift+q kill
 # bindsym $mod+d exec dmenu_run
 bindsym $mod+d exec --no-startup-id dmenu_run -i -nb '#002b36' -nf '#2aa198' -sb '#2aa198' -sf '#191919' -fn 'Ubuntu:pixelsize=20'
 
+bindsym $mod+o exec --no-startup-id j4-dmenu-desktop [--dmenu="dmenu -i"] [--term="i3-sensible-terminal"]
+
 # change focus
 bindsym $mod+h focus left
 bindsym $mod+j focus down
