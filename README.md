@@ -1,6 +1,6 @@
-# Piotr Stojanow's dotfiles
+# dotfiles
 
-All my configs in one place. Use at your own risk ;)
+All my configs in one place. Use them at your own risk ;)
 
 ## License
 
