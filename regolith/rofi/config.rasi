@@ -1,0 +1,9 @@
+// put this in .config folder
+
+// vim like keys
+configuration {
+  kb-accept-entry: "Return";
+  kb-remove-to-eol: "Control+Shift+e";
+  kb-row-up: "Up,Control+k";
+  kb-row-down: "Down,Control+j";
+}
