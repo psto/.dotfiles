@@ -5,30 +5,36 @@ filetype off                  " required
 let mapleader = ","
 
 " Plugins will be downloaded under the specified directory.
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.nvim/plugged')
 
 " Declare the list of plugins.
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-fugitive'
+" disable plugins in codium/vscode when using vscode-neovim plugin
+if !exists('g:vscode')
 Plug 'mattn/emmet-vim'
 Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-fugitive'
-Plug 'ervandew/supertab'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
+" Plug 'ervandew/supertab'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'godlygeek/tabular'
-Plug 'jiangmiao/auto-pairs'
 Plug 'tomtom/tcomment_vim'
-Plug 'scrooloose/syntastic'
-Plug 'w0rp/ale'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+" Plug 'scrooloose/syntastic'
+" Plug 'w0rp/ale'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'pangloss/vim-javascript'
 Plug 'moll/vim-node'
-Plug 'iCyMind/NeoSolarized'
-Plug 'jelera/vim-javascript-syntax'
+" Plug 'posva/vim-vue'
+" Plug 'iCyMind/NeoSolarized'
+Plug 'dracula/vim', { 'as': 'dracula' }
+"Plug 'jelera/vim-javascript-syntax'
+Plug 'mustache/vim-mustache-handlebars'
 Plug 'digitaltoad/vim-pug'
-
+endif
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
@@ -63,14 +69,16 @@ set ignorecase smartcase
 set listchars=tab:▸\ ,nbsp:⋅,trail:⋅
 set list
 set splitbelow
+" ignore certain files
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 
 " keep all backup and swap files in common directory
 set backupdir=~/.local/share/nvim/backup//
 set directory=~/.local/share/nvim/swap//
 set undodir=~/..local/share/nvim/undo//
 
-" fzf shorcut
-nnoremap <silent> <C-p> :FZF -m<cr>
+" fzf shorcut (exclude files in .gitignore)
+nnoremap <silent> <C-p> :GFiles --cached --others --exclude-standard<cr>
 
 " automatically resize focused window
 "let &winwidth = 84
@@ -89,8 +97,11 @@ augroup vimrcEx
     \ endif
 
   "for ruby, autoindent with two spaces, always expand tabs
-  autocmd FileType ruby,haml,eruby,yaml,html,javascript,sass,cucumber set ai sw=2 sts=2 et
+  autocmd FileType ruby,haml,eruby,yaml,html,javascript,sass,cucumber,vue set ai sw=2 sts=2 et
   autocmd FileType python set sw=4 sts=4 et
+
+  " sets the filetype to html for .vue files,
+  autocmd BufRead,BufNewFile *.vue setfiletype html
 
   autocmd! BufRead,BufNewFile *.sass setfiletype sass
 
@@ -115,23 +126,8 @@ augroup vimrcEx
   autocmd! FileType *.slim set sw=2 sts=2 et
 augroup END
 
-" prettier autocmd
-autocmd FileType javascript set formatprg=prettier\ --stdin
-
-" ale linter
-let g:ale_fixers = {
-\   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'javascript': ['prettier', 'eslint'],
-\}
-let g:ale_fix_on_save = 1
-let g:ale_completion_enabled = 1
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_lint_on_enter = 0
-let g:ale_sign_error = 'X'
-let g:ale_sign_warning = '!'
-let g:ale_list_window_size = 5
-nnoremap <silent> <leader>ne :ALENextWrap<CR>
-nnoremap <silent> <leader>pe :ALEPreviousWrap<CR>
+" Disable automatic comment insertion
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 "Limelight integration with Goyo
 autocmd! User GoyoEnter Limelight
@@ -143,19 +139,22 @@ autocmd! User GoyoLeave Limelight!
 set termguicolors
 
 " Solarized light during the day, solarized dark during the night
-let hour = strftime("%H")
-if 6 <= hour && hour < 18
-  set background=light
-else
-  set background=dark
-endif
+" let hour = strftime("%H")
+" if 6 <= hour && hour < 18
+"   set background=light
+" else
+"   set background=dark
+" endif
 
-colorscheme NeoSolarized
+set background=dark
+colorscheme dracula
+" transparent background"
+hi Normal guibg=NONE ctermbg=NONE
 
 " hint to keep lines short
 if exists('+colorcolumn')
   set colorcolumn=80
-  highlight ColorColumn ctermbg=0
+  " highlight ColorColumn ctermbg=0
 endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -225,101 +224,130 @@ map <leader>R :!rubocop %<cr>
 map <F4> :setlocal spell! spelllang=en_gb<CR>
 map <F5> :setlocal spell spelllang=pl<CR>
 
-" run ctrlp.vim plugin and set the shorcuts
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-
 " trim whitespace function
 fun! TrimWhitespace()
-    let l:save = winsaveview()
-    %s/\s\+$//e
-    call winrestview(l:save)
+let l:save = winsaveview()
+%s/\s\+$//e
+call winrestview(l:save)
 endfun
 :noremap <Leader>w :call TrimWhitespace()<CR>
 
 " change background between dark and light
 function! ToggleBackground()
-    if &background == "light"
-        set background=dark
-    else
-        set background=light
-    endif
+if &background == "light"
+    set background=dark
+else
+    set background=light
+endif
 endfunction
 map <leader>b :call ToggleBackground()<CR>
 
+" coc.vim key maps
+" Use tab for trigger completion with characters ahead and navigate.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Formatting selected code.
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+" Remap keys for applying codeAction to the current line.
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf  <Plug>(coc-fix-current)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MULTIPURPOSE TAB KEY
 " Indent if we're at the beginning of a line. Else, do completion.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! InsertTabWrapper()
-    let col = col('.') - 1
-    if !col || getline('.')[col - 1] !~ '\k'
-        return "\<tab>"
-    else
-        return "\<c-p>"
-    endif
-endfunction
-inoremap <expr> <tab> InsertTabWrapper()
-inoremap <s-tab> <c-n>
+"
+" turn off when using coc.vim plugin
+"
+" function! InsertTabWrapper()
+" let col = col('.') - 1
+" if !col || getline('.')[col - 1] !~ '\k'
+"     return "\<tab>"
+" else
+"     return "\<c-p>"
+"     endif
+" endfunction
+" inoremap <expr> <tab> InsertTabWrapper()
+" inoremap <s-tab> <c-n>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " RUNNING TESTS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! RunTests(filename)
-  " Write the file and run tests for the given filename
-  :w
-  :silent !clear
-  if match(a:filename, '\.feature$') != -1
-    exec ":!bundle exec cucumber " . a:filename
-  elseif match(a:filename, '_test\.rb$') != -1
-    if filereadable("script/testrb")
-      exec ":!script/testrb " . a:filename
-    else
-      exec ":!ruby -Itest " . a:filename
-    end
-  else
-    if filereadable("Gemfile")
-      exec ":!bundle exec bin/rspec --color " . a:filename
-    else
-      exec ":!rspec --color " . a:filename
-    end
-  end
-endfunction
-
-function! SetTestFile()
-  " set the spec file that tests will be run for.
-  let t:grb_test_file=@%
-endfunction
-
-function! RunTestFile(...)
-  if a:0
-    let command_suffix = a:1
-  else
-    let command_suffix = ""
-  endif
-
-  " run the tests for the previously-marked file.
-  let in_test_file = match(expand("%"), '\(.feature\|_spec.rb\|_test.rb\)$') != -1
-  if in_test_file
-    call SetTestFile()
-  elseif !exists("t:grb_test_file")
-    return
-  end
-  call RunTests(t:grb_test_file . command_suffix)
-endfunction
-
-function! RunNearestTest()
-  let spec_line_number = line('.')
-  call RunTestFile(":" . spec_line_number . " -b")
-endfunction
-
-" run test runner
-map <leader>t :call RunTestFile()<cr>
-" Run only the example under the cursor
-map <leader>T :call RunNearestTest()<cr>
-" Run all test files
-map <leader>a :call RunTests('spec')<cr>
-
+" function! RunTests(filename)
+"   " Write the file and run tests for the given filename
+"   :w
+"   :silent !clear
+"   if match(a:filename, '\.feature$') != -1
+"     exec ":!bundle exec cucumber " . a:filename
+"   elseif match(a:filename, '_test\.rb$') != -1
+"     if filereadable("script/testrb")
+"       exec ":!script/testrb " . a:filename
+"     else
+"       exec ":!ruby -Itest " . a:filename
+"     end
+"   else
+"     if filereadable("Gemfile")
+"       exec ":!bundle exec bin/rspec --color " . a:filename
+"     else
+"       exec ":!rspec --color " . a:filename
+"     end
+"   end
+" endfunction
+"
+" function! SetTestFile()
+"   " set the spec file that tests will be run for.
+"   let t:grb_test_file=@%
+" endfunction
+"
+" function! RunTestFile(...)
+"   if a:0
+"     let command_suffix = a:1
+"   else
+"     let command_suffix = ""
+"   endif
+"
+"   " run the tests for the previously-marked file.
+"   let in_test_file = match(expand("%"), '\(.feature\|_spec.rb\|_test.rb\)$') != -1
+"   if in_test_file
+"     call SetTestFile()
+"   elseif !exists("t:grb_test_file")
+"     return
+"   end
+"   call RunTests(t:grb_test_file . command_suffix)
+" endfunction
+"
+" function! RunNearestTest()
+"   let spec_line_number = line('.')
+"   call RunTestFile(":" . spec_line_number . " -b")
+" endfunction
+"
+" " run test runner
+" map <leader>t :call RunTestFile()<cr>
+" " Run only the example under the cursor
+" map <leader>T :call RunNearestTest()<cr>
+" " Run all test files
+" map <leader>a :call RunTests('spec')<cr>
 
 """"""""""""""
 
