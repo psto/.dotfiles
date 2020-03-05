@@ -60,7 +60,7 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    PS1='${debian_chroot:+($debian_chroot)}:\[\033[01;34m\]\w\[\033[00m\]\n\$ '
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -115,8 +115,8 @@ if [ -f ~/.dir_colors/dircolors ]
     then eval `dircolors ~/.dir_colors/dircolors`
 fi
 
-# VIM as global text editor
-export EDITOR=/usr/bin/vim
+# nVIM as global text editor
+export EDITOR="nvim"
 
 # vi mode in terminal
 set -o vi
@@ -127,9 +127,6 @@ bind -m vi-insert "\C-l":clear-screen
 # PROMPT_DIRTRIM=2
 # git branch in bash prompt
 PS1='\[\e[1m\]\w\[\033[0;32m\] [$(git branch 2>/dev/null | grep "^*" | colrm 1 2)\[\033[0;32m\]]\[\033[0m\033[0;32m\] \n\$\[\033[0m\033[0;32m\]\[\033[0m\] '
-
-# fuck terminal app
-eval $(thefuck --alias)
 
 # fzf search
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
