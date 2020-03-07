@@ -20,12 +20,16 @@ alias go='git checkout '
 
 # use neovim
 alias vim='nvim'
+alias v='nvim'
 
 # ag searcher colors
 alias ag="ag --color-path 35 --color-match '1;35' --color-line-number 32"
 
 # use python3 by default
 alias python=python3
+
+# fuck alias
+eval "$(thefuck --alias f)"
 
 # open new journal file with today's date as name
 alias journal='cd ~/Dropbox/journal/ && vim $(date +%d.%m.%Y).md'
@@ -53,9 +57,9 @@ alias wgets='wget --mirror --convert-links --adjust-extension --page-requisites 
 alias pomodoro='notify-send "start 🍅" && sleep 5 && mpv --no-video ~/Music/open-ended.mp3 && notify-send "break time 😌" && sleep 1 && notify-send "🚨 end break 🚨" && mpv --no-video ~/Music/open-ended.mp3'
 
 # SHORTCUTS
-alias docs='cd ~/Documents'
-alias downloads='cd ~/Downloads'
-alias work='cd ~/workspace'
+alias cdd='cd ~/Documents'
+alias cddl='cd ~/Downloads'
+alias cdw='cd ~/workspace'
 alias stojanow='cd ~/workspace/stojanow.com'
 alias episteme='cd ~/workspace/episteme'
 # protonvpn-cli
