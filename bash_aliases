@@ -21,6 +21,8 @@ alias go='git checkout '
 # use neovim
 alias vim='nvim'
 alias v='nvim'
+# open neovim config
+alias vimconfig='vim ~/.config/nvim/init.vim'
 
 # ag searcher colors
 alias ag="ag --color-path 35 --color-match '1;35' --color-line-number 32"
@@ -58,10 +60,13 @@ alias pomodoro='notify-send "start 🍅" && sleep 5 && mpv --no-video ~/Music/op
 
 # SHORTCUTS
 alias cdd='cd ~/Documents'
-alias cddl='cd ~/Downloads'
+alias cddo='cd ~/Downloads'
+alias cdm='cda ~/Music'
+alias cdv='cd ~/Videos'
 alias cdw='cd ~/workspace'
 alias stojanow='cd ~/workspace/stojanow.com'
 alias episteme='cd ~/workspace/episteme'
+
 # protonvpn-cli
 alias p='sudo protonvpn'
 # ranger 
