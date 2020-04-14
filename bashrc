@@ -128,6 +128,11 @@ bind -m vi-insert "\C-l":clear-screen
 # git branch in bash prompt
 PS1='\[\e[1m\]\w\[\033[0;32m\] [$(git branch 2>/dev/null | grep "^*" | colrm 1 2)\[\033[0;32m\]]\[\033[0m\033[0;32m\] \n\$\[\033[0m\033[0;32m\]\[\033[0m\] '
 
+# nvm for node.js
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 # fzf search
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
