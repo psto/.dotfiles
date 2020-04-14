@@ -135,6 +135,10 @@ PS1='\[\e[1m\]\w\[\033[0;32m\] [$(git branch 2>/dev/null | grep "^*" | colrm 1 2
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
+
 # Install Ruby Gems to ~/gems
 export GEM_HOME="$HOME/gems"
 export PATH="$HOME/gems/bin:$PATH"
+
+# enable starship customizable prompt
+eval "$(starship init bash)"

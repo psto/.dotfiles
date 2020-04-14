@@ -18,3 +18,6 @@ rbenv rehash >/dev/null ^&1
 
 # for fzf
 set PATH $PATH ~/.fzf/bin
+
+# enbale starship prompt customization for
+starship init fish | source
