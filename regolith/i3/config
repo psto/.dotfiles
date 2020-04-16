@@ -103,12 +103,12 @@ bindsym $mod+t layout toggle tabbed splith splitv
 # define names for default workspaces
 set $ws1 "1: "
 set $ws2 "2: 🦊"
-set $ws3 "3: "
-set $ws4 "4: ⚒"
-set $ws5 "5: ♪"
-set $ws6 "6: "
-set $ws7 "7: ⚙"
-set $ws8 "8: "
+set $ws3 "3: 3 "
+set $ws4 "4: 4 ⚒"
+set $ws5 "5: 5 ♪"
+set $ws6 "6: 6 "
+set $ws7 "7: 7 ⚙"
+set $ws8 "8: 8 "
 
 # move to workspace
 bindsym $mod+1 workspace $ws1
