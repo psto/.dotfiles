@@ -69,6 +69,9 @@ alias episteme='cd ~/workspace/episteme'
 
 # protonvpn-cli
 alias p='sudo protonvpn'
+# protonvpn-cli disconnect
+alias pd="protonvpn-cli d"
+
 # ranger 
 alias r='ranger'
 # translate-shell
