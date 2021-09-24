@@ -145,5 +145,8 @@ export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 export GEM_HOME="$HOME/gems"
 export PATH="$HOME/gems/bin:$PATH"
 
+# yarn
+export PATH="$PATH:$(yarn global bin)"
+
 # enable starship customizable prompt
 eval "$(starship init bash)"
