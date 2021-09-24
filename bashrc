@@ -148,5 +148,8 @@ export PATH="$HOME/gems/bin:$PATH"
 # yarn
 export PATH="$PATH:$(yarn global bin)"
 
+# rust
+. "$HOME/.cargo/env"
+
 # enable starship customizable prompt
 eval "$(starship init bash)"
