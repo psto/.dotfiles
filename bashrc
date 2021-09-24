@@ -151,5 +151,9 @@ export PATH="$PATH:$(yarn global bin)"
 # rust
 . "$HOME/.cargo/env"
 
+# bat theme (works for fzf also)
+export BAT_THEME="Dracula"
+
+
 # enable starship customizable prompt
 eval "$(starship init bash)"
