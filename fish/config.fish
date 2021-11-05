@@ -1,4 +1,8 @@
 fish_vi_key_bindings
+fish_vi_cursor
+set fish_cursor_default block
+set fish_cursor_insert line
+set fish_cursor_visual block
 set fish_greeting
 
 set -gx DEFAULT_USER $USER
