@@ -31,7 +31,7 @@ alias ag="ag --color-path 35 --color-match '1;35' --color-line-number 32"
 alias python=python3
 
 # fuck alias
-eval "$(thefuck --alias f)"
+eval $(thefuck --alias fu)
 
 # open new journal file with today's date as name
 alias journal='cd ~/Dropbox/journal/ && vim $(date +%d.%m.%Y).md'
