@@ -61,6 +61,7 @@ sudo flatpak install -y flathub org.libreoffice.LibreOffice
 sudo flatpak install -y flathub com.getmailspring.Mailspring
 sudo flatpak install -y flathub md.obsidian.Obsidian
 sudo flatpak install -y flathub com.github.alainm23.planner
+sudo flatpak install -y flathub org.qbittorrent.qBittorrent
 sudo flatpak install -y flathub org.signal.Signal
 sudo flatpak install -y flathub org.videolan.VLC
 sudo flatpak install -y flathub com.visualstudio.code
@@ -80,6 +81,10 @@ sudo apt install brave-browser-beta
 # INSTALL deb files from directory #
 # sudo dpkg -i /home/yourname/directory/with/deb/files/*.deb
 
-# Install snap packages #
-# sudo snap install ffsend
-# sudo snap install gallery-dl
+# other #
+# ffsend
+# gallery-dl
+# ProtonVPN
+# npm install -g tldr
+# npm install -g how-2
+# sudo -H pip install --upgrade youtube-dl
