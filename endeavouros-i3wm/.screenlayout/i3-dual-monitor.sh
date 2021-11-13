@@ -1,6 +1,7 @@
 #!/bin/sh
 # generated with arandr
 # location: ~/.screenlayout/
+# include in your ~/.config/i3/config file: exec --no-startup-id ~/.screenlayout/i3-dual-monitors.sh
 # if using lightdm and lightdm-gtk-greeter-settings to fix xfce4 login resolution
 # cp script to /etc/lightdm/ and make it executable
 # change [Seat:*] display-setup-script=/etc/lightdm/i3-dual-monitor.sh
