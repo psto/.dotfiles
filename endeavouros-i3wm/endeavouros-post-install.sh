@@ -1,3 +1,4 @@
+sudo pacman -Sy autorandr
 sudo pacman -Sy bat
 sudo pacman -Sy fish
 sudo pacman -Sy fzf
@@ -6,6 +7,7 @@ sudo pacman -Sy exa
 sudo pacman -Sy htop
 sudo pacman -Sy httpie
 sudo pacman -Sy keepassxc
+sudo pacman -Sy nvm
 sudo pacman -Sy ranger
 sudo pacman -Sy ripgrep
 sudo pacman -Sy signal-desktop
@@ -17,7 +19,10 @@ sudo pacman -Sy qbittorrent
 sudo pacman -Sy xclip
 sudo pacman -Sy zathura
 
+yay -S alacritty
 yay -S brave-beta-bin
+yay -S insomnia-bin
+yay -S mailspring
 yay -S streamlink-twitch-gui
 
 mkdir Programs/ && cd Programs/
