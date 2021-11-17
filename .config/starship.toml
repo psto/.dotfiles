@@ -1,0 +1,3 @@
+# disable battery module for faster initial load
+[battery]
+disabled=false
