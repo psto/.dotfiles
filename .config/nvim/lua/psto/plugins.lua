@@ -14,13 +14,6 @@ return require('packer').startup(function()
   use 'metakirby5/codi.vim'
   use 'github/copilot.vim'
   -- use {'neoclide/coc.nvim', branch = 'release' }
-  use {
-    'goolord/alpha-nvim',
-    requires = { 'kyazdani42/nvim-web-devicons' },
-    config = function ()
-      require'alpha'.setup(require'psto.alpha.themes.startify'.opts)
-    end
-  }
 
   -- Search
   use 'nvim-lua/popup.nvim'
@@ -34,26 +27,43 @@ return require('packer').startup(function()
   use 'tpope/vim-fugitive'
 
   -- Pretty symbols
-  use 'kyazdani42/nvim-web-devicons'
+  use {
+    'kyazdani42/nvim-web-devicons',
+    config = function()
+      require('nvim-web-devicons').setup { default = true }
+    end
+  }
 
   -- Completion and linting
   use {
-    'neovim/nvim-lspconfig'
-    'hrsh7th/nvim-cmp'
-    -- 'L3MON4D3/LuaSnip'
-    -- 'saadparwaiz1/cmp_luasnip'
-    'hrsh7th/cmp-buffer'
-    'hrsh7th/cmp-nvim-lsp'
-    'hrsh7th/cmp-path'
-    'hrsh7th/vim-vsnip'
-    'hrsh7th/vim-vsnip-integ'
-    'rafamadriz/friendly-snippets'
+    'neovim/nvim-lspconfig',
+    'hrsh7th/nvim-cmp',
+    -- 'L3MON4D3/LuaSnip',
+    -- 'saadparwaiz1/cmp_luasnip',
+    'hrsh7th/cmp-buffer',
+    'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/cmp-path',
+    'hrsh7th/vim-vsnip',
+    'hrsh7th/vim-vsnip-integ',
+    'rafamadriz/friendly-snippets',
   }
+
+-- Plug 'folke/lsp-colors.nvim'
+-- Plug 'onsails/lspkind-nvim'
+-- Plug 'williamboman/nvim-lsp-installer'
 
   -- Highlights
   use {
     'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate'
+    run = ':TSUpdate',
+    config = function()
+      require('nvim-treesitter.configs').setup {
+        indent = { enable = true },
+        highlight = { enable = true },
+        incremental_selection = { enable = true },
+        textobjects = { enable = true },
+      }
+    end
   }
 
   -- Documentation
@@ -64,37 +74,56 @@ return require('packer').startup(function()
   --   keys = { '<localleader>d', '<localleader>df', '<localleader>dc' },
   -- }
 
-  -- Completion
-  -- use {
-  --   'hrsh7th/nvim-cmp',
-  --   requires = {
-  --     'L3MON4D3/LuaSnip',
-  --     { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
-  --     'hrsh7th/cmp-nvim-lsp',
-  --     { 'hrsh7th/cmp-path', after = 'nvim-cmp' },
-  --     { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' },
-  --     { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' },
-  --   },
-  --   config = [[require('config.cmp')]],
-  --   event = 'InsertEnter *',
-  -- }
-
   -- Navigation
   use 'christoomey/vim-tmux-navigator'
-  use 'karb94/neoscroll.nvim'
+  use {
+    'karb94/neoscroll.nvim',
+    config = function()
+      require('neoscroll').setup {}
+    end
+  }
 
-  use 'dracula/vim'
-  use 'EdenEast/nightfox.nvim'
+  -- Diagnostics
+  use {
+    "folke/trouble.nvim",
+    requires = "kyazdani42/nvim-web-devicons",
+    config = function()
+      require("trouble").setup {}
+    end
+  }
 
-  -- diagnostics
-  use 'folke/trouble.nvim'
-
-  -- formatting
+  -- Formatting
   use 'godlygeek/tabular'
   use 'sbdchd/neoformat'
 
+  -- Themes
+  use 'dracula/vim'
+  use 'EdenEast/nightfox.nvim'
+
   -- Statusline
-  use 'nvim-lualine/lualine.nvim'
+  use { 
+    'nvim-lualine/lualine.nvim',
+    requires = {'kyazdani42/nvim-web-devicons', opt = true},
+    config = function()
+      require('lualine').setup {
+        options = {
+          theme = 'nightfox',
+          component_separators = '',
+          section_separators = '',
+        },
+      }
+    end
+  }
+
+  -- Starting screen
+  use {
+    'goolord/alpha-nvim',
+    requires = { 'kyazdani42/nvim-web-devicons' },
+    config = function ()
+      -- require'alpha'.setup(require'psto.alpha.themes.startify'.opts)
+      require'alpha'.setup(require'psto.alpha.themes.dashboard'.opts)
+    end
+  }
 
   -- Writing mode
   use {

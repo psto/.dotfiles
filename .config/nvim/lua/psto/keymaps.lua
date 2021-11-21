@@ -41,3 +41,4 @@ key_map("n", "<F5>", ":setlocal spell spelllang=pl<CR>", { noremap = false })
 
 -- " netrw-toggle.vim shortcut
 key_map("n", "<c-n>", ":call ToggleNetrw()<CR>", { noremap = true, silent = true })
+
