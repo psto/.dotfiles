@@ -87,12 +87,6 @@ cmd("colorscheme dracula")
 -- hint to keep lines short
 opt.colorcolumn = "80"
 
--- limelight
--- color name (:help cterm-colors) or ANSI code
-g.limelight_conceal_ctermfg = 240
--- color name (:help gui-colors) or RGB color
-g.limelight_conceal_guifg = '#1F2430'
-
 --
 --CUSTOM AUTOCMDS
 --
@@ -144,7 +138,3 @@ cmd [[
 --Disable automatic comment insertion
 cmd [[autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o]]
 
-
--- Limelight integration with Goyo
-cmd [[autocmd! User GoyoEnter Limelight]]
-cmd [[autocmd! User GoyoLeave Limelight!]]
