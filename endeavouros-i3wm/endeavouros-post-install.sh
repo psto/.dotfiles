@@ -1,6 +1,7 @@
 sudo pacman -Sy autorandr
 sudo pacman -Sy bat
 sudo pacman -Sy dash
+sudo pacman -Sy diff-so-fancy
 sudo pacman -Sy fish
 sudo pacman -Sy fzf
 sudo pacman -Sy cmatrix
