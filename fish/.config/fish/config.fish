@@ -14,6 +14,8 @@ function fish_user_key_bindings
 end
 fish_vi_key_bindings
 
+set -gx DOTFILES ~/.dotfiles
+
 # rbnev PATH
 status --is-interactive; and source (rbenv init -|psub)
 
