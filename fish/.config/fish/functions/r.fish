@@ -1,3 +1,3 @@
-function r
-  ranger
+function r --description 'alias r=ranger'
+    ranger
 end
