@@ -97,7 +97,33 @@ return require('packer').startup(function()
   use 'nvim-lualine/lualine.nvim'
 
   -- Writing mode
-  use 'junegunn/goyo.vim'
-  use 'junegunn/limelight.vim'
-
+  use {
+    "folke/zen-mode.nvim",
+    config = function()
+      require("zen-mode").setup {
+        window = {
+          options = {
+            relativenumber = false, -- disable relative numbers
+            number = false, -- disable number column
+            cursorline = false, -- disable cursorline
+          },
+        plugins = {
+          twilight = { enabled = true }, -- start Twilight when zen mode opens
+        },
+      }
+    }
+    end,
+  }
+  use {
+    -- background issue fix https://github.com/folke/twilight.nvim/issues/15
+    "folke/twilight.nvim",
+    config = function()
+      require("twilight").setup {
+        dimming = {
+          alpha = 0.25,
+          color = { "Normal", "#1F2430" },
+        }
+      }
+    end
+  }
 end)
