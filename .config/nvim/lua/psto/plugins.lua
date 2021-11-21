@@ -13,7 +13,7 @@ return require('packer').startup(function()
   use 'tomtom/tcomment_vim'
   use 'metakirby5/codi.vim'
   use 'github/copilot.vim'
-  use {'neoclide/coc.nvim', branch = 'release' }
+  -- use {'neoclide/coc.nvim', branch = 'release' }
   use {
     'goolord/alpha-nvim',
     requires = { 'kyazdani42/nvim-web-devicons' },
@@ -37,14 +37,18 @@ return require('packer').startup(function()
   use 'kyazdani42/nvim-web-devicons'
 
   -- Completion and linting
-  -- use {
-  --   'onsails/lspkind-nvim',
-  --   'neovim/nvim-lspconfig',
-  --   '~/projects/personal/lsp-status.nvim',
-  --   'folke/trouble.nvim',
-  --   'ray-x/lsp_signature.nvim',
-  --   'kosayoda/nvim-lightbulb',
-  -- }
+  use {
+    'neovim/nvim-lspconfig'
+    'hrsh7th/nvim-cmp'
+    -- 'L3MON4D3/LuaSnip'
+    -- 'saadparwaiz1/cmp_luasnip'
+    'hrsh7th/cmp-buffer'
+    'hrsh7th/cmp-nvim-lsp'
+    'hrsh7th/cmp-path'
+    'hrsh7th/vim-vsnip'
+    'hrsh7th/vim-vsnip-integ'
+    'rafamadriz/friendly-snippets'
+  }
 
   -- Highlights
   use {
@@ -82,17 +86,17 @@ return require('packer').startup(function()
   use 'dracula/vim'
   use 'EdenEast/nightfox.nvim'
 
-  -- -- diagnostics
+  -- diagnostics
   use 'folke/trouble.nvim'
 
-  -- -- formatting
+  -- formatting
   use 'godlygeek/tabular'
   use 'sbdchd/neoformat'
 
   -- Statusline
   use 'nvim-lualine/lualine.nvim'
 
-  -- -- Writing mode
+  -- Writing mode
   use 'junegunn/goyo.vim'
   use 'junegunn/limelight.vim'
 
