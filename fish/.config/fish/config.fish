@@ -1,9 +1,7 @@
-fish_vi_key_bindings
-fish_vi_cursor
 set fish_cursor_default block
 set fish_cursor_insert line
 set fish_cursor_visual block
-set fish_greeting
+set fish_greeting ""
 
 set -gx DEFAULT_USER $USER
 
@@ -14,14 +12,20 @@ function fish_user_key_bindings
         bind -M $mode \cf forward-char
     end
 end
+fish_vi_key_bindings
 
 # rbnev PATH
-set PATH $HOME/.rbenv/bin $PATH
-set PATH $HOME/.rbenv/shims $PATH
-rbenv rehash >/dev/null 2>&1
+status --is-interactive; and source (rbenv init -|psub)
+
+# nvm
+set --universal nvm_default_version v16.13.0
+
+# async git prompt
+set -g async_prompt_functions _pure_prompt_git
 
 # for fzf
 set PATH $PATH ~/.fzf/bin
-
+# thefuck
+# thefuck --alias | source
 # enbale starship prompt customization for
-starship init fish | source
+# starship init fish | source

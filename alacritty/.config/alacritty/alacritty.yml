@@ -1,0 +1,15 @@
+import: 
+  - ./dracula.yml
+
+# Background opacity
+background_opacity: 0.9
+
+# window:
+#   dimensions:
+#     columns: 90
+#     lines: 40
+
+# set alacritty font size to 15
+font:
+  size: 12.0
+
