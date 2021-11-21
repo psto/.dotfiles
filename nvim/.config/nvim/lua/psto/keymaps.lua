@@ -28,6 +28,10 @@ key_map("v", "<c-s>", "<Esc>:w<CR>", { noremap = false })
 -- " clear last search highlighting
 key_map("n", "<esc>", ":noh<return>", { noremap = false })
 
+-- Reselect visual selection after indenting
+key_map("v", "<", "<gv", { noremap = true, silent = true })
+key_map("v", ">", ">gv", { noremap = true, silent = true })
+
 -- " spell check with <F4> and <F5>
 key_map("n", "<F4>", ":setlocal spell! spelllang=en_gb<CR>", { noremap = false })
 key_map("n", "<F5>", ":setlocal spell spelllang=pl<CR>", { noremap = false })
