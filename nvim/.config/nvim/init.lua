@@ -1,14 +1,14 @@
 -- set leader key to space
 vim.g.mapleader = " "
 
-require('psto.options')
-require('psto.plugins')
-require('psto.keymaps')
+require('psto/options')
+require('psto/plugins')
+require('psto/keymaps')
 
 -- Neovim builtin LSP configuration
-require "psto.lsp"
+require("psto/lsp")
 
 -- telescope setup
-require('psto.telescope.setup')
-require('psto.telescope.mappings')
+require('psto/telescope.setup')
+require('psto/telescope.mappings')
 
