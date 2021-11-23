@@ -1,3 +1,3 @@
-function psf --description 'alias psf=ps ax | grep '
-  ps aux | grep $argv
+function psf --description 'ps -C $argv -o comm,%cpu,%mem,pid --sort=-%cpu'
+    ps -C $argv -o comm,%cpu,%mem,pid --sort=-%cpu
 end
