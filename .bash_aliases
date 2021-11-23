@@ -21,8 +21,9 @@ alias go='git checkout '
 # use neovim
 alias vim='nvim'
 alias v='nvim'
-# open neovim config
-alias vimconfig='vim ~/.config/nvim/init.vim'
+
+# open vifm
+alias vf='vifm'
 
 # ag searcher colors
 alias ag="ag --color-path 35 --color-match '1;35' --color-line-number 32"
