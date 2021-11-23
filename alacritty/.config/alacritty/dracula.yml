@@ -2,14 +2,15 @@
 # https://draculatheme.com/alacritty
 #
 # Color palette
-# https://spec.draculatheme.com
+# https://spec.draculathemeRead.com
 #
 # Template
 # https://github.com/alacritty/alacritty/blob/master/alacritty.yml
 
 colors:
   primary:
-    background: '#282a36'
+    background: '#1F2430'
+    # background: '#282a36'
     foreground: '#f8f8f2'
     bright_foreground: '#ffffff'
   cursor:
