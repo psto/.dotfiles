@@ -395,6 +395,7 @@ for_window [class="handy-terminal"] floating enable
 
 # set resize for special apps
 for_window [class="handy-terminal"] resize set 700 500
+for_window [class="handy-terminal"] move position center
 
 ######################################
 # color settings for bar and windows #
