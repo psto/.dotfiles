@@ -7,4 +7,5 @@ key_map("n", "<leader>fh", [[<CMD>Telescope help_tags<CR>]], { noremap = true, s
 key_map("n", "<leader>fr", [[<CMD>Telescope oldfiles<CR>]], { noremap = true, silent = true })
 
 key_map("n", "<leader>vrc", [[:lua require('psto.telescope.setup').search_dotfiles()<CR>]], { noremap = true, silent = true })
+key_map("n", "<leader>fw", [[:lua require('telescope.builtin').grep_string { search = vim.fn.expand("<cword>") }<CR>]], { noremap = true, silent = true })
 
