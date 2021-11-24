@@ -20,29 +20,31 @@ key_map("v", "K", ":m '<-2<CR>gv=gv", { noremap = false })
 key_map("n", "<F1>", "<nop>", { noremap = false })
 key_map("i", "<F1>", "<nop>", { noremap = false })
 
--- " press <ctr> + s to save document
+-- press <ctr> + s to save document
 key_map("n", "<c-s>", ":w<CR>", { noremap = false })
 key_map("i", "<c-s>", "<Esc>:w<CR>a", { noremap = false })
 key_map("v", "<c-s>", "<Esc>:w<CR>", { noremap = false })
 
--- " clear last search highlighting
+-- clear last search highlighting
 key_map("n", "<esc>", ":noh<return>", { noremap = false })
 
 -- Reselect visual selection after indenting
 key_map("v", "<", "<gv", { noremap = true, silent = true })
 key_map("v", ">", ">gv", { noremap = true, silent = true })
 
--- " spell check with <F4> and <F5>
+-- spell check with <F4> and <F5>
 key_map("n", "<F4>", ":setlocal spell! spelllang=en_gb<CR>", { noremap = false })
 key_map("n", "<F5>", ":setlocal spell spelllang=pl<CR>", { noremap = false })
 
--- " zoom a vim pane, <C-,>= to re-balance
+-- zoom a vim pane, <C-,>= to re-balance
 -- nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
 -- nnoremap <leader>= :wincmd =<cr>
 
--- " execute lua file in vim
+-- execute lua file in vim
 -- nnoremap <leader>l :!lua %<CR>
 
--- " netrw-toggle.vim shortcut
+-- netrw-toggle.vim shortcut
 key_map("n", "<c-n>", ":call ToggleNetrw()<CR>", { noremap = true, silent = true })
 
+key_map("n", "<M-j>", ":cnext<CR>zz", { noremap = true, silent = true })
+key_map("n", "<M-k>", ":cprev<CR>zz", { noremap = true, silent = true })
