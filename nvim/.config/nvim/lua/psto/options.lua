@@ -91,6 +91,8 @@ cmd[[colorscheme tokyonight]]
 -- hint to keep lines short
 opt.colorcolumn = "80"
 
+g.completion_trigger_character = "."
+
 --
 -- CUSTOM AUTOCMDS
 --
