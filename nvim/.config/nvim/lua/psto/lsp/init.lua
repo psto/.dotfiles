@@ -40,7 +40,7 @@ capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'jsonls', 'tsserver' } -- , 'volar' }
+local servers = { 'jsonls', 'tsserver', 'emmet_ls' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
@@ -51,24 +51,13 @@ for _, lsp in ipairs(servers) do
   }
 end
 
-require'lspconfig'.volar.setup{
+nvim_lsp.volar.setup{
   on_attach = on_attach,
   capabilities = capabilities,
   flags = {
     debounce_text_changes = 150,
   }
 }
-
-local system_name
-if vim.fn.has("mac") == 1 then
-  system_name = "macOS"
-elseif vim.fn.has("unix") == 1 then
-  system_name = "Linux"
-elseif vim.fn.has('win32') == 1 then
-  system_name = "Windows"
-else
-  print("Unsupported system for sumneko")
-end
 
 -- install on arch:$ sudo pacman -S lua-language-server
 -- set the path to the sumneko installation
@@ -80,7 +69,7 @@ local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
-require'lspconfig'.sumneko_lua.setup {
+nvim_lsp.sumneko_lua.setup {
   cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
   settings = {
     Lua = {
@@ -105,18 +94,3 @@ require'lspconfig'.sumneko_lua.setup {
     },
   },
 }
-
--- if not require'lspconfig'.emmet_ls then    
---   configs.emmet_ls = {    
---     default_config = {    
---       cmd = {'emmet-ls', '--stdio'};
---       filetypes = {'html', 'css', 'blade'};
---       root_dir = function(fname)    
---         return vim.loop.cwd()
---       end;    
---       settings = {};    
---     };    
---   }    
--- end    
--- require'lspconfig'.emmet_ls.setup{ capabilities = capabilities; }
-

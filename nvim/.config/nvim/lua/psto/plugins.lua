@@ -113,7 +113,7 @@ return require('packer').startup(function()
   use 'folke/tokyonight.nvim'
 
   -- Statusline
-  use { 
+  use {
     'nvim-lualine/lualine.nvim',
     requires = {'kyazdani42/nvim-web-devicons', opt = true},
     config = function()
