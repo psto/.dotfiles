@@ -80,9 +80,13 @@ opt.fillchars = { eob = "~" }
 -- COLOR
 --
 opt.termguicolors = true
+
 cmd("au ColorScheme * hi Normal ctermbg=none guibg=none") -- transparent background
-cmd("colorscheme dracula")
+g.tokyonight_transparent = true
+g.tokyonight_style = "night"
+-- cmd("colorscheme dracula")
 -- cmd("colorscheme duskfox")
+cmd[[colorscheme tokyonight]]
 
 -- hint to keep lines short
 opt.colorcolumn = "80"
