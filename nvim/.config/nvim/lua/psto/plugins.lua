@@ -1,4 +1,5 @@
 return require('packer').startup(function()
+  local use = require('packer').use
   -- Packer
   use 'wbthomason/packer.nvim'
   use 'lewis6991/impatient.nvim'
@@ -99,6 +100,7 @@ return require('packer').startup(function()
   -- Themes
   use 'dracula/vim'
   use 'EdenEast/nightfox.nvim'
+  use 'folke/tokyonight.nvim'
 
   -- Statusline
   use { 
