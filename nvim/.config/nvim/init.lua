@@ -12,3 +12,6 @@ require("psto/lsp")
 require('psto/telescope.setup')
 require('psto/telescope.mappings')
 
+-- trouble mappings
+require('psto/trouble')
+
