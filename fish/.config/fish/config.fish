@@ -28,7 +28,7 @@ set -g async_prompt_functions _pure_prompt_git
 # for fzf
 set PATH $PATH ~/.fzf/bin
 # thefuck
-# thefuck --alias | source
+thefuck --alias | source
 # enbale starship prompt customization for
 # starship init fish | source
 
