@@ -7,11 +7,11 @@ set -gx DEFAULT_USER $USER
 
 # setup vim mode
 set -U EDITOR vim
-function fish_user_key_bindings
-    for mode in insert default visual
-        bind -M $mode \cf forward-char
-    end
-end
+# function fish_user_key_bindings
+#     for mode in insert default visual
+#         bind -M $mode \cf forward-char
+#     end
+# end
 fish_vi_key_bindings
 
 set -gx DOTFILES ~/.dotfiles
@@ -23,7 +23,7 @@ status --is-interactive; and source (rbenv init -|psub)
 set --universal nvm_default_version v16.13.0
 
 # async git prompt
-set -g async_prompt_functions _pure_prompt_git
+# set -g async_prompt_functions _pure_prompt_git
 
 # for fzf
 set PATH $PATH ~/.fzf/bin
