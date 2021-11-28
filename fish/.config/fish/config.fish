@@ -32,5 +32,5 @@ set PATH $PATH ~/.fzf/bin
 # thefuck
 thefuck --alias | source
 # enbale starship prompt customization for
-# starship init fish | source
+starship init fish | source
 
