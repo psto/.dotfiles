@@ -7,12 +7,14 @@ set -gx DEFAULT_USER $USER
 
 # setup vim mode
 set -U EDITOR vim
-# function fish_user_key_bindings
-#     for mode in insert default visual
-#         bind -M $mode \cf forward-char
-#     end
-# end
+
+function fish_user_key_bindings
+    for mode in insert default visual
+        bind -M $mode \cn forward-char
+    end
+end
 fish_vi_key_bindings
+fish_user_key_bindings
 
 set -gx DOTFILES ~/.dotfiles
 
