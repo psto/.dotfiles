@@ -1,10 +1,13 @@
+sudo pacman -Sy ansible
 sudo pacman -Sy autorandr
 sudo pacman -Sy bat
 sudo pacman -Sy cmatrix
 sudo pacman -Sy dash
 sudo pacman -Sy diff-so-fancy
+sudo pacman -Sy docker
 sudo pacman -Sy exa
 sudo pacman -Sy fish
+sudo pacman -Sy flameshot
 sudo pacman -Sy fzf
 sudo pacman -Sy htop
 sudo pacman -Sy httpie
@@ -30,6 +33,7 @@ sudo pacman -Sy zathura
 yay -S alacritty
 yay -S btop
 yay -S brave-beta-bin
+yay -S espanso-git
 yay -S insomnia-bin
 yay -S kitty
 yay -S mailspring
