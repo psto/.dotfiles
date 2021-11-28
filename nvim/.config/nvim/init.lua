@@ -9,8 +9,8 @@ require('psto/keymaps')
 require("psto/lsp")
 
 -- telescope setup
-require('psto/telescope.setup')
-require('psto/telescope.mappings')
+require('psto/telescope/setup')
+require('psto/telescope/mappings')
 
 -- trouble mappings
 require('psto/trouble')
