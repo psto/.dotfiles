@@ -166,7 +166,7 @@ bindsym $mod+r mode "resize"
 
 # start a terminal
 # bindsym $mod+Return exec xfce4-terminal
-bindsym $mod+Return exec kitty
+bindsym $mod+Return exec alacritty
 
 # kill focused window
 bindsym $mod+q kill
@@ -282,7 +282,7 @@ bindsym $mod+w exec /usr/bin/brave-beta
 # bindsym Print exec "scrot ~/%Y-%m-%d-%T-screenshot.png"
 bindsym $mod+b exec /usr/bin/kitty --class="handy-terminal"
 bindsym $mod+n exec kitty --class="handy-terminal" -e /home/piotr/.local/bin/obsidianQuickNote 
-
+bindsym $mod+shift+P exec flameshot gui
 ##########################################
 # configuration for workspace behaviour: #
 ##########################################
@@ -295,8 +295,8 @@ set $ws3 "3:"
 set $ws4 "4:"
 set $ws5 "5:"
 set $ws6 "6:"
-set $ws7 "7:"
-set $ws8 "8:"
+set $ws7 "7:"
+set $ws8 "8:"
 set $ws9 "9"
 set $ws10 "10"
 
