@@ -283,6 +283,7 @@ bindsym $mod+w exec /usr/bin/brave-beta
 bindsym $mod+b exec /usr/bin/kitty --class="handy-terminal"
 bindsym $mod+n exec kitty --class="handy-terminal" -e /home/piotr/.local/bin/obsidianQuickNote 
 bindsym $mod+shift+P exec flameshot gui
+bindsym $mod+shift+F exec ~/.local/bin/rofi-search.sh
 ##########################################
 # configuration for workspace behaviour: #
 ##########################################
