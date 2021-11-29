@@ -1,10 +1,12 @@
 sudo pacman -Sy ansible
 sudo pacman -Sy autorandr
 sudo pacman -Sy bat
+sudo pacman -Sy calibre
 sudo pacman -Sy cmatrix
 sudo pacman -Sy dash
 sudo pacman -Sy diff-so-fancy
 sudo pacman -Sy docker
+sudo pacman -Sy docker-compose
 sudo pacman -Sy exa
 sudo pacman -Sy fish
 sudo pacman -Sy flameshot
@@ -14,6 +16,7 @@ sudo pacman -Sy httpie
 sudo pacman -Sy imagemagick
 sudo pacman -Sy keepassxc
 sudo pacman -Sy lua-language-server
+sudo pacman -Sy newsboat
 sudo pacman -Sy nvm
 sudo pacman -Sy qbittorrent
 sudo pacman -Sy ranger
@@ -40,6 +43,8 @@ yay -S mailspring
 yay -S nvim-packer-git
 yay -S streamlink-twitch-gui
 yay -S visual-studio-code-bin
+yay -S volar-server-bin
+yay -S ytfzf
 
 mkdir Programs/ && cd Programs/
 
