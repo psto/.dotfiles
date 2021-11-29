@@ -22,6 +22,9 @@ alias go='git checkout '
 alias vim='nvim'
 alias v='nvim'
 
+# use trash-put instead of rm
+alias rm='trash-put'
+
 # open vifm
 alias vf='vifm'
 
