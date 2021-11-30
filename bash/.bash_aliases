@@ -34,6 +34,10 @@ alias ag="ag --color-path 35 --color-match '1;35' --color-line-number 32"
 # use python3 by default
 alias python=python3
 
+# for fzf
+export FZF_DEFAULT_COMMAND='ag -l --path-to-ignore ~/.agignore --nocolor --hidden -g ""'
+export FZF_CTRL_T_COMMAND='ag -l --path-to-ignore ~/.agignore --nocolor --hidden -g ""'
+
 # fuck alias
 eval $(thefuck --alias fu)
 

@@ -29,6 +29,9 @@ set --universal nvm_default_version v16.13.0
 
 # for fzf
 set PATH $PATH ~/.fzf/bin
+set -gx FZF_DEFAULT_COMMAND 'ag -l --path-to-ignore ~/.agignore --nocolor --hidden -g ""'
+# for jethrokuan/fzf plugin
+set -gx FZF_FIND_FILE_COMMAND 'ag -l --path-to-ignore ~/.agignore --nocolor --hidden -g ""'
 # thefuck
 thefuck --alias | source
 # enbale starship prompt customization for
