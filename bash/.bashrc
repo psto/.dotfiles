@@ -151,6 +151,10 @@ export PATH="$HOME/gems/bin:$PATH"
 # rust
 # . "$HOME/.cargo/env"
 
+# for fzf
+source "/usr/share/fzf/completion.bash"
+source "/usr/share/fzf/key-bindings.bash"
+
 # bat colors for man pages
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 # bat theme (works for fzf also)
