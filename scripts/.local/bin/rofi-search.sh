@@ -1,6 +1,10 @@
 #!/bin/bash
-xdg-open "$(rg --no-messages --files ~/Music ~/Series ~/Films ~/Documents ~/pdf \
+# to open text files in nvim set xdg-mime 
+# also in .local/share/applications/nvim.desktop Exec=kitty -e nvim %F
+rg --no-messages --files ~/Music ~/Videos ~/Documents ~/pdf \
     ~/Dropbox/ ~/Downloads \
-    -g "!{*.srt,*.rar,*.txt,*.zip,*.nfo}" | rofi -threads 0 \
+    -g "!{*.srt,*.rar,*.txt,*.zip,*.nfo}" | rofi -show window \
+    -config ~/.config/rofi/searchmenu.rasi \
+    -threads 0 \
     -theme-str "#window { width: 900;}" \
-    -dmenu -sort -sorting-method fzf -i -p "find")"
+    -dmenu -sort -sorting-method fzf -i -p "find" | xargs -d "\n" xdg-open
