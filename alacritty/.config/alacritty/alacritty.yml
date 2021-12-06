@@ -9,7 +9,29 @@ background_opacity: 0.95
 #     columns: 90
 #     lines: 40
 
-# set alacritty font size to 12
 font:
+  # The normal (roman) font face to use.
+  normal:
+    family: HackNerdFont
+    style: Regular
+
+  # The bold font face
+  bold:
+    family: HackNerdFont
+    style: Bold
+
+  # The italic font face
+  italic:
+    family: HackNerdFont
+    style: Italic
+
   size: 12.2
 
+  ligatures: true
+
+  offset:
+    x: 0
+    y: 0
+  glyph_offset:
+    x: 0
+    y: 0
