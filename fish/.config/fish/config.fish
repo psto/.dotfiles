@@ -19,7 +19,8 @@ fish_user_key_bindings
 set -gx DOTFILES ~/.dotfiles
 
 # rbnev PATH
-status --is-interactive; and source (rbenv init -|psub)
+set -Ux fish_user_paths $HOME/.rbenv/bin $fish_user_paths
+status --is-interactive; and rbenv init - fish | source
 
 # nvm
 set --universal nvm_default_version v16.13.0
