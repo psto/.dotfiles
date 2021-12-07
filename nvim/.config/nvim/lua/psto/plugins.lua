@@ -11,10 +11,16 @@ return require('packer').startup(function()
   use 'tpope/vim-surround'
   use 'sindrets/diffview.nvim'
   use 'jiangmiao/auto-pairs'
-  use 'tomtom/tcomment_vim'
+  -- use 'tomtom/tcomment_vim'
   use 'metakirby5/codi.vim'
   use 'github/copilot.vim'
   -- use {'neoclide/coc.nvim', branch = 'release' }
+  use {
+      'numToStr/Comment.nvim',
+      config = function()
+          require('Comment').setup()
+      end
+  }
 
   -- Search
   use 'nvim-lua/popup.nvim'
