@@ -1,7 +1,5 @@
 local nvim_lsp = require('lspconfig')
 
-local script_path = os.getenv("HOME") .. ".local/share/nvm/v16.13.0/lib/node_modules/@volar/server/out/index.js"
-
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)

@@ -139,9 +139,5 @@ cmd [[
   augroup END
 ]]
 
-  -- automatically rebalance windows on vim resize
-  cmd [[autocmd VimResized * :wincmd =]]
-
---Disable automatic comment insertion
-cmd [[autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o]]
-
+-- automatically rebalance windows on vim resize
+cmd [[autocmd VimResized * :wincmd =]]
