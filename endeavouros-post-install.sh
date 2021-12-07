@@ -1,6 +1,7 @@
 sudo pacman -Sy ansible
 sudo pacman -Sy autorandr
 sudo pacman -Sy bat
+sudo pacman -Sy bitwarden
 sudo pacman -Sy calibre
 sudo pacman -Sy cmatrix
 sudo pacman -Sy dash
@@ -17,6 +18,9 @@ sudo pacman -Sy imagemagick
 sudo pacman -Sy keepassxc
 sudo pacman -Sy lua-language-server
 sudo pacman -Sy newsboat
+sudo pacman -Sy nextcloud-client
+sudo pacman -Sy nmon
+sudo pacman -Sy nyxt
 sudo pacman -Sy nvm
 sudo pacman -Sy qbittorrent
 sudo pacman -Sy ranger
@@ -27,11 +31,14 @@ sudo pacman -Sy signal-desktop
 sudo pacman -Sy the_silver_searcher
 sudo pacman -Sy tlp
 sudo pacman -Sy tmux
+sudo pacman -Sy tor-browser
 sudo pacman -Sy trash-cli
 sudo pacman -Sy tree-sitter
 sudo pacman -Sy vifm
 sudo pacman -Sy xclip
 sudo pacman -Sy zathura
+sudo pacman -Sy zoxide
+sudo pacman -Sy zsh
 
 yay -S alacritty
 yay -S btop
