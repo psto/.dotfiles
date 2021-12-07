@@ -284,6 +284,12 @@ bindsym $mod+b exec /usr/bin/kitty --class="handy-terminal"
 bindsym $mod+n exec kitty --class="handy-terminal" -e /home/piotr/.local/bin/obsidianQuickNote 
 bindsym $mod+shift+P exec flameshot gui
 bindsym $mod+shift+F exec ~/.local/bin/rofi-search.sh
+
+# scratchpad
+bindsym $mod+Shift+S move scratchpad
+bindsym $mod+Shift+D scratchpad show
+bindsym $mod+Shift+W sticky toggle
+
 ##########################################
 # configuration for workspace behaviour: #
 ##########################################
@@ -393,6 +399,7 @@ for_window [class="Blueberry.py" instance="blueberry.py"] floating enable
 for_window [class="Bluetooth-sendto" instance="bluetooth-sendto"] floating enable
 for_window [class="Pamac-manager"] floating enable
 for_window [class="handy-terminal"] floating enable
+for_window [class="Tor Browser"] floating enable move position center
 
 # set resize for special apps
 for_window [class="handy-terminal"] resize set 700 500
