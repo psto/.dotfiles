@@ -218,10 +218,10 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+- split horizontal
+bindsym $mod+equal split horizontal
 
 # split in vertical orientation
-bindsym $mod+= split vertical
+bindsym $mod+minus split vertical
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -283,7 +283,7 @@ bindsym $mod+w exec /usr/bin/brave-beta
 bindsym $mod+b exec /usr/bin/kitty --class="handy-terminal"
 bindsym $mod+n exec kitty --class="handy-terminal" -e /home/piotr/.local/bin/obsidianQuickNote 
 bindsym $mod+shift+P exec flameshot gui
-bindsym $mod+shift+F exec ~/.local/bin/rofi-search.sh
+bindsym $mod+shift+F exec ~/.local/bin/rofi-search
 
 # scratchpad
 bindsym $mod+Shift+S move scratchpad
