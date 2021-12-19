@@ -36,9 +36,23 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
+-- local null_ls = pcall(require, 'null_ls')
+-- local formatting = null_ls.builtins.formatting
+-- local diagnostics = null_ls.builtins.diagnostics
+-- null_ls.setup({
+--     sources = {
+--       formatting.prettier.with({ extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } }),
+--     },
+-- })
+require("null-ls").setup({
+    sources = {
+        require("null-ls").builtins.formatting.prettier,
+    },
+})
+
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'jsonls', 'tsserver', 'emmet_ls' }
+local servers = { 'jsonls', 'tsserver' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
@@ -52,10 +66,39 @@ end
 nvim_lsp.volar.setup{
   on_attach = on_attach,
   capabilities = capabilities,
+  filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'},
+  init_options = {
+    typescript = {
+      serverPath = '/home/piotr/.nvm/versions/node/v16.13.1/lib/node_modules/typescript/lib/tsserverlibrary.js'
+    }
+  },
   flags = {
     debounce_text_changes = 150,
   }
 }
+
+require'lspconfig'.tailwindcss.setup{
+  on_attach = on_attach,
+  capabilities = capabilities,
+  flags = {
+    debounce_text_changes = 150,
+  }
+}
+
+local configs = require'lspconfig/configs'
+if not nvim_lsp.emmet_ls then
+  configs.emmet_ls = {
+    default_config = {
+      cmd = {'emmet-ls', '--stdio'};
+      filetypes = {'html', 'css' };
+      root_dir = function()
+        return vim.loop.cwd()
+      end;
+      settings = {};
+    };
+  }
+end
+nvim_lsp.emmet_ls.setup{ capabilities = capabilities, on_attach = on_attach }
 
 -- install on arch:$ sudo pacman -S lua-language-server
 -- set the path to the sumneko installation
