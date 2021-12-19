@@ -79,6 +79,10 @@
 --   },
 -- }
 
+-- formatting with lspkind
+local lspkind = require "lspkind"
+lspkind.init()
+
 -- -- nvim-cmp setup
 local cmp = require 'cmp'
 
@@ -103,6 +107,17 @@ cmp.setup {
     ['<CR>'] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
+    },
+  },
+  formatting = {
+    format = lspkind.cmp_format {
+      with_text = true,
+      menu = {
+        buffer = "[buf]",
+        nvim_lsp = "[LSP]",
+        nvim_lua = "[api]",
+        path = "[path]",
+      },
     },
   },
   sources = {

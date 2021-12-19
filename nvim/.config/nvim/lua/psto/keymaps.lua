@@ -48,3 +48,5 @@ key_map("n", "<c-n>", ":call ToggleNetrw()<CR>", { noremap = true, silent = true
 
 key_map("n", "<M-j>", ":cnext<CR>zz", { noremap = true, silent = true })
 key_map("n", "<M-k>", ":cprev<CR>zz", { noremap = true, silent = true })
+
+key_map("n", "<leader>t", [[:lua vim.lsp.buf.formatting()<CR>]], { noremap = true, silent = true })
