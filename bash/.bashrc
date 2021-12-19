@@ -118,6 +118,9 @@ fi
 # nVIM as global text editor
 export EDITOR="nvim"
 
+# set BROWSER
+export BROWSER="brave-beta"
+
 # vi mode in terminal
 set -o vi
 
