@@ -3,7 +3,7 @@
  * Maintainer: joekamprad <joekamprad@endeavouros.com>
  *******************************************************/
 configuration {
-    font:                           "Sourcecode Pro Regular 10";
+    font:                           "Sourcecode Pro Regular 12";
     show-icons:                     false;
     icon-theme: 		    "Arc-X-D";
     scroll-method:                  0;
@@ -18,8 +18,8 @@ window {
     border:                         0;
     padding:                        10;
     transparency:                   "real";
-    width:                          120px;
-    location:                       east;
+    width:                          140px;
+    location:                       center;
 /*y-offset:                       18;*/
 /*x-offset:	                    850;*/
     transparency:                   "real";
