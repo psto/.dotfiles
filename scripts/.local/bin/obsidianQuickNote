@@ -1,6 +1,6 @@
 #!/bin/sh
 
-noteFilename="$HOME/Dropbox/notes/obsidian-notes/-Inbox/quick-$(date +%Y-%m-%d).md"
+noteFilename="$HOME/Dropbox/notes/obsidian-notes/Inbox/quick-$(date +%Y-%m-%d).md"
 
 if [ ! -f $noteFilename ]; then
   echo "# Notes for $(date +%Y-%m-%d)" > $noteFilename
