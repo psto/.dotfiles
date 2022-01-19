@@ -80,22 +80,8 @@ opt.fillchars = { eob = "~" }
 -- COLOR
 --
 opt.termguicolors = true
-
 cmd("au ColorScheme * hi Normal ctermbg=none guibg=none") -- transparent background
--- g.tokyonight_transparent = true
--- g.tokyonight_style = "night"
--- g.tokyonight_dark_float = false
--- g.tokyonight_transparent_sidebar = true
--- cmd[[colorscheme tokyonight]]
--- cmd("colorscheme dracula")
--- cmd("colorscheme duskfox")
--- cmd("colorscheme onedark")
--- g.nightflyTransparent = 1
--- cmd [[colorscheme nightfly]]
-cmd [[colorscheme kanagawa]]
-
--- hint to keep lines short
-opt.colorcolumn = "80"
+opt.colorcolumn = "80" -- hint to keep lines short
 
 g.completion_trigger_character = "."
 
