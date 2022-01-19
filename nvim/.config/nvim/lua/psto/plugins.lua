@@ -129,6 +129,9 @@ return require('packer').startup(function()
   use 'dracula/vim'
   use 'EdenEast/nightfox.nvim'
   use 'folke/tokyonight.nvim'
+  use 'navarasu/onedark.nvim'
+  use 'bluz71/vim-nightfly-guicolors'
+  use "rebelot/kanagawa.nvim"
 
   -- Statusline
   use {
@@ -137,7 +140,7 @@ return require('packer').startup(function()
     config = function()
       require('lualine').setup {
         options = {
-          theme = 'nightfox',
+          theme = 'kanagawa',
           component_separators = '',
           section_separators = '',
         },
