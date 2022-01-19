@@ -11,7 +11,6 @@ return require('packer').startup(function()
   use 'tpope/vim-surround'
   use 'sindrets/diffview.nvim'
   use "windwp/nvim-autopairs"
-  -- use 'tomtom/tcomment_vim'
   use 'metakirby5/codi.vim'
   use 'github/copilot.vim'
   use {
@@ -19,6 +18,12 @@ return require('packer').startup(function()
       config = function()
           require('Comment').setup()
       end
+  }
+  use {
+      'kyazdani42/nvim-tree.lua',
+      requires = {
+        'kyazdani42/nvim-web-devicons',
+      }
   }
 
   -- Search
