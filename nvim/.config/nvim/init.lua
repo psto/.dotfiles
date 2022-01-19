@@ -15,3 +15,6 @@ require('psto/telescope/mappings')
 -- trouble mappings
 require('psto/trouble')
 
+-- autopairs config
+require("psto/autopairs")
+

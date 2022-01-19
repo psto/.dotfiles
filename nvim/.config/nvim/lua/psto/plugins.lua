@@ -10,11 +10,10 @@ return require('packer').startup(function()
   -- Utility Plugins
   use 'tpope/vim-surround'
   use 'sindrets/diffview.nvim'
-  use 'jiangmiao/auto-pairs'
+  use "windwp/nvim-autopairs"
   -- use 'tomtom/tcomment_vim'
   use 'metakirby5/codi.vim'
   use 'github/copilot.vim'
-  -- use {'neoclide/coc.nvim', branch = 'release' }
   use {
       'numToStr/Comment.nvim',
       config = function()
