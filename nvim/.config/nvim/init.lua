@@ -4,6 +4,7 @@ vim.g.mapleader = " "
 require('psto/options')
 require('psto/plugins')
 require('psto/keymaps')
+require('psto/colorscheme')
 
 -- Neovim builtin LSP configuration
 require('psto/lsp')
