@@ -6,15 +6,19 @@ require('psto/plugins')
 require('psto/keymaps')
 
 -- Neovim builtin LSP configuration
-require("psto/lsp")
+require('psto/lsp')
 
 -- telescope setup
 require('psto/telescope/setup')
 require('psto/telescope/mappings')
 
+-- treesitter
+require('psto/treesitter')
+
 -- trouble mappings
 require('psto/trouble')
 
 -- autopairs config
-require("psto/autopairs")
+require('psto/autopairs')
+
 
