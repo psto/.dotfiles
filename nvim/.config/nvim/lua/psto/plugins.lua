@@ -78,9 +78,10 @@ return require('packer').startup(function()
 
   -- Highlights
   use {
-    "nvim-treesitter/nvim-treesitter",
-    run = ":TSUpdate",
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate',
   }
+  use 'p00f/nvim-ts-rainbow'
 
   -- Documentation
   -- use {
