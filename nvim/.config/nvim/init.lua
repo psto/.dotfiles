@@ -21,4 +21,5 @@ require('psto/trouble')
 -- autopairs config
 require('psto/autopairs')
 
-
+-- nvim-tree
+require('psto/nvim-tree')
