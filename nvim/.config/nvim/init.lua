@@ -1,6 +1,3 @@
--- set leader key to space
-vim.g.mapleader = " "
-
 require('psto/options')
 require('psto/plugins')
 require('psto/keymaps')
