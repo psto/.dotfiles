@@ -1,3 +1,4 @@
+-- disable highlighting matching parens
 vim.g.loaded_matchparen = 1
 
 local g = vim.g           -- global variable
@@ -76,14 +77,23 @@ opt.joinspaces = false -- Two spaces and grade school, we're done
 -- set fillchars=eob:~
 opt.fillchars = { eob = "~" }
 
+-- Netrw settings
+g.netrw_banner = 0    -- remove the directory banner
+g.netrw_winsize = 25  -- set width of the directory explorer to 25% of the page
+g.netrw_liststyle = 3 -- set tree view type
+-- hide gitignore
+-- g.netrw_list_hide=netrw_gitignore#Hide()
+-- g.netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
+
+-- do I need this?
+g.completion_trigger_character = "."
+
 --
 -- COLOR
 --
 opt.termguicolors = true
 cmd("au ColorScheme * hi Normal ctermbg=none guibg=none") -- transparent background
 opt.colorcolumn = "80" -- hint to keep lines short
-
-g.completion_trigger_character = "."
 
 --
 -- CUSTOM AUTOCMDS
