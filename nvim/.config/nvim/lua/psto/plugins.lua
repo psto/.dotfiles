@@ -128,6 +128,7 @@ return packer.startup(function(use)
   -- }
 
   -- Navigation
+  use {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons'}
   use 'christoomey/vim-tmux-navigator'
   use {
     'karb94/neoscroll.nvim',
