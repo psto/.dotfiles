@@ -5,6 +5,8 @@ require('psto/colorscheme')
 
 -- Neovim builtin LSP configuration
 require('psto/lsp')
+-- cmp completion
+require('psto/completion')
 
 -- telescope setup
 require('psto/telescope/setup')
