@@ -1,4 +1,7 @@
-local nvim_lsp = require('lspconfig')
+local status_ok, nvim_lsp = pcall(require, "lspconfig")
+if not status_ok then
+	return
+end
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -25,30 +28,64 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+  buf_set_keymap('n', 'gl', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
   buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
   buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
   buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
+  local signs = {
+    { name = "DiagnosticSignError", text = "" },
+    { name = "DiagnosticSignWarn", text = "" },
+    { name = "DiagnosticSignHint", text = "" },
+    { name = "DiagnosticSignInfo", text = "" },
+  }
+
+  local config = {
+    virtual_text = false, -- disable annoying inline diagnostics
+    signs = {
+      active = signs,     -- show signs
+    },
+    update_in_insert = true,
+    underline = true,
+    severity_sort = true,
+    float = {
+      focusable = false,
+      style = "minimal",
+      border = "rounded",
+      source = "always",
+      header = "",
+      prefix = "",
+    },
+  }
+
+  vim.diagnostic.config(config)
+
+  -- rounded borders for float windows
+  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+    border = "rounded",
+  })
+  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+    border = "rounded",
+  })
+
+  for _, sign in ipairs(signs) do
+    vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
+  end
+
+  -- turn off document formatting to use null-ls by default
+  local excludeFormatting = { 'tsserver', 'volar' }
+  for _, server in ipairs(excludeFormatting) do
+    if client.name == server then
+      client.resolved_capabilities.document_formatting = false
+      client.resolved_capabilities.text_document_publish_diagnostics = false
+    end
+  end
 end
+
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
-
--- local null_ls = pcall(require, 'null_ls')
--- local formatting = null_ls.builtins.formatting
--- local diagnostics = null_ls.builtins.diagnostics
--- null_ls.setup({
---     sources = {
---       formatting.prettier.with({ extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } }),
---     },
--- })
-require("null-ls").setup({
-    sources = {
-        require("null-ls").builtins.formatting.prettier,
-    },
-})
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
@@ -63,10 +100,12 @@ for _, lsp in ipairs(servers) do
   }
 end
 
+-- volar config
 nvim_lsp.volar.setup{
   on_attach = on_attach,
   capabilities = capabilities,
-  filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'},
+  -- filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'},
+  filetypes = { 'vue' },
   init_options = {
     typescript = {
       serverPath = '/home/piotr/.nvm/versions/node/v16.13.1/lib/node_modules/typescript/lib/tsserverlibrary.js'
@@ -77,6 +116,7 @@ nvim_lsp.volar.setup{
   }
 }
 
+-- tailwindcss config
 require'lspconfig'.tailwindcss.setup{
   on_attach = on_attach,
   capabilities = capabilities,
@@ -85,12 +125,13 @@ require'lspconfig'.tailwindcss.setup{
   }
 }
 
+-- emmet config
 local configs = require'lspconfig/configs'
 if not nvim_lsp.emmet_ls then
   configs.emmet_ls = {
     default_config = {
       cmd = {'emmet-ls', '--stdio'};
-      filetypes = {'html', 'css' };
+      filetypes = {'html', 'css', 'vue' };
       root_dir = function()
         return vim.loop.cwd()
       end;
@@ -100,6 +141,7 @@ if not nvim_lsp.emmet_ls then
 end
 nvim_lsp.emmet_ls.setup{ capabilities = capabilities, on_attach = on_attach }
 
+-- sumneko config
 -- install on arch:$ sudo pacman -S lua-language-server
 -- set the path to the sumneko installation
 local sumneko_root_path = vim.fn.stdpath('cache')..'/lspconfig/sumneko_lua/lua-language-server'
