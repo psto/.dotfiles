@@ -21,3 +21,6 @@ require('psto/autopairs')
 
 -- nvim-tree
 require('psto/nvim-tree')
+
+-- bufferline
+require('psto/bufferline')
