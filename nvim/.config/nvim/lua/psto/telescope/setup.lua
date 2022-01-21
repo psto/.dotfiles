@@ -17,10 +17,9 @@ require('telescope').setup{
         -- actions.which_key shows the mappings for your picker,
         -- e.g. git_{create, delete, ...}_branch for the git_branches picker
         ["<Esc>"] = actions.close,
-        ["<C-q>"] = actions.send_to_qflist,
+        ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
         ["<C-j>"] = actions.cycle_history_next,
         ["<C-k>"] = actions.cycle_history_prev,
-        ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
       }
     }
   },
