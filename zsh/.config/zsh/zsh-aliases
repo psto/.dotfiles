@@ -24,7 +24,8 @@ alias grep='grep --color=auto'
 # confirm before overwriting something
 alias cp="cp -i"
 alias mv='mv -i'
-alias rm='rm -i'
+# alias rm='rm -i'
+alias rm='trash-put'
 
 # easier to read disk
 alias df='df -h'     # human-readable sizes
@@ -48,14 +49,38 @@ alias archlinx-fix-keys="sudo pacman-key --init && sudo pacman-key --populate ar
 # systemd
 alias mach_list_systemctl="systemctl list-unit-files --state=enabled"
 
-alias mach_java_mode="export SDKMAN_DIR="$HOME/.sdkman" && [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh""
-
 # git aliases
 alias m="git checkout master"
 alias s="git checkout stable"
 alias gs="git status -s"
 alias ga="git add"
 alias gc="git commit -m"
+alias gd='git diff'
+
+# stdout to clipboard
+alias copy='xclip -selection clipboard'
+alias paste='xclip -selection clipboard -o'
+
+# open
+alias open="xdg-open"
+
+# clear alias when in tmux
+alias c='clear'
+
+# exa alias
+alias l='exa -l'
+
+# Easily search running processes
+alias psf='ps -Ao comm,pcpu,pmem,pid --sort=-pcpu | grep '
+
+# mpv remember last played position
+alias mpvsp='mpv --save-position-on-quit'
+
+# cheat
+cheat() { curl "http://cheat.sh/$1"; }
+
+# get weather
+alias wttr="curl wttr.in/Lubań"
 
 case "$(uname -s)" in
 
