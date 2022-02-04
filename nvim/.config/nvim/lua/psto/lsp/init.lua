@@ -108,7 +108,7 @@ nvim_lsp.volar.setup{
   filetypes = { 'vue' },
   init_options = {
     typescript = {
-      serverPath = '/home/piotr/.nvm/versions/node/v16.13.1/lib/node_modules/typescript/lib/tsserverlibrary.js'
+      serverPath = '/usr/lib/node_modules/typescript/lib/tsserverlibrary.js'
     }
   },
   flags = {
@@ -119,6 +119,8 @@ nvim_lsp.volar.setup{
 -- tailwindcss config
 require'lspconfig'.tailwindcss.setup{
   on_attach = on_attach,
+  -- excluded: markdown
+  filetypes = { "aspnetcorerazor", "astro", "astro-markdown", "blade", "django-html", "edge", "eelixir", "ejs", "erb", "eruby", "gohtml", "haml", "handlebars", "hbs", "html", "html-eex", "heex", "jade", "leaf", "liquid", "mdx", "mustache", "njk", "nunjucks", "php", "razor", "slim", "twig", "css", "less", "postcss", "sass", "scss", "stylus", "sugarss", "javascript", "javascriptreact", "reason", "rescript", "typescript", "typescriptreact", "vue", "svelte" },
   capabilities = capabilities,
   flags = {
     debounce_text_changes = 150,
