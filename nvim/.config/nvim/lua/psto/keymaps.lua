@@ -47,21 +47,11 @@ key_map("v", "J", ":m '>+1<CR>gv=gv", { noremap = false })
 key_map("v", "K", ":m '<-2<CR>gv=gv", { noremap = false })
 
 -- Pasting over a selection keeps original yanked text
-key_map("v", "p", '"_dP', opts)
+-- key_map("v", "p", '"_dP', opts)
 
 -- Reselect visual selection after indenting
 key_map("v", "<", "<gv", opts)
 key_map("v", ">", ">gv", opts)
-
--- zoom a vim pane, <C-,>= to re-balance
--- nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
--- nnoremap <leader>= :wincmd =<cr>
-
--- execute lua file in vim
--- nnoremap <leader>l :!lua %<CR>
-
--- netrw-toggle.vim shortcut
--- key_map("n", "<c-n>", ":call ToggleNetrw()<CR>", opts)
 
 key_map("n", "<M-j>", ":cnext<CR>zz", opts)
 key_map("n", "<M-k>", ":cprev<CR>zz", opts)
@@ -69,4 +59,5 @@ key_map("n", "<M-k>", ":cprev<CR>zz", opts)
 key_map("n", "<leader>t", [[:lua vim.lsp.buf.formatting()<CR>]], opts)
 
 -- Nvimtree
-key_map("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
+key_map("n", "<c-n>", ":NvimTreeToggle<cr>", opts)
+
