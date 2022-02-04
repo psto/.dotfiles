@@ -9,10 +9,10 @@ if not snip_status_ok then
   return
 end
 
-require("luasnip.loaders.from_vscode").lazy_load()
+-- specify the path so that friendly-snippets are not duplicated
+require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./" } })
 
 -- formatting with lspkind
--- local lspkind = require "lspkind"
 local lspkind_status_ok, lspkind = pcall(require, "lspkind")
 if not lspkind_status_ok then
   return
