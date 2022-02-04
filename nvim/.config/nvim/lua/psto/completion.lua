@@ -9,16 +9,63 @@ if not snip_status_ok then
   return
 end
 
-require("luasnip/loaders/from_vscode").lazy_load()
+require("luasnip.loaders.from_vscode").lazy_load()
 
 -- formatting with lspkind
-local lspkind = require "lspkind"
-lspkind.init()
+-- local lspkind = require "lspkind"
+local lspkind_status_ok, lspkind = pcall(require, "lspkind")
+if not lspkind_status_ok then
+  return
+end
+
+lspkind.init({
+    -- defines how annotations are shown
+    -- default: symbol
+    -- options: 'text', 'text_symbol', 'symbol_text', 'symbol'
+    -- mode = 'symbol',
+
+    -- default symbol map
+    -- can be either 'default' (requires nerd-fonts font) or
+    -- 'codicons' for codicon preset (requires vscode-codicons font)
+    --
+    -- default: 'default'
+    preset = 'codicons',
+
+    -- override preset symbols
+    --
+    -- default: {}
+    symbol_map = {
+      Text = "",
+      Method = "",
+      Function = "",
+      Constructor = "",
+      Field = "ﰠ",
+      Variable = "",
+      Class = "ﴯ",
+      Interface = "",
+      Module = "",
+      Property = "ﰠ",
+      Unit = "塞",
+      Value = "",
+      Enum = "",
+      Keyword = "",
+      Snippet = "",
+      Color = "",
+      File = "",
+      Reference = "",
+      Folder = "",
+      EnumMember = "",
+      Constant = "",
+      Struct = "פּ",
+      Event = "",
+      Operator = "",
+      TypeParameter = ""
+    },
+})
 
 cmp.setup {
   snippet = {
     expand = function(args)
-      -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
       luasnip.lsp_expand(args.body) -- For `luasnip` users.
     end,
   },
@@ -47,8 +94,9 @@ cmp.setup {
     }),
   },
   formatting = {
+    fields = { "kind", "abbr", "menu" },
     format = lspkind.cmp_format {
-      with_text = true,
+      mode = 'symbol',
       menu = {
         buffer = "[buf]",
         nvim_lsp = "[LSP]",
@@ -61,8 +109,6 @@ cmp.setup {
   sources = {
     { name = 'nvim_lsp' },
     { name = "luasnip" },
-    -- { name = 'vsnip' }, -- For vsnip users.
-    { name = 'treesitter' }, -- TODO: check if works
     { name = 'path' },
     { name = 'buffer', keyword_length = 5 },
   },
