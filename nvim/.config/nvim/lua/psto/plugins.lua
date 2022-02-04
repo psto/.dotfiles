@@ -34,9 +34,6 @@ return packer.startup(function(use)
   use 'wbthomason/packer.nvim'
   use 'lewis6991/impatient.nvim'
 
-  -- Async building & commands
-  -- use { 'tpope/vim-dispatch', cmd = { 'Dispatch', 'Make', 'Focus', 'Start' } }
-
   -- Utility Plugins
   use 'tpope/vim-surround'
   use 'sindrets/diffview.nvim'
@@ -93,24 +90,28 @@ return packer.startup(function(use)
     end
   }
 
-  -- Completion, linting and snippets
+  -- LSP
   use {
-    'neovim/nvim-lspconfig',
+    'neovim/nvim-lspconfig',  -- enable LSP
+    -- 'folke/lsp-colors.nvim'
+    -- 'williamboman/nvim-lsp-installer'
+  }
+
+  -- Completion cmp plugins
+  use {
     'hrsh7th/nvim-cmp',
-    'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-path',
     'hrsh7th/cmp-cmdline',
-    'hrsh7th/vim-vsnip',
-    'hrsh7th/vim-vsnip-integ',
+  }
+
+  -- Snippets
+  use {
     'saadparwaiz1/cmp_luasnip',
     'L3MON4D3/LuaSnip',
     'rafamadriz/friendly-snippets',
   }
-
--- Plug 'folke/lsp-colors.nvim'
--- Plug 'onsails/lspkind-nvim'
--- Plug 'williamboman/nvim-lsp-installer'
 
   -- Highlights
   use {
