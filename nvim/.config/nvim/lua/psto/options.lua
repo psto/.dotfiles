@@ -20,7 +20,7 @@ opt.number = true         -- But show the actual number for the line we're on
 opt.ignorecase = true     -- Ignore case when searching...
 opt.smartcase = true      -- ... unless there is a capital letter in the query
 opt.hidden = true         -- I like having buffers stay around
-opt.cursorline = true     -- Highlight the current line
+opt.cursorline = false     -- Highlight the current line
 opt.equalalways = false   -- I don't like my windows changing all the time
 opt.splitright = true     -- Prefer windows splitting to the right
 opt.splitbelow = true     -- Prefer windows splitting to the bottom
@@ -53,10 +53,6 @@ opt.clipboard = "unnamedplus"
 opt.inccommand = "split" -- interactive feedback with the substitute command with a preview window
 opt.swapfile = false     -- Living on the edge
 opt.shada = { "!", "'1000", "<50", "s10", "h" }
-
-opt.mouse = "n"
-
-opt.clipboard = "unnamedplus"
 
 opt.mouse = "n"
 
