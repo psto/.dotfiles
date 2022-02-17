@@ -14,6 +14,12 @@
 -- local colorscheme = "nightfly"
 local colorscheme = "kanagawa"
 
+require'kanagawa'.setup({
+  overrides  = {
+    NormalFloat = { bg = "NONE" }, -- set floating window background to transparent
+  }
+})
+
 local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
 if not status_ok then
   vim.notify("colorscheme " .. colorscheme .. " not found!")
