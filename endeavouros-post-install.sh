@@ -35,31 +35,30 @@ sudo pacman -Sy tor-browser
 sudo pacman -Sy trash-cli
 sudo pacman -Sy tree-sitter
 sudo pacman -Sy vifm
+sudo pacman -Sy vlc
 sudo pacman -Sy xclip
+sudo pacman -Sy xorg-xbacklight
 sudo pacman -Sy zathura
 sudo pacman -Sy zoxide
 sudo pacman -Sy zsh
 
 yay -S alacritty
+yay -S anki
 yay -S btop
 yay -S brave-beta-bin
+yay -S discord_arch_electron
+yay -S dropbox
 yay -S espanso-git
 yay -S insomnia-bin
 yay -S kitty
 yay -S mailspring
+yay -S neovim-nightly-bin
 yay -S nvim-packer-git
-yay -S streamlink-twitch-gui
+yay -S obsidian
+yay -S rbenv
+yay -S streamlink-twitch-gui-bin
+yay -S timeshift
 yay -S visual-studio-code-bin
 yay -S volar-server-bin
 yay -S ytfzf
-
-mkdir Programs/ && cd Programs/
-
-git clone https://aur.archlinux.org/dropbox.git
-git clone https://aur.archlinux.org/anki.git
-git clone https://aur.archlinux.org/neovim-nightly-bin.git
-git clone https://aur.archlinux.org/obsidian.git
-git clone https://aur.archlinux.org/rbenv.git
-git clone https://aur.archlinux.org/timeshift.git
-git clone https://aur.archlinux.org/discord_arch_electron.git
 
