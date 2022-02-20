@@ -1,11 +1,9 @@
 {
-    "templateLang": {
-        "prefix": "templateLang",
+    "template": {
+        "prefix": "template",
         "body": [
-            "<template lang=\"$1\">",
-            "\t<div$2>",
-            "\t\t$0",
-            "\t</div>",
+            "<template>",
+            "\t$0",
             "</template>"
         ],
         "description": "template element"
@@ -21,13 +19,51 @@
         ],
         "description": "script element"
     },
-    "styleLang": {
-        "prefix": "styleLang",
+    "style": {
+        "prefix": "style",
         "body": [
-            "<style lang=\"$1\">",
+            "<style>",
             "\t$0",
             "</style>"
         ],
         "description": "style element with lang attribute"
+    },
+    "Vue Single File Setup Component": {
+        "prefix": "vbase-setup",
+        "body": [
+          "<script setup>",
+          "",
+          "</script>",
+          "",
+          "<template>",
+          "\t$0",
+          "</template>",
+          "",
+          "<style scoped>",
+          "",
+          "</style>"
+        ],
+        "description": "Base for Vue File Setup Composition API"
+    },
+    "Vue Single File Component": {
+        "prefix": "vbase",
+        "body": [
+          "<script>",
+          "export default {",
+          "",
+          "}",
+          "</script>",
+          "",
+          "<template>",
+          "<div>",
+          "\t$0",
+          "</div>",
+          "</template>",
+          "",
+          "<style scoped>",
+          "",
+          "</style>"
+        ],
+        "description": "Base for Vue File Composition API"
     }
 }
