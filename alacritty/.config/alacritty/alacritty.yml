@@ -2,7 +2,7 @@ import:
   - ~/.config/alacritty/dracula.yml
 
 window:
-  opacity: 0.90 # Background opacity
+  opacity: 1 # Background opacity
 
 font:
   # The normal (roman) font face to use.

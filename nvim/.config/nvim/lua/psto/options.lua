@@ -87,9 +87,10 @@ g.completion_trigger_character = "."
 --
 -- COLOR
 --
-opt.termguicolors = true
-cmd("au ColorScheme * hi Normal ctermbg=none guibg=none") -- transparent background
 opt.colorcolumn = "80" -- hint to keep lines short
+opt.termguicolors = true
+-- terminal transparency can be set with picom, so not needed for now
+-- cmd("au ColorScheme * hi Normal ctermbg=none guibg=none") -- transparent background
 
 --
 -- CUSTOM AUTOCMDS
