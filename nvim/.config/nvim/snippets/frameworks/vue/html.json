@@ -32,7 +32,7 @@
         "description": "Expects: any"
     },
     "v-if": {
-        "prefix": "vIf",
+        "prefix": "vif",
         "body": [
             "v-if=\"${1:condition}\""
         ],
@@ -60,35 +60,51 @@
         "description": "Expects: Array | Object | number | string"
     },
     "v-for": {
-        "prefix": "vFor",
+        "prefix": "vfor",
         "body": [
-            "v-for=\"(${1:item}, ${2:index}) in ${3:items}\" :key=\"${4:index}\""
+            "v-for=\"${1:item}, in ${2:items}\" :key=\"${3:item}\""
         ],
         "description": "Expects: Array | Object | number | string"
     },
+    "v-for with index": {
+        "prefix": "vfori",
+        "body": [
+            "v-for=\"(${1:item}, ${2:index}) in ${3:items}\" :key=\"${1:item}${4}\""
+        ],
+        "description": "Expects: Array | Object | number | string"
+    },
+    "v-for with tag": {
+        "prefix": "vfort",
+        "body": [
+            "<${1:div} v-for=\"${2:item} in ${2:item}s\" :key=\"${2:item}.id\">",
+            "\t{{ ${2:item} }}",
+            "</${1:div}>"
+        ],
+        "description": "vfor statement with html tag"
+    },
     "v-on": {
-        "prefix": "vOn",
+        "prefix": "von",
         "body": [
             "v-on:${1:event}=\"${2:handle}\""
         ],
         "description": "Expects: Function | Inline Statement"
     },
     "v-bind": {
-        "prefix": "vBind",
+        "prefix": "vbind",
         "body": [
             "v-bind$1=\"${2}\""
         ],
         "description": "Expects: any (with argument) | Object (without argument)"
     },
     "v-model": {
-        "prefix": "vModel",
+        "prefix": "vmodel",
         "body": [
             "v-model=\"${1:something}\""
         ],
         "description": "Expects: varies based on value of form inputs element or output of components"
     },
     "v-slot": {
-        "prefix": "vSlot",
+        "prefix": "vslot",
         "body": [
             "v-slot$1=\"${2}\""
         ],
@@ -365,6 +381,13 @@
             "tag=\"$1\"$0"
         ],
         "description": "tag=''"
+    },
+    "class": {
+        "prefix": "cla",
+        "body": [
+            "class=\"$1\"$0"
+        ],
+        "description": "class=''"
     },
     "routerView": {
         "prefix": "routerView",
