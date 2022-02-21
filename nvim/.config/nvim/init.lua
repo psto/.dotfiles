@@ -1,3 +1,4 @@
+require('impatient')        -- needs to be first
 require('psto/options')
 require('psto/plugins')
 require('psto/keymaps')
