@@ -4,7 +4,7 @@ require('telescope').setup{
   defaults = {
     file_ignore_patterns = {"node_modules", "^.git"},
     file_sorter = require("telescope.sorters").get_fzy_sorter,
-    prompt_prefix = " >",
+    prompt_prefix = " 🔍 ",
     color_devicons = true,
 
     file_previewer = require("telescope.previewers").vim_buffer_cat.new,
@@ -21,7 +21,19 @@ require('telescope').setup{
         ["<C-j>"] = actions.cycle_history_next,
         ["<C-k>"] = actions.cycle_history_prev,
       }
-    }
+    },
+
+    vimgrep_arguments = {
+      'rg',
+      '--color=never',
+      '--no-heading',
+      '--with-filename',
+      '--line-number',
+      '--column',
+      '--hidden', -- search in hidden files
+      '--smart-case',
+      '-u' -- thats the new thing
+    },
   },
   pickers = {
     -- Default configuration for builtin pickers goes here:
@@ -45,9 +57,9 @@ require('telescope').setup{
         override_generic_sorter = false,
         override_file_sorter = true,
     }
-    -- fzf = { 
-    --   fuzzy = true, 
-    --   override_generic_sorter = true, 
+    -- fzf = {
+    --   fuzzy = true,
+    --   override_generic_sorter = true,
     --   override_file_sorter = true,
     --   case_mode = "smart_case",
     -- }
