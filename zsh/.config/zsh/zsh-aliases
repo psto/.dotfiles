@@ -14,10 +14,6 @@ alias mirrord="sudo reflector --latest 50 --number 20 --sort delay --save /etc/p
 alias mirrors="sudo reflector --latest 50 --number 20 --sort score --save /etc/pacman.d/mirrorlist"
 alias mirrora="sudo reflector --latest 50 --number 20 --sort age --save /etc/pacman.d/mirrorlist"
 
-# Remarkable
-alias remarkable_ssh='ssh root@10.11.99.1'
-alias restream='restream -p'
-
 # Colorize grep output (good for log files)
 alias grep='grep --color=auto'
 
@@ -56,6 +52,8 @@ alias gs="git status -s"
 alias ga="git add"
 alias gc="git commit -m"
 alias gd='git diff'
+# "git lg" alias for pretty git log - set and forget
+# git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --"
 
 # stdout to clipboard
 alias copy='xclip -selection clipboard'
@@ -69,6 +67,11 @@ alias c='clear'
 
 # exa alias
 alias l='exa -l'
+
+# check disk space
+alias df='df -h'                # human-readable sizes
+alias du='du -sh'               # summarize folder disk usage
+alias ncdu='ncdu --color dark'  # current directory by space usage
 
 # Easily search running processes
 alias psf='ps -Ao comm,pcpu,pmem,pid --sort=-pcpu | grep '
