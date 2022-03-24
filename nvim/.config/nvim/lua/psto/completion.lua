@@ -97,13 +97,13 @@ cmp.setup {
     fields = { "kind", "abbr", "menu" },
     format = lspkind.cmp_format {
       mode = 'symbol',
-      menu = {
-        buffer = "[buf]",
-        nvim_lsp = "[LSP]",
-        nvim_lua = "[api]",
-        path = "[path]",
-        luasnip = "[Snippet]",
-      },
+      -- menu = {
+      --   buffer = "[buf]",
+      --   nvim_lsp = "[LSP]",
+      --   nvim_lua = "[api]",
+      --   path = "[path]",
+      --   luasnip = "[Snippet]",
+      -- },
     },
   },
   sources = {
