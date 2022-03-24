@@ -58,6 +58,13 @@ key_map("n", "<M-k>", ":cprev<CR>zz", opts)
 
 key_map("n", "<leader>t", [[:lua vim.lsp.buf.formatting()<CR>]], opts)
 
+-- Diagnostics
+-- See `:help vim.diagnostic.*` for documentation on any of the below functions
+key_map('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+key_map('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+key_map('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+key_map('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
+
 -- Nvimtree
 key_map("n", "<c-n>", ":NvimTreeToggle<cr>", opts)
 
