@@ -162,3 +162,6 @@ local ft_str = table.concat(
 )
 print()
 cmd("autocmd Filetype " .. ft_str .. " setlocal foldmethod=expr foldexpr=nvim_treesitter#foldexpr()")
+
+-- format on save and quit
+cmd([[cabbrev wq execute "lua vim.lsp.buf.formatting_seq_sync()" <bar> wq]])
