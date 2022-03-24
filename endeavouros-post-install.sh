@@ -16,7 +16,9 @@ sudo pacman -Sy htop
 sudo pacman -Sy httpie
 sudo pacman -Sy imagemagick
 sudo pacman -Sy keepassxc
+sudo pacman -Sy lazygit
 sudo pacman -Sy lua-language-server
+sudo pacman -Sy ncdu
 sudo pacman -Sy newsboat
 sudo pacman -Sy nextcloud-client
 sudo pacman -Sy nmon
@@ -44,6 +46,7 @@ sudo pacman -Sy zsh
 
 yay -S alacritty
 yay -S anki
+yay -S beekeeper-studio-bin
 yay -S btop
 yay -S brave-beta-bin
 yay -S discord_arch_electron
