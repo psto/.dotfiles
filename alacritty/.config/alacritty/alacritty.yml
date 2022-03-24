@@ -3,6 +3,11 @@ import:
 
 window:
   opacity: 1 # Background opacity
+  padding:
+    x: 0
+    y: 0
+  dynamic_padding: true
+  decorations: none
 
 font:
   # The normal (roman) font face to use.

@@ -9,7 +9,8 @@
 
 colors:
   primary:
-    background: '#1F2430'
+    background: '#1E1F28' #kanagawa vim background
+    # background: '#1F2430'
     # background: '#282a36'
     foreground: '#f8f8f2'
     bright_foreground: '#ffffff'
