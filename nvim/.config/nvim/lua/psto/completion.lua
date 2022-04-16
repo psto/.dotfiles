@@ -112,11 +112,15 @@ cmp.setup {
     { name = 'path' },
     { name = 'buffer', keyword_length = 5 },
   },
-  documentation = {
-    border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+  window ={
+    documentation = {
+      border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+    }
   },
+  -- view = {
+  --   entries = 'native'
+  -- },
   experimental = {
-    native_menu = false,
     ghost_text = false,
   },
 }
