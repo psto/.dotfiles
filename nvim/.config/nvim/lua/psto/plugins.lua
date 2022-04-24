@@ -186,9 +186,10 @@ return packer.startup(function(use)
 		config = function()
 			require("lualine").setup({
 				options = {
-					theme = "kanagawa",
+					theme = "tokyonight",
 					component_separators = "",
 					section_separators = "",
+                    globalstatus=true
 				},
 			})
 		end,
