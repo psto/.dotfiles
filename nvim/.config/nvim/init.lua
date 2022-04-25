@@ -27,3 +27,6 @@ require('psto/nvim-tree')
 
 -- bufferline
 require('psto/bufferline')
+
+-- toggleterm
+require('psto/toggleterm')
