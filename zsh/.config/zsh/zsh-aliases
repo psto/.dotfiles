@@ -24,8 +24,10 @@ alias mv='mv -i'
 alias rm='trash-put'
 
 # easier to read disk
-alias df='df -h'     # human-readable sizes
-alias free='free -m' # show sizes in MB
+alias free='free -m'            # show sizes in MB
+alias df='df -h'                # human-readable sizes
+alias du='du -sh'               # summarize folder disk usage
+alias ncdu='ncdu --color dark'  # current directory by space usage
 
 # get top process eating memory
 alias psmem='ps auxf | sort -nr -k 4 | head -5'
@@ -67,11 +69,6 @@ alias c='clear'
 
 # exa alias
 alias l='exa -l'
-
-# check disk space
-alias df='df -h'                # human-readable sizes
-alias du='du -sh'               # summarize folder disk usage
-alias ncdu='ncdu --color dark'  # current directory by space usage
 
 # Easily search running processes
 alias psf='ps -Ao comm,pcpu,pmem,pid --sort=-pcpu | grep '
