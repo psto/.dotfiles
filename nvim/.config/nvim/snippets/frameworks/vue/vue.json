@@ -31,38 +31,55 @@
     "Vue Single File Setup Component": {
         "prefix": "vbase-setup",
         "body": [
-          "<script setup>",
-          "",
-          "</script>",
-          "",
-          "<template>",
-          "\t$0",
-          "</template>",
-          "",
-          "<style scoped>",
-          "",
-          "</style>"
+            "<script setup>",
+            "",
+            "</script>",
+            "",
+            "<template>",
+            "\t$0",
+            "</template>",
+            "",
+            "<style scoped>",
+            "",
+            "</style>"
+        ],
+        "description": "Base for Vue File Setup Composition API"
+    },
+    "Vue Single File Setup Component with TypeScript": {
+        "prefix": "vbase-setup-ts",
+        "body": [
+            "<script setup lang=\"ts\">",
+            "",
+            "</script>",
+            "",
+            "<template>",
+            "\t$0",
+            "</template>",
+            "",
+            "<style scoped>",
+            "",
+            "</style>"
         ],
         "description": "Base for Vue File Setup Composition API"
     },
     "Vue Single File Component": {
         "prefix": "vbase",
         "body": [
-          "<script>",
-          "export default {",
-          "",
-          "}",
-          "</script>",
-          "",
-          "<template>",
-          "<div>",
-          "\t$0",
-          "</div>",
-          "</template>",
-          "",
-          "<style scoped>",
-          "",
-          "</style>"
+            "<script>",
+            "export default {",
+            "",
+            "}",
+            "</script>",
+            "",
+            "<template>",
+            "<div>",
+            "\t$0",
+            "</div>",
+            "</template>",
+            "",
+            "<style scoped>",
+            "",
+            "</style>"
         ],
         "description": "Base for Vue File Composition API"
     }
