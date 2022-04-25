@@ -9,9 +9,11 @@ sudo pacman -Sy diff-so-fancy
 sudo pacman -Sy docker
 sudo pacman -Sy docker-compose
 sudo pacman -Sy exa
+sudo pacman -Sy fd
 sudo pacman -Sy fish
 sudo pacman -Sy flameshot
 sudo pacman -Sy fzf
+sudo pacman -Sy github-cli
 sudo pacman -Sy htop
 sudo pacman -Sy httpie
 sudo pacman -Sy imagemagick
@@ -49,6 +51,7 @@ yay -S anki
 yay -S beekeeper-studio-bin
 yay -S btop
 yay -S brave-beta-bin
+yay -S github-desktop-bin
 yay -S discord_arch_electron
 yay -S dropbox
 yay -S espanso-git
@@ -61,6 +64,7 @@ yay -S obsidian
 yay -S rbenv
 yay -S streamlink-twitch-gui-bin
 yay -S timeshift
+yay -S ulauncher
 yay -S visual-studio-code-bin
 yay -S volar-server-bin
 yay -S ytfzf
