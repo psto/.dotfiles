@@ -68,3 +68,5 @@ key_map('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
 -- Nvimtree
 key_map("n", "<c-n>", ":NvimTreeToggle<cr>", opts)
 
+-- ToggleTerm
+key_map("n", "<leader>t", "<cmd>:ToggleTerm<CR>", opts)
