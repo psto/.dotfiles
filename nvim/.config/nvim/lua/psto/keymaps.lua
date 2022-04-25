@@ -49,8 +49,15 @@ key_map("v", "<c-s>", "<Esc>:w<CR>", { noremap = false })
 key_map("v", "J", ":m '>+1<CR>gv=gv", { noremap = false })
 key_map("v", "K", ":m '<-2<CR>gv=gv", { noremap = false })
 
--- Pasting over a selection keeps original yanked text
--- key_map("v", "p", '"_dP', opts)
+-- Don't yank on visual paste
+-- bug: when using snippets it pastes if variable starts with 'p'
+-- key_map("v", "p", '"_dP', { noremap = true, silent = true })
+
+-- Don't yank on delete char
+key_map("n", "x", '"_x', { noremap = true, silent = true })
+key_map("n", "X", '"_X', { noremap = true, silent = true })
+key_map("v", "x", '"_x', { noremap = true, silent = true })
+key_map("v", "X", '"_X', { noremap = true, silent = true })
 
 -- Reselect visual selection after indenting
 key_map("v", "<", "<gv", opts)
