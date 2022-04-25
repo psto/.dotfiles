@@ -38,6 +38,7 @@ return packer.startup(function(use)
 	use("tpope/vim-surround")
 	use("sindrets/diffview.nvim")
 	use("windwp/nvim-autopairs")
+	use("akinsho/toggleterm.nvim")
 	use("github/copilot.vim")
 	use({
 		"numToStr/Comment.nvim",
@@ -59,6 +60,9 @@ return packer.startup(function(use)
 		requires = { { "nvim-lua/plenary.nvim" } },
 	})
 	use("nvim-telescope/telescope-fzy-native.nvim")
+    use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+
+    -- use 'ggandor/lightspeed.nvim'
 
 	-- Git
 	use("tpope/vim-fugitive")
