@@ -27,6 +27,7 @@ opt.splitbelow = true -- Prefer windows splitting to the bottom
 opt.updatetime = 1000 -- Make updates happen faster
 opt.hlsearch = true -- I wouldn't use this without the DoNoHL function
 opt.scrolloff = 10 -- Make it so there are always ten lines below my cursor
+opt.spelloptions = "camel" -- spell check camel case
 opt.laststatus = 3 -- Show the status bar
 
 -- Tabs
