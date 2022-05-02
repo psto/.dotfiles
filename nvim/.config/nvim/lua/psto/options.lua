@@ -115,9 +115,10 @@ cmd([[
     autocmd FileType ruby,haml,eruby,yaml,html,javascript,typescript,javascriptreact,typescriptreact,sass,cucumber,vue,lua set ai sw=2 sts=2 et
     autocmd FileType python set sw=4 sts=4 et
 
-    " sets the filetype to html for .vue files,
+    " sets the filetype to html for .vue, .astro files,
     " autocmd BufRead,BufNewFile *.vue setfiletype html
     autocmd BufReadPost,BufNewFile *.vue setlocal filetype=vue
+    autocmd! BufRead,BufNewFile *.astro set filetype=astro
     autocmd! BufRead,BufNewFile *.sass setfiletype sass
 
     autocmd BufRead *.mkd  set ai formatoptions=tcroqn2 comments=n:&gt;
