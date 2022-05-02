@@ -253,6 +253,9 @@ if not nvim_lsp.emmet_ls then
 end
 nvim_lsp.emmet_ls.setup({ capabilities = capabilities, on_attach = on_attach })
 
+-- astro config
+nvim_lsp.astro.setup({})
+
 -- sumneko config
 -- install on arch:$ sudo pacman -S lua-language-server
 -- set the path to the sumneko installation
