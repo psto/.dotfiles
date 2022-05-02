@@ -256,6 +256,9 @@ nvim_lsp.emmet_ls.setup({ capabilities = capabilities, on_attach = on_attach })
 -- astro config
 nvim_lsp.astro.setup({})
 
+-- prismals config
+nvim_lsp.prismals.setup({})
+
 -- sumneko config
 -- install on arch:$ sudo pacman -S lua-language-server
 -- set the path to the sumneko installation
