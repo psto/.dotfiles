@@ -253,6 +253,12 @@ if not nvim_lsp.emmet_ls then
 end
 nvim_lsp.emmet_ls.setup({ capabilities = capabilities, on_attach = on_attach })
 
+-- deno config
+nvim_lsp.denols.setup({
+  on_attach = on_attach,
+  root_dir = nvim_lsp.util.root_pattern("deno.json"),
+})
+
 -- astro config
 nvim_lsp.astro.setup({})
 
