@@ -259,6 +259,17 @@ nvim_lsp.astro.setup({})
 -- prismals config
 nvim_lsp.prismals.setup({})
 
+-- graphql config
+nvim_lsp.graphql.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+    cmd = { "graphql-lsp", "server", "-m", "stream" },
+	-- filetypes = { "graphql", "typescriptreact", "javascriptreact", "vue" },
+	flags = {
+		debounce_text_changes = 150,
+	},
+})
+
 -- sumneko config
 -- install on arch:$ sudo pacman -S lua-language-server
 -- set the path to the sumneko installation
