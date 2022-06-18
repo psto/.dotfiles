@@ -13,16 +13,17 @@ configuration {
     sidebar-mode:			false;
 }
 
-@import "~/.config/rofi/arc_dark_transparent_colors.rasi"
+@import "~/.config/rofi/tokyo_night_transparent.rasi"
 
 window {
     background-color: @background;
     border:           0;
     padding:          30;
+    width:                          500px;
 }
 listview {
     lines:                          10;
-    columns:                        3;
+    columns:                        1;
 }
 mainbox {
     border:  0;

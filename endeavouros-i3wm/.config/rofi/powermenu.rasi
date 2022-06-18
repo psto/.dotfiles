@@ -11,7 +11,7 @@ configuration {
     sidebar-mode: 		    false;
 }
 
-@import "~/.config/rofi/arc_dark_transparent_colors.rasi"
+@import "~/.config/rofi/tokyo_night_transparent.rasi"
 
 window {
     background-color:               @background;
