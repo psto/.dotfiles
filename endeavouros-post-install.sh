@@ -47,6 +47,7 @@ sudo pacman -Sy zoxide
 sudo pacman -Sy zsh
 
 yay -S alacritty
+yay -S autotiling
 yay -S anki
 yay -S beekeeper-studio-bin
 yay -S btop
