@@ -1,0 +1,35 @@
+/*******************************************************
+ * ROFI Tokyo Night colors for EndeavourOS
+ * Maintainer: psto <piotrstojanow@gmail.com>
+ *******************************************************/
+* {
+    selected-normal-foreground:  rgba ( 158, 206, 106, 100 % );
+    foreground:                  rgba ( 169, 177, 214, 100 % );
+    normal-foreground:           @foreground;
+    alternate-normal-background: rgba ( 26, 27, 38, 1 % );
+    red:                         rgba ( 247, 118, 142, 100 % );
+    selected-urgent-foreground:  rgba ( 249, 249, 249, 100 % );
+    blue:                        rgba ( 122, 162, 247, 100 % );
+    urgent-foreground:           rgba ( 204, 102, 102, 100 % ); /* todo */
+    alternate-urgent-background: rgba ( 75, 81, 96, 90 % );     /* todo */
+    active-foreground:           rgba ( 101, 172, 255, 100 % ); /* todo */
+    lightbg:                     rgba ( 213, 214, 219, 100 % );
+    selected-active-foreground:  rgba ( 249, 249, 249, 100 % ); /* todo */
+    alternate-active-background: rgba ( 26, 27, 38, 88 % );
+    background:                  rgba ( 26, 27, 38, 88 % );
+    alternate-normal-foreground: @foreground;
+    normal-background:           rgba ( 26, 27, 38, 1 % );
+    lightfg:                     rgba ( 52, 59, 88, 100 % );
+    selected-normal-background:  rgba ( 187, 154, 247, 10 % );
+    border-color:                rgba ( 124, 131, 137, 100 % ); /* todo */
+    border-radius:               5;
+    spacing:                     2;
+    separatorcolor:              rgba ( 26, 27, 38, 1 % );
+    urgent-background:           rgba ( 26, 27, 38, 15 % );
+    selected-urgent-background:  rgba ( 165, 66, 66, 100 % );   /* todo */
+    alternate-urgent-foreground: @urgent-foreground;
+    background-color:            rgba ( 0, 0, 0, 0 % );
+    alternate-active-foreground: @active-foreground;
+    active-background:           rgba ( 29, 31, 33, 17 % );     /* todo */
+    selected-active-background:  rgba ( 26, 28, 35, 100 % );    /* todo */
+}
