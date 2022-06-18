@@ -411,24 +411,23 @@ for_window [class="handy-terminal"] move position center
 ######################################
 
 # Define colors variables:
-set $darkbluetrans  #08052be6
-set $darkblue       #08052b
-set $lightblue      #5294e2
-set $urgentred      #e53935
+set $darkbluetrans  #3d59a1e6
+set $darkblue       #24283b
+set $lightblue      #7aa2f7
+set $urgentred      #f7768e
 set $white          #ffffff
 set $black          #000000
-set $purple         #e345ff
-# set $darkgrey     #383c4a
-set $darkgrey       #1F2430e6
-set $grey           #b0b5bd
-set $mediumgrey     #8b8b8b
+set $purple         #9d7cd8
+set $darkgrey       #1a1b26
+set $grey           #737aa2
+set $mediumgrey     #565f89
 set $yellowbrown    #e1b700
 
 # define colors for windows:
 #class		        	border		bground		text		indicator	child_border
-client.focused		    #6272a4 	#6272a4 	$white		#6272a4		#6272a4
+client.focused		    #9d7cd8 	#9d7cd8 	$white		#9d7cd8 	#9d7cd8
 client.unfocused	    $darkblue	$darkblue	$grey		$purple		$darkgrey
-client.focused_inactive	$darkblue	$darkblue	$grey		$purple		$black
+client.focused_inactive	$darkblue	$darkblue	$grey		$purple		$darkblue
 client.urgent		    $urgentred	$urgentred	$white		$purple		$yellowbrown
 
 
