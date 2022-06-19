@@ -38,6 +38,12 @@ return packer.startup(function(use)
 	use("tpope/vim-surround")
 	use("sindrets/diffview.nvim")
 	use("windwp/nvim-autopairs")
+	use({
+        "windwp/nvim-ts-autotag",
+		config = function()
+          require('nvim-ts-autotag').setup()
+		end,
+	})
 	use("akinsho/toggleterm.nvim")
 	use("github/copilot.vim")
 	use({
