@@ -276,6 +276,9 @@ nvim_lsp.graphql.setup({
 	},
 })
 
+-- go config
+nvim_lsp.gopls.setup{}
+
 -- sumneko config
 -- install on arch:$ sudo pacman -S lua-language-server
 -- set the path to the sumneko installation
