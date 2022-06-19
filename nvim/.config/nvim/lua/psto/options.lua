@@ -88,6 +88,11 @@ g.netrw_liststyle = 3 -- set tree view type
 -- do I need this?
 g.completion_trigger_character = "."
 
+-- Github Copilot
+g.copilot_no_tab_map = true
+g.copilot_assume_mapped = true
+g.copilot_tab_fallback = ""
+
 --
 -- COLOR
 --
