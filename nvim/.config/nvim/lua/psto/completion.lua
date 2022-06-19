@@ -12,6 +12,11 @@ end
 -- specify the path so that friendly-snippets are not duplicated
 require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./" } })
 
+local check_backspace = function()
+  local col = vim.fn.col "." - 1
+  return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
+end
+
 -- formatting with lspkind
 local lspkind_status_ok, lspkind = pcall(require, "lspkind")
 if not lspkind_status_ok then
@@ -80,11 +85,18 @@ cmp.setup {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     },
-    ["<C-l>"] = cmp.mapping(function(fallback)
+    ["<Tab>"] = cmp.mapping(function(fallback)
+      local copilot_keys = vim.fn['copilot#Accept']()
       if luasnip.expandable() then
         luasnip.expand()
+      elseif cmp.visible() then
+        cmp.select_next_item()
+      elseif copilot_keys ~= '' and type(copilot_keys) == 'string' then
+        vim.api.nvim_feedkeys(copilot_keys, 'i', true)
       elseif luasnip.expand_or_jumpable() then
         luasnip.expand_or_jump()
+      elseif check_backspace() then
+        fallback()
       else
         fallback()
       end
@@ -92,6 +104,30 @@ cmp.setup {
       "i",
       "s",
     }),
+    ["<S-Tab>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
+      elseif luasnip.jumpable(-1) then
+        luasnip.jump(-1)
+      else
+        fallback()
+      end
+    end, {
+      "i",
+      "s",
+    }),
+    -- ["<C-l>"] = cmp.mapping(function(fallback)
+    --   if luasnip.expandable() then
+    --     luasnip.expand()
+    --   elseif luasnip.expand_or_jumpable() then
+    --     luasnip.expand_or_jump()
+    --   else
+    --     fallback()
+    --   end
+    -- end, {
+    --   "i",
+    --   "s",
+    -- }),
   },
   formatting = {
     fields = { "kind", "abbr", "menu" },
@@ -124,3 +160,4 @@ cmp.setup {
     ghost_text = false,
   },
 }
+
