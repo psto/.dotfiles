@@ -365,8 +365,9 @@ exec --no-startup-id sleep 4 && dex -a -s /etc/xdg/autostart/:~/.config/autostar
 #transparency
 #exec --no-startup-id xcompmgr -c -C -t-5 -l-5 -r4.2 -o.55 &
 # exec --no-startup-id picom -CGb
+exec --no-startup-id picom -b
 # start picom with experimental features for blur effect
-exec --no-startup-id picom --experimental-backends -b
+# exec --no-startup-id picom --experimental-backends -b
 
 #networkmanager-applet
 exec --no-startup-id nm-applet
@@ -441,7 +442,7 @@ bar {
 		font pango:Noto Sans Regular 10, FontAwesome 10
 		status_command i3blocks -c ~/.config/i3/i3blocks.conf
 	    	position top
-	    	i3bar_command i3bar --transparency
+	    	i3bar_command i3bar
 # it could be that you have no primary display set: set one (xrandr --output <output> --primary)
 # reference: https://i3wm.org/docs/userguide.html#_tray_output
 		    tray_output primary
