@@ -20,8 +20,8 @@ alias grep='grep --color=auto'
 # confirm before overwriting something
 alias cp="cp -i"
 alias mv='mv -i'
-# alias rm='rm -i'
-alias rm='trash-put'
+alias rm='rm -i'
+alias tr='trash-put'
 
 # easier to read disk
 alias free='free -m'            # show sizes in MB
