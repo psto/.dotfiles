@@ -35,7 +35,12 @@ return packer.startup(function(use)
 	use("lewis6991/impatient.nvim")
 
 	-- Utility Plugins
-	use("tpope/vim-surround")
+    use({
+        "kylechui/nvim-surround",
+        config = function()
+            require("nvim-surround").setup({})
+        end
+    })
 	use("sindrets/diffview.nvim")
 	use("windwp/nvim-autopairs")
 	use({
