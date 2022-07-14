@@ -9,10 +9,12 @@ export PATH=$HOME/.cargo/bin:$PATH
 export PATH=$HOME/.local/share/go/bin:$PATH
 export GOPATH=$HOME/.local/share/go
 export PATH=$HOME/.fnm:$PATH
+
 # nvm for node.js
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 # Add rbnev to PATH
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init - zsh)"
@@ -22,5 +24,12 @@ export GEM_HOME="$HOME/.gems"
 export PATH="$HOME/.gems/bin:$PATH"
 eval "$(zoxide init zsh)"
 # eval "`pip completion --zsh`"
+
 # deno deploy
 export PATH="/home/piotr/.deno/bin:$PATH"
+
+# Bun
+export BUN_INSTALL="/home/piotr/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+# bun completions
+[ -s "/home/piotr/.bun/_bun" ] && source "/home/piotr/.bun/_bun"
