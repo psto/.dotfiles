@@ -12,6 +12,7 @@ sudo pacman -Sy exa
 sudo pacman -Sy fd
 sudo pacman -Sy fish
 sudo pacman -Sy flameshot
+sudo pacman -Sy foliate
 sudo pacman -Sy fzf
 sudo pacman -Sy github-cli
 sudo pacman -Sy htop
@@ -55,18 +56,22 @@ yay -S brave-beta-bin
 yay -S github-desktop-bin
 yay -S discord_arch_electron
 yay -S dropbox
-yay -S espanso-git
+yay -S espanso-bin
+yay -S ffsend-bin
 yay -S insomnia-bin
 yay -S kitty
 yay -S mailspring
+yay -S media-downloader
 yay -S neovim-nightly-bin
 yay -S nvim-packer-git
 yay -S obsidian
+yay -S qrcp-bin
 yay -S rbenv
+yay -S scitopdf-git
 yay -S streamlink-twitch-gui-bin
 yay -S timeshift
+yay -S todofi-git
 yay -S ulauncher
 yay -S visual-studio-code-bin
-yay -S volar-server-bin
 yay -S ytfzf
 
