@@ -70,6 +70,9 @@ alias c='clear'
 # exa alias
 alias l='exa -l'
 
+# ranger alias
+alias r='ranger'
+
 # Easily search running processes
 alias psf='ps -Ao comm,pcpu,pmem,pid --sort=-pcpu | grep '
 
