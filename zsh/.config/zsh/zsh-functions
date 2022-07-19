@@ -29,3 +29,16 @@ function zsh_add_completion() {
 	completion_file="$(basename "${completion_file_path}")"
 	if [ "$2" = true ] && compinit "${completion_file:1}"
 }
+
+# move the latest downloaded file to current path
+function dmv() {
+  __fname="$(ls -t ~/Downloads | head -n 1)"
+  __fpath="$HOME/Downloads/"$__fname""
+  mv "$__fpath" \.
+}
+# copy the latest downloaded file to current path
+function dcp() {
+    __fname="$(ls -t ~/Downloads | head -n 1)"
+    __fpath="$HOME/Downloads/"$__fname""
+    cp -a "$__fpath" \.
+}
