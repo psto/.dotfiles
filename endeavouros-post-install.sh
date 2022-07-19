@@ -21,12 +21,14 @@ sudo pacman -Sy imagemagick
 sudo pacman -Sy keepassxc
 sudo pacman -Sy lazygit
 sudo pacman -Sy lua-language-server
+sudo pacman -Sy mcfly
 sudo pacman -Sy ncdu
 sudo pacman -Sy newsboat
 sudo pacman -Sy nextcloud-client
 sudo pacman -Sy nmon
 sudo pacman -Sy nyxt
 sudo pacman -Sy nvm
+sudo pacman -Sy procs
 sudo pacman -Sy qbittorrent
 sudo pacman -Sy ranger
 sudo pacman -Sy redshift
