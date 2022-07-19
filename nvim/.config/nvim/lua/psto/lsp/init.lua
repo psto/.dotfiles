@@ -72,34 +72,135 @@ local on_attach = function(client, bufnr)
 	for _, sign in ipairs(signs) do
 		vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
 	end
-
-	-- turn off document formatting to use null-ls by default
-	local excludeFormatting = { "tsserver", "volar", "jsonls" }
-	for _, server in ipairs(excludeFormatting) do
-		if client.name == server then
-			client.resolved_capabilities.document_formatting = false
-            client.resolved_capabilities.document_range_formatting = false
-			-- client.resolved_capabilities.text_document_publish_diagnostics = false
-		end
-	end
 end
 
 -- Enable (broadcasting) snippet capability for completion
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+-- local capabilities = vim.lsp.protocol.make_client_capabilities()
+-- capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+
+local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.colorProvider = { dynamicRegistration = true }
+
+nvim_lsp.tailwindcss.setup({
+	capabilities = capabilities,
+	-- on_attach = on_attach,
+	on_attach = function(client, bufnr)
+		if client.server_capabilities.colorProvider then
+			require("psto/lsp/documentcolors").buf_attach(bufnr)
+		end
+	end,
+	cmd = { "tailwindcss-language-server", "--stdio" },
+	filetypes = {
+		"aspnetcorerazor",
+		"astro",
+		"astro-markdown",
+		"blade",
+		"django-html",
+		"edge",
+		"eelixir",
+		"ejs",
+		"erb",
+		"eruby",
+		"gohtml",
+		"haml",
+		"handlebars",
+		"hbs",
+		"html",
+		"html-eex",
+		"jade",
+		"leaf",
+		"liquid",
+		-- "markdown",
+		"mdx",
+		"mustache",
+		"njk",
+		"nunjucks",
+		"php",
+		"razor",
+		"slim",
+		"twig",
+		"css",
+		"less",
+		"postcss",
+		"sass",
+		"scss",
+		"stylus",
+		"sugarss",
+		"javascript",
+		"javascriptreact",
+		"reason",
+		"rescript",
+		"typescript",
+		"typescriptreact",
+		"vue",
+		"svelte",
+	},
+	init_options = {
+		userLanguages = {
+			eelixir = "html-eex",
+			eruby = "erb",
+		},
+	},
+	on_new_config = function(new_config)
+		if not new_config.settings then
+			new_config.settings = {}
+		end
+		if not new_config.settings.editor then
+			new_config.settings.editor = {}
+		end
+		if not new_config.settings.editor.tabSize then
+			-- set tab size for hover
+			new_config.settings.editor.tabSize = vim.lsp.util.get_effective_tabstop()
+		end
+	end,
+	settings = {
+		tailwindCSS = {
+			lint = {
+				cssConflict = "warning",
+				invalidApply = "error",
+				invalidConfigPath = "error",
+				invalidScreen = "error",
+				invalidTailwindDirective = "error",
+				invalidVariant = "error",
+				recommendedVariantOrder = "warning",
+			},
+			experimental = {
+				classRegex = {
+					"tw`([^`]*)",
+					'tw="([^"]*)',
+					'tw={"([^"}]*)',
+					"tw\\.\\w+`([^`]*)",
+					"tw\\(.*?\\)`([^`]*)",
+				},
+			},
+			validate = true,
+		},
+	},
+})
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { "tsserver" }
-for _, lsp in ipairs(servers) do
-	nvim_lsp[lsp].setup({
-		on_attach = on_attach,
-		capabilities = capabilities,
-		flags = {
-			debounce_text_changes = 150,
-		},
-	})
-end
+-- local servers = { "tsserver" }
+-- for _, lsp in ipairs(servers) do
+-- 	nvim_lsp[lsp].setup({
+-- 		on_attach = on_attach,
+-- 		capabilities = capabilities,
+-- 		flags = {
+-- 			debounce_text_changes = 150,
+-- 		},
+-- 	})
+-- end
+
+-- tsserver config
+nvim_lsp.tsserver.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+    root_dir = nvim_lsp.util.root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git"),
+	flags = {
+		debounce_text_changes = 150,
+	},
+})
 
 -- jsonls config
 nvim_lsp.jsonls.setup({
@@ -256,7 +357,9 @@ nvim_lsp.emmet_ls.setup({ capabilities = capabilities, on_attach = on_attach })
 -- deno config
 nvim_lsp.denols.setup({
   on_attach = on_attach,
-  root_dir = nvim_lsp.util.root_pattern("deno.json"),
+  capabilities = capabilities,
+  root_dir = nvim_lsp.util.root_pattern("deno.json", "deno.jsonc"),
+  single_file_support = false
 })
 
 -- astro config
