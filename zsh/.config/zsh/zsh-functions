@@ -42,3 +42,9 @@ function dcp() {
     __fpath="$HOME/Downloads/"$__fname""
     cp -a "$__fpath" \.
 }
+# open the latest downloaded file
+function dopen() {
+    __fname="$(ls -t ~/Downloads | head -n 1)"
+    __fpath="$HOME/Downloads/"$__fname""
+    xdg-open "$__fpath"
+}
