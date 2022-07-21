@@ -59,7 +59,9 @@ zsh_add_plugin "hlissner/zsh-autopair"
 # For more plugins: https://github.com/unixorn/awesome-zsh-plugins
 # More completions https://github.com/zsh-users/zsh-completions
 
-ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+ZSH_AUTOSUGGEST_STRATEGY=(history match_prev_cmd)
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#668ac4"
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 # Key-bindings
 bindkey -s '^f' 'zi^M'
 bindkey -s '^e' 'nvim $(fzf)^M'
