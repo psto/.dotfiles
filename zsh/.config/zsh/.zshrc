@@ -54,15 +54,13 @@ zsh_add_file "zsh-prompt"
 
 # Plugins
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
-zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
+zsh_add_plugin "zdharma-continuum/fast-syntax-highlighting"
 zsh_add_plugin "hlissner/zsh-autopair"
 # For more plugins: https://github.com/unixorn/awesome-zsh-plugins
 # More completions https://github.com/zsh-users/zsh-completions
 
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-
 # Key-bindings
-bindkey -s '^o' 'vifm^M'
 bindkey -s '^f' 'zi^M'
 bindkey -s '^e' 'nvim $(fzf)^M'
 bindkey -s '^z' 'zi^M'
