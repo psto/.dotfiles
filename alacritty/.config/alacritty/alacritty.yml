@@ -37,6 +37,11 @@ font:
     x: 0
     y: 0
 
+cursor:
+  style:
+    blinking: Always
+    blink_interval: 500
+
 key_bindings:
   - { key: N,   mods: Control|Shift, action: SpawnNewInstance }
 
