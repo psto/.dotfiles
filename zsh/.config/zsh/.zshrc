@@ -56,12 +56,14 @@ zsh_add_file "zsh-prompt"
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zdharma-continuum/fast-syntax-highlighting"
 zsh_add_plugin "hlissner/zsh-autopair"
+zsh_add_plugin "desyncr/auto-ls"
 # For more plugins: https://github.com/unixorn/awesome-zsh-plugins
 # More completions https://github.com/zsh-users/zsh-completions
 
 ZSH_AUTOSUGGEST_STRATEGY=(history match_prev_cmd)
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#668ac4"
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+AUTO_LS_COMMANDS=( ls )
 # Key-bindings
 bindkey -s '^f' 'zi^M'
 bindkey -s '^e' 'nvim $(fzf)^M'
