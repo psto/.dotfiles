@@ -1,0 +1,37 @@
+[user]
+	name = psto
+	email = piotr.stojanow@gmail.com
+[core]
+	editor = nvim
+	excludesfile = /home/piotr/.config/git/gitignore_global
+	pager = diff-so-fancy | less --tabs=4 -RFX
+[alias]
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+[interactive]
+	diffFilter = diff-so-fancy --patch
+[add.interactive]
+    useBuiltin = false
+[color]
+	ui = true
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+[color "diff"]
+	meta = 11
+	frag = magenta bold
+	func = 146 bold
+	commit = yellow bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
+[pull]
+	ff = only
+[init]
+	defaultBranch = main
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
