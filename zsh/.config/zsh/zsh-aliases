@@ -50,7 +50,7 @@ alias mach_list_systemctl="systemctl list-unit-files --state=enabled"
 # git aliases
 alias m="git checkout master"
 alias s="git checkout stable"
-alias gs="git status -s"
+alias gs="git status -sb"
 alias ga="git add"
 alias gc="git commit -m"
 alias gd='git diff'
@@ -67,11 +67,17 @@ alias open="xdg-open"
 # clear alias when in tmux
 alias c='clear'
 
+# yarn alias for XDG Base Directory
+alias yarn='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config"'
+
 # exa alias
 alias l='exa -l'
 
 # ranger alias
 alias r='ranger'
+
+# lf alias
+alias lf=lf-ueberzug
 
 # Easily search running processes
 alias psf='ps -Ao comm,pcpu,pmem,pid --sort=-pcpu | grep '
