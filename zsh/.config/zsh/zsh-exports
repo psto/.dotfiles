@@ -1,35 +1,60 @@
 #!/bin/sh
-# HISTFILE="$XDG_DATA_HOME"/zsh/history
 HISTSIZE=1000000
 SAVEHIST=1000000
 export PATH="$HOME/.local/bin":$PATH
 export MANPAGER='nvim +Man!'
 export MANWIDTH=999
-export PATH=$HOME/.cargo/bin:$PATH
-export PATH=$HOME/.local/share/go/bin:$PATH
-export GOPATH=$HOME/.local/share/go
-export PATH=$HOME/.fnm:$PATH
+
+# Other XDG paths
+export XDG_DATA_HOME=${XDG_DATA_HOME:="$HOME/.local/share"}
+export XDG_CACHE_HOME=${XDG_CACHE_HOME:="$HOME/.cache"}
+export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:="$HOME/.config"}
+
+# Disable files
+export LESSHISTFILE=-
+
+# Fixing Paths
+export CARGO_HOME="$XDG_DATA_HOME/cargo"
+export GNUPGHOME="$XDG_DATA_HOME/gnupg"
+export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
+export HISTFILE="$XDG_DATA_HOME/zsh/history"
+export IPFS_PATH="$XDG_CONFIG_HOME/ipfs/"
+export NODE_REPL_HISTORY="$XDG_DATA_HOME/node_repl_history"
+export RBENV_ROOT="$XDG_DATA_HOME/rbenv"
+export SQLITE_HISTORY="$XDG_DATA_HOME/sqlite_history"
+export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 
 # nvm for node.js
-export NVM_DIR="$HOME/.nvm"
+export NVM_DIR="$XDG_CONFIG_HOME/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Add rbnev to PATH
-export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="$RBENV_ROOT/bin:$PATH"
 eval "$(rbenv init - zsh)"
-export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
+export PATH="$RBENV_ROOT/plugins/ruby-build/bin:$PATH"
 # Install Ruby Gems to ~/.gems
-export GEM_HOME="$HOME/.gems"
-export PATH="$HOME/.gems/bin:$PATH"
+# export GEM_HOME="$HOME/.gems"
+export GEM_HOME="$XDG_DATA_HOME"/gems
+export GEM_SPEC_CACHE="$XDG_CACHE_HOME"/gems
+export PATH="$XDG_DATA_HOME/gems/bin:$PATH"
+
+# cargo PATH
+export PATH=$XDG_DATA_HOME/cargo/bin:$PATH
+
+# go PATH
+export PATH=$HOME/.local/share/go/bin:$PATH
+export GOPATH=$HOME/.local/share/go
+
+# z
 eval "$(zoxide init zsh)"
 # eval "`pip completion --zsh`"
 
 # deno deploy
-export PATH="/home/piotr/.deno/bin:$PATH"
+export PATH="$XDG_DATA_HOME/deno/bin:$PATH"
 
 # Bun
-export BUN_INSTALL="/home/piotr/.bun"
+export BUN_INSTALL="$XDG_DATA_HOME/bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 # bun completions
-[ -s "/home/piotr/.bun/_bun" ] && source "/home/piotr/.bun/_bun"
+[ -s "$BUN_INSTALL/_bun" ] && source "$BUN_INSTALL/_bun"
