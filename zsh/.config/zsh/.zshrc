@@ -111,7 +111,9 @@ export BAT_THEME="Dracula"
 # thefuck init
 eval $(thefuck --alias)
 
+# mcfly init
+eval "$(mcfly init zsh)"
+
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
-
