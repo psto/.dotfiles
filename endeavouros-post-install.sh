@@ -1,5 +1,6 @@
 sudo pacman -Sy ansible
 sudo pacman -Sy autorandr
+sudo pacman -Sy bandwhich
 sudo pacman -Sy bat
 sudo pacman -Sy bitwarden
 sudo pacman -Sy calibre
@@ -14,7 +15,9 @@ sudo pacman -Sy fish
 sudo pacman -Sy flameshot
 sudo pacman -Sy foliate
 sudo pacman -Sy fzf
+sudo pacman -Sy ghostscript
 sudo pacman -Sy github-cli
+sudo pacman -Sy graphicsmagick
 sudo pacman -Sy htop
 sudo pacman -Sy httpie
 sudo pacman -Sy imagemagick
@@ -41,10 +44,10 @@ sudo pacman -Sy tmux
 sudo pacman -Sy tor-browser
 sudo pacman -Sy trash-cli
 sudo pacman -Sy tree-sitter
-sudo pacman -Sy vifm
 sudo pacman -Sy vlc
 sudo pacman -Sy xclip
 sudo pacman -Sy xorg-xbacklight
+sudo pacman -Sy w3m
 sudo pacman -Sy zathura
 sudo pacman -Sy zoxide
 sudo pacman -Sy zsh
@@ -62,6 +65,7 @@ yay -S espanso-bin
 yay -S ffsend-bin
 yay -S insomnia-bin
 yay -S kitty
+yay -S lf
 yay -S mailspring
 yay -S media-downloader
 yay -S neovim-nightly-bin
@@ -70,6 +74,7 @@ yay -S obsidian
 yay -S qrcp-bin
 yay -S rbenv
 yay -S scitopdf-git
+yay -S sioyek
 yay -S streamlink-twitch-gui-bin
 yay -S timeshift
 yay -S todofi-git
