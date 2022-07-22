@@ -7,7 +7,8 @@ unbind-key c
 unbind-key ,
 
 # set browser and redirect standard output/error to preserve newsboat interface
-browser "brave-beta %u >/dev/null 2>&1 &"
+browser "w3m %u"
+# browser "brave-beta %u >/dev/null 2>&1 &"
 # external-url-viewer "brave-beta"
 
 # Feed settings
