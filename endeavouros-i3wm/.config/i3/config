@@ -243,7 +243,10 @@ bindsym $mod+Shift+space floating toggle
 # bindsym $mod+space focus mode_toggle
 
 # focus the parent container
-bindsym $mod+a focus parent
+# bindsym $mod+a focus parent
+
+# place floating window in the center
+bindsym $mod+y resize set 1200 px 1200 px, move position center
 
 # open new empty workspace
 bindsym $mod+Shift+n exec ~/.config/i3/scripts/empty_workspace.sh
@@ -283,12 +286,12 @@ bindsym $mod+p exec /usr/local/bin/switch-audio-port
 ## App shortcuts
 # bindsym $mod+w exec /usr/bin/firefox
 bindsym $mod+w exec /usr/bin/brave-beta 
-# bindsym $mod+n exec /usr/bin/thunar
+bindsym $mod+e exec /usr/bin/thunar
 # bindsym Print exec "scrot ~/%Y-%m-%d-%T-screenshot.png"
 bindsym $mod+v exec /usr/bin/kitty --class="handy-terminal"
 bindsym $mod+n exec kitty --class="handy-terminal" -e /home/piotr/.local/bin/obsidianQuickNote 
+bindsym $mod+o exec ~/.local/bin/rofi-search
 bindsym $mod+shift+P exec flameshot gui
-bindsym $mod+shift+F exec ~/.local/bin/rofi-search
 
 # scratchpad
 bindsym $mod+Shift+S move scratchpad
