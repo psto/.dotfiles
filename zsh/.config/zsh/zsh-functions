@@ -31,19 +31,19 @@ function zsh_add_completion() {
 }
 
 # move the latest downloaded file to current path
-function dmv() {
+function mv-download() {
   __fname="$(ls -t ~/Downloads | head -n 1)"
   __fpath="$HOME/Downloads/"$__fname""
   mv "$__fpath" \.
 }
 # copy the latest downloaded file to current path
-function dcp() {
+function cp-download() {
     __fname="$(ls -t ~/Downloads | head -n 1)"
     __fpath="$HOME/Downloads/"$__fname""
     cp -a "$__fpath" \.
 }
 # open the latest downloaded file
-function dopen() {
+function open-download() {
     __fname="$(ls -t ~/Downloads | head -n 1)"
     __fpath="$HOME/Downloads/"$__fname""
     xdg-open "$__fpath"
