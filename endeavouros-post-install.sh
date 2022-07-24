@@ -3,6 +3,7 @@ sudo pacman -Sy autorandr
 sudo pacman -Sy bandwhich
 sudo pacman -Sy bat
 sudo pacman -Sy bitwarden
+sudo pacman -Sy broot
 sudo pacman -Sy calibre
 sudo pacman -Sy cmatrix
 sudo pacman -Sy dash
@@ -29,18 +30,19 @@ sudo pacman -Sy ncdu
 sudo pacman -Sy newsboat
 sudo pacman -Sy nextcloud-client
 sudo pacman -Sy nmon
-sudo pacman -Sy nyxt
 sudo pacman -Sy nvm
 sudo pacman -Sy procs
 sudo pacman -Sy qbittorrent
 sudo pacman -Sy ranger
 sudo pacman -Sy redshift
 sudo pacman -Sy ripgrep
-sudo pacman -Sy stow
+sudo pacman -Sy ripgrep-all
 sudo pacman -Sy signal-desktop
+sudo pacman -Sy stow
 sudo pacman -Sy the_silver_searcher
 sudo pacman -Sy tlp
 sudo pacman -Sy tmux
+sduo pacman -Sy tokei
 sudo pacman -Sy tor-browser
 sudo pacman -Sy trash-cli
 sudo pacman -Sy tree-sitter
@@ -68,6 +70,7 @@ yay -S kitty
 yay -S lf
 yay -S mailspring
 yay -S media-downloader
+yay -S navi
 yay -S neovim-nightly-bin
 yay -S nvim-packer-git
 yay -S obsidian
@@ -77,7 +80,6 @@ yay -S scitopdf-git
 yay -S sioyek
 yay -S streamlink-twitch-gui-bin
 yay -S timeshift
-yay -S todofi-git
 yay -S ulauncher
 yay -S visual-studio-code-bin
 yay -S ytfzf
