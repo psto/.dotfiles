@@ -59,7 +59,6 @@ zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zdharma-continuum/fast-syntax-highlighting"
 zsh_add_plugin "hlissner/zsh-autopair"
 zsh_add_plugin "desyncr/auto-ls"
-zsh_add_plugin "jeffreytse/zsh-vi-mode"
 # For more plugins: https://github.com/unixorn/awesome-zsh-plugins
 # More completions https://github.com/zsh-users/zsh-completions
 
@@ -118,3 +117,6 @@ eval "$(mcfly init zsh)"
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+
+# broot init
+source /home/piotr/.config/broot/launcher/bash/br
