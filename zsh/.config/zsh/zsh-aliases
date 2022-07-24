@@ -48,12 +48,11 @@ alias archlinx-fix-keys="sudo pacman-key --init && sudo pacman-key --populate ar
 alias mach_list_systemctl="systemctl list-unit-files --state=enabled"
 
 # git aliases
-alias m="git checkout master"
-alias s="git checkout stable"
 alias gs="git status -sb"
 alias ga="git add"
 alias gc="git commit -m"
-alias gd='git diff'
+alias gd="git diff"
+alias gp="git add --patch"
 # "git lg" alias for pretty git log - set and forget
 # git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --"
 
