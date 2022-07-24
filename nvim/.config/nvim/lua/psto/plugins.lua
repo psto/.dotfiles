@@ -129,6 +129,12 @@ return packer.startup(function(use)
 		-- 'folke/lsp-colors.nvim'
 		-- 'williamboman/nvim-lsp-installer'
 	})
+    use({
+      "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+      config = function()
+        require("lsp_lines").setup()
+      end,
+    })
 
 	-- Completion cmp plugins
 	use({
