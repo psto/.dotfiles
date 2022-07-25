@@ -354,6 +354,9 @@ if not nvim_lsp.emmet_ls then
 end
 nvim_lsp.emmet_ls.setup({ capabilities = capabilities, on_attach = on_attach })
 
+-- eslint config
+nvim_lsp.eslint.setup({})
+
 -- deno config
 nvim_lsp.denols.setup({
   on_attach = on_attach,
