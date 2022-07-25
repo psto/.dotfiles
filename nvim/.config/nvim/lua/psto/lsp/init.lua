@@ -365,6 +365,9 @@ nvim_lsp.denols.setup({
 -- astro config
 nvim_lsp.astro.setup({})
 
+-- svelte config
+require'lspconfig'.svelte.setup{}
+
 -- prismals config
 nvim_lsp.prismals.setup({})
 
