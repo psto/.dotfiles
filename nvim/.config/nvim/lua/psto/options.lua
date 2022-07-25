@@ -169,3 +169,6 @@ cmd("autocmd Filetype " .. ft_str .. " setlocal foldmethod=expr foldexpr=nvim_tr
 
 -- format on save and quit
 cmd([[cabbrev wq execute "lua vim.lsp.buf.formatting_seq_sync()" <bar> wq]])
+
+-- eslint format on save
+cmd("autocmd BufWritePre *.tsx,*.ts,*.jsx,*.js EslintFixAll")
