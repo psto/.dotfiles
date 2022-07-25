@@ -13,6 +13,7 @@ setopt HIST_IGNORE_ALL_DUPS # don't write duplicates to the history file
 setopt autocd extendedglob nomatch menucomplete
 setopt interactive_comments
 setopt globdots     # show hidden files
+setopt auto_cd      # automatically change into a directory without "cd"
 stty stop undef		# Disable ctrl-s to freeze terminal.
 zle_highlight=('paste:none')
 
@@ -58,14 +59,16 @@ zsh_add_plugin "Aloxaf/fzf-tab" # must be before zsh-autosuggestions & fast-synt
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zdharma-continuum/fast-syntax-highlighting"
 zsh_add_plugin "hlissner/zsh-autopair"
-zsh_add_plugin "desyncr/auto-ls"
 # For more plugins: https://github.com/unixorn/awesome-zsh-plugins
 # More completions https://github.com/zsh-users/zsh-completions
 
 ZSH_AUTOSUGGEST_STRATEGY=(history match_prev_cmd)
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#668ac4"
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
-AUTO_LS_COMMANDS=( ls )
+
+# Hooks
+add-zsh-hook chpwd do-ls
+
 # Key-bindings
 bindkey -s '^f' 'zi^M'
 bindkey -s '^e' 'nvim $(fzf)^M'
