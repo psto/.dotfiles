@@ -357,6 +357,12 @@ nvim_lsp.emmet_ls.setup({ capabilities = capabilities, on_attach = on_attach })
 -- eslint config
 nvim_lsp.eslint.setup({})
 
+-- cssls config
+nvim_lsp.cssls.setup({
+  capabilities = capabilities,
+  filetypes = { "css", "scss", "less", "vue" },
+})
+
 -- deno config
 nvim_lsp.denols.setup({
   on_attach = on_attach,
