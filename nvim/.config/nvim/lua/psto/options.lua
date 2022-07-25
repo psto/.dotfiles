@@ -112,14 +112,15 @@ cmd([[
       \ endif
 
     " autoindent with two spaces, always expand tabs
-    autocmd FileType ruby,haml,eruby,yaml,html,javascript,typescript,javascriptreact,typescriptreact,sass,cucumber,vue,lua set ai sw=2 sts=2 et
+    autocmd FileType ruby,haml,eruby,yaml,html,javascript,typescript,javascriptreact,typescriptreact,sass,cucumber,vue,lua,svelte set ai sw=2 sts=2 et
     autocmd FileType python set sw=4 sts=4 et
 
-    " sets the filetype to html for .vue, .astro files,
+    " sets the filetype to html for .vue, .astro, .svelte files,
     " autocmd BufRead,BufNewFile *.vue setfiletype html
     autocmd BufReadPost,BufNewFile *.vue setlocal filetype=vue
     autocmd! BufRead,BufNewFile *.astro set filetype=astro
     autocmd! BufRead,BufNewFile *.sass setfiletype sass
+    autocmd BufReadPost,BufNewFile *.svelte setlocal filetype=svelte
 
     autocmd BufRead *.mkd  set ai formatoptions=tcroqn2 comments=n:&gt;
     autocmd BufRead *.markdown  set ai formatoptions=tcroqn2 comments=n:&gt;
