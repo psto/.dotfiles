@@ -100,3 +100,6 @@ rga-fzf() {
 	echo "opening $file" &&
 	xdg-open "$file"
 }
+
+# ls function
+do-ls() {emulate -L zsh; exa;}
