@@ -93,6 +93,9 @@ cheat() { curl "http://cheat.sh/$1"; }
 # get weather
 alias wttr="curl wttr.in/Lubań"
 
+# dragon-drop
+alias drag="dragon-drop"
+
 case "$(uname -s)" in
 
 Darwin)
