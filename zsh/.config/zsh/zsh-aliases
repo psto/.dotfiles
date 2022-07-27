@@ -78,6 +78,9 @@ alias r='ranger'
 # lf alias
 alias lf=lf-ueberzug
 
+# navi alias
+alias n="navi"
+
 # Easily search running processes
 alias psf='ps -Ao comm,pcpu,pmem,pid --sort=-pcpu | grep '
 
