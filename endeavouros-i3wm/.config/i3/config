@@ -288,7 +288,7 @@ bindsym $mod+p exec /usr/local/bin/switch-audio-port
 bindsym $mod+w exec /usr/bin/brave-beta 
 bindsym $mod+e exec /usr/bin/thunar
 # bindsym Print exec "scrot ~/%Y-%m-%d-%T-screenshot.png"
-bindsym $mod+v exec /usr/bin/kitty --class="handy-terminal"
+bindsym $mod+v exec /usr/bin/kitty --class="ulauncher-terminal"
 bindsym $mod+n exec kitty --class="handy-terminal" -e /home/piotr/.local/bin/obsidianQuickNote 
 bindsym $mod+o exec ~/.local/bin/rofi-search
 bindsym $mod+shift+P exec flameshot gui
@@ -410,11 +410,14 @@ for_window [class="Blueberry.py" instance="blueberry.py"] floating enable
 for_window [class="Bluetooth-sendto" instance="bluetooth-sendto"] floating enable
 for_window [class="Pamac-manager"] floating enable
 for_window [class="handy-terminal"] floating enable
+for_window [class="ulauncher-terminal"] floating enable
 for_window [class="Tor Browser"] floating enable move position center
 
 # set resize for special apps
 for_window [class="handy-terminal"] resize set 700 500
 for_window [class="handy-terminal"] move position center
+for_window [class="ulauncher-terminal"] resize set 1000 700
+for_window [class="ulauncher-terminal"] move position center
 
 ######################################
 # color settings for bar and windows #
