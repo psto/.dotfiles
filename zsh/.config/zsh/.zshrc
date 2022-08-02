@@ -112,7 +112,7 @@ export BAT_THEME="Dracula"
 # eval "$(starship init zsh)"
 
 # thefuck init
-eval $(thefuck --alias)
+eval $(thefuck --alias fu)
 
 # mcfly init
 eval "$(mcfly init zsh)"
