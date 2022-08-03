@@ -424,7 +424,7 @@ for_window [class="ulauncher-terminal"] move position center
 ######################################
 
 # Define colors variables:
-set $darkbluetrans  #3d59a1e6
+set $darkbluetrans  #24283be6
 set $darkblue       #24283b
 set $lightblue      #7aa2f7
 set $urgentred      #f7768e
@@ -438,7 +438,7 @@ set $yellowbrown    #e1b700
 
 # define colors for windows:
 #class		        	border		bground		text		indicator	child_border
-client.focused		    #9d7cd8 	#9d7cd8 	$white		#9d7cd8 	#9d7cd8
+client.focused		    $purple 	$purple 	$white		$purple 	$purple
 client.unfocused	    $darkblue	$darkblue	$grey		$purple		$darkgrey
 client.focused_inactive	$darkblue	$darkblue	$grey		$purple		$darkblue
 client.urgent		    $urgentred	$urgentred	$white		$purple		$yellowbrown
@@ -468,7 +468,7 @@ strip_workspace_numbers yes
 
 		    colors {
 		    separator          $purple
-		    background         $darkgrey
+		    background         $darkblue
 		    statusline         $white
 #                          	border  		    bg  		txt 		indicator
 		focused_workspace	$mediumgrey	    	$grey		$darkgrey	$purple
