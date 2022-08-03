@@ -1,3 +1,9 @@
+# fish
+fish_variables
+
+# nvim packer
 packer_compiled.lua
 
-fish_variables
+# w3m
+cookie
+history
