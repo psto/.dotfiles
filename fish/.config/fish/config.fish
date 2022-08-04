@@ -22,8 +22,8 @@ set -gx DOTFILES ~/.dotfiles
 set -Ux fish_user_paths $HOME/.rbenv/bin $fish_user_paths
 status --is-interactive; and rbenv init - fish | source
 
-# nvm
-set --universal nvm_default_version v16.13.0
+# fnm for node.js
+fnm env --use-on-cd | source
 
 # async git prompt
 # set -g async_prompt_functions _pure_prompt_git
@@ -33,8 +33,6 @@ set PATH $PATH ~/.fzf/bin
 set -gx FZF_DEFAULT_COMMAND 'ag -l --path-to-ignore ~/.agignore --nocolor --hidden -g ""'
 # for jethrokuan/fzf plugin
 set -gx FZF_FIND_FILE_COMMAND 'ag -l --path-to-ignore ~/.agignore --nocolor --hidden -g ""'
-# thefuck
-thefuck --alias | source
 # enbale starship prompt customization for
 starship init fish | source
 
