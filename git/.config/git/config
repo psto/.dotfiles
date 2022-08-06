@@ -3,7 +3,7 @@
 	email = piotr.stojanow@gmail.com
 [core]
 	editor = nvim
-	excludesfile = /home/piotr/.config/git/gitignore_global
+	excludesfile = /home/piotr/.config/git/gitignore
 	pager = diff-so-fancy | less --tabs=4 -RFX
 [alias]
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
