@@ -1,7 +1,4 @@
 #!/bin/sh
-# export ZDOTDIR=$HOME/.config/zsh
-# export DOTFILES=$HOME/.dotfiles
-
 HISTFILE=~/.zsh_history
 setopt appendhistory        # append history (no overwriting)
 #setopt sharehistory         # share history across terminals
@@ -108,6 +105,8 @@ export BAT_THEME="Dracula"
 
 # mcfly init
 eval "$(mcfly init zsh)"
+export MCFLY_KEY_SCHEME=vim
+export MCFLY_DISABLE_MENU=TRUE
 
 # broot init
 source /home/piotr/.config/broot/launcher/bash/br
