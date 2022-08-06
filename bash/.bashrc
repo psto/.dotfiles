@@ -134,10 +134,8 @@ PS1='\[\e[1m\]\w\[\033[0;32m\] [$(git branch 2>/dev/null | grep "^*" | colrm 1 2
 # dotfiles
 export DOTFILES="~/.dotfiles"
 
-# nvm for node.js
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# fnm for node.js
+eval "$(fnm env --use-on-cd)"
 
 # Add rbnev to PATH
 export PATH="$HOME/.rbenv/bin:$PATH"
