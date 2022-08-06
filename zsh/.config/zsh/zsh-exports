@@ -26,10 +26,10 @@ export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
 export SQLITE_HISTORY="$XDG_DATA_HOME/sqlite_history"
 export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 
-# nvm for node.js
-export NVM_DIR="$XDG_CONFIG_HOME/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# fnm for node
+eval "$(fnm env --use-on-cd)"
+# npm for node.js
+export PATH="$XDG_DATA_HOME/npm/bin:$PATH"
 
 # Add rbnev to PATH
 export PATH="$RBENV_ROOT/bin:$PATH"
