@@ -103,3 +103,6 @@ rga-fzf() {
 
 # ls function
 do-ls() {emulate -L zsh; exa;}
+
+# new lempty line
+precmd() { print "" }

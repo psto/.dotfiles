@@ -68,6 +68,7 @@ ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 
 # Hooks
 add-zsh-hook chpwd do-ls
+add-zsh-hook chpwd precmd
 
 # Key-bindings
 bindkey -s '^f' 'zi^M'
