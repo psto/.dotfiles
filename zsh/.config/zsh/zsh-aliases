@@ -104,6 +104,9 @@ alias wttr="curl wttr.in/Lubań"
 # dragon-drop
 alias drag="dragon-drop"
 
+# transmission-remote
+alias tsm="transmission-remote"
+
 case "$(uname -s)" in
 
 Darwin)
