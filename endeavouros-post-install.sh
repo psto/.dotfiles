@@ -31,7 +31,6 @@ sudo pacman -Sy ncdu
 sudo pacman -Sy newsboat
 sudo pacman -Sy nextcloud-client
 sudo pacman -Sy nmon
-sudo pacman -Sy nvm
 sudo pacman -Sy peek
 sudo pacman -Sy procs
 sudo pacman -Sy qbittorrent
@@ -42,6 +41,7 @@ sudo pacman -Sy ripgrep-all
 sudo pacman -Sy sd
 sudo pacman -Sy signal-desktop
 sudo pacman -Sy stow
+sudo pacman -Sy thermald
 sudo pacman -Sy the_silver_searcher
 sudo pacman -Sy tlp
 sudo pacman -Sy tmux
@@ -63,7 +63,9 @@ yay -S anki
 yay -S beekeeper-studio-bin
 yay -S btop
 yay -S brave-beta-bin
+yay -S czkawka-cli-bin
 yay -S github-desktop-bin
+yay -S rofi-greenclip
 yay -S discord_arch_electron
 yay -S dropbox
 yay -S dragon-drop
