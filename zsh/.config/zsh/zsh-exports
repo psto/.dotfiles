@@ -15,6 +15,7 @@ export LESSHISTFILE=-
 
 # Fixing Paths
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
+export COREPACK_HOME="$XDG_CACHE_HOME/node/corepack"
 export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
 export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
