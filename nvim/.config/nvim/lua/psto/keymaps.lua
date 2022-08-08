@@ -80,3 +80,7 @@ key_map("n", "<c-n>", ":NvimTreeToggle<cr>", opts)
 
 -- ToggleTerm
 key_map("n", "<leader>t", "<cmd>:ToggleTerm<CR>", opts)
+
+-- REST client
+key_map("n", "<leader>r", "<Plug>RestNvim", opts)
+
