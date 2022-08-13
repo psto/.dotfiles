@@ -30,3 +30,6 @@ require('psto/bufferline')
 
 -- toggleterm
 require('psto/toggleterm')
+
+-- spectre
+require('psto/spectre')
