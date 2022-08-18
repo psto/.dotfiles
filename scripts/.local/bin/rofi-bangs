@@ -1,0 +1,277 @@
+#!/usr/bin/env bash
+
+# Rofi-Bangs forgot where i got this!
+# combine different scipts into one gui interface
+declare -A LABELS
+declare -A COMMANDS
+browser='brave-beta'
+
+# List of defined 'bangs'
+
+# List apps to launch
+COMMANDS["rr"]="rofi -modi drun -show drun -config ~/.config/rofi/rofidmenu.rasi"
+LABELS["rr"]="rofi-run"
+
+# Quickly edit this file
+COMMANDS["edit-rofi-bangs"]='exec alacritty -e nvim "/home/piotr/.local/bin/rofi-bangs"'
+LABELS["edit-rofi-bangs"]=
+
+################################################################################
+# Run other rofi scripts
+################################################################################
+
+# call another rofi script, rofi notes
+# COMMANDS["rn"]=" '/home/piotr/bin/rofi-scripts/rofi-notes' "${input}""
+# LABELS["rn"]="rofi-notes"
+
+# open bookmarks
+COMMANDS["bookmarks"]=" '/home/piotr/.local/bin/rofi-surfraw-bookmarks.sh'"
+LABELS["bookmarks"]=""
+
+# Todo
+COMMANDS["do"]="exec rofi -modi TODO:~/.local/bin/rofi-todo -show TODO -config ~/.config/rofi/searchmenu.rasi"
+LABELS["do"]="todo"
+
+# Search for files
+COMMANDS["fzf-search"]=" '/home/piotr/.local/bin/rofi-search'"
+LABELS["fzf-search"]=
+
+# Listen to music
+COMMANDS["rofi-beats"]=" '/home/piotr/.local/bin/rofi-beats'"
+LABELS["rofi-beats"]="rofi-beats"
+
+# Obsidian quick note
+COMMANDS["obsidian-quick-note"]='exec alacritty --class="floating" -e /home/piotr/.local/bin/obsidian-quick-note'
+LABELS["obsidian-quick-note"]=
+
+# Suspend
+COMMANDS["suspend"]="suspend"
+LABELS["suspend"]="suspend"
+
+# Shutdown
+COMMANDS["shutdown"]='shutdown "${input}"'
+LABELS["shutdown"]="shutdown"
+
+# Open webpage
+COMMANDS["www"]='$browser https://"${input}"'
+LABELS["www"]=""
+
+################################################################################
+# Search
+################################################################################
+
+# open custom web searches
+COMMANDS["/"]="~/.local/bin/rofi-surfraw-websearch.sh"
+LABELS["/"]=""
+
+# Brave
+COMMANDS["b"]='$browser https://search.brave.com/search?q="${input}"'
+LABELS["b"]=
+# DuckDuckGo
+COMMANDS["d"]='$browser https://duckduckgo.com/?q="${input}"'
+LABELS["d"]=
+# Google
+COMMANDS["g"]='$browser www.google.com/search?q="${input}"'
+LABELS["g"]=
+# Google Maps
+COMMANDS["gm"]='$browser https://www.google.com/maps/search/"${input}"'
+LABELS["gm"]=
+# IMBD search
+COMMANDS["imdb"]='$browser http://www.imdb.com/find?q="${input}"'
+LABELS["imdb"]=
+# Wikipedia search
+COMMANDS["wi"]='$browser https://en.m.wikipedia.org/wiki/Special:Search/"${input}"'
+LABELS["wi"]=
+# Wikipedia PL search
+COMMANDS["wipl"]='$browser https://pl.m.wikipedia.org/wiki/"${input}"'
+LABELS["wipl"]=
+# You Code search
+COMMANDS["you"]='$browser https://you.com/search?q="${input}&fromSearchBar=true&tbm=youcode"'
+LABELS["you"]=
+# YouTube search
+COMMANDS["yt"]='$browser http://www.youtube.com/results?search_query="${input}"'
+LABELS["yt"]=
+# Allegro search
+COMMANDS["allegro"]='$browser https://allegro.pl/listing?string="${input}"'
+LABELS["allegro"]=
+# 1337
+COMMANDS["13"]='$browser https://1337x.to/search/"${input}"/1/'
+LABELS["13"]=
+
+################################################################################
+# Apps
+################################################################################
+
+# Brave Beta browser
+COMMANDS["brave-beta"]="brave-beta"
+LABELS["brave-beta"]=
+
+# Beekeeper Studio
+COMMANDS["beekeeper-studio"]="beekeeper-studio"
+LABELS["beekeeper-studio"]=
+
+# Bitwarden
+COMMANDS["bitwarden"]="bitwarden"
+LABELS["bitwarden"]=
+
+# Bleachbit
+COMMANDS["bleachbit"]="bleachbit"
+LABELS["bleachbit"]=
+
+# Calibre
+COMMANDS["calibre"]="calibre"
+LABELS["calibre"]=
+
+# Discord
+COMMANDS["discord"]="discord"
+LABELS["discord"]=
+
+# Firefox
+COMMANDS["firefox"]="firefox"
+LABELS["firefox"]=
+
+# Firefox Developer
+COMMANDS["firefox-developer-edition"]="firefox-developer-edition"
+LABELS["firefox-developer-edition"]=
+
+# Galculator
+COMMANDS["galculator"]="galculator"
+LABELS["galculator"]=
+
+# Github Desktop
+COMMANDS["github-desktop"]="github-desktop"
+LABELS["github-desktop"]=
+
+# Insomnia
+COMMANDS["insomnia"]="insomnia"
+LABELS["insomnia"]=
+
+# IPFS Desktop
+COMMANDS["ipfs-desktop"]="ipfs-desktop"
+LABELS["ipfs-desktop"]=
+
+# KeepassXC
+COMMANDS["keepassxc"]="keepassxc"
+LABELS["keepassxc"]=
+
+# Morgen
+COMMANDS["morgen"]="morgen"
+LABELS["morgen"]=
+
+# Nextcloud
+COMMANDS["nextcloud"]="nextcloud"
+LABELS["nextcloud"]=
+
+# Obsidian
+COMMANDS["obsidian"]="obsidian"
+LABELS["obsidian"]=
+
+# qBittorrent
+COMMANDS["qbittorrent"]="qbittorrent"
+LABELS["qbittorrent"]=
+
+# Qutebrowser
+COMMANDS["qutebrowser"]="qutebrowser"
+LABELS["qutebrowser"]=
+
+# Peek
+COMMANDS["peek"]="peek"
+LABELS["peek"]=
+
+# Signal
+COMMANDS["signal-desktop"]="signal-desktop"
+LABELS["signal-desktop"]=
+
+# SimpleScreenRecorder
+COMMANDS["simplescreenrecorder"]="simplescreenrecorder"
+LABELS["simplescreenrecorder"]=
+
+# Sioyek
+COMMANDS["sioyek"]="sioyek"
+LABELS["sioyek"]=
+
+# Streamlink Twitch GUI
+COMMANDS["streamlink-twitch-gui"]="streamlink-twitch-gui"
+LABELS["streamlink-twitch-gui"]=
+
+# Tor Browser
+COMMANDS["tor-browser"]="tor-browser"
+LABELS["tor-browser"]=
+
+# Transmission Remote
+COMMANDS["transmission-remote"]="transmission-remote"
+LABELS["transmission-remote"]=
+
+# Thunar
+COMMANDS["thunar"]="thunar"
+LABELS["thunar"]=
+
+# Visual Studio Code
+COMMANDS["code"]="code"
+LABELS["code"]=
+
+# VLC
+COMMANDS["vlc"]="vlc"
+LABELS["vlc"]=
+
+# VPN-Unlimited
+COMMANDS["vpn-unlimited"]="vpn-unlimited"
+LABELS["vpn-unlimited"]=
+
+# YouTube Music
+COMMANDS["youtube-music"]="youtube-music"
+LABELS["youtube-music"]=
+
+# Zathura
+COMMANDS["zathura"]="zathura"
+LABELS["zathura"]=
+
+################################################################################
+# Run Script
+################################################################################
+
+# Generate menu
+function print_menu()
+{
+for key in ${!LABELS[@]}
+do
+echo "$key ${LABELS}"
+# echo "$key ${LABELS[$key]}"
+# my top version just shows the first field in labels row, not two words side by side
+done
+}
+
+# Show rofi.
+function start()
+{
+print_menu | rofi -dmenu -p ":" -config ~/.config/rofi/rofidmenu.rasi
+}
+
+# Run it
+value="$(start)"
+
+# Split input.
+# grab upto first space.
+choice=${value%%\ *}
+
+# graph remainder, minus space.
+input=${value:$((${#choice}+1))}
+
+# Cancelled? bail out
+if test -z ${choice}
+then
+exit
+fi
+
+# check if choice exists
+if test ${COMMANDS[$choice]+isset}
+then
+# Execute the choice
+eval echo "Executing: ${COMMANDS[$choice]}"
+eval ${COMMANDS[$choice]}
+else
+eval $choice | rofi
+
+# prefer my above so I can use this same script to also launch apps like geany or leafpad etc (DK)
+echo "Unknown command: ${choice}" | rofi -dmenu -p "error"
+fi
