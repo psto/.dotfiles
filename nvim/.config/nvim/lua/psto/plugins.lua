@@ -261,11 +261,13 @@ return packer.startup(function(use)
 		end,
 	})
 
-	-- Pretty colors
+	-- Pretty colors for css, tailwindcss
 	use({
-		"norcalli/nvim-colorizer.lua",
+		"mrshmllow/document-color.nvim",
 		config = function()
-			require("colorizer").setup()
+			require("document-color").setup({
+				mode = "background", -- "background" | "foreground" | "single"
+			})
 		end,
 	})
 

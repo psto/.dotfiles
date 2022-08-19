@@ -69,6 +69,12 @@ local on_attach = function(client, bufnr)
 		border = "rounded",
 	})
 
+  -- colors with document-color.nvim
+  if client.server_capabilities.colorProvider then
+    -- Attach document colour support
+    require("document-color").buf_attach(bufnr)
+  end
+
 	for _, sign in ipairs(signs) do
 		vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
 	end
@@ -84,13 +90,8 @@ capabilities.textDocument.colorProvider = { dynamicRegistration = true }
 
 nvim_lsp.tailwindcss.setup({
 	capabilities = capabilities,
-	-- on_attach = on_attach,
-	on_attach = function(client, bufnr)
-		if client.server_capabilities.colorProvider then
-			require("psto/lsp/documentcolors").buf_attach(bufnr)
-		end
-	end,
-	cmd = { "tailwindcss-language-server", "--stdio" },
+	on_attach = on_attach,
+  cmd = { "tailwindcss-language-server", "--stdio" },
 	filetypes = {
 		"aspnetcorerazor",
 		"astro",
