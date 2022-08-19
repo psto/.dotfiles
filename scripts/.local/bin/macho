@@ -4,7 +4,8 @@ manual=$(apropos -s ${SECTION:-''} ${@:-.} | \
     grep -v -E '^.+ \(0\)' |\
     awk '{print $2 "    " $1}' | \
     sort | \
-    rofi -dmenu -i -p "Manual: " | \
+    rofi -config ~/.config/rofi/searchmenu.rasi \
+    -dmenu -i -p "Manual: " | \
     sed -E 's/^\((.+)\)/\1/')
 
 if [ -z "$MANUAL" ]; then
