@@ -4,6 +4,7 @@ vim.g.loaded_matchparen = 1
 local g = vim.g -- global variable
 local cmd = vim.cmd -- command
 local opt = vim.opt -- set options
+local autocmd =  vim.api.nvim_create_autocmd
 
 -- Cool floating window popup menu for completion on command line
 opt.pumblend = 17 -- transparent popup
@@ -93,15 +94,16 @@ g.completion_trigger_character = "."
 --
 opt.colorcolumn = "80" -- hint to keep lines short
 opt.termguicolors = true
--- terminal transparency can be set with picom, so not needed for now
--- cmd("au ColorScheme * hi Normal ctermbg=none guibg=none") -- transparent background
 
 --
 -- CUSTOM AUTOCMDS
 --
 
+local group = vim.api.nvim_create_augroup("psto", { clear = true })
+
 -- automatically rebalance windows on vim resize
-cmd([[autocmd VimResized * :wincmd =]])
+-- terminal transparency can be set also with picom
+autocmd("ColorScheme", { command = "hi Normal ctermbg=none guibg=none", group = group}) -- transparent background
 
 --
 -- Custom Folds, make them look better
