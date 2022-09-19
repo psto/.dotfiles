@@ -171,15 +171,20 @@ return packer.startup(function(use)
 	--   keys = { '<localleader>d', '<localleader>df', '<localleader>dc' },
 	-- }
 
-	-- Navigation
-	use({ "akinsho/bufferline.nvim", requires = "kyazdani42/nvim-web-devicons" })
-	use("christoomey/vim-tmux-navigator")
-	use({
-		"karb94/neoscroll.nvim",
-		config = function()
-			require("neoscroll").setup({})
-		end,
-	})
+  -- Navigation
+  use("christoomey/vim-tmux-navigator")
+  use({
+    "karb94/neoscroll.nvim",
+    config = function()
+      require("neoscroll").setup({})
+    end,
+  })
+  use({
+    "folke/which-key.nvim",
+    config = function()
+      require("which-key").setup({})
+    end,
+  })
 
 	-- Diagnostics
 	use({
