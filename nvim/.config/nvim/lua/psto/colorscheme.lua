@@ -1,17 +1,11 @@
-local g = vim.g
--- Colorscheme options
--- g.tokyonight_transparent = true
--- g.tokyonight_style = "night"
--- g.tokyonight_dark_float = false
--- g.tokyonight_transparent_sidebar = true
-g.tokyonight_colors = { bg_float = "#24283b" }
--- g.nightflyTransparent = 1
+if os.getenv('theme') == 'light' then
+  vim.o.background = 'light'
+end
 
 -- Available colorschemes:
 local colorscheme = "tokyonight"
 -- local colorscheme = "dracula"
 -- local colorscheme = "duskfox"
--- local colorscheme = "onedark"
 -- local colorscheme = "nightfly"
 -- local colorscheme = "kanagawa"
 
