@@ -34,47 +34,46 @@ return packer.startup(function(use)
 	use("wbthomason/packer.nvim")
 	use("lewis6991/impatient.nvim")
 
-	-- Utility Plugins
-    use({
-        "kylechui/nvim-surround",
-        config = function()
-            require("nvim-surround").setup({})
-        end
-    })
-	use("sindrets/diffview.nvim")
-	use("windwp/nvim-autopairs")
-	use({
-        "windwp/nvim-ts-autotag",
-		config = function()
-          require('nvim-ts-autotag').setup()
-		end,
-	})
-	use("akinsho/toggleterm.nvim")
-	use({
-		"numToStr/Comment.nvim",
-		config = function()
-			require("Comment").setup()
-		end,
-	})
-	use({
-		"kyazdani42/nvim-tree.lua",
-		requires = {
-			"kyazdani42/nvim-web-devicons",
-		},
-	})
+  -- Utility Plugins
+  use({
+    "kylechui/nvim-surround",
+    config = function()
+      require("nvim-surround").setup({})
+    end,
+  })
+  use("sindrets/diffview.nvim")
+  use({
+    "windwp/nvim-autopairs",
+    config = function() require("nvim-autopairs").setup {} end
+  })
+  use({
+    "windwp/nvim-ts-autotag",
+    config = function()
+      require("nvim-ts-autotag").setup()
+    end,
+  })
+  use("akinsho/toggleterm.nvim")
+  use({
+    "numToStr/Comment.nvim",
+    config = function()
+      require("Comment").setup()
+    end,
+  })
+  use({ "kevinhwang91/nvim-ufo", requires = "kevinhwang91/promise-async" })
 
-	-- Search
-	use("nvim-lua/popup.nvim")
-	use({
-		"nvim-telescope/telescope.nvim",
-		requires = { { "nvim-lua/plenary.nvim" } },
-	})
-	use("nvim-telescope/telescope-fzy-native.nvim")
-    use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-	use({
-		"nvim-pack/nvim-spectre",
-		requires = { { "nvim-lua/plenary.nvim" } },
-	})
+  -- Search
+  use("nvim-lua/popup.nvim")
+  use({
+    "nvim-telescope/telescope.nvim",
+    requires = { { "nvim-lua/plenary.nvim" } },
+  })
+  use({ "nvim-telescope/telescope-file-browser.nvim" })
+  use({ "nvim-telescope/telescope-fzy-native.nvim" })
+  use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
+  use({
+    "nvim-pack/nvim-spectre",
+    requires = { { "nvim-lua/plenary.nvim" } },
+  })
 
     -- use 'ggandor/lightspeed.nvim'
 
