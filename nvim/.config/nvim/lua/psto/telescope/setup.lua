@@ -63,10 +63,28 @@ require('telescope').setup{
     --   override_file_sorter = true,
     --   case_mode = "smart_case",
     -- }
-  }
-}
+    fzf = {
+      fuzzy = true,
+      override_generic_sorter = true,
+      override_file_sorter = true,
+      case_mode = "smart_case",
+    },
+    file_browser = {
+      mappings = {
+        ["i"] = {
+          -- Ctrl+Enter creates new file
+        },
+        ["n"] = {
+          -- your custom normal mode mappings
+        },
+      },
+    },
+  },
+})
 
-require('telescope').load_extension('fzy_native')
+-- require('telescope').load_extension('fzy_native')
+require("telescope").load_extension("fzf")
+require("telescope").load_extension("file_browser")
 
 local M = {}
 M.search_dotfiles = function()
