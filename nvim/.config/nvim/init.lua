@@ -23,7 +23,10 @@ require("psto/trouble")
 require("psto/autopairs")
 
 -- toggleterm
-require('psto/toggleterm')
+require("psto/toggleterm")
+
+-- which-key
+require("psto/whichkey")
 
 -- spectre
 require("psto/spectre")
