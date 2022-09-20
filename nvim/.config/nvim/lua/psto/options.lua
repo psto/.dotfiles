@@ -4,7 +4,7 @@ vim.g.loaded_matchparen = 1
 local g = vim.g -- global variable
 local cmd = vim.cmd -- command
 local opt = vim.opt -- set options
-local autocmd =  vim.api.nvim_create_autocmd
+local autocmd = vim.api.nvim_create_autocmd
 
 -- Cool floating window popup menu for completion on command line
 opt.pumblend = 17 -- transparent popup
@@ -32,14 +32,12 @@ opt.spelloptions = "camel" -- spell check camel case
 opt.laststatus = 3 -- Show the status bar
 
 -- Tabs
-opt.autoindent = true
-opt.cindent = true
-opt.wrap = true
-
-opt.tabstop = 4
-opt.shiftwidth = 4
-opt.softtabstop = 4
-opt.expandtab = true
+-- opt.autoindent = true
+-- opt.cindent = true
+opt.wrap = true -- wrap lines
+opt.tabstop = 2 -- insert 2 spaces for a tab
+opt.shiftwidth = 2 -- the number of spaces inserted for each indentation
+opt.expandtab = true -- convert tabs to spaces
 
 opt.breakindent = true
 opt.showbreak = string.rep(" ", 3) -- Make it so that long lines wrap smartly
@@ -47,8 +45,8 @@ opt.linebreak = true
 
 -- opt.foldmethod = "marker"
 -- opt.foldlevel = 0
-opt.foldlevelstart = 99 --- Expand all folds by default
-opt.foldtext = "CustomFold()" --- Emit custom function for foldtext
+-- opt.foldlevelstart = 99 --- Expand all folds by default
+-- opt.foldtext = "CustomFold()" --- Emit custom function for foldtext
 opt.modelines = 1
 
 opt.belloff = "all" -- Just turn the dang bell off
@@ -62,15 +60,15 @@ opt.shada = { "!", "'1000", "<50", "s10", "h" }
 opt.mouse = "n"
 
 opt.formatoptions = opt.formatoptions
-	- "a" -- Auto formatting is BAD.
-	- "t" -- Don't auto format my code. I got linters for that.
-	+ "c" -- In general, I like it when comments respect textwidth
-	+ "q" -- Allow formatting comments w/ gq
-	- "o" -- O and o, don't continue comments
-	+ "r" -- But do continue when pressing enter.
-	+ "n" -- Indent past the formatlistpat, not underneath it.
-	+ "j" -- Auto-remove comments if possible.
-	- "2" -- I'm not in gradeschool anymore
+    - "a" -- Auto formatting is BAD.
+    - "t" -- Don't auto format my code. I got linters for that.
+    + "c" -- In general, I like it when comments respect textwidth
+    + "q" -- Allow formatting comments w/ gq
+    - "o" -- O and o, don't continue comments
+    + "r" -- But do continue when pressing enter.
+    + "n" -- Indent past the formatlistpat, not underneath it.
+    + "j" -- Auto-remove comments if possible.
+    - "2" -- I'm not in gradeschool anymore
 
 -- set joinspaces
 opt.joinspaces = false -- Two spaces and grade school, we're done
