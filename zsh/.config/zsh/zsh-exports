@@ -22,9 +22,12 @@ export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
 export HISTFILE="$XDG_DATA_HOME/zsh/history"
 export IPFS_PATH="$XDG_CONFIG_HOME/ipfs/"
 export NODE_REPL_HISTORY="$XDG_DATA_HOME/node_repl_history"
+export PASSWORD_STORE_DIR="$XDG_DATA_HOME"/pass
 export RBENV_ROOT="$XDG_DATA_HOME/rbenv"
 export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 export SQLITE_HISTORY="$XDG_DATA_HOME/sqlite_history"
+export TERMINFO="$XDG_DATA_HOME"/terminfo # after installing wezterm terminfo file
 export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 
 # fnm for node
@@ -49,8 +52,6 @@ export PATH=$XDG_DATA_HOME/cargo/bin:$PATH
 export PATH=$HOME/.local/share/go/bin:$PATH
 export GOPATH=$HOME/.local/share/go
 
-# z
-eval "$(zoxide init zsh)"
 # eval "`pip completion --zsh`"
 
 # deno deploy
