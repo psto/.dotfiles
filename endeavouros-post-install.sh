@@ -1,61 +1,71 @@
-sudo pacman -Sy ansible
-sudo pacman -Sy autorandr
-sudo pacman -Sy bandwhich
-sudo pacman -Sy bat
-sudo pacman -Sy bitwarden
-sudo pacman -Sy broot
-sudo pacman -Sy calibre
-sudo pacman -Sy cmatrix
-sudo pacman -Sy dash
-sudo pacman -Sy diff-so-fancy
-sudo pacman -Sy docker
-sudo pacman -Sy docker-compose
-sudo pacman -Sy exa
-sudo pacman -Sy fd
-sudo pacman -Sy fish
-sudo pacman -Sy flameshot
-sudo pacman -Sy foliate
-sudo pacman -Sy fzf
-sudo pacman -Sy ghostscript
-sudo pacman -Sy gifski
-sudo pacman -Sy github-cli
-sudo pacman -Sy graphicsmagick
-sudo pacman -Sy htop
-sudo pacman -Sy httpie
-sudo pacman -Sy imagemagick
-sudo pacman -Sy keepassxc
-sudo pacman -Sy lazygit
-sudo pacman -Sy lua-language-server
-sudo pacman -Sy mcfly
-sudo pacman -Sy ncdu
-sudo pacman -Sy newsboat
-sudo pacman -Sy nextcloud-client
-sudo pacman -Sy nmon
-sudo pacman -Sy peek
-sudo pacman -Sy procs
-sudo pacman -Sy qbittorrent
-sudo pacman -Sy ranger
-sudo pacman -Sy redshift
-sudo pacman -Sy ripgrep
-sudo pacman -Sy ripgrep-all
-sudo pacman -Sy sd
-sudo pacman -Sy signal-desktop
-sudo pacman -Sy stow
-sudo pacman -Sy thermald
-sudo pacman -Sy the_silver_searcher
-sudo pacman -Sy tlp
-sudo pacman -Sy tmux
-sduo pacman -Sy tokei
-sudo pacman -Sy tor-browser
-sudo pacman -Sy trash-cli
-sudo pacman -Sy tree-sitter
-sudo pacman -Sy vlc
-sudo pacman -Sy xclip
-sudo pacman -Sy xorg-xbacklight
-sudo pacman -Sy w3m
-sudo pacman -Sy zathura
-sudo pacman -Sy zoxide
-sudo pacman -Sy zsh
+sudo pacman -S --noconfirm ansible
+sudo pacman -S --noconfirm autorandr
+sudo pacman -S --noconfirm bandwhich
+sudo pacman -S --noconfirm bat
+sudo pacman -S --noconfirm bitwarden
+sudo pacman -S --noconfirm broot
+sudo pacman -S --noconfirm calibre
+sudo pacman -S --noconfirm cmatrix
+sudo pacman -S --noconfirm dash
+sudo pacman -S --noconfirm diff-so-fancy
+sudo pacman -S --noconfirm docker
+sudo pacman -S --noconfirm docker-compose
+sudo pacman -S --noconfirm exa
+sudo pacman -S --noconfirm fd
+sudo pacman -S --noconfirm fish
+sudo pacman -S --noconfirm flameshot
+sudo pacman -S --noconfirm foliate
+sudo pacman -S --noconfirm fzf
+sudo pacman -S --noconfirm ghostscript
+sudo pacman -S --noconfirm gifski
+sudo pacman -S --noconfirm github-cli
+sudo pacman -S --noconfirm graphicsmagick
+sudo pacman -S --noconfirm htop
+sudo pacman -S --noconfirm httpie
+sudo pacman -S --noconfirm imagemagick
+sudo pacman -S --noconfirm keepassxc
+sudo pacman -S --noconfirm kubo
+sudo pacman -S --noconfirm lazygit
+sudo pacman -S --noconfirm lua-language-server
+sudo pacman -S --noconfirm mcfly
+sudo pacman -S --noconfirm ncdu
+sudo pacman -S --noconfirm newsboat
+sudo pacman -S --noconfirm nextcloud-client
+sudo pacman -S --noconfirm nmon
+sudo pacman -S --noconfirm pass
+sudo pacman -S --noconfirm pass-otp
+sudo pacman -S --noconfirm peek
+sudo pacman -S --noconfirm procs
+sudo pacman -S --noconfirm qbittorrent
+sudo pacman -S --noconfirm ranger
+sudo pacman -S --noconfirm redshift
+sudo pacman -S --noconfirm ripgrep
+sudo pacman -S --noconfirm ripgrep-all
+sudo pacman -S --noconfirm rofi-calc
+sudo pacman -S --noconfirm scrot
+sudo pacman -S --noconfirm sd
+sudo pacman -S --noconfirm signal-desktop
+sudo pacman -S --noconfirm stow
+sudo pacman -S --noconfirm surfraw
+sudo pacman -S --noconfirm thermald
+sudo pacman -S --noconfirm the_silver_searcher
+sudo pacman -S --noconfirm tlp
+sudo pacman -S --noconfirm tmux
+sduo pacman -S --noconfirm tokei
+sudo pacman -S --noconfirm tor-browser
+sudo pacman -S --noconfirm trash-cli
+sudo pacman -S --noconfirm tree-sitter
+sudo pacman -S --noconfirm vlc
+sudo pacman -S --noconfirm xclip
+sudo pacman -S --noconfirm xorg-xbacklight
+sudo pacman -S --noconfirm w3m
+sudo pacman -S --noconfirm yt-dlp
+sudo pacman -S --noconfirm zathura
+sudo pacman -S --noconfirm zathura-cb
+sudo pacman -S --noconfirm zathura-djvu
+sudo pacman -S --noconfirm zathura-pdf-mupdf
+sudo pacman -S --noconfirm zoxide
+sudo pacman -S --noconfirm zsh
 
 yay -S alacritty
 yay -S autotiling
@@ -66,6 +76,7 @@ yay -S brave-beta-bin
 yay -S czkawka-cli-bin
 yay -S github-desktop-bin
 yay -S rofi-greenclip
+yay -S devour
 yay -S discord_arch_electron
 yay -S dropbox
 yay -S dragon-drop
