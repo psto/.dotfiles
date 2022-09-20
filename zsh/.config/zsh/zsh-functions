@@ -106,3 +106,6 @@ do-ls() {emulate -L zsh; exa;}
 
 # new lempty line
 precmd() { print "" }
+
+# make a new directory and cd into it
+function mkcd { mkdir -p "$1" && cd "$1" }
