@@ -18,9 +18,9 @@ alias mirrora="sudo reflector --latest 50 --number 20 --sort age --save /etc/pac
 alias grep='grep --color=auto'
 
 # confirm before overwriting something
-alias cp="cp -i"
-alias mv='mv -i'
-alias rm='rm -i'
+alias cp="cp -iv"
+alias mv='mv -iv'
+alias rm='rm -iv'
 alias tr='trash-put'
 
 # easier to read disk
@@ -47,7 +47,7 @@ alias archlinx-fix-keys="sudo pacman-key --init && sudo pacman-key --populate ar
 # fuzzy-search and install available pacman packages
 alias pacman-fzf="pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S"
 # fuzzy-search and install available aur packages
-alias yay-fzf="yay -Slq | fzf --multi --preview 'yay -Si {1}' | xargs -ro sudo yay -S"
+alias yay-fzf="yay -Slq | fzf --multi --preview 'yay -Si {1}' | xargs -ro yay -S"
 # list and remove installed packages
 alias pacman-fzf-rm="pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns"
 alias yay-fzf-rm="yay -Qq | fzf --multi --preview 'yay -Qi {1}' | xargs -ro sudo yay -Rns"
@@ -60,6 +60,7 @@ alias gs="git status -sb"
 alias ga="git add"
 alias gc="git commit -m"
 alias gd="git diff"
+alias gdw="git dw"
 alias gp="git add --patch"
 # "git lg" alias for pretty git log - set and forget
 # git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --"
@@ -74,11 +75,9 @@ alias open="xdg-open"
 # clear alias when in tmux
 alias c='clear'
 
-# yarn alias for XDG Base Directory
-alias yarn='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config"'
-
 # exa alias
 alias l='exa -l'
+alias la='exa -a'
 
 # ranger alias
 alias r='ranger'
