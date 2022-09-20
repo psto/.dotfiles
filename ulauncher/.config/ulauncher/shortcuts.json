@@ -48,5 +48,15 @@
         "is_default_search": true,
         "run_without_argument": false,
         "added": 1653897282.8473258
+    },
+    "e75e8e33-49b1-4987-8a45-f53467788f03": {
+        "id": "e75e8e33-49b1-4987-8a45-f53467788f03",
+        "name": "You",
+        "keyword": "y",
+        "cmd": "https://you.com/search?q=%s",
+        "icon": null,
+        "is_default_search": false,
+        "run_without_argument": false,
+        "added": 1660548646.1411572
     }
 }
