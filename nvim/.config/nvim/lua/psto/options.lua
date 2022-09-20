@@ -30,6 +30,7 @@ opt.hlsearch = true -- I wouldn't use this without the DoNoHL function
 opt.scrolloff = 10 -- Make it so there are always ten lines below my cursor
 opt.spelloptions = "camel" -- spell check camel case
 opt.laststatus = 3 -- Show the status bar
+opt.timeoutlen = 300 -- Time in milliseconds to wait for a mapped sequence to complete
 
 -- Tabs
 -- opt.autoindent = true
@@ -108,27 +109,34 @@ autocmd("VimResized", { command = ":wincmd =", group = group })
 -- terminal transparency can be set also with picom
 -- autocmd("ColorScheme", { command = "hi Normal ctermbg=none guibg=none cterm=none", group = group }) -- transparent background
 
+-- nvim-ufo folds
+vim.o.foldcolumn = "1"
+vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
+
 --
 -- Custom Folds, make them look better
 --
-cmd([[
-  function! CustomFold()
-    return printf('   %-6d%s', v:foldend - v:foldstart + 1, getline(v:foldstart))
-  endfunction
-]])
+-- cmd([[
+--   function! CustomFold()
+--     return printf('   %-6d%s', v:foldend - v:foldstart + 1, getline(v:foldstart))
+--   endfunction
+-- ]])
 -- It manages folds automatically based on treesitter
-local parsers = require("nvim-treesitter.parsers")
-local configs = parsers.get_parser_configs()
-local ft_str = table.concat(
-	vim.tbl_map(function(ft)
-		return configs[ft].filetype or ft
-	end, parsers.available_parsers()),
-	","
-)
-print()
-cmd("autocmd Filetype " .. ft_str .. " setlocal foldmethod=expr foldexpr=nvim_treesitter#foldexpr()")
+-- local parsers = require("nvim-treesitter.parsers")
+-- local configs = parsers.get_parser_configs()
+-- local ft_str = table.concat(
+-- 	vim.tbl_map(function(ft)
+-- 		return configs[ft].filetype or ft
+-- 	end, parsers.available_parsers()),
+-- 	","
+-- )
+-- print()
+-- cmd("autocmd Filetype " .. ft_str .. " setlocal foldmethod=expr foldexpr=nvim_treesitter#foldexpr()")
 
 -- format on save and quit
+-- cmd([[cabbrev wq execute "lua vim.lsp.buf.format()" <bar> wq]])
 cmd [[cabbrev wq execute "Format sync" <bar> wq]]
 
 -- approrpiately highlight codefences returned from denols
