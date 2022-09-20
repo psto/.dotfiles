@@ -117,95 +117,95 @@ capabilities.textDocument.foldingRange = {
 require("ufo").setup()
 
 nvim_lsp.tailwindcss.setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
+  capabilities = capabilities,
+  on_attach = on_attach,
   cmd = { "tailwindcss-language-server", "--stdio" },
-	filetypes = {
-		"aspnetcorerazor",
-		"astro",
-		"astro-markdown",
-		"blade",
-		"django-html",
-		"edge",
-		"eelixir",
-		"ejs",
-		"erb",
-		"eruby",
-		"gohtml",
-		"haml",
-		"handlebars",
-		"hbs",
-		"html",
-		"html-eex",
-		"jade",
-		"leaf",
-		"liquid",
-		-- "markdown",
-		"mdx",
-		"mustache",
-		"njk",
-		"nunjucks",
-		"php",
-		"razor",
-		"slim",
-		"twig",
-		"css",
-		"less",
-		"postcss",
-		"sass",
-		"scss",
-		"stylus",
-		"sugarss",
-		"javascript",
-		"javascriptreact",
-		"reason",
-		"rescript",
-		"typescript",
-		"typescriptreact",
-		"vue",
-		"svelte",
-	},
-	init_options = {
-		userLanguages = {
-			eelixir = "html-eex",
-			eruby = "erb",
-		},
-	},
-	on_new_config = function(new_config)
-		if not new_config.settings then
-			new_config.settings = {}
-		end
-		if not new_config.settings.editor then
-			new_config.settings.editor = {}
-		end
-		if not new_config.settings.editor.tabSize then
-			-- set tab size for hover
-			new_config.settings.editor.tabSize = vim.lsp.util.get_effective_tabstop()
-		end
-	end,
-	settings = {
-		tailwindCSS = {
-			lint = {
-				cssConflict = "warning",
-				invalidApply = "error",
-				invalidConfigPath = "error",
-				invalidScreen = "error",
-				invalidTailwindDirective = "error",
-				invalidVariant = "error",
-				recommendedVariantOrder = "warning",
-			},
-			experimental = {
-				classRegex = {
-					"tw`([^`]*)",
-					'tw="([^"]*)',
-					'tw={"([^"}]*)',
-					"tw\\.\\w+`([^`]*)",
-					"tw\\(.*?\\)`([^`]*)",
-				},
-			},
-			validate = true,
-		},
-	},
+  filetypes = {
+    "aspnetcorerazor",
+    "astro",
+    "astro-markdown",
+    "blade",
+    "django-html",
+    "edge",
+    "eelixir",
+    "ejs",
+    "erb",
+    "eruby",
+    "gohtml",
+    "haml",
+    "handlebars",
+    "hbs",
+    "html",
+    "html-eex",
+    "jade",
+    "leaf",
+    "liquid",
+    -- "markdown",
+    "mdx",
+    "mustache",
+    "njk",
+    "nunjucks",
+    "php",
+    "razor",
+    "slim",
+    "twig",
+    "css",
+    "less",
+    "postcss",
+    "sass",
+    "scss",
+    "stylus",
+    "sugarss",
+    "javascript",
+    "javascriptreact",
+    "reason",
+    "rescript",
+    "typescript",
+    "typescriptreact",
+    "vue",
+    "svelte",
+  },
+  init_options = {
+    userLanguages = {
+      eelixir = "html-eex",
+      eruby = "erb",
+    },
+  },
+  on_new_config = function(new_config)
+    if not new_config.settings then
+      new_config.settings = {}
+    end
+    if not new_config.settings.editor then
+      new_config.settings.editor = {}
+    end
+    if not new_config.settings.editor.tabSize then
+      -- set tab size for hover
+      new_config.settings.editor.tabSize = vim.lsp.util.get_effective_tabstop()
+    end
+  end,
+  settings = {
+    tailwindCSS = {
+      lint = {
+        cssConflict = "warning",
+        invalidApply = "error",
+        invalidConfigPath = "error",
+        invalidScreen = "error",
+        invalidTailwindDirective = "error",
+        invalidVariant = "error",
+        recommendedVariantOrder = "warning",
+      },
+      experimental = {
+        classRegex = {
+          "tw`([^`]*)",
+          'tw="([^"]*)',
+          'tw={"([^"}]*)',
+          "tw\\.\\w+`([^`]*)",
+          "tw\\(.*?\\)`([^`]*)",
+        },
+      },
+      validate = true,
+    },
+  },
 })
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
@@ -223,165 +223,95 @@ nvim_lsp.tailwindcss.setup({
 
 -- tsserver config
 nvim_lsp.tsserver.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-    root_dir = nvim_lsp.util.root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git"),
-	flags = {
-		debounce_text_changes = 150,
-	},
+  on_attach = on_attach,
+  capabilities = capabilities,
+  root_dir = nvim_lsp.util.root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git"),
+  flags = {
+    debounce_text_changes = 150,
+  },
 })
 
 -- jsonls config
 nvim_lsp.jsonls.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-	settings = {
-		json = {
-			schemas = {
-				{
-					description = "JSON schema for NPM package.json files",
-					fileMatch = { "package.json" },
-					url = "https://json.schemastore.org/package.json",
-				},
-				{
-					description = "TypeScript compiler configuration file",
-					fileMatch = { "tsconfig.json", "tsconfig.*.json" },
-					url = "http://json.schemastore.org/tsconfig",
-				},
-				{
-					description = "Lerna config",
-					fileMatch = { "lerna.json" },
-					url = "http://json.schemastore.org/lerna",
-				},
-				{
-					description = "Babel configuration",
-					fileMatch = { ".babelrc.json", ".babelrc", "babel.config.json" },
-					url = "http://json.schemastore.org/lerna",
-				},
-				{
-					description = "ESLint config",
-					fileMatch = { ".eslintrc.json", ".eslintrc" },
-					url = "http://json.schemastore.org/eslintrc",
-				},
-				{
-					description = "Bucklescript config",
-					fileMatch = { "bsconfig.json" },
-					url = "https://bucklescript.github.io/bucklescript/docson/build-schema.json",
-				},
-				{
-					description = "Prettier config",
-					fileMatch = { ".prettierrc", ".prettierrc.json", "prettier.config.json" },
-					url = "http://json.schemastore.org/prettierrc",
-				},
-				{
-					description = "Vercel Now config",
-					fileMatch = { "now.json" },
-					url = "http://json.schemastore.org/now",
-				},
-				{
-					description = "Stylelint config",
-					fileMatch = { ".stylelintrc", ".stylelintrc.json", "stylelint.config.json" },
-					url = "http://json.schemastore.org/stylelintrc",
-				},
-                {
-					description = "Docker Compose config",
-					fileMatch = { "docker-compose.yml", "docker-compose.yaml" },
-					url = "https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json",
-				},
-			},
-		},
-	},
-	flags = {
-		debounce_text_changes = 150,
-	},
+  on_attach = on_attach,
+  capabilities = capabilities,
+  settings = {
+    json = {
+      schemas = {
+        {
+          description = "JSON schema for NPM package.json files",
+          fileMatch = { "package.json" },
+          url = "https://json.schemastore.org/package.json",
+        },
+        {
+          description = "TypeScript compiler configuration file",
+          fileMatch = { "tsconfig.json", "tsconfig.*.json" },
+          url = "http://json.schemastore.org/tsconfig",
+        },
+        {
+          description = "Lerna config",
+          fileMatch = { "lerna.json" },
+          url = "http://json.schemastore.org/lerna",
+        },
+        {
+          description = "Babel configuration",
+          fileMatch = { ".babelrc.json", ".babelrc", "babel.config.json" },
+          url = "http://json.schemastore.org/lerna",
+        },
+        {
+          description = "ESLint config",
+          fileMatch = { ".eslintrc.json", ".eslintrc" },
+          url = "http://json.schemastore.org/eslintrc",
+        },
+        {
+          description = "Bucklescript config",
+          fileMatch = { "bsconfig.json" },
+          url = "https://bucklescript.github.io/bucklescript/docson/build-schema.json",
+        },
+        {
+          description = "Prettier config",
+          fileMatch = { ".prettierrc", ".prettierrc.json", "prettier.config.json" },
+          url = "http://json.schemastore.org/prettierrc",
+        },
+        {
+          description = "Vercel Now config",
+          fileMatch = { "now.json" },
+          url = "http://json.schemastore.org/now",
+        },
+        {
+          description = "Stylelint config",
+          fileMatch = { ".stylelintrc", ".stylelintrc.json", "stylelint.config.json" },
+          url = "http://json.schemastore.org/stylelintrc",
+        },
+        {
+          description = "Docker Compose config",
+          fileMatch = { "docker-compose.yml", "docker-compose.yaml" },
+          url = "https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json",
+        },
+      },
+    },
+  },
+  flags = {
+    debounce_text_changes = 150,
+  },
 })
 
 -- volar config
 nvim_lsp.volar.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-	-- filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'},
-	filetypes = { "vue" },
-	init_options = {
-		typescript = {
-			serverPath = "/usr/lib/node_modules/typescript/lib/tsserverlibrary.js",
-		},
-	},
-	flags = {
-		debounce_text_changes = 150,
-	},
+  on_attach = on_attach,
+  capabilities = capabilities,
+  cmd = { "vue-language-server", "--stdio" },
+  filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json' },
+  -- filetypes = { "vue" },
+  init_options = {
+    typescript = {
+      serverPath = "/home/piotr/.local/share/fnm/node-versions/v16.17.0/installation/lib/node_modules/typescript/lib/tsserverlibrary.js",
+    },
+  },
+  flags = {
+    debounce_text_changes = 150,
+  },
 })
-
--- tailwindcss config
-nvim_lsp.tailwindcss.setup({
-	on_attach = on_attach,
-	-- excluded: markdown
-	filetypes = {
-		"aspnetcorerazor",
-		"astro",
-		"astro-markdown",
-		"blade",
-		"django-html",
-		"edge",
-		"eelixir",
-		"ejs",
-		"erb",
-		"eruby",
-		"gohtml",
-		"haml",
-		"handlebars",
-		"hbs",
-		"html",
-		"html-eex",
-		"heex",
-		"jade",
-		"leaf",
-		"liquid",
-		"mdx",
-		"mustache",
-		"njk",
-		"nunjucks",
-		"php",
-		"razor",
-		"slim",
-		"twig",
-		"css",
-		"less",
-		"postcss",
-		"sass",
-		"scss",
-		"stylus",
-		"sugarss",
-		"javascript",
-		"javascriptreact",
-		"reason",
-		"rescript",
-		"typescript",
-		"typescriptreact",
-		"vue",
-		"svelte",
-	},
-	capabilities = capabilities,
-	flags = {
-		debounce_text_changes = 150,
-	},
-})
-
--- emmet config
-local configs = require("lspconfig/configs")
-if not nvim_lsp.emmet_ls then
-	configs.emmet_ls = {
-		default_config = {
-			cmd = { "emmet-ls", "--stdio" },
-			filetypes = { "html", "css", "vue" },
-			root_dir = function()
-				return vim.loop.cwd()
-			end,
-			settings = {},
-		},
-	}
-end
-nvim_lsp.emmet_ls.setup({ capabilities = capabilities, on_attach = on_attach })
 
 -- eslint config
 nvim_lsp.eslint.setup({})
@@ -397,68 +327,95 @@ nvim_lsp.denols.setup({
   on_attach = on_attach,
   capabilities = capabilities,
   root_dir = nvim_lsp.util.root_pattern("deno.json", "deno.jsonc"),
-  single_file_support = false
+  single_file_support = false,
 })
 
 -- astro config
 nvim_lsp.astro.setup({})
 
 -- svelte config
-require'lspconfig'.svelte.setup{}
+-- nvim_lsp.svelte.setup({})
 
 -- prismals config
 nvim_lsp.prismals.setup({})
 
 -- graphql config
-nvim_lsp.graphql.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-    cmd = { "graphql-lsp", "server", "-m", "stream" },
-	-- filetypes = { "graphql", "typescriptreact", "javascriptreact", "vue" },
-	flags = {
-		debounce_text_changes = 150,
-	},
-})
+-- nvim_lsp.graphql.setup({
+-- 	on_attach = on_attach,
+-- 	capabilities = capabilities,
+-- 	cmd = { "graphql-lsp", "server", "-m", "stream" },
+-- 	-- filetypes = { "graphql", "typescriptreact", "javascriptreact", "vue" },
+-- 	flags = {
+-- 		debounce_text_changes = 150,
+-- 	},
+-- })
 
 -- go config
-nvim_lsp.gopls.setup{}
+nvim_lsp.gopls.setup({})
+
+-- rust config
+nvim_lsp.rls.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+  settings = {
+    rust = {
+      unstable_features = true,
+      build_on_save = false,
+      all_features = true,
+    },
+  },
+})
 
 -- solidity config
-nvim_lsp.solidity_ls.setup{}
+-- nvim_lsp.solidity_ls.setup({})
+
+-- ansible config
+nvim_lsp.ansiblels.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+})
+
+-- markdown config
+require 'lspconfig'.marksman.setup {}
 
 -- sumneko config
 -- install on arch:$ sudo pacman -S lua-language-server
 -- set the path to the sumneko installation
-local sumneko_root_path = vim.fn.stdpath("cache") .. "/lspconfig/sumneko_lua/lua-language-server"
+-- local sumneko_root_path = vim.fn.stdpath("cache") .. "/lspconfig/sumneko_lua/lua-language-server"
 -- set to:$ which lua-language-server
-local sumneko_binary = "/usr/bin/lua-language-server"
+-- local sumneko_binary = "/usr/bin/lua-language-server"
 
 local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
 nvim_lsp.sumneko_lua.setup({
-	cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
-	settings = {
-		Lua = {
-			runtime = {
-				-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-				version = "LuaJIT",
-				-- Setup your lua path
-				path = runtime_path,
-			},
-			diagnostics = {
-				-- Get the language server to recognize the `vim` global
-				globals = { "vim" },
-			},
-			workspace = {
-				-- Make the server aware of Neovim runtime files
-				library = vim.api.nvim_get_runtime_file("", true),
-			},
-			-- Do not send telemetry data containing a randomized but unique identifier
-			telemetry = {
-				enable = false,
-			},
-		},
-	},
+  -- cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
+  cmd = { "lua-language-server" },
+  on_attach = on_attach,
+  settings = {
+    Lua = {
+      runtime = {
+        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+        version = "LuaJIT",
+        -- Setup your lua path
+        -- path = runtime_path,
+      },
+      diagnostics = {
+        -- Get the language server to recognize the `vim` global
+        globals = { "vim" },
+      },
+      workspace = {
+        -- Make the server aware of Neovim runtime files
+        library = vim.api.nvim_get_runtime_file("", true),
+      },
+      format = {
+        enable = true,
+      },
+      -- Do not send telemetry data containing a randomized but unique identifier
+      telemetry = {
+        enable = false,
+      },
+    },
+  },
 })
