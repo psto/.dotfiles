@@ -99,9 +99,14 @@ opt.termguicolors = true
 
 local group = vim.api.nvim_create_augroup("psto", { clear = true })
 
+-- disable continuation of comments to the next line
+autocmd("FileType", { command = "setlocal formatoptions-=cro", group = group })
+
 -- automatically rebalance windows on vim resize
+autocmd("VimResized", { command = ":wincmd =", group = group })
+
 -- terminal transparency can be set also with picom
-autocmd("ColorScheme", { command = "hi Normal ctermbg=none guibg=none", group = group}) -- transparent background
+-- autocmd("ColorScheme", { command = "hi Normal ctermbg=none guibg=none cterm=none", group = group }) -- transparent background
 
 --
 -- Custom Folds, make them look better
@@ -124,12 +129,13 @@ print()
 cmd("autocmd Filetype " .. ft_str .. " setlocal foldmethod=expr foldexpr=nvim_treesitter#foldexpr()")
 
 -- format on save and quit
-cmd([[cabbrev wq execute "lua vim.lsp.buf.formatting_seq_sync()" <bar> wq]])
+cmd [[cabbrev wq execute "Format sync" <bar> wq]]
 
 -- approrpiately highlight codefences returned from denols
 g.markdown_fenced_languages = {
-  "ts=typescript"
+  "ts=typescript",
 }
 
 -- eslint format on save
 cmd("autocmd BufWritePre *.tsx,*.ts,*.jsx,*.js EslintFixAll")
+cmd([[autocmd BufWritePre *.astro,*.prisma execute ':lua vim.lsp.buf.format()']])
