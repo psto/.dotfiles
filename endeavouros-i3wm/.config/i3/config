@@ -295,9 +295,17 @@ bindsym $mod+c exec rofi -modi "clipboard:greenclip print" -show clipboard -run-
 bindsym $mod+shift+P exec flameshot gui
 
 # scratchpad
-bindsym $mod+Shift+S move scratchpad
-bindsym $mod+Shift+D scratchpad show
+bindsym $mod+Shift+D move scratchpad
+bindsym $mod+Shift+S scratchpad show, move position center
 bindsym $mod+Shift+W sticky toggle
+
+# scratchpad apps
+bindsym $mod+e [class="fm"] scratchpad show; move position center
+exec_always --no-startup-id pgrep -f '^alacritty --class fm,fm' || alacritty --class fm,fm -e xplr
+bindsym $mod+b [class="btop"] scratchpad show; move position center
+exec_always --no-startup-id pgrep -f '^alacritty --class btop,btop' || alacritty --class btop,btop -e btop
+bindsym $mod+v [class="ala"] scratchpad show; move position center
+exec_always --no-startup-id '^alacritty --class ala,ala' || alacritty --class ala,ala
 
 ##########################################
 # configuration for workspace behaviour: #
@@ -416,7 +424,10 @@ for_window [class="Blueberry.py" instance="blueberry.py"] floating enable
 for_window [class="Bluetooth-sendto" instance="bluetooth-sendto"] floating enable
 for_window [class="Pamac-manager"] floating enable
 for_window [class="Tor Browser"] floating enable move position center
+for_window [class="KeePassXC"] floating enable move position center
 
+# terminal floating
+for_window [class="btop|ala|fm"] floating enable, resize set 1000 600, move scratchpad, border pixel 0
 # set resize for special apps
 # for_window [class=""] resize set 700 500
 
