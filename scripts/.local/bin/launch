@@ -1,0 +1,34 @@
+#!/bin/sh
+#
+# Launches files based on their mimetypes
+# Usage: launch [FILE...]
+# Dependencies: file
+
+# install i3-swallow (works with sway): pip3 install --user i3-swallow 
+# or devour (doesn't work with sway): yay -S --noconfirm devour
+# and replace "swallow" with "devour"
+# or swayhide for sway: yay -S --noconfirm swayhide
+case $(file --mime-type "$@" -bL) in
+   # Check for the mimetype of your file (This is POSIX regex)
+   video/* | audio/* | image/gif)
+      # Launch using your favorite application
+      # swallow mpv --gpu-context=wayland "$@"
+      swayhide mpv --gpu-context=wayland "$@"
+      ;;
+   application/pdf | application/postscript)
+      # swallow zathura "$@"
+      swayhide zathura "$@"
+      ;;
+   application/x-rar)
+      # swallow zathura "$@"
+      swayhide zathura "$@"
+      ;;
+   image/jpeg | image/png)
+      # swallow imv "$@"
+      swayhide imv "$@"
+      ;;
+   text/plain | text/markdown | text/html)
+      nvim "$@"
+      ;;
+   *) exit 1 ;;
+esac
