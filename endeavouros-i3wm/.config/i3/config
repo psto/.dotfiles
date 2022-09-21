@@ -403,6 +403,7 @@ exec --no-startup-id sleep 5 && xrdb -load ~/.config/X11/Xresources
 #exec --no-startup-id sleep 3 && thunar
 exec_always --no-startup-id autotiling
 exec --no-startup-id greenclip daemon>/dev/null
+exec --no-startup-id sleep 12 && redshift -l $(curl -s "https://location.services.mozilla.com/v1/geolocate?key=geoclue" | jq -r '"\(.location.lat):\(.location.lng)"')
 
 # set floating (nontiling)for apps needing it
 for_window [instance="floating"] floating enabled
