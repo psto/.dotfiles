@@ -1,0 +1,43 @@
+Xcursor.theme: Qogir
+Xcursor.size: 16
+
+! xterm config
+! Use a nice truetype font and size by default... 
+xterm*faceName: Fira Code
+xterm*faceSize: 15
+
+! Every shell is a login shell by default (for inclusion of all necessary environment variables)
+xterm*loginshell: true
+
+! I like a LOT of scrollback...
+xterm*savelines: 16384
+
+! double-click to select whole URLs :D
+xterm*charClass: 33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
+
+! Tokyo Night Storm colors
+xterm*foreground: #a9b1d6
+xterm*background: #24283b
+xterm*color0: #414868
+xterm*color1: #f7768e
+xterm*color2: #73daca
+xterm*color3: #e0af68
+xterm*color4: #7aa2f7
+xterm*color5: #bb9af7
+xterm*color6: #7dcfff
+xterm*color7: #c0caf5
+xterm*color8: #414868
+xterm*color9: #f7768e
+xterm*color10: #73daca
+xterm*color11: #e0af68
+xterm*color12: #7aa2f7
+xterm*color13: #bb9af7
+xterm*color14: #7dcfff
+xterm*color15: #c0caf5
+
+! right hand side scrollbar...
+xterm*rightScrollBar: true
+xterm*ScrollBar: false
+
+! stop output to terminal from jumping down to bottom of scroll again
+xterm*scrollTtyOutput: false
