@@ -49,13 +49,13 @@ workspace_layout default
 ##############################
 
 #border indicator on windows:
-new_window pixel 1
+new_window pixel 0
 
 # thin borders
-# hide_edge_borders both
+hide_edge_borders both
 
 # Set inner/outer gaps
-gaps inner 6
+gaps inner 10
 gaps outer 3
 
 # Use Mouse+$mod to drag floating windows to their wanted position
