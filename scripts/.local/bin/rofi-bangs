@@ -9,52 +9,108 @@ browser='brave-beta'
 # List of defined 'bangs'
 
 # List apps to launch
-COMMANDS["rr"]="rofi -modi drun -show drun -config ~/.config/rofi/rofidmenu.rasi"
-LABELS["rr"]="rofi-run"
+COMMANDS["run"]="rofi -modi drun -show drun -config ~/.config/rofi/rofidmenu.rasi"
+LABELS["run"]="🏃"
+
+# Quickly hyper
+COMMANDS["edit-hypr"]='exec alacritty -e nvim ~/.config/hypr/hyprland.conf'
+LABELS["edit-hypr"]="✨"
+
+# Quickly sway
+COMMANDS["edit-sway"]='exec alacritty -e nvim ~/.config/sway/config'
+LABELS["edit-sway"]="🌳"
 
 # Quickly edit this file
-COMMANDS["edit-rofi-bangs"]='exec alacritty -e nvim "/home/piotr/.local/bin/rofi-bangs"'
-LABELS["edit-rofi-bangs"]=
+COMMANDS["edit-rofi-bangs"]='exec alacritty -e nvim ~/.local/bin/rofi-bangs'
+LABELS["edit-rofi-bangs"]="‼️"
 
 ################################################################################
 # Run other rofi scripts
 ################################################################################
 
-# call another rofi script, rofi notes
-# COMMANDS["rn"]=" '/home/piotr/bin/rofi-scripts/rofi-notes' "${input}""
-# LABELS["rn"]="rofi-notes"
+# call another rofi script with input template
+# COMMANDS["command_name"]=" '~/path/to/scrips' "${input}""
+# LABELS["command_name"]=""
 
 # open bookmarks
-COMMANDS["bookmarks"]=" '/home/piotr/.local/bin/rofi-surfraw-bookmarks.sh'"
-LABELS["bookmarks"]=""
+COMMANDS["bookmarks"]="~/.local/bin/rofi-surfraw-bookmarks.sh"
+LABELS["bookmarks"]="🔖"
+
+# Broot
+COMMANDS["broot"]='exec alacritty --class="floating" -e broot'
+LABELS["broot"]=
+
+# btop
+COMMANDS["btop"]="exec alacritty -e btop"
+LABELS["btop"]="📈"
+
+# Listen to music
+COMMANDS["rofi-beats"]="~/.local/bin/rofi-beats"
+LABELS["rofi-beats"]="🎧"
+
+# lf file explorer
+COMMANDS["lf"]='exec alacritty --class="floating" -e lf'
+LABELS["lf"]="🗄️"
+
+# Obsidian quick note
+COMMANDS["obsidian-quick-note"]='exec alacritty --class="floating" -e ~/.local/bin/obsidian-quick-note'
+LABELS["obsidian-quick-note"]="✏️"
+
+# Macho man pages
+COMMANDS["macho"]="~/.local/bin/macho"
+LABELS["macho"]="💪"
+
+# Navi
+COMMANDS["navi"]='exec alacritty --class="floating" -e navi'
+LABELS["navi"]=""
+
+# NCurses Disk Usage
+COMMANDS["ncdu"]='exec alacritty --class="floating" -e ncdu --color dark'
+LABELS["ncdu"]="💽"
+
+# killall
+COMMANDS["killall"]='exec alacritty --class="floating" -e killall "${input}"'
+LABELS["killall"]=""
+
+# Rofi Calc
+COMMANDS["calc"]="exec rofi -show calc -modi calc -no-show-match -no-sort -config ~/.config/rofi/rofidmenu.rasi"
+LABELS["calc"]="🧮"
+
+# Rofi WiFi
+COMMANDS["wifi"]="~/.local/bin/rofi-wifi"
+LABELS["wifi"]="📶"
+
+# SciToPdf
+COMMANDS["scitopdf"]='exec alacritty --hold --class="floating" -e scitopdf'
+LABELS["scitopdf"]="📄"
+
+# Search for files
+COMMANDS["fzf-search"]="~/.local/bin/rofi-search"
+LABELS["fzf-search"]="🔍"
+
+# Suspend
+COMMANDS["suspend"]="suspend "${input}""
+LABELS["suspend"]="🥶"
+
+# Shutdown
+COMMANDS["shutdown"]='shutdown "${input}"'
+LABELS["shutdown"]="📴"
+
+# Shutdown
+COMMANDS["reboot"]='reboot'
+LABELS["reboot"]="🌄"
+
+# Tldr
+COMMANDS["tldr"]='exec alacritty --hold --class="floating" -e tldr "${input}"'
+LABELS["tldr"]="🗒️"
 
 # Todo
 COMMANDS["do"]="exec rofi -modi TODO:~/.local/bin/rofi-todo -show TODO -config ~/.config/rofi/searchmenu.rasi"
 LABELS["do"]="todo"
 
-# Search for files
-COMMANDS["fzf-search"]=" '/home/piotr/.local/bin/rofi-search'"
-LABELS["fzf-search"]=
-
-# Listen to music
-COMMANDS["rofi-beats"]=" '/home/piotr/.local/bin/rofi-beats'"
-LABELS["rofi-beats"]="rofi-beats"
-
-# Obsidian quick note
-COMMANDS["obsidian-quick-note"]='exec alacritty --class="floating" -e /home/piotr/.local/bin/obsidian-quick-note'
-LABELS["obsidian-quick-note"]=
-
-# Suspend
-COMMANDS["suspend"]="suspend"
-LABELS["suspend"]="suspend"
-
-# Shutdown
-COMMANDS["shutdown"]='shutdown "${input}"'
-LABELS["shutdown"]="shutdown"
-
 # Open webpage
-COMMANDS["www"]='$browser https://"${input}"'
-LABELS["www"]=""
+COMMANDS["www"]='$browser "${input}"'
+LABELS["www"]="🌐"
 
 ################################################################################
 # Search
@@ -62,169 +118,172 @@ LABELS["www"]=""
 
 # open custom web searches
 COMMANDS["/"]="~/.local/bin/rofi-surfraw-websearch.sh"
-LABELS["/"]=""
+LABELS["/"]="🕸️"
 
 # Brave
 COMMANDS["b"]='$browser https://search.brave.com/search?q="${input}"'
-LABELS["b"]=
+LABELS["b"]="🦁"
+# DevDocs
+COMMANDS["dev"]='$browser https://devdocs.io/?q="${input}"'
+LABELS["dev"]="💻"
 # DuckDuckGo
 COMMANDS["d"]='$browser https://duckduckgo.com/?q="${input}"'
-LABELS["d"]=
+LABELS["d"]="🦆"
 # Google
 COMMANDS["g"]='$browser www.google.com/search?q="${input}"'
-LABELS["g"]=
+LABELS["g"]="🕵️"
 # Google Maps
 COMMANDS["gm"]='$browser https://www.google.com/maps/search/"${input}"'
-LABELS["gm"]=
+LABELS["gm"]="🗺️"
 # IMBD search
 COMMANDS["imdb"]='$browser http://www.imdb.com/find?q="${input}"'
-LABELS["imdb"]=
+LABELS["imdb"]="🎥"
 # Wikipedia search
 COMMANDS["wi"]='$browser https://en.m.wikipedia.org/wiki/Special:Search/"${input}"'
-LABELS["wi"]=
+LABELS["wi"]="📚"
 # Wikipedia PL search
 COMMANDS["wipl"]='$browser https://pl.m.wikipedia.org/wiki/"${input}"'
-LABELS["wipl"]=
+LABELS["wipl"]="📚"
 # You Code search
 COMMANDS["you"]='$browser https://you.com/search?q="${input}&fromSearchBar=true&tbm=youcode"'
-LABELS["you"]=
+LABELS["you"]="💻"
 # YouTube search
 COMMANDS["yt"]='$browser http://www.youtube.com/results?search_query="${input}"'
-LABELS["yt"]=
+LABELS["yt"]="▶️ "
 # Allegro search
 COMMANDS["allegro"]='$browser https://allegro.pl/listing?string="${input}"'
-LABELS["allegro"]=
+LABELS["allegro"]="🛍️"
 # 1337
 COMMANDS["13"]='$browser https://1337x.to/search/"${input}"/1/'
-LABELS["13"]=
+LABELS["13"]="☠️"
 
 ################################################################################
 # Apps
 ################################################################################
 
 # Brave Beta browser
-COMMANDS["brave-beta"]="brave-beta"
-LABELS["brave-beta"]=
+COMMANDS["brave-beta"]="brave-beta-gpu"
+LABELS["brave-beta"]="🦁"
 
 # Beekeeper Studio
 COMMANDS["beekeeper-studio"]="beekeeper-studio"
-LABELS["beekeeper-studio"]=
+LABELS["beekeeper-studio"]="🐝"
 
 # Bitwarden
 COMMANDS["bitwarden"]="bitwarden"
-LABELS["bitwarden"]=
+LABELS["bitwarden"]="🔒"
 
 # Bleachbit
 COMMANDS["bleachbit"]="bleachbit"
-LABELS["bleachbit"]=
+LABELS["bleachbit"]="🧹"
 
 # Calibre
 COMMANDS["calibre"]="calibre"
-LABELS["calibre"]=
+LABELS["calibre"]="📚"
 
 # Discord
 COMMANDS["discord"]="discord"
-LABELS["discord"]=
+LABELS["discord"]="😮"
 
 # Firefox
-COMMANDS["firefox"]="firefox"
-LABELS["firefox"]=
+COMMANDS["firefox"]="~/.local/bin/firefox-way"
+LABELS["firefox"]="🦊"
 
 # Firefox Developer
-COMMANDS["firefox-developer-edition"]="firefox-developer-edition"
-LABELS["firefox-developer-edition"]=
+# COMMANDS["firefox-developer-edition"]="firefox-developer-edition"
+# LABELS["firefox-developer-edition"]=
 
 # Galculator
 COMMANDS["galculator"]="galculator"
-LABELS["galculator"]=
+LABELS["galculator"]="🧮"
 
 # Github Desktop
 COMMANDS["github-desktop"]="github-desktop"
-LABELS["github-desktop"]=
+LABELS["github-desktop"]="🐙"
 
 # Insomnia
 COMMANDS["insomnia"]="insomnia"
-LABELS["insomnia"]=
+LABELS["insomnia"]="😴"
 
 # IPFS Desktop
 COMMANDS["ipfs-desktop"]="ipfs-desktop"
-LABELS["ipfs-desktop"]=
+LABELS["ipfs-desktop"]="🌐"
 
 # KeepassXC
 COMMANDS["keepassxc"]="keepassxc"
-LABELS["keepassxc"]=
+LABELS["keepassxc"]="🔐"
 
 # Morgen
 COMMANDS["morgen"]="morgen"
-LABELS["morgen"]=
+LABELS["morgen"]="🗓️"
 
 # Nextcloud
 COMMANDS["nextcloud"]="nextcloud"
-LABELS["nextcloud"]=
+LABELS["nextcloud"]="☁️"
 
 # Obsidian
 COMMANDS["obsidian"]="obsidian"
-LABELS["obsidian"]=
+LABELS["obsidian"]="🗒️"
 
 # qBittorrent
 COMMANDS["qbittorrent"]="qbittorrent"
-LABELS["qbittorrent"]=
+LABELS["qbittorrent"]="☠️"
 
 # Qutebrowser
 COMMANDS["qutebrowser"]="qutebrowser"
-LABELS["qutebrowser"]=
+LABELS["qutebrowser"]="🌐"
 
 # Peek
 COMMANDS["peek"]="peek"
-LABELS["peek"]=
+LABELS["peek"]="👀"
 
 # Signal
 COMMANDS["signal-desktop"]="signal-desktop"
-LABELS["signal-desktop"]=
+LABELS["signal-desktop"]="📡"
 
 # SimpleScreenRecorder
 COMMANDS["simplescreenrecorder"]="simplescreenrecorder"
-LABELS["simplescreenrecorder"]=
+LABELS["simplescreenrecorder"]="⏺️ "
 
 # Sioyek
 COMMANDS["sioyek"]="sioyek"
-LABELS["sioyek"]=
+LABELS["sioyek"]="📄"
 
 # Streamlink Twitch GUI
 COMMANDS["streamlink-twitch-gui"]="streamlink-twitch-gui"
-LABELS["streamlink-twitch-gui"]=
+LABELS["streamlink-twitch-gui"]="🏞️"
 
 # Tor Browser
 COMMANDS["tor-browser"]="tor-browser"
-LABELS["tor-browser"]=
+LABELS["tor-browser"]="🕵️"
 
 # Transmission Remote
 COMMANDS["transmission-remote"]="transmission-remote"
-LABELS["transmission-remote"]=
+LABELS["transmission-remote"]="☠️"
 
 # Thunar
 COMMANDS["thunar"]="thunar"
-LABELS["thunar"]=
+LABELS["thunar"]="🗄️"
 
 # Visual Studio Code
 COMMANDS["code"]="code"
-LABELS["code"]=
+LABELS["code"]="📇"
 
 # VLC
 COMMANDS["vlc"]="vlc"
-LABELS["vlc"]=
+LABELS["vlc"]="📺"
 
 # VPN-Unlimited
 COMMANDS["vpn-unlimited"]="vpn-unlimited"
-LABELS["vpn-unlimited"]=
+LABELS["vpn-unlimited"]="🕵️"
 
 # YouTube Music
-COMMANDS["youtube-music"]="youtube-music"
-LABELS["youtube-music"]=
+COMMANDS["youtube-music"]="~/.local/bin/youtube-music-desktop"
+LABELS["youtube-music"]="▶️ "
 
 # Zathura
 COMMANDS["zathura"]="zathura"
-LABELS["zathura"]=
+LABELS["zathura"]="📄"
 
 ################################################################################
 # Run Script
@@ -235,8 +294,8 @@ function print_menu()
 {
 for key in ${!LABELS[@]}
 do
-echo "$key ${LABELS}"
-# echo "$key ${LABELS[$key]}"
+# echo "$key ${LABELS}"
+echo "$key ${LABELS[$key]}"
 # my top version just shows the first field in labels row, not two words side by side
 done
 }
@@ -270,8 +329,8 @@ then
 eval echo "Executing: ${COMMANDS[$choice]}"
 eval ${COMMANDS[$choice]}
 else
-eval $choice | rofi
+# eval $choice | rofi -config ~/.config/rofi/rofidmenu.rasi 
 
-# prefer my above so I can use this same script to also launch apps like geany or leafpad etc (DK)
-echo "Unknown command: ${choice}" | rofi -dmenu -p "error"
+# prefer my above so I can use this same script to also launch appsa
+echo "Unknown command: ${choice}" | rofi -dmenu -p "error"  -config ~/.config/rofi/rofidmenu.rasi 
 fi
