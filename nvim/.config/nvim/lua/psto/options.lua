@@ -106,6 +106,13 @@ autocmd("FileType", { command = "setlocal formatoptions-=cro", group = group })
 -- automatically rebalance windows on vim resize
 autocmd("VimResized", { command = ":wincmd =", group = group })
 
+-- highlight yanked text
+autocmd({ "TextYankPost" }, {
+  callback = function()
+    vim.highlight.on_yank { higroup = "Visual", timeout = 200 }
+  end,
+})
+
 -- terminal transparency can be set also with picom
 -- autocmd("ColorScheme", { command = "hi Normal ctermbg=none guibg=none cterm=none", group = group }) -- transparent background
 
@@ -114,26 +121,6 @@ vim.o.foldcolumn = "1"
 vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
 vim.o.foldlevelstart = 99
 vim.o.foldenable = true
-
---
--- Custom Folds, make them look better
---
--- cmd([[
---   function! CustomFold()
---     return printf('   %-6d%s', v:foldend - v:foldstart + 1, getline(v:foldstart))
---   endfunction
--- ]])
--- It manages folds automatically based on treesitter
--- local parsers = require("nvim-treesitter.parsers")
--- local configs = parsers.get_parser_configs()
--- local ft_str = table.concat(
--- 	vim.tbl_map(function(ft)
--- 		return configs[ft].filetype or ft
--- 	end, parsers.available_parsers()),
--- 	","
--- )
--- print()
--- cmd("autocmd Filetype " .. ft_str .. " setlocal foldmethod=expr foldexpr=nvim_treesitter#foldexpr()")
 
 -- format on save and quit
 -- cmd([[cabbrev wq execute "lua vim.lsp.buf.format()" <bar> wq]])
