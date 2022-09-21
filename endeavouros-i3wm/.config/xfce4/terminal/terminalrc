@@ -39,4 +39,5 @@ WordChars=q
 ColorForeground=#F8F8F2
 ColorBackground=#282A36
 ColorCursor=#F8F8F2
+MiscRightClickAction=TERMINAL_RIGHT_CLICK_ACTION_CONTEXT_MENU
 
