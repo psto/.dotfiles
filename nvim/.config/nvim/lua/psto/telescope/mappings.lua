@@ -8,6 +8,7 @@ key_map("n", "<leader>fh", [[<CMD>Telescope help_tags<CR>]], { noremap = true, s
 key_map("n", "<leader>fo", [[<CMD>Telescope oldfiles<CR>]], { noremap = true, silent = true })
 key_map("n", "<leader>fc", [[<CMD>Telescope current_buffer_fuzzy_find<CR>]], { noremap = true, silent = true })
 key_map("n", "<leader>fr", [[<CMD>Telescope resume<CR>]], { noremap = true, silent = true })
+key_map("n", "<leader>fd", [[<CMD>Telescope diagnostics<CR>]], { noremap = true, silent = true })
 -- search in dotfiles
 key_map(
   "n",
