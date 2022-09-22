@@ -1,32 +1,21 @@
-require("impatient") -- needs to be first
+require("psto/impatient") -- needs to be first
 require("psto/options")
 require("psto/plugins")
 require("psto/keymaps")
 require("psto/colorscheme")
-
--- Neovim builtin LSP configuration
-require("psto/lsp")
--- cmp completion
-require("psto/completion")
-
--- telescope setup
 require("psto/telescope/setup")
 require("psto/telescope/mappings")
-
--- treesitter
-require("psto/treesitter")
-
--- trouble mappings
-require("psto/trouble")
-
--- autopairs config
+require("psto/lsp")
+require("psto/completion")
+require("psto/alpha")
 require("psto/autopairs")
-
--- toggleterm
-require("psto/toggleterm")
-
--- which-key
-require("psto/whichkey")
-
--- spectre
+require("psto/gitsigns")
+require("psto/lualine")
+require("psto/rest")
 require("psto/spectre")
+require("psto/toggleterm")
+require("psto/treesitter")
+require("psto/trouble")
+-- require("psto/twilight")
+require("psto/whichkey")
+-- require("psto/zenmode")
