@@ -78,55 +78,16 @@ return packer.startup(function(use)
     requires = { { "nvim-lua/plenary.nvim" } },
   })
   use({ "nvim-telescope/telescope-file-browser.nvim" })
-  use({ "nvim-telescope/telescope-fzy-native.nvim" })
+  -- use({ "nvim-telescope/telescope-fzy-native.nvim" })
   use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
   use({
     "nvim-pack/nvim-spectre",
     requires = { { "nvim-lua/plenary.nvim" } },
   })
 
-  -- use 'ggandor/lightspeed.nvim'
-
   -- Git
-  -- use("tpope/vim-fugitive")
   -- Async signs!
-  use({
-    "lewis6991/gitsigns.nvim",
-    requires = {
-      "nvim-lua/plenary.nvim",
-    },
-    config = function()
-      require("gitsigns").setup({
-        signs = {
-          add = { hl = "GitSignsAdd", text = "▎", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
-          change = {
-            hl = "GitSignsChange",
-            text = "▎",
-            numhl = "GitSignsChangeNr",
-            linehl = "GitSignsChangeLn",
-          },
-          delete = {
-            hl = "GitSignsDelete",
-            text = "契",
-            numhl = "GitSignsDeleteNr",
-            linehl = "GitSignsDeleteLn",
-          },
-          topdelete = {
-            hl = "GitSignsDelete",
-            text = "契",
-            numhl = "GitSignsDeleteNr",
-            linehl = "GitSignsDeleteLn",
-          },
-          changedelete = {
-            hl = "GitSignsChange",
-            text = "▎",
-            numhl = "GitSignsChangeNr",
-            linehl = "GitSignsChangeLn",
-          },
-        },
-      })
-    end,
-  })
+  use({ "lewis6991/gitsigns.nvim" })
 
   -- Pretty symbols
   use({
@@ -139,7 +100,6 @@ return packer.startup(function(use)
   -- LSP
   use({
     "neovim/nvim-lspconfig", -- enable LSP
-    -- 'folke/lsp-colors.nvim'
     -- 'williamboman/nvim-lsp-installer'
   })
   -- use({
@@ -188,20 +148,12 @@ return packer.startup(function(use)
       require("neoscroll").setup({})
     end,
   })
-  use({
-    "folke/which-key.nvim",
-    config = function()
-      require("which-key").setup({})
-    end,
-  })
+  use({ "folke/which-key.nvim" })
 
   -- Diagnostics
   use({
     "folke/trouble.nvim",
     requires = "kyazdani42/nvim-web-devicons",
-    config = function()
-      require("trouble").setup({})
-    end,
   })
 
   -- Formatting
@@ -213,32 +165,6 @@ return packer.startup(function(use)
   use({
     "NTBBloodbath/rest.nvim",
     requires = { "nvim-lua/plenary.nvim" },
-    config = function()
-      require("rest-nvim").setup({
-        -- Open request results in a horizontal split
-        result_split_horizontal = false,
-        -- Keep the http file buffer above|left when split horizontal|vertical
-        result_split_in_place = false,
-        -- Skip SSL verification, useful for unknown certificates
-        skip_ssl_verification = false,
-        -- Highlight request on run
-        highlight = {
-          enabled = true,
-          timeout = 150,
-        },
-        result = {
-          -- toggle showing URL, HTTP info, headers at top the of result window
-          show_url = true,
-          show_http_info = true,
-          show_headers = true,
-        },
-        -- Jump to request line on run
-        jump_to_request = false,
-        env_file = ".env",
-        custom_dynamic_variables = {},
-        yank_dry_run = true,
-      })
-    end,
   })
 
   -- Themes
@@ -252,26 +178,12 @@ return packer.startup(function(use)
   use({
     "nvim-lualine/lualine.nvim",
     requires = { "kyazdani42/nvim-web-devicons", opt = true },
-    config = function()
-      require("lualine").setup({
-        options = {
-          theme = "tokyonight",
-          component_separators = "",
-          section_separators = "",
-          globalstatus = true,
-        },
-      })
-    end,
   })
 
   -- Starting screen
   use({
     "goolord/alpha-nvim",
     requires = { "kyazdani42/nvim-web-devicons" },
-    config = function()
-      -- require'alpha'.setup(require'psto.alpha.themes.startify'.opts)
-      require("alpha").setup(require("psto.alpha.themes.dashboard").opts)
-    end,
   })
 
   -- Pretty colors for css, tailwindcss
@@ -285,35 +197,9 @@ return packer.startup(function(use)
   })
 
   -- Writing mode
-  use({
-    "folke/zen-mode.nvim",
-    config = function()
-      require("zen-mode").setup({
-        window = {
-          options = {
-            relativenumber = false, -- disable relative numbers
-            number = false, -- disable number column
-            cursorline = false, -- disable cursorline
-          },
-          plugins = {
-            twilight = { enabled = true }, -- start Twilight when zen mode opens
-          },
-        },
-      })
-    end,
-  })
-  use({
-    -- background issue fix https://github.com/folke/twilight.nvim/issues/15
-    "folke/twilight.nvim",
-    config = function()
-      require("twilight").setup({
-        dimming = {
-          alpha = 0.25,
-          color = { "Normal", "#24283b" },
-        },
-      })
-    end,
-  })
+  use({ "folke/zen-mode.nvim" })
+  use({ "folke/twilight.nvim" })
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
