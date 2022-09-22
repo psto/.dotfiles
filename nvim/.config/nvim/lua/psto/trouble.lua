@@ -1,6 +1,12 @@
-local key_map = vim.api.nvim_set_keymap
+local status_ok, trouble = pcall(require, "trouble")
+if not status_ok then
+  return
+end
 
-key_map("n", "<leader>xx", [[<cmd>TroubleToggle<cr>]], { noremap = true, silent = true })
-key_map("n", "<leader>xq", [[<cmd>TroubleToggle quickfix<cr>]], { noremap = true, silent = true })
+trouble.setup({})
 
-key_map("n", "<leader>xl", [[<cmd>TroubleToggle loclist<cr>]], { noremap = true, silent = true })
+local keymap = vim.api.nvim_set_keymap
+
+keymap("n", "<leader>xx", [[<cmd>TroubleToggle<cr>]], { noremap = true, silent = true })
+keymap("n", "<leader>xq", [[<cmd>TroubleToggle quickfix<cr>]], { noremap = true, silent = true })
+keymap("n", "<leader>xl", [[<cmd>TroubleToggle loclist<cr>]], { noremap = true, silent = true })
