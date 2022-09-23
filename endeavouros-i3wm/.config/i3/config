@@ -294,6 +294,8 @@ bindsym $mod+o exec ~/.local/bin/rofi-search
 bindsym $mod+c exec rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}' \
             -show window -config ~/.config/rofi/searchmenu.rasi
 bindsym $mod+shift+P exec flameshot gui
+# bindsym $mod+p exec /usr/bin/passmenu
+bindsym $mod+p exec /home/piotr/.local/bin/passrofi
 
 # scratchpad
 bindsym $mod+Shift+D move scratchpad
