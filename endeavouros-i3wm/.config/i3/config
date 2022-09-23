@@ -166,11 +166,12 @@ bindsym $mod+r mode "resize"
 
 # start a terminal
 # bindsym $mod+Return exec xfce4-terminal
-bindsym $mod+Return exec alacritty
-bindsym $mod+Shift+Return exec --no-startup-id alacritty --class floating
+bindsym $mod+Return exec kitty
+bindsym $mod+Shift+Return exec kitty -e tmux
 
 # kill focused window
 bindsym $mod+q kill
+bindsym --release Control+Mod1+Delete exec xkill
 
 # exit-menu
 bindsym $mod+Shift+e exec ~/.config/i3/scripts/powermenu
