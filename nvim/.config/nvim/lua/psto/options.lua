@@ -4,7 +4,6 @@ vim.g.loaded_matchparen = 1
 local g = vim.g -- global variable
 local cmd = vim.cmd -- command
 local opt = vim.opt -- set options
-local autocmd = vim.api.nvim_create_autocmd
 
 -- Cool floating window popup menu for completion on command line
 opt.pumblend = 17 -- transparent popup
@@ -94,28 +93,6 @@ g.completion_trigger_character = "."
 opt.colorcolumn = "80" -- hint to keep lines short
 opt.termguicolors = true
 
---
--- CUSTOM AUTOCMDS
---
-
-local group = vim.api.nvim_create_augroup("psto", { clear = true })
-
--- disable continuation of comments to the next line
-autocmd("FileType", { command = "setlocal formatoptions-=cro", group = group })
-
--- automatically rebalance windows on vim resize
-autocmd("VimResized", { command = ":wincmd =", group = group })
-
--- highlight yanked text
-autocmd({ "TextYankPost" }, {
-  callback = function()
-    vim.highlight.on_yank { higroup = "Visual", timeout = 200 }
-  end,
-})
-
--- terminal transparency can be set also with picom
--- autocmd("ColorScheme", { command = "hi Normal ctermbg=none guibg=none cterm=none", group = group }) -- transparent background
-
 -- nvim-ufo folds
 vim.o.foldcolumn = "1"
 vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
@@ -126,11 +103,9 @@ vim.o.foldenable = true
 -- cmd([[cabbrev wq execute "lua vim.lsp.buf.format()" <bar> wq]])
 cmd [[cabbrev wq execute "Format sync" <bar> wq]]
 
--- approrpiately highlight codefences returned from denols
-g.markdown_fenced_languages = {
-  "ts=typescript",
-}
-
 -- eslint format on save
 cmd("autocmd BufWritePre *.tsx,*.ts,*.jsx,*.js EslintFixAll")
 cmd([[autocmd BufWritePre *.astro,*.prisma execute ':lua vim.lsp.buf.format()']])
+
+-- approrpiately highlight codefences returned from denols
+g.markdown_fenced_languages = { "ts=typescript" }
