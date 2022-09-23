@@ -139,8 +139,8 @@ keymap  xa EXTERN        "~/.w3m/cgi-bin/save_bookmark_surfraw.cgi"
 keymap  xB COMMAND       "EXTERN ~/.w3m/cgi-bin/fzf_bookmarks_surfraw.cgi; GOTO file:/cgi-bin/goto_tmux_clipboard.cgi"
 keymap  xb COMMAND       "EXTERN ~/.w3m/cgi-bin/fzf_bookmarks_w3m.cgi; GOTO file:/cgi-bin/goto_tmux_clipboard.cgi"
 # queue download, external media player (queued), etc
-keymap  xc EXTERN_LINK   'NQDIR=$XDG_CACHE_HOME/w3m_queue nq curl -s --output-dir ~/Downloads -O'
-keymap  xd EXTERN_LINK   'NQDIR=$XDG_CACHE_HOME/w3m_queue nq wget -q -c -P ~/Downloads'
+keymap  xc EXTERN_LINK   'NQDIR=$XDG_CACHE_HOME/w3m_queue nq curl -s --output-dir ~/downloads -O'
+keymap  xd EXTERN_LINK   'NQDIR=$XDG_CACHE_HOME/w3m_queue nq wget -q -c -P ~/downloads'
 # Requires config option ext_image_viewer 0
 keymap  xi EXTERN_LINK   'w3m -o display_image=1 -o imgdisplay=w3mimgdisplay'
 keymap  xm EXTERN_LINK   "NQDIR=$XDG_CACHE_HOME/mpv_queue nq mpv --quiet --ytdl-format='bestvideo[height<=480]+bestaudio/best[height<=480]' >/dev/null 2>&1"
