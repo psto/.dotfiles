@@ -1,7 +1,8 @@
 #!/bin/bash
 # to open text files in nvim set xdg-mime 
 # also in .local/share/applications/nvim.desktop Exec=kitty -e nvim %F
-rg --no-messages --files ~/Documents ~/Downloads ~/Music ~/Pictures ~/Videos ~/Dropbox/ \
+# OR use custom launch script: ~/.local/bin/launch
+launch $(rg --no-messages --files ~/public ~/downloads \
     -g "!{*.srt,*.rar,*.txt,*.zip,*.nfo}" | rofi -show window \
     -config ~/.config/rofi/searchmenu.rasi \
     -threads 0 \
