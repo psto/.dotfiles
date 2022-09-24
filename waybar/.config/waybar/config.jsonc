@@ -1,0 +1,140 @@
+{
+  "position": "top",
+  "height": 15,
+  "modules-left": [
+    "wlr/workspaces"
+  ],
+  "modules-center": [
+    "clock"
+  ],
+  "modules-right": [
+    "tray",
+    "custom/notification",
+    "custom/player",
+    "network",
+    "cpu",
+    "memory",
+    "temperature",
+    "disk",
+    "pulseaudio",
+    "battery"
+  ],
+  "wlr/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": true,
+    "sort-by-name": false,
+    "on-click": "activate",
+    "format": "{icon}",
+    "format-icons": {
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6",
+      "7": "7",
+      "8": "8",
+      "9": "9",
+      "10": "0",
+      "default": "一",
+    }
+  },
+  "tray": {
+    "icon-size": 13,
+    "spacing": 10
+  },
+  "battery": {
+    "states": {
+      "good": 95,
+      "warning": 30,
+      "critical": 20
+    },
+    "format": "{icon} {capacity}%",
+    "format-charging": " {capacity}%",
+    "format-plugged": " {capacity}%",
+    "format-alt": "{time} {icon}",
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ]
+  },
+  "cpu": {
+    "format": " {usage}%"
+  },
+  "memory": {
+    "format": " {}%"
+  },
+  "temperature": {
+    "thermal-zone": 6,
+    "critical-threshold": 75,
+    "format": " {temperatureC}°C"
+  },
+  "disk": {
+    "interval": 30,
+    "format": " {free}",
+    "path": "/"
+  },
+  "clock": {
+    "format": "<span color='#bf616a'></span> {:%H:%M %p}",
+    "format-alt": "<span color='#bf616a'></span> {:%a %b %d}"
+  },
+  "network": {
+    "format-wifi": "  {essid}",
+    "format-disconnected": "⚠ Disconnected"
+  },
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-muted": "ﱝ Muted",
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "scroll-step": 1,
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": [
+        "",
+        "",
+        "墳",
+        ""
+      ]
+    }
+  },
+  "custom/notification": {
+    "tooltip": false,
+    "format": "{icon}",
+    "format-icons": {
+      "notification": " ",
+      "none": " ",
+      "dnd-notification": " <span foreground='red'><sup></sup></span>",
+      "dnd-none": " "
+    },
+    "return-type": "json",
+    "exec-if": "dunst",
+    "exec": "dunst",
+    // "exec-if": "which swaync-client",
+    // "exec": "swaync-client -swb",
+    // "on-click": "swaync-client -C",
+    // "on-click-right": "swaync-client -d -sw",
+    "escape": true
+  },
+  "custom/player": {
+    "exec": "$HOME/.config/waybar/scripts/player.sh",
+    "max-length": 40,
+    "format": " {}",
+    "on-click": "playerctl play-pause",
+    "on-double-click": "playerctl next",
+    "on-right-click": "on-click-right"
+  },
+}

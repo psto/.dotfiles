@@ -1,0 +1,117 @@
+/*all.css*/
+* {
+  border: none;
+  border-radius: 0;
+  font-family: Hack Nerd Font;
+  font-size: 14px;
+  min-height: 0;
+}
+
+window#waybar {
+  background: transparent;
+  /* background-color: #24283b; */
+  color: #cfc9c2;
+}
+
+tooltip {
+  background-color: #24283b;
+  border-radius: 10px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #202020;
+}
+
+#workspaces button {
+  padding: 5px;
+  color: #9d7cd8;
+  background-color: #24283b;
+  margin-right: 5px;
+  border-radius: 10px;
+}
+
+#workspaces button.active {
+  color: #ffffff;
+  background-color: #9d7cd8;
+}
+
+#workspaces button.focused {
+  color: #ffffff;
+  background-color: #9d7cd8;
+  border-radius: 10px;
+}
+
+#workspaces button.urgent {
+  color: #0f0f0f;
+  background-color: #bb9af7;
+  border-radius: 10px;
+}
+
+#workspaces button:hover {
+  background-color: #bb9af7;
+  color: #232323;
+  border-radius: 10px;
+}
+
+#clock, #battery, #pulseaudio, #network, #cpu, #memory, #temperature, #disk, #workspaces, #tray, #custom-notification {
+  /* background-color: transparent; */
+  background-color: #24283b;
+  padding: 3px 10px;
+  margin: 3px 0px;
+}
+
+#tray {
+  background-color: #24283b;
+  border-radius: 10px;
+  margin-right: 4px;
+}
+
+#workspaces {
+  /* background-color: transparent; */
+  border-radius: 10px;
+  padding-right: 5px;
+  margin-left: 2px;
+}
+
+#clock {
+  color: #b48ead;
+  border-radius: 10px;
+}
+
+#cpu {
+  color: #9d7cd8;
+}
+
+#memory {
+  color: #7dcfff;
+}
+
+#disk {
+  color: #e0af68;
+}
+
+#network {
+  color: #fab387;
+  border-radius: 10px 0px 0px 10px;
+}
+
+#pulseaudio {
+  color: #588cd3;
+}
+
+#battery{
+  color:  #58d3a4;
+  border-radius: 0 10px 10px 0;
+  /* last indicator needs margin  */
+  margin-right: 2px; 
+}
+
+#custom-notification{
+	color: #ffffff;
+}
+
+#custom-player {
+	color: #cfc9c2;
+  margin-right: 10px;
+}
+
+
