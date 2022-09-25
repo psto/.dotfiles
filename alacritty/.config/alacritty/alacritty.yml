@@ -3,7 +3,7 @@
   # - ~/.config/alacritty/tokyo-night.yaml
 
 window:
-  opacity: 1 # Background opacity
+  opacity: 0.9 # Background opacity
   padding:
     x: 0
     y: 0
@@ -26,7 +26,7 @@ font:
     family: HackNerdFont
     style: Italic
 
-  size: 12.2
+  size: 14.0
 
   ligatures: true
 
