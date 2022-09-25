@@ -4,9 +4,6 @@ end
 
 -- Available colorschemes:
 local colorscheme = "tokyonight"
--- local colorscheme = "dracula"
--- local colorscheme = "duskfox"
--- local colorscheme = "nightfly"
 -- local colorscheme = "kanagawa"
 
 local tokyonight_status_ok, tokyonight = pcall(require, "tokyonight")

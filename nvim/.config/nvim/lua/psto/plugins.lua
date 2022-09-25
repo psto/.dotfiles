@@ -132,14 +132,6 @@ return packer.startup(function(use)
   })
   use("p00f/nvim-ts-rainbow")
 
-  -- Documentation
-  -- use {
-  --   'danymat/neogen',
-  --   requires = 'nvim-treesitter',
-  --   config = [[require('config.neogen')]],
-  --   keys = { '<localleader>d', '<localleader>df', '<localleader>dc' },
-  -- }
-
   -- Navigation
   use("christoomey/vim-tmux-navigator")
   use({
@@ -168,10 +160,7 @@ return packer.startup(function(use)
   })
 
   -- Themes
-  -- use("dracula/vim")
-  -- use("EdenEast/nightfox.nvim")
   use("folke/tokyonight.nvim")
-  -- use("bluz71/vim-nightfly-guicolors")
   -- use("rebelot/kanagawa.nvim")
 
   -- Statusline
