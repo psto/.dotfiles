@@ -60,7 +60,7 @@ alias gs="git status -sb"
 alias ga="git add"
 alias gc="git commit -m"
 alias gd="git diff"
-alias gdw="git dw"
+alias gdw="git diff-words"
 alias gp="git add --patch"
 # "git lg" alias for pretty git log - set and forget
 # git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --"
@@ -99,8 +99,6 @@ alias mpv='mpv --gpu-context=wayland' # opt into wayland
 alias mpvsp='mpv --save-position-on-quit' # mpv remember last played position
 # play YouTube videos with mpv
 alias mpvyt='mpv --gpu-context=wayland --profile=a4k --ytdl-format="bestvideo[ext=mp4]+bestaudio[ext=m4a]/mp4"'
-# play acestream
-alias mpvace='mpv --profile=acestream --script=/usr/lib/mpv/mpv-acestream.lua '
 
 # cheat
 cheat() { curl "http://cheat.sh/$1"; }
