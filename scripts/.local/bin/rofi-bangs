@@ -88,6 +88,10 @@ LABELS["scitopdf"]="📄"
 COMMANDS["fzf-search"]="~/.local/bin/rofi-search"
 LABELS["fzf-search"]="🔍"
 
+# Spotify
+COMMANDS["spotify"]='~/.local/bin/spotify-way'
+LABELS["spotify"]="🎧"
+
 # Suspend
 COMMANDS["suspend"]="suspend "${input}""
 LABELS["suspend"]="🥶"
@@ -190,8 +194,8 @@ COMMANDS["firefox"]="~/.local/bin/firefox-way"
 LABELS["firefox"]="🦊"
 
 # Firefox Developer
-# COMMANDS["firefox-developer-edition"]="firefox-developer-edition"
-# LABELS["firefox-developer-edition"]=
+COMMANDS["firefox-developer-edition"]="firefox-nightly"
+LABELS["firefox-developer-edition"]="🐺"
 
 # Galculator
 COMMANDS["galculator"]="galculator"
