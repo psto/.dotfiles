@@ -76,6 +76,9 @@ key_map("n", "<leader>t", "<cmd>:ToggleTerm<CR>", opts)
 -- Lazygit
 key_map("n", "<leader>l", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", { noremap = true, silent = true })
 
+-- xplr
+key_map("n", "<leader>e", "<cmd>lua _XPLR_TOGGLE()<CR>", { noremap = true, silent = true })
+
 -- REST client
 key_map("n", "<leader>r", "<Plug>RestNvim", opts)
 

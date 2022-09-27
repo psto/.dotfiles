@@ -37,18 +37,50 @@ end
 vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
 
 local Terminal = require("toggleterm.terminal").Terminal
-local lazygit = Terminal:new({
+local lazygit = Terminal:new {
   cmd = "lazygit",
   hidden = true,
+  direction = "float",
   float_opts = {
     border = "none",
     width = 100000,
-    height = 100000
-  }
-})
+    height = 100000,
+  },
+  on_open = function(_)
+    vim.cmd "startinsert!"
+    -- vim.cmd "set laststatus=0"
+  end,
+  on_close = function(_)
+    -- vim.cmd "set laststatus=3"
+  end,
+  count = 99,
+}
+
+local xplr = Terminal:new {
+  cmd = "xplr",
+  hidden = true,
+  direction = "float",
+  float_opts = {
+    border = "none",
+    width = 100000,
+    height = 100000,
+  },
+  on_open = function(_)
+    vim.cmd "startinsert!"
+    -- vim.cmd "set laststatus=0"
+  end,
+  on_close = function(_)
+    -- vim.cmd "set laststatus=3"
+  end,
+  count = 99,
+}
 
 function _LAZYGIT_TOGGLE()
   lazygit:toggle()
+end
+
+function _XPLR_TOGGLE()
+  xplr:toggle()
 end
 
 local node = Terminal:new({ cmd = "node", hidden = true })
