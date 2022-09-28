@@ -102,12 +102,7 @@ return packer.startup(function(use)
     "neovim/nvim-lspconfig", -- enable LSP
     -- 'williamboman/nvim-lsp-installer'
   })
-  -- use({
-  --   "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-  --   config = function()
-  --     require("lsp_lines").setup()
-  --   end,
-  -- })
+  use({ "https://git.sr.ht/~whynothugo/lsp_lines.nvim" })
 
   -- Completion cmp plugins
   use({
