@@ -11,6 +11,8 @@ setopt autocd extendedglob nomatch menucomplete
 setopt interactive_comments
 setopt globdots     # show hidden files
 setopt auto_cd      # automatically change into a directory without "cd"
+setopt noclobber    # prevent redirection (>) to truncate existing files
+setopt appendcreate # enable append redirection (>>) on files that don't exist
 stty stop undef		# Disable ctrl-s to freeze terminal.
 zle_highlight=('paste:none')
 
