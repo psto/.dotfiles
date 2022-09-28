@@ -85,3 +85,12 @@ key_map("n", "<leader>r", "<Plug>RestNvim", opts)
 -- nvim-ufo
 vim.keymap.set("n", "zR", require("ufo").openAllFolds)
 vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
+
+-- harpoon
+key_map(
+  "n",
+  "<tab>",
+  "<cmd>lua require('telescope').extensions.harpoon.marks(require('telescope.themes').get_dropdown{previewer = false, initial_mode='normal', prompt_title='Harpoon'})<cr>"
+  ,
+  opts
+)
