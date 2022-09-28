@@ -307,8 +307,8 @@ keymap \\\T COMMAND "VIEW; PIPE_BUF tabletocsv; EDIT_SCREEN"
 keymap \\\L COMMAND "PIPE_BUF linkgrabber; BACK; REDRAW"
 # Open add-bookmark dialogue, editing bookmark title
 keymap \\\b COMMAND "ADD_BOOKMARK; LINK_END; PREV_LINK; GOTO_LINK"
-# Pass the page through the readability (readability-cli) plugin
-keymap \\\r COMMAND "READ_SHELL 'python3 -m readability.readability -u $W3M_URL 2> /dev/null' ; VIEW ; DELETE_PREVBUF"
+# Pass the page through the readability (readability-cli): https://www.npmjs.com/package/readability-cli
+keymap \\\r COMMAND "READ_SHELL 'readable $W3M_URL 2> /dev/null' ; VIEW ; DELETE_PREVBUF"
 
 #### toggle hinting mode (vimium similar)
 keymap  f-SPC   COMMAND "SET_OPTION display_link_number=toggle ; RESHAPE"
