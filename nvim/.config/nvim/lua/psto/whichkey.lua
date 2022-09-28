@@ -82,6 +82,21 @@ local opts = {
 local mappings = {
   f = {
     name = "Find",
+    b = { "<cmd>Telescope git_branches<cr>", "Checkout Branch" },
+    d = { "<cmd>Telescope diagnostics<cr>", "Find Errors" },
+    f = { "<cmd>Telescope find_files<cr>", "Find Files" },
+    t = { "<cmd>Telescope live_grep<cr>", "Find Text" },
+    w = { "<cmd>Telescope grep_string<cr>", "Find Word" },
+    h = { "<cmd>Telescope help_tags<cr>", "Help" },
+    H = { "<cmd>Telescope highlights<cr>", "Highlights" },
+    r = { "<cmd>Telescope resume<cr>", "Last Search" },
+    M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
+    o = { "<cmd>Telescope oldfiles<cr>", "Recent File" },
+    p = { "<cmd>Telescope file_browser path=%:p:h<CR>", "File Browser" },
+    R = { "<cmd>Telescope registers<cr>", "Registers" },
+    k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
+    C = { "<cmd>Telescope commands<cr>", "Commands" },
+  },
   },
   },
   w = {
