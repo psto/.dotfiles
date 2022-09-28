@@ -152,6 +152,7 @@ return packer.startup(function(use)
   -- use("godlygeek/tabular")
   use("onsails/lspkind-nvim")
   use("lukas-reineke/lsp-format.nvim")
+  use("lukas-reineke/indent-blankline.nvim")
 
   -- REST client
   use({
