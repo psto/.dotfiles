@@ -3,6 +3,14 @@ if not status_ok then
   return
 end
 
+local l_status_ok, lsp_lines = pcall(require, "lsp_lines")
+if not l_status_ok then
+  return
+end
+
+-- lsp_lines
+lsp_lines.setup()
+
 -- async formatter
 require("lsp-format").setup({})
 
@@ -27,18 +35,18 @@ local on_attach = function(client, bufnr)
   local opts = { noremap = true, silent = true }
 
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  buf_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+  buf_set_keymap("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
   buf_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
   buf_set_keymap("n", "gT", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
   buf_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-  buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+  buf_set_keymap("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts)
+  buf_set_keymap("n", "gr", "<cmd>Telescope lsp_references<CR>", opts)
   buf_set_keymap("i", "<C-s>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
   buf_set_keymap("n", "<space>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
   buf_set_keymap("n", "<space>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", opts)
   buf_set_keymap("n", "<space>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", opts)
   buf_set_keymap("n", "<space>cr", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
   buf_set_keymap("n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-  buf_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
   buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.format({ async = true })<CR>", opts)
 
   local signs = {
@@ -53,7 +61,7 @@ local on_attach = function(client, bufnr)
     signs = {
       active = signs, -- show signs
     },
-    update_in_insert = false,
+    update_in_insert = true,
     underline = true,
     severity_sort = true,
     float = {
@@ -222,14 +230,14 @@ nvim_lsp.tailwindcss.setup({
 -- end
 
 -- tsserver config
-nvim_lsp.tsserver.setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-  root_dir = nvim_lsp.util.root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git"),
-  flags = {
-    debounce_text_changes = 150,
-  },
-})
+-- nvim_lsp.tsserver.setup({
+--   on_attach = on_attach,
+--   capabilities = capabilities,
+--   root_dir = nvim_lsp.util.root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git"),
+--   flags = {
+--     debounce_text_changes = 150,
+--   },
+-- })
 
 -- jsonls config
 nvim_lsp.jsonls.setup({
