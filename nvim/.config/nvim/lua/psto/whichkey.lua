@@ -97,6 +97,9 @@ local m_mappings = {
 }
 
 local mappings = {
+  a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Action" },
+  b = { "<cmd>Telescope buffers<cr>", "Buffers" },
+  e = { "<cmd>lua _XPLR_TOGGLE()<CR>", "File Xplr" },
   q = { '<cmd>lua require("psto/functions").smart_quit()<CR>', "Quit" },
   f = {
     name = "Find",
