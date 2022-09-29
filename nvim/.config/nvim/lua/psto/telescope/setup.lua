@@ -17,13 +17,25 @@ require("telescope").setup({
         -- actions.which_key shows the mappings for your picker,
         -- e.g. git_{create, delete, ...}_branch for the git_branches picker
         ["<Esc>"] = actions.close,
+        ["<C-c>"] = actions.close,
+        ["<Tab>"] = actions.close,
+        ["<S-Tab>"] = actions.close,
         ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
-        ["<C-j>"] = actions.cycle_history_next,
-        ["<C-k>"] = actions.cycle_history_prev,
+        ["<C-n>"] = actions.cycle_history_next,
+        ["<C-p>"] = actions.cycle_history_prev,
+        ["<C-j>"] = actions.move_selection_next,
+        ["<C-k>"] = actions.move_selection_previous,
         ["<c-d>"] = require("telescope.actions").delete_buffer,
       },
       n = {
+        ["<Esc>"] = actions.close,
+        ["q"] = actions.close,
+        ["<Tab>"] = actions.close,
+        ["<S-Tab>"] = actions.close,
+        ["j"] = actions.move_selection_next,
+        ["k"] = actions.move_selection_previous,
         ["dd"] = require("telescope.actions").delete_buffer,
+        ["?"] = actions.which_key,
       }
     },
 
