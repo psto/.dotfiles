@@ -97,6 +97,7 @@ local m_mappings = {
 }
 
 local mappings = {
+  q = { '<cmd>lua require("psto/functions").smart_quit()<CR>', "Quit" },
   f = {
     name = "Find",
     b = { "<cmd>Telescope git_branches<cr>", "Checkout Branch" },
