@@ -59,6 +59,7 @@ ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 # Hooks
 add-zsh-hook chpwd do-ls
 add-zsh-hook chpwd precmd
+add-zsh-hook -Uz chpwd osc7 # OSC-7 escape sequence for foot terminal
 
 # Key-bindings
 bindkey -s '^f' 'zi^M'
