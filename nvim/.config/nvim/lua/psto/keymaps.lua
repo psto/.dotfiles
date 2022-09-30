@@ -26,8 +26,6 @@ key_map("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 -- Navigate buffers
 key_map("n", "<S-l>", ":bnext<CR>", opts)
 key_map("n", "<S-h>", ":bprevious<CR>", opts)
--- Close current buffer
-key_map("n", "<C-w>", ":bw<CR>", opts)
 
 -- clear last search highlighting
 key_map("n", "<esc>", ":noh<return>", { noremap = false })

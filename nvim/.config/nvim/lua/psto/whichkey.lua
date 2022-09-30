@@ -99,6 +99,7 @@ local m_mappings = {
 local mappings = {
   a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Action" },
   b = { "<cmd>Telescope buffers<cr>", "Buffers" },
+  c = { "<cmd>:bw<CR>", "Close Buffer" },
   e = { "<cmd>lua _XPLR_TOGGLE()<CR>", "File Xplr" },
   q = { '<cmd>lua require("psto/functions").smart_quit()<CR>', "Quit" },
   f = {
@@ -116,13 +117,16 @@ local mappings = {
     p = { "<cmd>Telescope file_browser path=%:p:h<CR>", "File Browser" },
     R = { "<cmd>Telescope registers<cr>", "Registers" },
     k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
+    c = { "<cmd>Telescope git_bcommits<cr>", "Buffer's commits" },
     C = { "<cmd>Telescope commands<cr>", "Commands" },
   },
   g = {
     name = "Git",
-    l = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" },
+    e = { "<cmd>lua require 'gitsigns'.toggle_current_line_blame()<cr>", "Git Blame" },
+    g = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" },
     j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
     k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
+    l = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Git Blame" },
     p = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk" },
     r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
     R = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer" },
@@ -157,7 +161,6 @@ local mappings = {
       "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>",
       "Prev Diagnostic",
     },
-    -- v = { "<cmd>lua require('lsp_lines').toggle()<cr>", "Virtual Text" },
     l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
     q = { "<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>", "Quickfix" },
     r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
