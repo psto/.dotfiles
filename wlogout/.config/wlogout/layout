@@ -6,7 +6,7 @@
 }
 {
     "label" : "hibernate",
-    "action" : "systemctl hibernate",
+    "action" : "sleep 1 && hyprctl dispatch dpms off",
     "text" : "Hibernate",
     "keybind" : "h"
 }

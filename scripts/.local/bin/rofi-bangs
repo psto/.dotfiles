@@ -112,6 +112,10 @@ LABELS["tldr"]="🗒️"
 COMMANDS["do"]="exec rofi -modi TODO:~/.local/bin/rofi-todo -show TODO -config ~/.config/rofi/searchmenu.rasi"
 LABELS["do"]="todo"
 
+# Turn off screen
+COMMANDS["turn-off-screen"]='sleep 1 && hyprctl dispatch dpms off'
+LABELS["turn-off-screen"]="📴"
+
 # Open webpage
 COMMANDS["www"]='$browser "${input}"'
 LABELS["www"]="🌐"
