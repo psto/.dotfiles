@@ -14,6 +14,12 @@ lsp_lines.setup()
 -- async formatter
 require("lsp-format").setup({})
 
+-- navic
+local navic = require("nvim-navic")
+navic.setup {
+  separator = "  ",
+}
+
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
@@ -30,6 +36,9 @@ local on_attach = function(client, bufnr)
 
   -- formatting with lsp-format
   require("lsp-format").on_attach(client)
+
+  -- attach navic to lsp
+  navic.attach(client, bufnr)
 
   -- Mappings.
   local opts = { noremap = true, silent = true }

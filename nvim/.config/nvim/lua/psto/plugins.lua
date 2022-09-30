@@ -165,6 +165,10 @@ return packer.startup(function(use)
     "nvim-lualine/lualine.nvim",
     requires = { "kyazdani42/nvim-web-devicons", opt = true },
   })
+  use({
+    "SmiteshP/nvim-navic",
+    requires = "neovim/nvim-lspconfig"
+  })
 
   -- Starting screen
   use({
