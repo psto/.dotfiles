@@ -4,7 +4,7 @@
 # combine different scipts into one gui interface
 declare -A LABELS
 declare -A COMMANDS
-browser='brave-beta'
+browser='firefox-nightly'
 
 # List of defined 'bangs'
 
@@ -43,6 +43,18 @@ LABELS["broot"]=
 # btop
 COMMANDS["btop"]="exec alacritty -e btop"
 LABELS["btop"]="📈"
+
+# element
+COMMANDS["element"]='element-desktop-nightly'
+LABELS["element"]="⚛️"
+
+# kitty
+COMMANDS["kitty"]="kitty"
+LABELS["kitty"]="🐱"
+
+# ksnip
+COMMANDS["ksnip"]="ksnip"
+LABELS["ksnip"]="🖼️"
 
 # Listen to music
 COMMANDS["rofi-beats"]="~/.local/bin/rofi-beats"
@@ -146,6 +158,9 @@ LABELS["gm"]="🗺️"
 # IMBD search
 COMMANDS["imdb"]='$browser http://www.imdb.com/find?q="${input}"'
 LABELS["imdb"]="🎥"
+# Tmdb search
+COMMANDS["tmdb"]='$browser https://www.themoviedb.org/search?query="${input}"'
+LABELS["tmdb"]="🎥"
 # Wikipedia search
 COMMANDS["wi"]='$browser https://en.m.wikipedia.org/wiki/Special:Search/"${input}"'
 LABELS["wi"]="📚"
