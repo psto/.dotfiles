@@ -51,7 +51,6 @@ return packer.startup(function(use)
       require("nvim-surround").setup({})
     end,
   })
-  use("sindrets/diffview.nvim")
   use({
     "windwp/nvim-autopairs",
     config = function() require("nvim-autopairs").setup {} end
@@ -72,7 +71,6 @@ return packer.startup(function(use)
   use({ "kevinhwang91/nvim-ufo", requires = "kevinhwang91/promise-async" })
 
   -- Search
-  use("nvim-lua/popup.nvim")
   use({
     "nvim-telescope/telescope.nvim",
     requires = { { "nvim-lua/plenary.nvim" } },
