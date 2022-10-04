@@ -76,6 +76,7 @@ alias open="xdg-open"
 # clear alias when in tmux
 alias c='clear'
 
+alias ls='ls --color=auto'
 # exa alias
 alias l='exa -l --icons'
 alias la='exa -a --icons'
@@ -112,22 +113,3 @@ alias drag="dragon-drop"
 
 # transmission-remote
 alias tsm="transmission-remote"
-
-case "$(uname -s)" in
-
-Darwin)
-	# echo 'Mac OS X'
-	alias ls='ls -G'
-	;;
-
-Linux)
-	alias ls='ls --color=auto'
-	;;
-
-CYGWIN* | MINGW32* | MSYS* | MINGW*)
-	# echo 'MS Windows'
-	;;
-*)
-	# echo 'Other OS'
-	;;
-esac
