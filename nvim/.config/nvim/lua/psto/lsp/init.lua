@@ -37,8 +37,10 @@ local on_attach = function(client, bufnr)
   -- formatting with lsp-format
   require("lsp-format").on_attach(client)
 
-  -- attach navic to lsp
-  navic.attach(client, bufnr)
+  -- attach navic to lsp only if client has symbol provider capability
+  if client.server_capabilities.documentSymbolProvider then
+    navic.attach(client, bufnr)
+  end
 
   -- Mappings.
   local opts = { noremap = true, silent = true }
