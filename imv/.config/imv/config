@@ -1,0 +1,21 @@
+[binds]
+# Delete and then close an open image by pressing 'X'
+<Shift+X> = exec rm "$imv_current_file"; close
+
+# Rotate the currently open image by 90 degrees by pressing 'R'
+<Shift+R> = exec mogrify -rotate 90 "$imv_current_file"
+
+# vim bindings
+l=next
+h=prev
+j=zoom 1
+k=zoom -1
+
+# Arrow keys move image
+<Right>=pan 10 0
+<Left>=pan -10 0
+<Up>=pan 0 -10
+<Down>=pan 0 10
+
+[aliases]
+write = exec convert "$imv_current_file"
