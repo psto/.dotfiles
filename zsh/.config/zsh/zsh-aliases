@@ -18,10 +18,11 @@ alias mirrora="sudo reflector --latest 50 --number 20 --sort age --save /etc/pac
 alias grep='grep --color=auto'
 
 # confirm before overwriting something
-alias cp="cp -iv"
+alias cp="cp -riv"
 alias mv='mv -iv'
-alias rm='rm -iv'
+alias rm='rm -riv'
 alias tr='trash-put'
+alias mkdir='mkdir -pv'
 
 # easier to read disk
 alias free='free -m'            # show sizes in MB
@@ -99,8 +100,6 @@ alias psf='ps -Ao comm,pcpu,pmem,pid --sort=-pcpu | grep '
 # mpv
 alias mpv='mpv --gpu-context=wayland' # opt into wayland
 alias mpvsp='mpv --save-position-on-quit' # mpv remember last played position
-# play YouTube videos with mpv
-alias mpvyt='mpv --gpu-context=wayland --profile=a4k --ytdl-format="bestvideo[ext=mp4]+bestaudio[ext=m4a]/mp4"'
 
 # cheat
 cheat() { curl "http://cheat.sh/$1"; }
