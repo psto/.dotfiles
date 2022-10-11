@@ -127,9 +127,6 @@ exec swayidle -w \
     # Rofi beats
     bindsym $mod+m exec ~/.local/bin/rofi-beats
 
-    # Window menu
-    bindsym $mod+Tab exec rofi-window
-
 #
 # Moving around:
 #
