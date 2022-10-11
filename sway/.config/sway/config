@@ -119,7 +119,7 @@ exec swayidle -w \
     bindsym $mod+p exec ~/.local/bin/passrofi
 
     # Screenshots
-    bindsym $mod+shift+P exec swappy
+    bindsym $mod+shift+P exec slurp | grim -g - - | wl-copy && wl-paste > $(xdg-user-dir PICTURES)/$(date +'%Y-%m-%d-%H%M%S_grim.png')
 
     # Search files
     bindsym $mod+o exec ~/.local/bin/rofi-search
