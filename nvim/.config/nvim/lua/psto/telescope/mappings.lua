@@ -10,13 +10,23 @@ key_map("n", "<c-p>", [[<CMD>Telescope find_files<CR>]], opts)
 -- key_map("n", "<leader>fc", [[<CMD>Telescope current_buffer_fuzzy_find<CR>]], { noremap = true, silent = true })
 -- key_map("n", "<leader>fr", [[<CMD>Telescope resume<CR>]], { noremap = true, silent = true })
 -- key_map("n", "<leader>fd", [[<CMD>Telescope diagnostics<CR>]], { noremap = true, silent = true })
--- search in dotfiles
+
+-- search dotfiles
 key_map(
   "n",
-  "<leader>vrc",
+  "<leader>vd",
   [[:lua require('psto.telescope.setup').search_dotfiles()<CR>]],
   opts
 )
+
+-- search nvim config
+key_map(
+  "n",
+  "<leader>vc",
+  [[:lua require('psto.telescope.setup').search_nvim_dotfiles()<CR>]],
+  opts
+)
+
 -- live grep
 -- key_map(
 --   "n",

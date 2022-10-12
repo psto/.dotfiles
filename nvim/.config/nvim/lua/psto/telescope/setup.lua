@@ -106,4 +106,12 @@ M.search_dotfiles = function()
   })
 end
 
+M.search_nvim_dotfiles = function()
+  require("telescope.builtin").find_files({
+    prompt_title = "< nvim DOTFILES >",
+    cwd = "~/.dotfiles/nvim/.config/nvim",
+    hidden = true,
+  })
+end
+
 return M
