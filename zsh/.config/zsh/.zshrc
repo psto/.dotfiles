@@ -63,7 +63,7 @@ add-zsh-hook -Uz chpwd osc7 # OSC-7 escape sequence for foot terminal
 
 # Key-bindings
 bindkey -s '^f' 'zi^M'
-bindkey -s '^e' 'nvim $(fzf)^M'
+bindkey -s '^e' 'fzf | xargs launch^M'
 bindkey -s '^z' 'zi^M'
 bindkey "^n" up-line-or-beginning-search # Up
 bindkey "^p" down-line-or-beginning-search # Down
@@ -89,7 +89,8 @@ fi;
 
 export FZF_DEFAULT_COMMAND="rg --files --hidden --ignore-file ~/.config/git/gitignore"
 # FZF dracula theme
-export FZF_DEFAULT_OPTS='--color=fg:#f8f8f2,hl:#bd93f9 --color=fg+:#f8f8f2,bg+:#44475a,hl+:#bd93f9 --color=info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6 --color=marker:#ff79c6,spinner:#ffb86c,header:#6272a4'
+export FZF_DEFAULT_OPTS="--color=fg:#f8f8f2,hl:#bd93f9 --color=fg+:#f8f8f2,bg+:#44475a,hl+:#bd93f9 --color=info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6 --color=marker:#ff79c6,spinner:#ffb86c,header:#6272a4 --preview 'bat --style=numbers --color=always --line-range :500 {}'"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # Edit line in vim with ctrl-e:
 autoload edit-command-line; zle -N edit-command-line
