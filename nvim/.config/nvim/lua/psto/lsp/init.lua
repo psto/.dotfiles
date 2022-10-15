@@ -396,7 +396,10 @@ nvim_lsp.ansiblels.setup({
 })
 
 -- markdown config
-require 'lspconfig'.marksman.setup {}
+nvim_lsp.marksman.setup {}
+
+-- bashls config
+nvim_lsp.bashls.setup({})
 
 -- sumneko config
 -- install on arch:$ sudo pacman -S lua-language-server
