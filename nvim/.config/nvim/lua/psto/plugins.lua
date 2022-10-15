@@ -127,14 +127,17 @@ return packer.startup(function(use)
 
   -- Navigation
   use("ThePrimeagen/harpoon")
-  use("christoomey/vim-tmux-navigator")
+  use({
+    "aserowy/tmux.nvim",
+    config = function() require("tmux").setup() end
+  })
   use({
     "karb94/neoscroll.nvim",
     config = function()
       require("neoscroll").setup({})
     end,
   })
-  use({ "folke/which-key.nvim" })
+  use("folke/which-key.nvim")
 
   -- Diagnostics
   use({
