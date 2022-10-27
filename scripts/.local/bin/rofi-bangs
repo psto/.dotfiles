@@ -74,7 +74,7 @@ LABELS["macho"]="💪"
 
 # Navi
 COMMANDS["navi"]='exec alacritty --class="floating" -e navi'
-LABELS["navi"]=""
+LABELS["navi"]="🧭"
 
 # NCurses Disk Usage
 COMMANDS["ncdu"]='exec alacritty --class="floating" -e ncdu --color dark'
@@ -82,7 +82,11 @@ LABELS["ncdu"]="💽"
 
 # killall
 COMMANDS["killall"]='exec alacritty --class="floating" -e killall "${input}"'
-LABELS["killall"]=""
+LABELS["killall"]="🔪"
+
+# xkill
+COMMANDS["xkill"]='exec alacritty --class="floating" -e xkill "${input}"'
+LABELS["xkill"]="🔪"
 
 # Rofi Calc
 COMMANDS["calc"]="exec rofi -show calc -modi calc -no-show-match -no-sort -config ~/.config/rofi/rofidmenu.rasi"
@@ -183,6 +187,10 @@ LABELS["13"]="☠️"
 ################################################################################
 # Apps
 ################################################################################
+
+# Anki
+COMMANDS["anki"]="anki"
+LABELS["anki"]="📇"
 
 # Brave Beta browser
 COMMANDS["brave-beta"]="brave-beta-gpu"
