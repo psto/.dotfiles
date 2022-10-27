@@ -4,7 +4,6 @@ end
 
 -- Available colorschemes:
 local colorscheme = "tokyonight"
--- local colorscheme = "kanagawa"
 
 local tokyonight_status_ok, tokyonight = pcall(require, "tokyonight")
 if tokyonight_status_ok then
@@ -45,8 +44,10 @@ if tokyonight_status_ok then
   })
 end
 
-local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
+local status_ok, _ = pcall(require, colorscheme)
 if not status_ok then
   vim.notify("colorscheme " .. colorscheme .. " not found!")
   return
 end
+
+vim.cmd("colorscheme " .. colorscheme)

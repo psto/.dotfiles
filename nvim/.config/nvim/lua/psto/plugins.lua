@@ -159,7 +159,6 @@ return packer.startup(function(use)
 
   -- Themes
   use("folke/tokyonight.nvim")
-  -- use("rebelot/kanagawa.nvim")
 
   -- Statusline
   use({
