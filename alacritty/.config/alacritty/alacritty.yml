@@ -77,7 +77,8 @@ schemes:
   tokyo-night-storm: &tokyo-night-storm
     # Default colors
     primary:
-      background: '0x24283b'
+      # background: '0x24283b'
+      background: '0x1a1b26'
       foreground: '0xa9b1d6'
 
     # Normal colors

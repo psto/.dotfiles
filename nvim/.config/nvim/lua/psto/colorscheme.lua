@@ -8,8 +8,8 @@ local colorscheme = "tokyonight"
 local tokyonight_status_ok, tokyonight = pcall(require, "tokyonight")
 if tokyonight_status_ok then
   tokyonight.setup({
-    style = "storm", -- The theme comes in three styles, `storm`, a darker variant `night` and `day`
-    transparent = true, -- Enable this to disable setting the background color
+    style = "night", -- three styles: `storm`, a darker variant `night` and `day`
+    transparent = false, -- enable transparency
 
     on_highlights = function(hl, c)
       -- borderless Telescope config
