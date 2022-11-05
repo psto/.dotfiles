@@ -12,10 +12,11 @@ key_map("n", "<leader><leader>c", ":<up>", { noremap = false })
 key_map("n", "<leader>w", [[:%s/\s\+$//<CR>]], { noremap = false })
 
 -- -- Move around splits with <c-hjkl>
--- key_map("n", "<c-j>", "<c-w>j", { noremap = false })
--- key_map("n", "<c-k>", "<c-w>k", { noremap = false })
--- key_map("n", "<c-h>", "<c-w>h", { noremap = false })
--- key_map("n", "<c-l>", "<c-w>l", { noremap = false })
+key_map("n", "<c-j>", "<c-w>j", opts)
+key_map("n", "<c-k>", "<c-w>k", opts)
+key_map("n", "<c-h>", "<c-w>h", opts)
+key_map("n", "<c-l>", "<c-w>l", opts)
+key_map("n", "<m-tab>", "<c-6>", opts)
 
 -- Resize with arrows
 key_map("n", "<C-Up>", ":resize +2<CR>", opts)
