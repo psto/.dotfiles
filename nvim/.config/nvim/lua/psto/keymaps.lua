@@ -1,79 +1,76 @@
--- TODO: rewrite using the new vim.keymap api https://github.com/neovim/neovim/commit/6d41f65aa45f10a93ad476db01413abaac21f27d
-local key_map = vim.api.nvim_set_keymap
+local keymap = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
 -- Set leader key to space
 vim.g.mapleader = " "
 
 -- Run the last command
-key_map("n", "<leader><leader>c", ":<up>", { noremap = false })
+keymap("n", "<leader><leader>c", ":<up>", { noremap = false })
 
 -- Remove whitespace
-key_map("n", "<leader>w", [[:%s/\s\+$//<CR>]], { noremap = false })
+keymap("n", "<leader>w", [[:%s/\s\+$//<CR>]], { noremap = false })
 
 -- -- Move around splits with <c-hjkl>
-key_map("n", "<c-j>", "<c-w>j", opts)
-key_map("n", "<c-k>", "<c-w>k", opts)
-key_map("n", "<c-h>", "<c-w>h", opts)
-key_map("n", "<c-l>", "<c-w>l", opts)
-key_map("n", "<m-tab>", "<c-6>", opts)
+keymap("n", "<c-j>", "<c-w>j", opts)
+keymap("n", "<c-k>", "<c-w>k", opts)
+keymap("n", "<c-h>", "<c-w>h", opts)
+keymap("n", "<c-l>", "<c-w>l", opts)
+keymap("n", "<m-tab>", "<c-6>", opts)
 
 -- Resize with arrows
-key_map("n", "<C-Up>", ":resize +2<CR>", opts)
-key_map("n", "<C-Down>", ":resize -2<CR>", opts)
-key_map("n", "<C-Left>", ":vertical resize -2<CR>", opts)
-key_map("n", "<C-Right>", ":vertical resize +2<CR>", opts)
+keymap("n", "<C-Up>", ":resize +2<CR>", opts)
+keymap("n", "<C-Down>", ":resize -2<CR>", opts)
+keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
+keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
 -- Navigate buffers
-key_map("n", "<S-l>", ":bnext<CR>", opts)
-key_map("n", "<S-h>", ":bprevious<CR>", opts)
+keymap("n", "<S-l>", ":bnext<CR>", opts)
+keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
 -- clear last search highlighting
-key_map("n", "<esc>", ":noh<return>", { noremap = false })
+keymap("n", "<esc>", ":noh<return>", { noremap = false })
 
 -- spell check with <F4> and <F5>
-key_map("n", "<F4>", ":setlocal spell! spelllang=en_gb<CR>", { noremap = false })
-key_map("n", "<F5>", ":setlocal spell spelllang=pl<CR>", { noremap = false })
+keymap("n", "<F4>", ":setlocal spell! spelllang=en_gb<CR>", { noremap = false })
+keymap("n", "<F5>", ":setlocal spell spelllang=pl<CR>", { noremap = false })
 
 -- Unmap F1 help
-key_map("n", "<F1>", "<nop>", { noremap = false })
-key_map("i", "<F1>", "<nop>", { noremap = false })
+keymap("n", "<F1>", "<nop>", { noremap = false })
+keymap("i", "<F1>", "<nop>", { noremap = false })
 
 -- Press <ctr> + s to save document
-key_map("n", "<c-s>", ":w<CR>", { noremap = false })
+keymap("n", "<c-s>", ":w<CR>", { noremap = false })
 
 -- Move selected line up or down
-key_map("v", "J", ":m '>+1<CR>gv=gv", { noremap = false })
-key_map("v", "K", ":m '<-2<CR>gv=gv", { noremap = false })
+keymap("v", "J", ":m '>+1<CR>gv=gv", { noremap = false })
+keymap("v", "K", ":m '<-2<CR>gv=gv", { noremap = false })
 
 -- Don't yank on visual paste
-key_map("v", "<leader>p", "\"_dP", { noremap = true, silent = true })
+keymap("v", "<leader>p", "\"_dP", opts)
 
 -- Don't yank on delete char
-key_map("n", "x", '"_x', { noremap = true, silent = true })
-key_map("n", "X", '"_X', { noremap = true, silent = true })
-key_map("v", "x", '"_x', { noremap = true, silent = true })
-key_map("v", "X", '"_X', { noremap = true, silent = true })
+keymap("n", "x", '"_x', opts)
+keymap("n", "X", '"_X', opts)
+keymap("v", "x", '"_x', opts)
+keymap("v", "X", '"_X', opts)
 
 -- Reselect visual selection after indenting
-key_map("v", "<", "<gv", opts)
-key_map("v", ">", ">gv", opts)
+keymap("v", "<", "<gv", opts)
+keymap("v", ">", ">gv", opts)
 
-key_map("n", "<M-j>", ":cnext<CR>zz", opts)
-key_map("n", "<M-k>", ":cprev<CR>zz", opts)
+-- Jump to a quickfix/location list entry
+keymap("n", "<M-j>", ":cnext<CR>zz", opts)
+keymap("n", "<M-k>", ":cprev<CR>zz", opts)
 
 -- Diagnostics
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-key_map("n", "<space>e", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
-key_map("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
-key_map("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
-key_map("n", "<space>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
+keymap("n", "<space>e", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
+keymap("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
+keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
+keymap("n", "<space>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
 
 -- ToggleTerm
-key_map("n", "<leader>t", "<cmd>:ToggleTerm<CR>", opts)
-
--- Lazygit
-key_map("n", "<leader>l", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", { noremap = true, silent = true })
+keymap("n", "<leader>t", "<cmd>:ToggleTerm<CR>", opts)
 
 -- REST client
 key_map("n", "<M-r>", "<Plug>RestNvim", opts)
@@ -83,7 +80,7 @@ vim.keymap.set("n", "zR", require("ufo").openAllFolds)
 vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
 
 -- harpoon
-key_map(
+keymap(
   "n",
   "<tab>",
   "<cmd>lua require('telescope').extensions.harpoon.marks(require('telescope.themes').get_dropdown{previewer = false, initial_mode='normal', prompt_title='Harpoon'})<cr>"
