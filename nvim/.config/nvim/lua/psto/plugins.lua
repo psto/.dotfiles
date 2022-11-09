@@ -115,7 +115,7 @@ return packer.startup(function(use)
   use({
     "saadparwaiz1/cmp_luasnip",
     "L3MON4D3/LuaSnip",
-    "rafamadriz/friendly-snippets",
+    "psto/friendly-snippets",
   })
 
   -- Highlights

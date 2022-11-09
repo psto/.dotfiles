@@ -1,9 +1,0 @@
-{
-  "import": {
-    "prefix": "import",
-    "body": [
-      "import $1 from '$2'"
-    ],
-    "description": "import ... from ..."
-  },
-}
