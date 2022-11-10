@@ -58,7 +58,6 @@ ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 
 # Hooks
 add-zsh-hook chpwd do-ls
-# add-zsh-hook chpwd precmd
 add-zsh-hook -Uz chpwd osc7 # OSC-7 escape sequence for foot terminal
 
 # Key-bindings
@@ -95,6 +94,24 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 # Edit line in vim with ctrl-e:
 autoload edit-command-line; zle -N edit-command-line
 # bindkey '^e' edit-command-line
+
+# ci", ci', ci`, di", etc
+autoload -U select-quoted
+zle -N select-quoted
+for m in visual viopp; do
+  for c in {a,i}{\',\",\`}; do
+    bindkey -M $m $c select-quoted
+  done
+done
+
+# ci{, ci(, ci<, di{, etc
+autoload -U select-bracketed
+zle -N select-bracketed
+for m in visual viopp; do
+  for c in {a,i}${(s..)^:-'()[]{}<>bB'}; do
+    bindkey -M $m $c select-bracketed
+  done
+done
 
 # Speedy keys
 xset r rate 210 40
