@@ -64,6 +64,7 @@ add-zsh-hook -Uz chpwd osc7 # OSC-7 escape sequence for foot terminal
 # Key-bindings
 bindkey -s '^f' 'zi^M'
 bindkey -s '^z' 'zi^M'
+bindkey -a '^[[3~' delete-char # bind delete key
 bindkey "^n" up-line-or-beginning-search # Up
 bindkey "^p" down-line-or-beginning-search # Down
 bindkey "^k" up-line-or-beginning-search # Up
