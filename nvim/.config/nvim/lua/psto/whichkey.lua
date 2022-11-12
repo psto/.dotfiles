@@ -116,6 +116,7 @@ local mappings = {
     o = { "<cmd>Telescope oldfiles<cr>", "Recent File" },
     p = { "<cmd>Telescope file_browser path=%:p:h<CR>", "File Browser" },
     R = { "<cmd>Telescope registers<cr>", "Registers" },
+    s = { "<cmd>Telescope spell_suggest theme=get_cursor<CR>", "Spelling" },
     k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
     c = { "<cmd>Telescope git_bcommits<cr>", "Buffer's commits" },
     C = { "<cmd>Telescope commands<cr>", "Commands" },
