@@ -59,15 +59,13 @@ keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
 -- Jump to a quickfix/location list entry
-keymap("n", "<M-j>", ":cnext<CR>zz", opts)
-keymap("n", "<M-k>", ":cprev<CR>zz", opts)
+keymap("n", "[q", ":cnext<CR>zz", opts)
+keymap("n", "]q", ":cprev<CR>zz", opts)
 
 -- Diagnostics
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-keymap("n", "<space>e", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
 keymap("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
 keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
-keymap("n", "<space>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
 
 -- ToggleTerm
 keymap("n", "<leader>t", "<cmd>:ToggleTerm<CR>", opts)
