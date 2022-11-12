@@ -47,3 +47,11 @@ autocmd({ "TextYankPost" }, {
 --     vim.cmd "hi Normal ctermbg=none guibg=none cterm=none"
 --   end,
 -- })
+
+-- Use spelling for markdown files ‘]s’ to find next, ‘[s’ for previous, 'z=‘ for suggestions when on one.
+autocmd("FileType", {
+  pattern = { "html", "markdown", "text" },
+  callback = function()
+    vim.opt_local.spell = true
+  end,
+})
