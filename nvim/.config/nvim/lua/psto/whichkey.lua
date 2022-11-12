@@ -102,6 +102,9 @@ local mappings = {
   c = { "<cmd>:bw<CR>", "Close Buffer" },
   e = { "<cmd>lua _XPLR_TOGGLE()<CR>", "File Xplr" },
   q = { '<cmd>lua require("psto/functions").smart_quit()<CR>', "Quit" },
+  w = {
+    name = "trim whitespace",
+  },
   f = {
     name = "Find",
     b = { "<cmd>Telescope git_branches<cr>", "Checkout Branch" },
@@ -123,6 +126,7 @@ local mappings = {
   },
   g = {
     name = "Git",
+    d = { "<cmd>Gitsigns diffthis HEAD<cr>", "Diff" },
     e = { "<cmd>lua require 'gitsigns'.toggle_current_line_blame()<cr>", "Git Blame" },
     g = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" },
     j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
@@ -136,13 +140,9 @@ local mappings = {
       "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",
       "Undo Stage Hunk",
     },
-    o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
     b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
     c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
-    d = {
-      "<cmd>Gitsigns diffthis HEAD<cr>",
-      "Diff",
-    },
+    o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
   },
   l = {
     name = "LSP",
@@ -188,9 +188,6 @@ local mappings = {
     r = { "<cmd>lua require('spectre').open()<cr>", "Replace" },
     w = { "<cmd>lua require('spectre').open_visual({select_word=true})<cr>", "Replace Word" },
     f = { "<cmd>lua require('spectre').open_file_search()<cr>", "Replace Buffer" },
-  },
-  w = {
-    name = "trim whitespace",
   },
 }
 
