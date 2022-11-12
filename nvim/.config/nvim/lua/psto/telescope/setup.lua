@@ -2,7 +2,7 @@ local actions = require("telescope.actions")
 
 require("telescope").setup({
   defaults = {
-    file_ignore_patterns = { "node_modules", ".git", ".lock" },
+    file_ignore_patterns = { "node_modules", ".lock" },
     file_sorter = require("telescope.sorters").get_fzy_sorter,
     prompt_prefix = "   ",
     color_devicons = true,
@@ -33,6 +33,8 @@ require("telescope").setup({
         ["q"] = actions.close,
         ["<Tab>"] = actions.close,
         ["<S-Tab>"] = actions.close,
+        ["<C-j>"] = actions.move_selection_next,
+        ["<C-k>"] = actions.move_selection_previous,
         ["j"] = actions.move_selection_next,
         ["k"] = actions.move_selection_previous,
         ["dd"] = require("telescope.actions").delete_buffer,
