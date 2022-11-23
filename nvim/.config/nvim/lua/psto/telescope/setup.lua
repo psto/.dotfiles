@@ -58,11 +58,11 @@ require("telescope").setup({
     buffers = {
       theme = "dropdown",
       previewer = false,
-      initial_mode = "insert",
+      initial_mode = "normal",
     },
     find_files = {
-      hidden = true,
       theme = "dropdown",
+      hidden = true,
       previewer = false,
     },
     git_branches = {
