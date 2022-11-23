@@ -69,6 +69,28 @@ require("telescope").setup({
       theme = "dropdown",
       previewer = false,
     },
+    grep_string = {
+      theme = "dropdown",
+    },
+    live_grep = {
+      theme = "dropdown",
+    },
+    lsp_references = {
+      theme = "dropdown",
+      initial_mode = "normal",
+    },
+    lsp_definitions = {
+      theme = "dropdown",
+      initial_mode = "normal",
+    },
+    lsp_declarations = {
+      theme = "dropdown",
+      initial_mode = "normal",
+    },
+    lsp_implementations = {
+      theme = "dropdown",
+      initial_mode = "normal",
+    },
   },
   extensions = {
     -- fzy_native = {
