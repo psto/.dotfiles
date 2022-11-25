@@ -129,10 +129,6 @@ return packer.startup(function(use)
   -- Navigation
   use("ThePrimeagen/harpoon")
   use({
-    "aserowy/tmux.nvim",
-    config = function() require("tmux").setup() end
-  })
-  use({
     "karb94/neoscroll.nvim",
     config = function()
       require("neoscroll").setup({})
