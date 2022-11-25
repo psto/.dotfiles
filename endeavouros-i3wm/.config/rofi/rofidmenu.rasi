@@ -3,7 +3,7 @@
  * Maintainer: joekamprad <joekamprad@endeavouros.com>
  *******************************************************/
 configuration {
-    font:				"Sourcecode Pro Regular 10";
+    font:				"Sourcecode Pro Regular 14";
     show-icons:				true;
     icon-theme:				"Arc-X-D";
     display-drun:			"Apps";
@@ -19,7 +19,7 @@ window {
     background-color: @background;
     border:           0;
     padding:          30;
-    width:                          500px;
+    width:                          600px;
 }
 listview {
     lines:                          10;
