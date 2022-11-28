@@ -61,10 +61,15 @@ return packer.startup(function(use)
     end,
   })
   use("akinsho/toggleterm.nvim")
+
+  -- Comments
+  use('JoosepAlviste/nvim-ts-context-commentstring') -- jsx/tsx comment support
   use({
     "numToStr/Comment.nvim",
     config = function()
-      require("Comment").setup()
+      require('Comment').setup({
+        pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
+      })
     end,
   })
   use({ "kevinhwang91/nvim-ufo", requires = "kevinhwang91/promise-async" })
