@@ -1,6 +1,6 @@
 #!/bin/bash
 
-layout=$(hyprctl getoption general:layout | tail -1 | awk -F '"' '{print $2}')
+layout=$(hyprctl getoption general:layout | grep "str" | awk -F '"' '{print $2}')
 
 if [[ "$layout" == "dwindle" ]]
 then
