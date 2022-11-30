@@ -2,7 +2,7 @@ local actions = require("telescope.actions")
 
 require("telescope").setup({
   defaults = {
-    file_ignore_patterns = { "node_modules", ".lock" },
+    file_ignore_patterns = { ".lock" },
     file_sorter = require("telescope.sorters").get_fzy_sorter,
     prompt_prefix = "   ",
     color_devicons = true,
@@ -51,7 +51,7 @@ require("telescope").setup({
       "--column",
       "--hidden", -- search in hidden files
       "--smart-case",
-      "-u", -- thats the new thing
+      "--glob=!.git/",
     },
   },
   pickers = {
