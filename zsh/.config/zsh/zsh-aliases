@@ -68,10 +68,6 @@ alias gdw="git diff-words"
 # "git lg" alias for pretty git log - set and forget
 # git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --"
 
-# stdout to clipboard
-alias copy='xclip -selection clipboard'
-alias paste='xclip -selection clipboard -o'
-
 # open
 alias open="xdg-open"
 
