@@ -130,6 +130,13 @@ return packer.startup(function(use)
   use("p00f/nvim-ts-rainbow")
 
   -- Navigation
+  use({
+    "nvim-tree/nvim-tree.lua",
+    requires = {
+      "nvim-tree/nvim-web-devicons",
+    },
+    tag = "nightly"
+  })
   use("alexghergh/nvim-tmux-navigation")
   use("ThePrimeagen/harpoon")
   use({
