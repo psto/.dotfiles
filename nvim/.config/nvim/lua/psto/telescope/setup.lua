@@ -14,9 +14,6 @@ require("telescope").setup({
 
     mappings = {
       i = {
-        -- map actions.which_key to <C-h> (default: <C-/>)
-        -- actions.which_key shows the mappings for your picker,
-        -- e.g. git_{create, delete, ...}_branch for the git_branches picker
         ["<Esc>"] = actions.close,
         ["<C-c>"] = actions.close,
         ["<Tab>"] = actions.close,
@@ -93,10 +90,6 @@ require("telescope").setup({
     },
   },
   extensions = {
-    -- fzy_native = {
-    --     override_generic_sorter = false,
-    --     override_file_sorter = true,
-    -- }
     fzf = {
       fuzzy = true,
       override_generic_sorter = true,
@@ -106,14 +99,6 @@ require("telescope").setup({
     file_browser = {
       theme = "dropdown",
       previewer = false,
-      mappings = {
-        ["i"] = {
-          -- Ctrl+Enter creates new file
-        },
-        ["n"] = {
-          -- your custom normal mode mappings
-        },
-      },
     },
     ["ui-select"] = {
       require("telescope.themes").get_dropdown {}
@@ -121,7 +106,6 @@ require("telescope").setup({
   },
 })
 
--- require('telescope').load_extension('fzy_native')
 require("telescope").load_extension("fzf")
 require("telescope").load_extension("file_browser")
 require("telescope").load_extension("ui-select")
