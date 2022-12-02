@@ -63,12 +63,12 @@ return packer.startup(function(use)
   use("akinsho/toggleterm.nvim")
 
   -- Comments
-  use('JoosepAlviste/nvim-ts-context-commentstring') -- jsx/tsx comment support
+  use("JoosepAlviste/nvim-ts-context-commentstring") -- jsx/tsx comment support
   use({
     "numToStr/Comment.nvim",
     config = function()
-      require('Comment').setup({
-        pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
+      require("Comment").setup({
+        pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
       })
     end,
   })
@@ -80,9 +80,8 @@ return packer.startup(function(use)
     requires = { { "nvim-lua/plenary.nvim" } },
   })
   use({ "nvim-telescope/telescope-file-browser.nvim" })
-  -- use({ "nvim-telescope/telescope-fzy-native.nvim" })
   use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
-  use { 'nvim-telescope/telescope-ui-select.nvim' }
+  use { "nvim-telescope/telescope-ui-select.nvim" }
   use({
     "nvim-pack/nvim-spectre",
     requires = { { "nvim-lua/plenary.nvim" } },
@@ -103,7 +102,7 @@ return packer.startup(function(use)
   -- LSP
   use({
     "neovim/nvim-lspconfig", -- enable LSP
-    -- 'williamboman/nvim-lsp-installer'
+    -- "williamboman/nvim-lsp-installer"
   })
   use({ "https://git.sr.ht/~whynothugo/lsp_lines.nvim" })
 
