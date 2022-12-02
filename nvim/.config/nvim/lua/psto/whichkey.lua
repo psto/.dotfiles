@@ -100,7 +100,7 @@ local mappings = {
   a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Action" },
   b = { "<cmd>Telescope buffers<cr>", "Buffers" },
   c = { "<cmd>:bw<CR>", "Close Buffer" },
-  e = { "<cmd>lua _XPLR_TOGGLE()<CR>", "File Xplr" },
+  e = { "<cmd>NvimTreeToggle<CR>", "File Explorer" },
   q = { '<cmd>lua require("psto/functions").smart_quit()<CR>', "Quit" },
   },
   f = {
