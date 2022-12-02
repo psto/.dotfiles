@@ -130,6 +130,7 @@ return packer.startup(function(use)
   use("p00f/nvim-ts-rainbow")
 
   -- Navigation
+  use("alexghergh/nvim-tmux-navigation")
   use("ThePrimeagen/harpoon")
   use({
     "karb94/neoscroll.nvim",
