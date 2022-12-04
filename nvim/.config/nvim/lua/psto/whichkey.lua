@@ -187,6 +187,13 @@ local mappings = {
     w = { "<cmd>lua require('spectre').open_visual({select_word=true})<cr>", "Replace Word" },
     f = { "<cmd>lua require('spectre').open_file_search()<cr>", "Replace Buffer" },
   },
+  s = {
+    name = "System",
+    h = { "<cmd>lua _HTOP_TOGGLE()<CR>", "htop" },
+    n = { "<cmd>lua _INTERACTIVE_CHEATSHEET_TOGGLE()<CR>", "Navi" },
+    r = { "<cmd>lua _NODE_TOGGLE()<CR>", "Node REPL" },
+    x = { "<cmd>lua _XPLR_TOGGLE()<CR>", "File Xplr" },
+  }
 }
 
 whichkey.setup(setup)
