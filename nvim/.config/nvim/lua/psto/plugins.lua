@@ -101,6 +101,12 @@ return packer.startup(function(use)
 
   -- LSP
   use({
+    "williamboman/mason.nvim",
+    config = function()
+      require("mason").setup()
+    end,
+  })
+  use({
     "neovim/nvim-lspconfig", -- enable LSP
     -- "williamboman/nvim-lsp-installer"
   })
