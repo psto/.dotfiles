@@ -102,6 +102,9 @@ local mappings = {
   c = { "<cmd>:bw<CR>", "Close Buffer" },
   e = { "<cmd>NvimTreeToggle<CR>", "File Explorer" },
   q = { '<cmd>lua require("psto/functions").smart_quit()<CR>', "Quit" },
+  d = {
+    name = "Debug",
+    s = { "<cmd>lua require('psto.assistance').so_input()<CR>", "  StackOverflow" },
   },
   f = {
     name = "Find",
