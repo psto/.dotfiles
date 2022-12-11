@@ -165,6 +165,10 @@ return packer.startup(function(use)
   use("lukas-reineke/lsp-format.nvim")
   use("lukas-reineke/indent-blankline.nvim")
 
+  -- Debugging
+  use({ "jayp0521/mason-nvim-dap.nvim" })
+  use("mfussenegger/nvim-dap")
+  use("rcarriga/nvim-dap-ui")
   -- REST client
   use({
     "NTBBloodbath/rest.nvim",
