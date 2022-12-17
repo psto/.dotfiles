@@ -106,6 +106,7 @@ local mappings = {
     name = "Debug",
     b = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Breakpoint" },
     c = { "<cmd>lua require'dap'.continue()<cr>", "Continue" },
+    g = { "<cmd>lua require('zippy').insert_print()<CR>", "console log" },
     i = { "<cmd>lua require'dap'.step_into()<cr>", "Into" },
     o = { "<cmd>lua require'dap'.step_over()<cr>", "Over" },
     O = { "<cmd>lua require'dap'.step_out()<cr>", "Out" },

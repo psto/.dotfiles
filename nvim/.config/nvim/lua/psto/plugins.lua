@@ -171,6 +171,7 @@ return packer.startup(function(use)
   use({ "jayp0521/mason-nvim-dap.nvim" })
   use("mfussenegger/nvim-dap")
   use("rcarriga/nvim-dap-ui")
+  use("PatschD/zippy.nvim")
   -- REST client
   use({
     "NTBBloodbath/rest.nvim",
