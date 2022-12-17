@@ -4,7 +4,8 @@ setopt appendhistory        # append history (no overwriting)
 #setopt sharehistory         # share history across terminals
 setopt incappendhistory     # immediately append to the history file, not just when a term is killed
 setopt HIST_FIND_NO_DUPS    # show command once while stepping though history
-setopt HIST_IGNORE_ALL_DUPS # don't write duplicates to the history file
+# turn off HIST_IGNORE_ALL_DUPS if using ZSH_AUTOSUGGEST_STRATEGY=(history match_prev_cmd)
+# setopt HIST_IGNORE_ALL_DUPS # don't write duplicates to the history file
 
 # some useful options (man zshoptions)
 setopt autocd extendedglob nomatch menucomplete
@@ -119,18 +120,17 @@ xset r rate 210 40
 # Environment variables set everywhere
 export EDITOR="nvim"
 export TERMINAL="kitty"
-export BROWSER="brave-beta"
+# export BROWSER="brave-beta"
+export BROWSER="firefox-nightly"
 
 # bat theme
-export BAT_THEME="Enki-Tokyo-Night"
+export BAT_THEME="base16"
 
 # z
 eval "$(zoxide init zsh)"
 
-# mcfly init
-eval "$(mcfly init zsh)"
-export MCFLY_KEY_SCHEME=vim
-export MCFLY_DISABLE_MENU=TRUE
+# atuin
+eval "$(atuin init zsh)"
 
 # broot init
 source /home/piotr/.config/broot/launcher/bash/br
