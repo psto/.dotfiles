@@ -53,7 +53,7 @@ local on_attach = function(client, bufnr)
   buf_set_keymap("n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
   buf_set_keymap("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts)
   buf_set_keymap("n", "gr", "<cmd>Telescope lsp_references<CR>", opts)
-  buf_set_keymap("i", "gs", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+  buf_set_keymap("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
   buf_set_keymap("n", "<space>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
   buf_set_keymap("n", "<space>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", opts)
   buf_set_keymap("n", "<space>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", opts)
@@ -70,10 +70,11 @@ local on_attach = function(client, bufnr)
 
   local config = {
     virtual_text = false, -- disable annoying inline diagnostics
+    virtual_lines = false, -- { only_current_line = true }, -- lsp_lines for current line
     signs = {
       active = signs, -- show signs
     },
-    update_in_insert = true,
+    update_in_insert = false,
     underline = true,
     severity_sort = true,
     float = {
@@ -228,28 +229,20 @@ nvim_lsp.tailwindcss.setup({
   },
 })
 
--- Use a loop to conveniently call 'setup' on multiple servers and
--- map buffer local keybindings when the language server attaches
--- local servers = { "tsserver" }
--- for _, lsp in ipairs(servers) do
--- 	nvim_lsp[lsp].setup({
--- 		on_attach = on_attach,
--- 		capabilities = capabilities,
--- 		flags = {
--- 			debounce_text_changes = 150,
--- 		},
--- 	})
--- end
-
 -- tsserver config
--- nvim_lsp.tsserver.setup({
---   on_attach = on_attach,
---   capabilities = capabilities,
---   root_dir = nvim_lsp.util.root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git"),
---   flags = {
---     debounce_text_changes = 150,
---   },
--- })
+nvim_lsp.tsserver.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+  root_dir = nvim_lsp.util.root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git"),
+  settings = {
+    completions = {
+      completeFunctionCalls = true
+    }
+  },
+  flags = {
+    debounce_text_changes = 150,
+  },
+})
 
 -- jsonls config
 nvim_lsp.jsonls.setup({
@@ -322,7 +315,6 @@ nvim_lsp.volar.setup({
   capabilities = capabilities,
   cmd = { "vue-language-server", "--stdio" },
   filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json' },
-  -- filetypes = { "vue" },
   init_options = {
     typescript = {
       tsdk = "/home/piotr/.local/share/fnm/node-versions/v16.17.0/installation/lib/node_modules/typescript/lib/",
@@ -334,7 +326,9 @@ nvim_lsp.volar.setup({
 })
 
 -- eslint config
-nvim_lsp.eslint.setup({})
+nvim_lsp.eslint.setup({
+  root_dir = nvim_lsp.util.root_pattern(".eslintrc.json", ".eslintrc", ".eslintrc.js"),
+})
 
 -- cssls config
 nvim_lsp.cssls.setup({
