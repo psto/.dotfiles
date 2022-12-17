@@ -34,7 +34,6 @@ ksnip
 kubo
 lazygit
 lua-language-server
-mcfly
 ncdu
 newsboat
 nextcloud-client
