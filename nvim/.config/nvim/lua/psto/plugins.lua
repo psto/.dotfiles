@@ -172,6 +172,8 @@ return packer.startup(function(use)
   use("mfussenegger/nvim-dap")
   use("rcarriga/nvim-dap-ui")
   use("PatschD/zippy.nvim")
+  use({ 'michaelb/sniprun', run = 'bash ./install.sh' })
+
   -- REST client
   use({
     "NTBBloodbath/rest.nvim",
