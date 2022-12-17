@@ -1,6 +1,6 @@
 alacritty
 autotiling
-anki
+anki-bin
 beekeeper-studio-bin
 btop
 brave-beta-bin
@@ -30,6 +30,7 @@ rbenv
 rofi-lbonn-wayland
 scitopdf-git
 sioyek
+so-bin
 spotify
 spicetify-cli
 streamlink-twitch-gui-bin
@@ -37,6 +38,8 @@ swayhide
 timeshift
 ulauncher
 visual-studio-code-bin
+vscode-codicons-git
+wayab-git
 wdisplays
 wlogout
 ytfzf
