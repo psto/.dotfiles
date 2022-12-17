@@ -1,80 +1,56 @@
-/*all.css*/
 * {
   border: none;
   border-radius: 0;
   font-family: Hack Nerd Font;
-  font-size: 14px;
-  min-height: 0;
+  font-size: 13px;
+  padding: 0px 0px;
+  margin: 0px 0px;
 }
 
 window#waybar {
-  background: transparent;
-  /* background-color: #24283b; */
+  background-color: #1a1b26;
   color: #cfc9c2;
+  padding: 0px 0px;
+  margin: 0px 0px;
 }
 
 tooltip {
-  background-color: #24283b;
-  border-radius: 10px;
-  border-width: 2px;
   border-style: solid;
   border-color: #202020;
+  padding: 0px 0px;
 }
 
 #workspaces button {
-  padding: 5px;
+  padding: 0px 0px;
   color: #9d7cd8;
-  background-color: #24283b;
-  margin-right: 5px;
-  border-radius: 10px;
+  background-color: #1a1b26;
 }
 
 #workspaces button.active {
-  color: #ffffff;
-  background-color: #9d7cd8;
+  color: #cfc9c2;
 }
 
 #workspaces button.focused {
-  color: #ffffff;
-  background-color: #9d7cd8;
-  border-radius: 10px;
+  color: #cfc9c2;
 }
 
 #workspaces button.urgent {
   color: #0f0f0f;
   background-color: #bb9af7;
-  border-radius: 10px;
 }
 
 #workspaces button:hover {
-  background-color: #bb9af7;
-  color: #232323;
-  border-radius: 10px;
+  color: #ffffff;
 }
 
 #clock, #battery, #pulseaudio, #network, #cpu, #memory, #temperature, #disk, #workspaces, #tray, #custom-notification {
-  /* background-color: transparent; */
-  background-color: #24283b;
-  padding: 3px 10px;
-  margin: 3px 0px;
-}
-
-#tray {
-  background-color: #24283b;
-  border-radius: 10px;
-  margin-right: 4px;
-}
-
-#workspaces {
-  /* background-color: transparent; */
-  border-radius: 10px;
-  padding-right: 5px;
-  margin-left: 2px;
+  background-color: #1a1b26;
+  padding: 0px 10px;
+  margin: 0px 0px;
 }
 
 #clock {
   color: #b48ead;
-  border-radius: 10px;
 }
 
 #cpu {
@@ -91,27 +67,16 @@ tooltip {
 
 #network {
   color: #fab387;
-  border-radius: 10px 0px 0px 10px;
 }
 
 #pulseaudio {
   color: #588cd3;
 }
 
-#battery{
+#temperature {
+  color: #cfc9c2;
+}
+
+#battery {
   color:  #58d3a4;
-  border-radius: 0 10px 10px 0;
-  /* last indicator needs margin  */
-  margin-right: 2px; 
 }
-
-#custom-notification{
-	color: #ffffff;
-}
-
-#custom-player {
-	color: #cfc9c2;
-  margin-right: 10px;
-}
-
-
