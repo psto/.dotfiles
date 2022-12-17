@@ -114,7 +114,7 @@ local mappings = {
     l = { "<cmd>lua require'dap'.run_last()<cr>", "Last" },
     u = { "<cmd>lua require'dapui'.toggle()<cr>", "UI" },
     x = { "<cmd>lua require'dap'.terminate()<cr>", "Exit" },
-    s = { "<cmd>lua require('psto.assistance').so_input()<CR>", "  StackOverflow" },
+    s = { "<cmd>lua require('sniprun').run()<CR>", "SnipRun" },
   },
   f = {
     name = "Find",
@@ -205,6 +205,7 @@ local mappings = {
     h = { "<cmd>lua _HTOP_TOGGLE()<CR>", "htop" },
     n = { "<cmd>lua _INTERACTIVE_CHEATSHEET_TOGGLE()<CR>", "Navi" },
     r = { "<cmd>lua _NODE_TOGGLE()<CR>", "Node REPL" },
+    s = { "<cmd>lua require('psto.assistance').so_input()<CR>", "  StackOverflow" },
     x = { "<cmd>lua _XPLR_TOGGLE()<CR>", "File Xplr" },
   }
 }
