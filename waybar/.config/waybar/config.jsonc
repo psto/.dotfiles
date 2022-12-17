@@ -1,16 +1,16 @@
 {
   "position": "top",
-  "height": 15,
+  "layer": "top",
+  "height": 13,
   "modules-left": [
     "wlr/workspaces"
+    // "sway/workspaces"
   ],
   "modules-center": [
     "clock"
   ],
   "modules-right": [
     "tray",
-    "custom/notification",
-    "custom/player",
     "network",
     "cpu",
     "memory",
@@ -20,6 +20,7 @@
     "battery"
   ],
   "wlr/workspaces": {
+    // "sway/workspaces": {
     "disable-scroll": true,
     "all-outputs": true,
     "sort-by-name": false,
@@ -74,7 +75,7 @@
     "format": " {}%"
   },
   "temperature": {
-    "thermal-zone": 6,
+    "thermal-zone": 8,
     "critical-threshold": 75,
     "format": " {temperatureC}°C"
   },
@@ -84,7 +85,7 @@
     "path": "/"
   },
   "clock": {
-    "format": "<span color='#bf616a'></span> {:%H:%M %p}",
+    "format": "<span color='#bf616a'></span> {:%H:%M}",
     "format-alt": "<span color='#bf616a'></span> {:%a %b %d}"
   },
   "network": {
@@ -110,31 +111,5 @@
         ""
       ]
     }
-  },
-  "custom/notification": {
-    "tooltip": false,
-    "format": "{icon}",
-    "format-icons": {
-      "notification": " ",
-      "none": " ",
-      "dnd-notification": " <span foreground='red'><sup></sup></span>",
-      "dnd-none": " "
-    },
-    "return-type": "json",
-    "exec-if": "dunst",
-    "exec": "dunst",
-    // "exec-if": "which swaync-client",
-    // "exec": "swaync-client -swb",
-    // "on-click": "swaync-client -C",
-    // "on-click-right": "swaync-client -d -sw",
-    "escape": true
-  },
-  "custom/player": {
-    "exec": "$HOME/.config/waybar/scripts/player.sh",
-    "max-length": 40,
-    "format": " {}",
-    "on-click": "playerctl play-pause",
-    "on-double-click": "playerctl next",
-    "on-right-click": "on-click-right"
   },
 }
