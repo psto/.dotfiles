@@ -13,4 +13,6 @@
     <value type="string" value="file:///home/piotr/Desktop"/>
   </property>
   <property name="last-side-pane" type="string" value="ThunarShortcutsPane"/>
+  <property name="misc-middle-click-in-tab" type="bool" value="true"/>
+  <property name="misc-recursive-permissions" type="string" value="THUNAR_RECURSIVE_PERMISSIONS_NEVER"/>
 </channel>
