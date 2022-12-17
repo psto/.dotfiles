@@ -6,4 +6,4 @@
 
 # ignore files
 --ignore-file 
-~/.config/git/gitignore
+/home/piotr/.config/git/gitignore
