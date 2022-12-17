@@ -1,4 +1,5 @@
 ansible
+atuin
 autorandr
 bandwhich
 bat
@@ -43,6 +44,7 @@ pass-otp
 peek
 procs
 qbittorrent
+qutebrowser
 ranger
 redshift
 ripgrep
@@ -50,8 +52,10 @@ ripgrep-all
 rofi-calc
 scrot
 sd
+sddm
 signal-desktop
 slurp
+speedtest-cli
 stow
 surfraw
 swappy
@@ -80,6 +84,9 @@ zsh
 
 sway
 swaybg
+swayidle
+swaylock
+brightnessctl
 xorg-xwayland
 xorg-xlsclients
 qt5-wayland
