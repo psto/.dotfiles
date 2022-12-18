@@ -7,9 +7,14 @@ local l_status_ok, lsp_lines = pcall(require, "lsp_lines")
 if not l_status_ok then
   return
 end
+local f_status_ok, fidget = pcall(require, "fidget")
+if not f_status_ok then return end
 
 -- lsp_lines
 lsp_lines.setup()
+
+-- Turn on lsp status information
+fidget.setup()
 
 -- async formatter
 require("lsp-format").setup({})

@@ -108,7 +108,9 @@ return packer.startup(function(use)
   })
   use({
     "neovim/nvim-lspconfig", -- enable LSP
-    -- "williamboman/nvim-lsp-installer"
+    requires = {
+      'j-hui/fidget.nvim', -- LSP status updates
+    }
   })
   use({ "https://git.sr.ht/~whynothugo/lsp_lines.nvim" })
 
