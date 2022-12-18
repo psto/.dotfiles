@@ -1,14 +1,17 @@
 local status_ok, nvim_lsp = pcall(require, "lspconfig")
-if not status_ok then
-  return
-end
+if not status_ok then return end
 
 local l_status_ok, lsp_lines = pcall(require, "lsp_lines")
-if not l_status_ok then
-  return
-end
+if not l_status_ok then return end
+
 local f_status_ok, fidget = pcall(require, "fidget")
 if not f_status_ok then return end
+
+local lf_status_ok, lsp_format = pcall(require, "lsp-format")
+if not lf_status_ok then return end
+
+local n_status_ok, navic = pcall(require, "nvim-navic")
+if not n_status_ok then return end
 
 -- lsp_lines
 lsp_lines.setup()
@@ -17,13 +20,10 @@ lsp_lines.setup()
 fidget.setup()
 
 -- async formatter
-require("lsp-format").setup({})
+lsp_format.setup()
 
--- navic
-local navic = require("nvim-navic")
-navic.setup {
-  separator = "  ",
-}
+-- navic for winbar
+navic.setup({ separator = "  " })
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
