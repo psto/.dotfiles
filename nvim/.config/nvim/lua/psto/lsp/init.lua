@@ -397,43 +397,27 @@ nvim_lsp.bashls.setup({})
 
 -- sumneko config
 -- install on arch:$ sudo pacman -S lua-language-server
--- set the path to the sumneko installation
--- local sumneko_root_path = vim.fn.stdpath("cache") .. "/lspconfig/sumneko_lua/lua-language-server"
--- set to:$ which lua-language-server
--- local sumneko_binary = "/usr/bin/lua-language-server"
+local runtime_path = vim.split(package.path, ';')
+table.insert(runtime_path, 'lua/?.lua')
+table.insert(runtime_path, 'lua/?/init.lua')
 
-local runtime_path = vim.split(package.path, ";")
-table.insert(runtime_path, "lua/?.lua")
-table.insert(runtime_path, "lua/?/init.lua")
-
-nvim_lsp.sumneko_lua.setup({
-  -- cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
-  cmd = { "lua-language-server" },
+require('lspconfig').sumneko_lua.setup {
   on_attach = on_attach,
+  capabilities = capabilities,
   settings = {
     Lua = {
       runtime = {
-        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-        version = "LuaJIT",
-        -- Setup your lua path
-        -- path = runtime_path,
+        version = 'LuaJIT', -- Tell the language server which version of Lua you're using
+        path = runtime_path, -- Setup your lua path
       },
       diagnostics = {
-        -- Get the language server to recognize the `vim` global
-        globals = { "vim" },
+        globals = { 'vim' },
       },
       workspace = {
-        -- Make the server aware of Neovim runtime files
-        library = vim.api.nvim_get_runtime_file("", true),
+        library = vim.api.nvim_get_runtime_file('', true),
         checkThirdParty = false,
       },
-      format = {
-        enable = true,
-      },
-      -- Do not send telemetry data containing a randomized but unique identifier
-      telemetry = {
-        enable = false,
-      },
+      telemetry = { enable = false }, -- Do not send telemetry
     },
   },
-})
+}
