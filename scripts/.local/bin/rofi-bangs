@@ -193,8 +193,8 @@ COMMANDS["anki"]="anki"
 LABELS["anki"]="📇"
 
 # Brave Beta browser
-COMMANDS["brave-beta"]="brave-beta-gpu"
-LABELS["brave-beta"]="🦁"
+COMMANDS["brave"]="brave-beta"
+LABELS["brave"]="🦁"
 
 # Beekeeper Studio
 COMMANDS["beekeeper-studio"]="beekeeper-studio"
@@ -221,8 +221,8 @@ COMMANDS["firefox"]="~/.local/bin/firefox-way"
 LABELS["firefox"]="🦊"
 
 # Firefox Developer
-COMMANDS["firefox-developer-edition"]="firefox-nightly"
-LABELS["firefox-developer-edition"]="🐺"
+COMMANDS["firefox-nightly"]="firefox-nightly"
+LABELS["firefox-nightly"]="🐺"
 
 # Galculator
 COMMANDS["galculator"]="galculator"
@@ -243,6 +243,10 @@ LABELS["ipfs-desktop"]="🌐"
 # KeepassXC
 COMMANDS["keepassxc"]="keepassxc"
 LABELS["keepassxc"]="🔐"
+
+# Mailspring
+COMMANDS["mailspring"]='mailspring'
+LABELS["mailspring"]="📧"
 
 # Morgen
 COMMANDS["morgen"]="morgen"
