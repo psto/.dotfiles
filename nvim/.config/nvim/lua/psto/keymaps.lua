@@ -73,10 +73,6 @@ keymap("n", "<leader>t", "<cmd>:ToggleTerm<CR>", opts)
 -- REST client
 keymap("n", "<M-r>", "<Plug>RestNvim", opts)
 
--- nvim-ufo
-vim.keymap.set("n", "zR", require("ufo").openAllFolds)
-vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
-
 -- harpoon
 keymap(
   "n",
