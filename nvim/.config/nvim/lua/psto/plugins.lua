@@ -72,24 +72,17 @@ return packer.startup(function(use)
       })
     end,
   })
-  use({ "kevinhwang91/nvim-ufo", requires = "kevinhwang91/promise-async" })
+  -- use({ "kevinhwang91/nvim-ufo", requires = "kevinhwang91/promise-async" })
 
   -- Search
-  use({
-    "nvim-telescope/telescope.nvim",
-    requires = { { "nvim-lua/plenary.nvim" } },
-  })
+  use({ "nvim-telescope/telescope.nvim", requires = "nvim-lua/plenary.nvim" })
   use({ "nvim-telescope/telescope-file-browser.nvim" })
   use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
   use { "nvim-telescope/telescope-ui-select.nvim" }
-  use({
-    "nvim-pack/nvim-spectre",
-    requires = { { "nvim-lua/plenary.nvim" } },
-  })
+  use({ "nvim-pack/nvim-spectre", requires = "nvim-lua/plenary.nvim" })
 
   -- Git
-  -- Async signs!
-  use({ "lewis6991/gitsigns.nvim" })
+  use({ "lewis6991/gitsigns.nvim" }) -- Async signs!
 
   -- Pretty symbols
   use({
@@ -158,13 +151,9 @@ return packer.startup(function(use)
   use("folke/which-key.nvim")
 
   -- Diagnostics
-  use({
-    "folke/trouble.nvim",
-    requires = "kyazdani42/nvim-web-devicons",
-  })
+  use({ "folke/trouble.nvim", requires = "kyazdani42/nvim-web-devicons" })
 
   -- Formatting
-  -- use("godlygeek/tabular")
   use("onsails/lspkind-nvim")
   use("lukas-reineke/lsp-format.nvim")
   use("lukas-reineke/indent-blankline.nvim")
@@ -177,10 +166,7 @@ return packer.startup(function(use)
   use({ 'michaelb/sniprun', run = 'bash ./install.sh' })
 
   -- REST client
-  use({
-    "NTBBloodbath/rest.nvim",
-    requires = { "nvim-lua/plenary.nvim" },
-  })
+  use({ "NTBBloodbath/rest.nvim", requires = "nvim-lua/plenary.nvim" })
 
   -- Themes
   use("folke/tokyonight.nvim")
@@ -190,6 +176,7 @@ return packer.startup(function(use)
     "nvim-lualine/lualine.nvim",
     requires = { "kyazdani42/nvim-web-devicons", opt = true },
   })
+  use({ "SmiteshP/nvim-navic", requires = "neovim/nvim-lspconfig" })
   use({
     "folke/noice.nvim",
     requires = {
@@ -199,10 +186,7 @@ return packer.startup(function(use)
   })
 
   -- Starting screen
-  use({
-    "goolord/alpha-nvim",
-    requires = { "kyazdani42/nvim-web-devicons" },
-  })
+  use({ "goolord/alpha-nvim", requires = "kyazdani42/nvim-web-devicons" })
 
   -- Pretty colors for css, tailwindcss
   use({
