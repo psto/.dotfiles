@@ -44,10 +44,9 @@ opt.breakindent = true
 opt.showbreak = string.rep(" ", 3) -- Make it so that long lines wrap smartly
 opt.linebreak = true
 
--- opt.foldmethod = "marker"
--- opt.foldlevel = 0
--- opt.foldlevelstart = 99 --- Expand all folds by default
--- opt.foldtext = "CustomFold()" --- Emit custom function for foldtext
+opt.foldmethod = "marker"
+opt.foldlevel = 0
+opt.foldlevelstart = 99 --- Expand all folds by default
 opt.modelines = 1
 
 opt.belloff = "all" -- Just turn the dang bell off
@@ -93,12 +92,6 @@ g.completion_trigger_character = "."
 --
 opt.colorcolumn = "80" -- hint to keep lines short
 opt.termguicolors = true
-
--- nvim-ufo folds
-vim.o.foldcolumn = "1"
-vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
-vim.o.foldlevelstart = 99
-vim.o.foldenable = true
 
 -- format on save and quit
 -- cmd([[cabbrev wq execute "lua vim.lsp.buf.format()" <bar> wq]])
