@@ -142,97 +142,18 @@ capabilities.textDocument.foldingRange = {
 }
 require("ufo").setup()
 
-nvim_lsp.tailwindcss.setup({
-  capabilities = capabilities,
-  on_attach = on_attach,
-  cmd = { "tailwindcss-language-server", "--stdio" },
-  filetypes = {
-    "aspnetcorerazor",
-    "astro",
-    "astro-markdown",
-    "blade",
-    "django-html",
-    "edge",
-    "eelixir",
-    "ejs",
-    "erb",
-    "eruby",
-    "gohtml",
-    "haml",
-    "handlebars",
-    "hbs",
-    "html",
-    "html-eex",
-    "jade",
-    "leaf",
-    "liquid",
-    -- "markdown",
-    "mdx",
-    "mustache",
-    "njk",
-    "nunjucks",
-    "php",
-    "razor",
-    "slim",
-    "twig",
-    "css",
-    "less",
-    "postcss",
-    "sass",
-    "scss",
-    "stylus",
-    "sugarss",
-    "javascript",
-    "javascriptreact",
-    "reason",
-    "rescript",
-    "typescript",
-    "typescriptreact",
-    "vue",
-    "svelte",
-  },
-  init_options = {
-    userLanguages = {
-      eelixir = "html-eex",
-      eruby = "erb",
+-- Use a loop to conveniently call 'setup' on multiple servers and
+-- map buffer local keybindings when the language server attaches
+local servers = { "ansiblels", "astro", "bashls", "gopls", "marksman", "prismals", "svelte", "solidity_ls" }
+for _, lsp in ipairs(servers) do
+  nvim_lsp[lsp].setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+    flags = {
+      debounce_text_changes = 150,
     },
-  },
-  on_new_config = function(new_config)
-    if not new_config.settings then
-      new_config.settings = {}
-    end
-    if not new_config.settings.editor then
-      new_config.settings.editor = {}
-    end
-    if not new_config.settings.editor.tabSize then
-      -- set tab size for hover
-      new_config.settings.editor.tabSize = vim.lsp.util.get_effective_tabstop()
-    end
-  end,
-  settings = {
-    tailwindCSS = {
-      lint = {
-        cssConflict = "warning",
-        invalidApply = "error",
-        invalidConfigPath = "error",
-        invalidScreen = "error",
-        invalidTailwindDirective = "error",
-        invalidVariant = "error",
-        recommendedVariantOrder = "warning",
-      },
-      experimental = {
-        classRegex = {
-          "tw`([^`]*)",
-          'tw="([^"]*)',
-          'tw={"([^"}]*)',
-          "tw\\.\\w+`([^`]*)",
-          "tw\\(.*?\\)`([^`]*)",
-        },
-      },
-      validate = true,
-    },
-  },
-})
+  })
+end
 
 -- tsserver config
 nvim_lsp.tsserver.setup({
@@ -246,6 +167,66 @@ nvim_lsp.tsserver.setup({
   },
   flags = {
     debounce_text_changes = 150,
+  },
+})
+
+-- volar config
+nvim_lsp.volar.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+  cmd = { "vue-language-server", "--stdio" },
+  filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json' },
+  init_options = {
+    typescript = {
+      tsdk = "/home/piotr/.local/share/fnm/node-versions/v16.17.0/installation/lib/node_modules/typescript/lib/",
+    },
+  },
+  flags = {
+    debounce_text_changes = 150,
+  },
+})
+
+-- cssls config
+nvim_lsp.cssls.setup({
+  capabilities = capabilities,
+  filetypes = { "css", "scss", "less", "vue" },
+})
+
+-- deno config
+nvim_lsp.denols.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+  root_dir = nvim_lsp.util.root_pattern("deno.json", "deno.jsonc"),
+  single_file_support = false,
+})
+
+-- eslint config
+nvim_lsp.eslint.setup({
+  capabilities = capabilities,
+  root_dir = nvim_lsp.util.root_pattern(".eslintrc.json", ".eslintrc", ".eslintrc.js"),
+})
+
+-- graphql config
+nvim_lsp.graphql.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+  cmd = { "graphql-lsp", "server", "-m", "stream" },
+  -- filetypes = { "graphql", "typescriptreact", "javascriptreact", "vue" },
+  flags = {
+    debounce_text_changes = 150,
+  },
+})
+
+-- rust config
+nvim_lsp.rls.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+  settings = {
+    rust = {
+      unstable_features = true,
+      build_on_save = false,
+      all_features = true,
+    },
   },
 })
 
@@ -314,92 +295,6 @@ nvim_lsp.jsonls.setup({
   },
 })
 
--- volar config
-nvim_lsp.volar.setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-  cmd = { "vue-language-server", "--stdio" },
-  filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json' },
-  init_options = {
-    typescript = {
-      tsdk = "/home/piotr/.local/share/fnm/node-versions/v16.17.0/installation/lib/node_modules/typescript/lib/",
-    },
-  },
-  flags = {
-    debounce_text_changes = 150,
-  },
-})
-
--- eslint config
-nvim_lsp.eslint.setup({
-  root_dir = nvim_lsp.util.root_pattern(".eslintrc.json", ".eslintrc", ".eslintrc.js"),
-})
-
--- cssls config
-nvim_lsp.cssls.setup({
-  capabilities = capabilities,
-  filetypes = { "css", "scss", "less", "vue" },
-})
-
--- deno config
-nvim_lsp.denols.setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-  root_dir = nvim_lsp.util.root_pattern("deno.json", "deno.jsonc"),
-  single_file_support = false,
-})
-
--- astro config
-nvim_lsp.astro.setup({})
-
--- svelte config
--- nvim_lsp.svelte.setup({})
-
--- prismals config
-nvim_lsp.prismals.setup({})
-
--- graphql config
--- nvim_lsp.graphql.setup({
--- 	on_attach = on_attach,
--- 	capabilities = capabilities,
--- 	cmd = { "graphql-lsp", "server", "-m", "stream" },
--- 	-- filetypes = { "graphql", "typescriptreact", "javascriptreact", "vue" },
--- 	flags = {
--- 		debounce_text_changes = 150,
--- 	},
--- })
-
--- go config
-nvim_lsp.gopls.setup({})
-
--- rust config
-nvim_lsp.rls.setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-  settings = {
-    rust = {
-      unstable_features = true,
-      build_on_save = false,
-      all_features = true,
-    },
-  },
-})
-
--- solidity config
--- nvim_lsp.solidity_ls.setup({})
-
--- ansible config
-nvim_lsp.ansiblels.setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-})
-
--- markdown config
-nvim_lsp.marksman.setup {}
-
--- bashls config
-nvim_lsp.bashls.setup({})
-
 -- sumneko config
 -- install on arch:$ sudo pacman -S lua-language-server
 local runtime_path = vim.split(package.path, ';')
@@ -426,3 +321,57 @@ require('lspconfig').sumneko_lua.setup {
     },
   },
 }
+
+nvim_lsp.tailwindcss.setup({
+  capabilities = capabilities,
+  on_attach = on_attach,
+  cmd = { "tailwindcss-language-server", "--stdio" },
+  filetypes = {
+    "aspnetcorerazor", "astro", "astro-markdown", "blade", "django-html", "edge", "eelixir", "ejs", "erb", "eruby",
+    "gohtml", "haml", "handlebars", "hbs", "html", "html-eex", "jade", "leaf", "liquid", "mdx", "mustache", "njk",
+    "nunjucks", "php", "razor", "slim", "twig", "css", "less", "postcss", "sass", "scss", "stylus", "sugarss",
+    "javascript", "javascriptreact", "reason", "rescript", "typescript", "typescriptreact", "vue", "svelte",
+    -- "markdown",
+  },
+  init_options = {
+    userLanguages = {
+      eelixir = "html-eex",
+      eruby = "erb",
+    },
+  },
+  on_new_config = function(new_config)
+    if not new_config.settings then
+      new_config.settings = {}
+    end
+    if not new_config.settings.editor then
+      new_config.settings.editor = {}
+    end
+    if not new_config.settings.editor.tabSize then
+      -- set tab size for hover
+      new_config.settings.editor.tabSize = vim.lsp.util.get_effective_tabstop()
+    end
+  end,
+  settings = {
+    tailwindCSS = {
+      lint = {
+        cssConflict = "warning",
+        invalidApply = "error",
+        invalidConfigPath = "error",
+        invalidScreen = "error",
+        invalidTailwindDirective = "error",
+        invalidVariant = "error",
+        recommendedVariantOrder = "warning",
+      },
+      experimental = {
+        classRegex = {
+          "tw`([^`]*)",
+          'tw="([^"]*)',
+          'tw={"([^"}]*)',
+          "tw\\.\\w+`([^`]*)",
+          "tw\\(.*?\\)`([^`]*)",
+        },
+      },
+      validate = true,
+    },
+  },
+})
