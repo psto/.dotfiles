@@ -8,7 +8,6 @@ broot
 calibre
 cmatrix
 dash
-diff-so-fancy
 docker
 docker-compose
 exa
@@ -21,6 +20,7 @@ fzf
 gammastep
 ghostscript
 gifski
+git-delta
 github-cli
 gpg-tui
 graphicsmagick
