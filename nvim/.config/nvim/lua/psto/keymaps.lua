@@ -59,8 +59,8 @@ keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
 -- Jump to a quickfix/location list entry
-keymap("n", "[q", ":cnext<CR>zz", opts)
-keymap("n", "]q", ":cprev<CR>zz", opts)
+keymap("n", "[q", ":cprev<CR>zz", opts)
+keymap("n", "]q", ":cnext<CR>zz", opts)
 
 -- Diagnostics
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
@@ -71,7 +71,7 @@ keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
 keymap("n", "<leader>t", "<cmd>:ToggleTerm<CR>", opts)
 
 -- REST client
-key_map("n", "<M-r>", "<Plug>RestNvim", opts)
+keymap("n", "<M-r>", "<Plug>RestNvim", opts)
 
 -- nvim-ufo
 vim.keymap.set("n", "zR", require("ufo").openAllFolds)
