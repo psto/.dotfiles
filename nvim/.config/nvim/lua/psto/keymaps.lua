@@ -45,8 +45,11 @@ keymap("n", "<c-s>", ":w<CR>", { noremap = false })
 keymap("v", "J", ":m '>+1<CR>gv=gv", { noremap = false })
 keymap("v", "K", ":m '<-2<CR>gv=gv", { noremap = false })
 
--- Don't yank on visual paste
-keymap("v", "<leader>p", "\"_dP", opts)
+-- Select entire line wihtout new line character
+keymap("n", "<S-b>", "0vg_", opts)
+
+-- Don't yank on paste
+keymap("x", "P", "\"_dP", opts)
 
 -- Don't yank on delete char
 keymap("n", "x", '"_x', opts)
