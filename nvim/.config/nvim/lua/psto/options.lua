@@ -84,22 +84,14 @@ g.netrw_liststyle = 3 -- set tree view type
 -- g.netrw_list_hide=netrw_gitignore#Hide()
 -- g.netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
 
--- do I need this?
-g.completion_trigger_character = "."
-
 --
 -- COLOR
 --
 opt.colorcolumn = "80" -- hint to keep lines short
 opt.termguicolors = true
 
--- format on save and quit
--- cmd([[cabbrev wq execute "lua vim.lsp.buf.format()" <bar> wq]])
+-- async format on save and quit with lsp-format
 cmd [[cabbrev wq execute "Format sync" <bar> wq]]
-
--- eslint format on save
-cmd("autocmd BufWritePre *.tsx,*.ts,*.jsx,*.js EslintFixAll")
-cmd([[autocmd BufWritePre *.astro,*.prisma execute ':lua vim.lsp.buf.format()']])
 
 -- approrpiately highlight codefences returned from denols
 g.markdown_fenced_languages = { "ts=typescript" }
