@@ -4,30 +4,41 @@
 # Usage: launch [FILE...]
 # Dependencies: file
 
-# install i3-swallow (works with sway): pip3 install --user i3-swallow 
+# Install i3-swallow (works with sway): pip3 install --user i3-swallow 
 # or devour (doesn't work with sway): yay -S --noconfirm devour
 # and replace "swallow" with "devour"
 # or swayhide for sway: yay -S --noconfirm swayhide
+
+# Assign launcher based on session & desktop
+if [ "$XDG_SESSION_TYPE" = "wayland" ]; then                         
+  if [ "$XDG_CURRENT_DESKTOP" = "sway" ]; then
+    # Sway launcher
+    launcher=swayhide
+  else
+    # No launcher if desktop has native window swallowing e.g. hyprland
+    launcher="" 
+  fi
+else
+  # Xorg launcher
+  launcher=swallow
+fi              
+
 case $(file --mime-type "$@" -bL) in
    # Check for the mimetype of your file (This is POSIX regex)
    video/* | audio/* | image/gif)
       # Launch using your favorite application
-      # swallow mpv --gpu-context=wayland "$@"
-      swayhide mpv --gpu-context=wayland "$@"
+      $launcher mpv "$@"
       ;;
    application/pdf | application/postscript)
-      # swallow zathura "$@"
-      swayhide zathura "$@"
+      $launcher zathura "$@" 
       ;;
    application/x-rar)
-      # swallow zathura "$@"
-      swayhide zathura "$@"
+      $launcher zathura "$@" 
       ;;
    image/jpeg | image/png)
-      # swallow imv "$@"
-      swayhide imv "$@"
+      $launcher imv-folder "$@"
       ;;
-   text/plain | text/markdown | text/html)
+   text/plain | text/markdown | text/html | text/*)
       nvim "$@"
       ;;
    *) exit 1 ;;
