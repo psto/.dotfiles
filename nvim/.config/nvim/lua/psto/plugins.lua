@@ -191,8 +191,11 @@ return packer.startup(function(use)
     requires = { "kyazdani42/nvim-web-devicons", opt = true },
   })
   use({
-    "SmiteshP/nvim-navic",
-    requires = "neovim/nvim-lspconfig"
+    "folke/noice.nvim",
+    requires = {
+      "MunifTanjim/nui.nvim",
+      "rcarriga/nvim-notify",
+    }
   })
 
   -- Starting screen
