@@ -55,3 +55,6 @@ autocmd("FileType", {
     vim.opt_local.spell = true
   end,
 })
+
+-- run spotlight plugin
+autocmd("CursorHold", { callback = require('spotlight').run })

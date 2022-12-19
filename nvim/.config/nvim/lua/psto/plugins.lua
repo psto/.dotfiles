@@ -128,6 +128,12 @@ return packer.startup(function(use)
     run = ":TSUpdate",
   })
   use("p00f/nvim-ts-rainbow")
+  use({
+    "David-Kunz/spotlight", -- highlight current identifier under the cursor
+    config = function()
+      require('spotlight').run()
+    end,
+  })
 
   -- Navigation
   use({
