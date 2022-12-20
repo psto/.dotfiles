@@ -1,6 +1,9 @@
+local status_ok, telescope = pcall(require, "telescope")
+if not status_ok then return end
+
 local actions = require("telescope.actions")
 
-require("telescope").setup({
+telescope.setup({
   defaults = {
     file_ignore_patterns = { ".lock" },
     file_sorter = require("telescope.sorters").get_fzy_sorter,
@@ -102,13 +105,13 @@ require("telescope").setup({
     },
     ["ui-select"] = {
       require("telescope.themes").get_dropdown {}
-    }
+    },
   },
 })
 
-require("telescope").load_extension("fzf")
-require("telescope").load_extension("file_browser")
-require("telescope").load_extension("ui-select")
+telescope.load_extension("fzf")
+telescope.load_extension("file_browser")
+telescope.load_extension("ui-select")
 
 local M = {}
 M.search_dotfiles = function()
