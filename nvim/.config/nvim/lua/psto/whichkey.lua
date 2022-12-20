@@ -133,6 +133,7 @@ local mappings = {
     R = { "<cmd>Telescope registers<cr>", "Registers" },
     s = { "<cmd>Telescope spell_suggest theme=get_cursor<CR>", "Spelling" },
     t = { "<cmd>Telescope live_grep<cr>", "Find Text" },
+    u = { "<cmd>Telescope undo<cr>", "Undo" },
     w = { "<cmd>Telescope grep_string<cr>", "Find Word" },
   },
   g = {

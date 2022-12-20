@@ -77,7 +77,8 @@ return packer.startup(function(use)
   use({ "nvim-telescope/telescope.nvim", requires = "nvim-lua/plenary.nvim" })
   use({ "nvim-telescope/telescope-file-browser.nvim" })
   use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
-  use { "nvim-telescope/telescope-ui-select.nvim" }
+  use({ "nvim-telescope/telescope-ui-select.nvim" })
+  use({ "debugloop/telescope-undo.nvim" })
   use({ "nvim-pack/nvim-spectre", requires = "nvim-lua/plenary.nvim" })
 
   -- Git
