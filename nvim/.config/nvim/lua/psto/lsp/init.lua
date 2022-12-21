@@ -150,11 +150,10 @@ nvim_lsp.tsserver.setup({
 nvim_lsp.volar.setup({
   on_attach = on_attach,
   capabilities = capabilities,
-  cmd = { "vue-language-server", "--stdio" },
   filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json' },
   init_options = {
     typescript = {
-      tsdk = "/home/piotr/.local/share/fnm/node-versions/v16.17.0/installation/lib/node_modules/typescript/lib/",
+      tsdk = "/home/piotr/.local/share/npm/lib/node_modules/typescript/lib",
     },
   },
   flags = {
