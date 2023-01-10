@@ -15,7 +15,7 @@ set $right l
 set $term footclient
 # set $browser ~/.local/bin/brave-beta-gpu
 set $browser /usr/bin/firefox-nightly
-set $wallpaper /home/piotr/public/pictures/wallpapers/free-fall-2560×1440-tokyo-night.jpg
+set $wallpaper /home/piotr/public/pictures/wallpapers/simon-stalenhag00.jpg
 
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
@@ -38,9 +38,9 @@ output HDMI-A-1 position 1366,0
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
 exec swayidle -w \
-         timeout 300 'swaylock -e -f -c 24283b -i $wallpaper -t' \
-         timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-         before-sleep 'swaylock -f -c 24283b'
+        timeout 300 'swaylock -e -f -c 24283b -i $wallpaper -s fill' \
+        timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+        before-sleep 'swaylock -f -c 24283b'
 
 #################################################################
 ## Device Configuration
@@ -131,7 +131,7 @@ bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 
 # Lock screen
 bindsym $mod+Shift+z exec swayidle -w  \
-  timeout 1 'swaylock -e -f -c 000000 -i $wallpaper -t' \
+  timeout 1 'swaylock -e -f -c 000000 -i $wallpaper -s fill' \
   timeout 2 'swaymsg "output * dpms off"' \
   resume 'swaymsg "output * dpms on"; pkill -nx swayidle'
 
@@ -278,10 +278,9 @@ bindsym $mod+r mode "resize"
 gaps inner 10
 client.focused #9d7cd8 #9d7cd8 #9d7cd8 #9d7cd8 #9d7cd8
 default_border pixel 1
-# output * bg $wallpaper fill
+output * bg $wallpaper fill
 # output * bg #24283b solid_color
-# exec_always sleep 5 && wayab -f 10 -o HDMI-A-1:/home/piotr/public/pictures/wallpapers/video-wallpapers/gutty:fill:0.5,1.0 -o eDP-1:/home/piotr/public/pictures/wallpapers/video-wallpapers/gutty:fill:0.5,1.0 
-exec_always sleep 4 && wayab -f 10 -o "HDMI-A-1:/home/piotr/public/pictures/wallpapers/video-wallpapers/unknown01-tokyo:fill:0.5,1.0" -o "eDP-1:/home/piotr/public/pictures/wallpapers/video-wallpapers/unknown01-tokyo:fill:0.5,1.0" 
+# exec_always sleep 4 && wayab -f 10 -o "HDMI-A-1:/home/piotr/public/pictures/wallpapers/video-wallpapers/unknown01-tokyo:fill:0.5,1.0" -o "eDP-1:/home/piotr/public/pictures/wallpapers/video-wallpapers/unknown01-tokyo:fill:0.5,1.0" 
 # Status Bar - Read `man 5 sway-bar` for more information
 bar {
     swaybar_command waybar
