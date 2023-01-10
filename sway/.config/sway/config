@@ -332,5 +332,14 @@ for_window [window_role = "bubble"]             floating enable
 for_window [window_role = "dialog"]             floating enable
 for_window [window_role = "task_dialog"]        floating enable
 for_window [window_type = "menu"]               floating enable
+for_window [title="^Picture-in-Picture$"] { 
+  floating enable 
+  border none
+  sticky toggle
+  resize set height 280px
+  resize set width 500px
+  move position 100ppt 0 
+  move left 500px 
+} 
 
 include /etc/sway/config.d/*
