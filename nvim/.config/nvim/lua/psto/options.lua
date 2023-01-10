@@ -80,9 +80,9 @@ opt.fillchars = { eob = "~" }
 g.netrw_banner = 0 -- remove the directory banner
 g.netrw_winsize = 25 -- set width of the directory explorer to 25% of the page
 g.netrw_liststyle = 3 -- set tree view type
--- hide gitignore
--- g.netrw_list_hide=netrw_gitignore#Hide()
--- g.netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
+-- avoid avoid loading netrw in favour of a tree plugin
+g.loaded_netrwPlugin = 1
+g.loaded_netrw = 1
 
 --
 -- COLOR
