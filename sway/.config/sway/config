@@ -97,11 +97,9 @@ bindsym $mod+w exec $browser
 bindsym $mod+q kill
 bindsym --release Control+Mod1+Delete exec xkill
 
-
 # Start your launcher
 # bindsym $mod+d exec $menu
 bindsym $mod+d exec ~/.local/bin/rofi-bangs
-
 
 # Drag floating windows by holding down $mod and left mouse button.
 # Resize them with right mouse button + $mod.
@@ -140,6 +138,9 @@ bindsym $mod+Shift+z exec swayidle -w  \
 # Passwords
 bindsym $mod+p exec ~/.local/bin/passrofi
 
+# Pin toggle floating windows
+bindsym $mod+Shift+s sticky toggle
+
 # Screenshots
 bindsym $mod+shift+P exec slurp | grim -g - - | wl-copy && wl-paste > $(xdg-user-dir PICTURES)/$(date +'%Y-%m-%d-%H%M%S_grim.png')
 
@@ -148,6 +149,9 @@ bindsym $mod+o exec ~/.local/bin/rofi-search
 
 # Rofi beats
 bindsym $mod+m exec ~/.local/bin/rofi-beats
+
+# Xplr
+bindsym $mod+e exec alacritty --class floating -e xplr
 
 #
 # Moving around:
