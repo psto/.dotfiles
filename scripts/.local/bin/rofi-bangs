@@ -153,6 +153,9 @@ LABELS["dev"]="💻"
 # DuckDuckGo
 COMMANDS["d"]='$browser https://duckduckgo.com/?q="${input}"'
 LABELS["d"]="🦆"
+# GitHub
+COMMANDS["gh"]='$browser https://github.com/search?q="${input}"'
+LABELS["gh"]="🐙"
 # Google
 COMMANDS["g"]='$browser www.google.com/search?q="${input}"'
 LABELS["g"]="🕵️"
@@ -165,6 +168,9 @@ LABELS["imdb"]="🎥"
 # Tmdb search
 COMMANDS["tmdb"]='$browser https://www.themoviedb.org/search?query="${input}"'
 LABELS["tmdb"]="🎥"
+# Twitter search
+COMMANDS["tw"]='$browser https://twitter.com/search?q="${input}"'
+LABELS["tw"]="🎥"
 # Wikipedia search
 COMMANDS["wi"]='$browser https://en.m.wikipedia.org/wiki/Special:Search/"${input}"'
 LABELS["wi"]="📚"
@@ -273,7 +279,7 @@ COMMANDS["peek"]="peek"
 LABELS["peek"]="👀"
 
 # Signal
-COMMANDS["signal-desktop"]="signal-desktop"
+COMMANDS["signal-desktop"]="export LANG=pl_PL.UTF-8 && signal-desktop --use-tray-icon --start-in-tray"
 LABELS["signal-desktop"]="📡"
 
 # SimpleScreenRecorder
