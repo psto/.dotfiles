@@ -13,7 +13,7 @@ elif [[ "$connected" =~ "disabled" ]]; then
 	toggle="直  Enable Wi-Fi"
 fi
 
-chosen_network=$(echo -e "$toggle\n$wifi_list" | uniq -u | rofi -config ~/.config/rofi/searchmenu.rasi -dmenu -i -selected-row 1 -p "Wi-Fi SSID: " )
+chosen_network=$(echo -e "$toggle\n$wifi_list" | uniq -u | rofi -config ~/.config/rofi/rofidmenu.rasi -dmenu -i -selected-row 1 -p "Wi-Fi SSID: " )
 chosen_id=$(echo "${chosen_network:3}" | xargs)
 
 # Parses the list of preconfigured connections to see if it already contains the chosen SSID. This speeds up the connection process
