@@ -19,6 +19,7 @@
     "disk",
     "network",
     "pulseaudio",
+    "bluetooth",
     "backlight",
     "battery",
     "custom/powermenu"
@@ -52,6 +53,14 @@
     "max-length": 60,
     "tooltip": false
     // "format": "( {} )"
+  },
+  "bluetooth": {
+    "format-alt": " {status}",
+    "format-alt-click": "click-right",
+    "format": "",
+    "format-disabled": "!",
+    "on-click": "foot bluetoothctl",
+    "tooltip": false
   },
   "clock": {
     "format": "<span color='#bf616a'></span> {:%H:%M}",
