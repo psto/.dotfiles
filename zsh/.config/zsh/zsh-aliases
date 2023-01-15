@@ -119,3 +119,7 @@ alias drag="dragon-drop"
 
 # transmission-remote
 alias tsm="transmission-remote"
+
+# translate
+alias trpl="trans :pl"
+alias tren="trans pl:en"
