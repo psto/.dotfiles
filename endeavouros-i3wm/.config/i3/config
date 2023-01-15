@@ -298,9 +298,9 @@ bindsym $mod+shift+P exec flameshot gui
 bindsym $mod+p exec /home/piotr/.local/bin/passrofi
 
 # scratchpad
-bindsym $mod+Shift+D move scratchpad
-bindsym $mod+Shift+S scratchpad show, move position center
-bindsym $mod+Shift+W sticky toggle
+bindsym $mod+s move scratchpad
+bindsym $mod+a scratchpad show, move position center
+bindsym $mod+Shift+S sticky toggle
 
 # scratchpad apps
 bindsym $mod+e [class="fm"] scratchpad show; move position center
