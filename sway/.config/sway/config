@@ -22,6 +22,7 @@ set {
   $notes obsidian
   $pass keepassxc
   $pass_id org.keepassxc.KeePassXC
+  $resource_monitor btop
   $wallpaper /home/piotr/public/pictures/wallpapers/simon-stalenhag00.jpg
   # container sizes
   $smaller border none, move position center, resize set width 960 height 540
@@ -166,6 +167,9 @@ bindsym $mod+Shift+x exec swaymsg [app_id=$pass_id] scratchpad show || exec $pas
 
 # Pin toggle floating windows
 bindsym $mod+Shift+s sticky toggle
+
+# Resource monitor
+bindsym F2 exec swaymsg [app_id=$resource_monitor] scratchpad show || exec footclient --app-id $resource_monitor -e btop, $maximize
 
 # Screenshots
 bindsym $mod+shift+P exec slurp | grim -g - - | wl-copy && wl-paste > $(xdg-user-dir PICTURES)/$(date +'%Y-%m-%d-%H%M%S_grim.png')
@@ -358,6 +362,8 @@ for_window {
   [app_id=$term_small] move to scratchpad, scratchpad show, $smaller
   # terminal fullscreen
   [app_id=$term_fullscreen] move to scratchpad, scratchpad show, $maximize
+  # resource monitor
+  [app_id=$resource_monitor] move to scratchpad, scratchpad show, $maximize
   # firefox
   [title="^Library$"]                  floating enable
   [title="^Picture-in-Picture$"] { 
