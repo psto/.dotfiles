@@ -16,6 +16,12 @@ set {
   # $browser ~/.local/bin/brave-beta-gpu
   $browser /home/piotr/.local/bin/firefox-way
   $wallpaper /home/piotr/public/pictures/wallpapers/simon-stalenhag00.jpg
+  # container sizes
+  $smaller border none, move position center, resize set width 960 height 540
+  $medium border none, move position center, resize set width 960 height 740
+  $larger border none, move position center, resize set 1200 px 1400 px
+  $maximize border none, move position center, resize set width 100 ppt height 100 ppt
+  $top-right resize set 1264 px 800 px, move position 100ppt 0, move left 1264px 
 }
 
 # Your preferred application launcher
@@ -120,6 +126,10 @@ bindsym $mod+Shift+e exec wlogout
 # Clipman clipboard
 exec wl-paste -t text --watch clipman store
 bindsym $mod+c exec clipman pick -t wofi
+
+# Resize floating windows
+bindsym $mod+Shift+c $larger
+bindsym $mod+Shift+v $top-right
 
 # Screen brightness
 bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
