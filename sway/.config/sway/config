@@ -14,6 +14,8 @@ set {
   $up k
   $right l
   $term kitty --single-instance
+  $term_small term_small
+  $term_fullscreen term_fullscreen
   # $browser ~/.local/bin/brave-beta-gpu
   $browser /home/piotr/.local/bin/firefox-way
   $wallpaper /home/piotr/public/pictures/wallpapers/simon-stalenhag00.jpg
@@ -96,7 +98,8 @@ input type:touchpad {
 #
 # Start a terminal
 bindsym $mod+Return exec $term
-bindsym $mod+Shift+Return exec alacritty --class="floating"
+bindsym $mod+Shift+Return exec swaymsg [app_id=$term_small] scratchpad show || exec footclient --app-id $term_small, $smaller
+bindsym F1 exec swaymsg [app_id=$term_fullscreen] scratchpad show || exec footclient --app-id $term_fullscreen -e /home/piotr/.local/bin/tat, $maximize
 
 # Start a browser
 bindsym $mod+w exec $browser
@@ -337,6 +340,10 @@ for_window {
   [window_role = "task_dialog"]        floating enable
   [window_type = "menu"]               floating enable
   [title="^Volume Control$"]           floating enable
+  # terminal float
+  [app_id=$term_small] move to scratchpad, scratchpad show, $smaller
+  # terminal fullscreen
+  [app_id=$term_fullscreen] move to scratchpad, scratchpad show, $maximize
   # firefox
   [title="^Library$"]                  floating enable
   [title="^Picture-in-Picture$"] { 
