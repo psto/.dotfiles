@@ -253,7 +253,7 @@ bindsym $mod+grave workspace back_and_forth
 # Switch the current container between different layout styles
 # bindsym $mod+s layout stacking
 bindsym $mod+g layout tabbed
-# bindsym $mod+e layout toggle split
+bindsym $mod+Shift+g layout toggle split
 
 # Make the current focus fullscreen
 bindsym $mod+f fullscreen
@@ -336,6 +336,8 @@ exec_always {
 exec sleep 10 && gammastep -l $(curl -s "https://location.services.mozilla.com/v1/geolocate?key=geoclue" | jq -r '"\(.location.lat):\(.location.lng)"')
 # Start foot terminal server
 exec foot --server
+# Start Nextcloud
+exec sleep 12 && nextcloud
 
 exec swaymsg "workspace 1; exec sleep 2 && $term"
 exec swaymsg "workspace 2; exec sleep 3 && $browser"
