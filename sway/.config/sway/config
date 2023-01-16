@@ -20,6 +20,8 @@ set {
   $browser /home/piotr/.local/bin/firefox-way
   $file_explorer xplr
   $notes obsidian
+  $pass keepassxc
+  $pass_id org.keepassxc.KeePassXC
   $wallpaper /home/piotr/public/pictures/wallpapers/simon-stalenhag00.jpg
   # container sizes
   $smaller border none, move position center, resize set width 960 height 540
@@ -160,6 +162,7 @@ bindsym $mod+n exec swaymsg [class=$notes] scratchpad show || exec obsidian
 
 # Passwords
 bindsym $mod+p exec ~/.local/bin/passrofi
+bindsym $mod+Shift+x exec swaymsg [app_id=$pass_id] scratchpad show || exec $pass
 
 # Pin toggle floating windows
 bindsym $mod+Shift+s sticky toggle
@@ -347,6 +350,8 @@ for_window {
   [title="^Volume Control$"]           floating enable
   # file explorer - xplr
   [app_id=$file_explorer] move to scratchpad, scratchpad show, $medium
+  # keepassxc
+  [app_id="org.keepassxc.KeePassXC"] move to scratchpad, scratchpad show
   # obsidian
   [class=$notes] move to scratchpad, scratchpad show
   # terminal float
