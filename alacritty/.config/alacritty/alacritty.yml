@@ -43,7 +43,7 @@ cursor:
     blink_interval: 500
 
 key_bindings:
-  - { key: N,   mods: Control|Shift, action: SpawnNewInstance }
+  - { key: N,   mods: Control|Shift, action: CreateNewWindow }
 
 schemes:
 #   tokyo-night: &tokyo-night
