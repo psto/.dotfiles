@@ -322,7 +322,7 @@ bar {
 ## Autostart applications
 #################################################################
 # Start autotiling
-exec_always autotiling
+exec_always "pkill autotiling; autotiling"
 # Set gtk+ theme
 set $gnome-schema org.gnome.desktop.interface
 exec_always {
