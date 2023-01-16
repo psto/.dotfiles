@@ -317,6 +317,9 @@ output * bg $wallpaper fill
 bar {
     swaybar_command waybar
 }
+titlebar_padding 1 1 
+# workaround for https://github.com/swaywm/sway/issues/7350
+font pango: monospace 0.001
 
 #################################################################
 ## Autostart applications
