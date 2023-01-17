@@ -338,7 +338,7 @@ exec_always {
 # Start gammastep (redshift alternative)
 exec sleep 10 && gammastep -l $(curl -s "https://location.services.mozilla.com/v1/geolocate?key=geoclue" | jq -r '"\(.location.lat):\(.location.lng)"')
 # Start foot terminal server
-exec foot --server
+exec_always "pkill -x foot; foot --server"
 # Start Nextcloud
 exec sleep 12 && nextcloud
 
