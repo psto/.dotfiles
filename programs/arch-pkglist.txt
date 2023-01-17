@@ -38,6 +38,7 @@ ncdu
 newsboat
 nextcloud-client
 nmon
+obs-studio
 pass
 pass-otp
 peek
@@ -73,6 +74,7 @@ xorg-xbacklight
 w3m
 waybar
 wofi
+wf-recorder
 yt-dlp
 zathura
 zathura-cb
@@ -86,8 +88,10 @@ swaybg
 swayidle
 swaylock
 brightnessctl
+xdg-desktop-portal
 xorg-xwayland
 xorg-xlsclients
 qt5-wayland
+qt6-wayland
 glfw-wayland
 
