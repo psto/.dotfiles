@@ -68,8 +68,7 @@
   },
   "cpu": {
     "interval": 5,
-    "format": " {usage}%",
-    "max-length": 10
+    "format": " {usage}%"
   },
   "disk": {
     "interval": 30,
@@ -113,7 +112,7 @@
     ],
     "format-time": " ({H}h{M}m)",
     "format-charging": "<span font='Font Awesome 5 Free'></span>  <span font='Font Awesome 5 Free 11'>{icon}</span>  {capacity}% - {time}",
-    "format-full": "<span font='Font Awesome 5 Free'></span>  <span font='Font Awesome 5 Free 11'>{icon}</span>  Charged",
+    "format-full": "<span font='Font Awesome 5 Free'></span>  <span font='Font Awesome 5 Free 11'>{icon}</span>  100%",
     "interval": 15,
     "states": {
       "warning": 25,
@@ -158,14 +157,12 @@
   },
   "backlight": {
     "format": "{icon} {percent}%",
-    "format-alt": "{icon}",
-    "format-alt-click": "click-left",
     "format-icons": [
       "",
       ""
     ],
     "on-scroll-up": "light -A 1",
-    "on-scroll-down": "light -U 1"
+    "on-scroll-down": "light -U 1",
   },
   "temperature": {
     "thermal-zone": 8,
