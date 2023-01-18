@@ -3,6 +3,7 @@
 # Read `man 5 sway` for a complete reference.
 
 include $HOME/.config/sway/variables
+include $HOME/.config/sway/bar
 
 #################################################################
 ## Output configuration
@@ -279,10 +280,6 @@ default_border pixel 1
 output * bg $wallpaper fill
 # output * bg #24283b solid_color
 # exec_always sleep 4 && wayab -f 10 -o "HDMI-A-1:/home/piotr/public/pictures/wallpapers/video-wallpapers/unknown01-tokyo:fill:0.5,1.0" -o "eDP-1:/home/piotr/public/pictures/wallpapers/video-wallpapers/unknown01-tokyo:fill:0.5,1.0" 
-# Status Bar - Read `man 5 sway-bar` for more information
-bar {
-    swaybar_command waybar
-}
 titlebar_padding 1 1 
 # workaround for https://github.com/swaywm/sway/issues/7350
 font pango: monospace 0.001

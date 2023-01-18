@@ -1,0 +1,7 @@
+exec_always echo "sway config trace: bar at $(date)"
+
+# Status Bar - Read `man 5 sway-bar` for more information
+bar {
+    swaybar_command waybar
+}
+
