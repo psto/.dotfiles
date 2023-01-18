@@ -6,6 +6,7 @@ include $HOME/.config/sway/variables
 include $HOME/.config/sway/appearance
 include $HOME/.config/sway/bar
 include $HOME/.config/sway/devices
+include $HOME/.config/sway/for_window
 include $HOME/.config/sway/modes
 
 #################################################################
@@ -234,48 +235,5 @@ exec sleep 12 && nextcloud
 
 exec swaymsg "workspace 1; exec sleep 2 && $term"
 exec swaymsg "workspace 2; exec sleep 3 && $browser"
-
-#################################################################
-## Layout Rules
-#################################################################
-# swaymsg -t get_tree | grep app_id
-for_window {
-  [workspace="0"]                      floating enable
-  [class="Anki"]                       floating enable
-  [app_id="floating"]                  floating enable
-  [app_id="floating"]                  resize set height 540
-  [app_id="floating"]                  resize set width 960
-  [app_id="file-roller"]               floating enable
-  [class="Spotify"]                    floating enable
-  [app_id="Thunar" title="^Copying.*"] floating enable
-  [window_role = "bubble"]             floating enable
-  [window_role = "dialog"]             floating enable
-  [window_role = "task_dialog"]        floating enable
-  [window_type = "menu"]               floating enable
-  [title="^Volume Control$"]           floating enable
-  # file explorer - xplr
-  [app_id=$file_explorer] move to scratchpad, scratchpad show, $medium
-  # keepassxc
-  [app_id="org.keepassxc.KeePassXC"] move to scratchpad, scratchpad show
-  # obsidian
-  [class=$notes] move to scratchpad, scratchpad show
-  # terminal float
-  [app_id=$term_small] move to scratchpad, scratchpad show, $smaller
-  # terminal fullscreen
-  [app_id=$term_fullscreen] move to scratchpad, scratchpad show, $maximize
-  # resource monitor
-  [app_id=$resource_monitor] move to scratchpad, scratchpad show, $maximize
-  # firefox
-  [title="^Library$"]                  floating enable
-  [title="^Picture-in-Picture$"] { 
-      floating enable 
-      border none
-      sticky toggle
-      resize set height 280px
-      resize set width 500px
-      move position 100ppt 0 
-      move left 500px 
-  } 
-}
 
 include /etc/sway/config.d/*
