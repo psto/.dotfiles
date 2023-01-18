@@ -4,7 +4,7 @@ manual=$(apropos -s ${SECTION:-''} ${@:-.} | \
     grep -v -E '^.+ \(0\)' |\
     awk '{print $2 "    " $1}' | \
     sort | \
-    rofi -config ~/.config/rofi/searchmenu.rasi \
+    rofi -config ~/.config/rofi/tokyonight.rasi \
     -dmenu -i -p "Manual: " | \
     sed -E 's/^\((.+)\)/\1/')
 

@@ -9,19 +9,19 @@ browser='firefox-nightly'
 # List of defined 'bangs'
 
 # List apps to launch
-COMMANDS["run"]="rofi -modi drun -show drun -config ~/.config/rofi/rofidmenu.rasi"
+COMMANDS["run"]="rofi -modi drun -show drun -config ~/.config/rofi/tokyonight.rasi"
 LABELS["run"]="🏃"
 
 # Quickly hyper
-COMMANDS["edit-hypr"]='exec alacritty -e nvim ~/.config/hypr/hyprland.conf'
+COMMANDS["edit-hypr"]='exec foot -a floating -e nvim ~/.config/hypr/hyprland.conf'
 LABELS["edit-hypr"]="✨"
 
 # Quickly sway
-COMMANDS["edit-sway"]='exec alacritty -e nvim ~/.config/sway/config'
+COMMANDS["edit-sway"]='exec foot -a floating -e -e nvim ~/.config/sway/config'
 LABELS["edit-sway"]="🌳"
 
 # Quickly edit this file
-COMMANDS["edit-rofi-bangs"]='exec alacritty -e nvim ~/.local/bin/rofi-bangs'
+COMMANDS["edit-rofi-bangs"]='exec foot -a floating -e nvim ~/.local/bin/rofi-bangs'
 LABELS["edit-rofi-bangs"]="‼️"
 
 ################################################################################
@@ -37,11 +37,11 @@ COMMANDS["bookmarks"]="~/.local/bin/rofi-surfraw-bookmarks.sh"
 LABELS["bookmarks"]="🔖"
 
 # Broot
-COMMANDS["broot"]='exec alacritty --class="floating" -e broot'
+COMMANDS["broot"]='exec foot -H -a floating -e broot'
 LABELS["broot"]=
 
 # btop
-COMMANDS["btop"]="exec alacritty -e btop"
+COMMANDS["btop"]='exec foot -F -e btop'
 LABELS["btop"]="📈"
 
 # element
@@ -49,7 +49,7 @@ COMMANDS["element"]='element-desktop-nightly'
 LABELS["element"]="⚛️"
 
 # kitty
-COMMANDS["kitty"]="kitty"
+COMMANDS["kitty"]="kitty -1"
 LABELS["kitty"]="🐱"
 
 # ksnip
@@ -61,11 +61,11 @@ COMMANDS["rofi-beats"]="~/.local/bin/rofi-beats"
 LABELS["rofi-beats"]="🎧"
 
 # lf file explorer
-COMMANDS["lf"]='exec alacritty --class="floating" -e lf'
+COMMANDS["lf"]='exec foot -a floating -e lf'
 LABELS["lf"]="🗄️"
 
 # Obsidian quick note
-COMMANDS["obsidian-quick-note"]='exec alacritty --class="floating" -e ~/.local/bin/obsidian-quick-note'
+COMMANDS["obsidian-quick-note"]='exec foot -a floating -e ~/.local/bin/obsidian-quick-note'
 LABELS["obsidian-quick-note"]="✏️"
 
 # Macho man pages
@@ -73,23 +73,23 @@ COMMANDS["macho"]="~/.local/bin/macho"
 LABELS["macho"]="💪"
 
 # Navi
-COMMANDS["navi"]='exec alacritty --class="floating" -e navi'
+COMMANDS["navi"]='exec foot -a floating -e navi'
 LABELS["navi"]="🧭"
 
 # NCurses Disk Usage
-COMMANDS["ncdu"]='exec alacritty --class="floating" -e ncdu --color dark'
+COMMANDS["ncdu"]='exec foot -a floating -e ncdu --color dark'
 LABELS["ncdu"]="💽"
 
 # killall
-COMMANDS["killall"]='exec alacritty --class="floating" -e killall "${input}"'
+COMMANDS["killall"]='exec foot -a floating -e killall "${input}"'
 LABELS["killall"]="🔪"
 
 # xkill
-COMMANDS["xkill"]='exec alacritty --class="floating" -e xkill "${input}"'
+COMMANDS["xkill"]='exec foot -a floating -e xkill "${input}"'
 LABELS["xkill"]="🔪"
 
 # Rofi Calc
-COMMANDS["calc"]="exec rofi -show calc -modi calc -no-show-match -no-sort -config ~/.config/rofi/rofidmenu.rasi"
+COMMANDS["calc"]="exec rofi -show calc -modi calc -no-show-match -no-sort -config ~/.config/rofi/tokyonight.rasi"
 LABELS["calc"]="🧮"
 
 # Rofi WiFi
@@ -97,7 +97,7 @@ COMMANDS["wifi"]="~/.local/bin/rofi-wifi"
 LABELS["wifi"]="📶"
 
 # SciToPdf
-COMMANDS["scitopdf"]='exec alacritty --hold --class="floating" -e scitopdf'
+COMMANDS["scitopdf"]='exec foot -H -a floating -e scitopdf'
 LABELS["scitopdf"]="📄"
 
 # Search for files
@@ -121,11 +121,11 @@ COMMANDS["reboot"]='reboot'
 LABELS["reboot"]="🌄"
 
 # Tldr
-COMMANDS["tldr"]='exec alacritty --hold --class="floating" -e tldr "${input}"'
+COMMANDS["tldr"]='exec foot -a floating -e tldr "${input}"'
 LABELS["tldr"]="🗒️"
 
 # Todo
-COMMANDS["do"]="exec rofi -modi TODO:~/.local/bin/rofi-todo -show TODO -config ~/.config/rofi/searchmenu.rasi"
+COMMANDS["do"]="exec rofi -modi TODO:~/.local/bin/rofi-todo -show TODO -config ~/.config/rofi/tokyonight.rasi"
 LABELS["do"]="todo"
 
 # Turn off screen
@@ -333,7 +333,7 @@ LABELS["zathura"]="📄"
 # Generate menu
 function print_menu()
 {
-for key in ${!LABELS[@]}
+for key in "${!LABELS[@]}"
 do
 # echo "$key ${LABELS}"
 echo "$key ${LABELS[$key]}"
@@ -344,7 +344,7 @@ done
 # Show rofi.
 function start()
 {
-print_menu | rofi -dmenu -p ":" -config ~/.config/rofi/rofidmenu.rasi
+print_menu | rofi -dmenu -p ":" -config ~/.config/rofi/tokyonight.rasi
 }
 
 # Run it
@@ -373,5 +373,5 @@ else
 # eval $choice | rofi -config ~/.config/rofi/rofidmenu.rasi 
 
 # prefer my above so I can use this same script to also launch appsa
-echo "Unknown command: ${choice}" | rofi -dmenu -p "error"  -config ~/.config/rofi/rofidmenu.rasi 
+echo "Unknown command: ${choice}" | rofi -dmenu -p "error" -config ~/.config/rofi/tokyonight.rasi
 fi
