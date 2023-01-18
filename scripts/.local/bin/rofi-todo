@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-TODO_FILE=~/Public/Nextcloud/Documents/rofi_todos
-export DONE_FILE=~/Public/Nextcloud/Documents/rofi_todos_done
+TODO_FILE=~/public/Nextcloud/Documents/rofi_todos
+export DONE_FILE=~/public/Nextcloud/Documents/rofi_todos_done
 
 if [[ ! -a "${TODO_FILE}" ]]; then
     touch "${TODO_FILE}"
