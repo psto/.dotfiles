@@ -1,0 +1,40 @@
+exec_always echo "sway config trace: devices at $(date)"
+
+#################################################################
+## Device Configuration
+#################################################################
+# Example configuration:
+#
+#   input "2:14:SynPS/2_Synaptics_TouchPad" {
+#       dwt enabled
+#       tap enabled
+#       natural_scroll enabled
+#       middle_emulation enabled
+#   }
+#
+# You can get the names of your inputs by running: swaymsg -t get_inputs
+# Read `man 5 sway-input` for more information about this section.
+
+# Keyboard layout
+input * {
+    xkb_layout pl,us
+}
+# Keyboard repeat delay and rate
+input "type:keyboard" {
+    repeat_delay 300
+    repeat_rate 50
+    # map caps lock to escape
+    xkb_options caps:escape
+}
+# Touchpad
+input type:touchpad {
+    dwt enabled
+    tap enabled
+    # drag disabled
+    # drag_lock disabled
+    click_method clickfinger
+    natural_scroll enabled
+    accel_profile adaptive
+    pointer_accel 0.5
+}
+
