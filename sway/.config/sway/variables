@@ -1,0 +1,33 @@
+exec_always "sway config trace: echo vars at $(date)"
+
+#################################################################
+## Variables
+#################################################################
+set {
+  # Logo key. Use Mod1 for Alt.
+  $mod Mod4
+  # Home row direction keys, like vim
+  $left h
+  $down j
+  $up k
+  $right l
+  $term kitty --single-instance
+  $term_small term_small
+  $term_fullscreen term_fullscreen
+  $browser /home/piotr/.local/bin/firefox-way
+  $file_explorer xplr
+  $menu ~/.local/bin/rofi-bangs
+  $notes obsidian
+  $pass keepassxc
+  $pass_id org.keepassxc.KeePassXC
+  $resource_monitor btop
+  $wallpaper /home/piotr/public/pictures/wallpapers/simon-stalenhag00.jpg
+
+  # container sizes
+  $smaller border none, move position center, resize set width 960 height 540
+  $medium border none, move position center, resize set width 960 height 740
+  $larger border none, move position center, resize set 1200 px 1400 px
+  $maximize border none, move position center, resize set width 100 ppt height 100 ppt
+  $top-right resize set 1264 px 800 px, move position 100ppt 0, move left 1264px
+}
+
