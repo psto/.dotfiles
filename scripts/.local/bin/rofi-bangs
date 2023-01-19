@@ -17,7 +17,7 @@ COMMANDS["edit-hypr"]='exec foot -a floating -e nvim ~/.config/hypr/hyprland.con
 LABELS["edit-hypr"]="✨"
 
 # Quickly sway
-COMMANDS["edit-sway"]='exec foot -a floating -e -e nvim ~/.config/sway/config'
+COMMANDS["edit-sway"]='exec foot -a floating -e nvim ~/.config/sway/'
 LABELS["edit-sway"]="🌳"
 
 # Quickly edit this file
@@ -47,10 +47,6 @@ LABELS["btop"]="📈"
 # element
 COMMANDS["element"]='element-desktop-nightly'
 LABELS["element"]="⚛️"
-
-# kitty
-COMMANDS["kitty"]="kitty -1"
-LABELS["kitty"]="🐱"
 
 # ksnip
 COMMANDS["ksnip"]="ksnip"
@@ -230,6 +226,10 @@ LABELS["firefox"]="🦊"
 COMMANDS["firefox-nightly"]="firefox-nightly"
 LABELS["firefox-nightly"]="🐺"
 
+# Foot
+COMMANDS["foot"]="footclient"
+LABELS["foot"]="🦶"
+
 # Galculator
 COMMANDS["galculator"]="galculator"
 LABELS["galculator"]="🧮"
@@ -237,6 +237,10 @@ LABELS["galculator"]="🧮"
 # Github Desktop
 COMMANDS["github-desktop"]="github-desktop"
 LABELS["github-desktop"]="🐙"
+
+# Gimp
+COMMANDS["gimp"]="gimp"
+LABELS["gimp"]="🐺"
 
 # Insomnia
 COMMANDS["insomnia"]="insomnia"
@@ -249,6 +253,10 @@ LABELS["ipfs-desktop"]="🌐"
 # KeepassXC
 COMMANDS["keepassxc"]="keepassxc"
 LABELS["keepassxc"]="🔐"
+
+# Kitty
+COMMANDS["kitty"]="kitty -1"
+LABELS["kitty"]="🐱"
 
 # Mailspring
 COMMANDS["mailspring"]='mailspring'
@@ -265,6 +273,10 @@ LABELS["nextcloud"]="☁️"
 # Obsidian
 COMMANDS["obsidian"]="obsidian"
 LABELS["obsidian"]="🗒️"
+
+# OBS Studio
+COMMANDS["obs"]="obs -platform wayland"
+LABELS["obs-studio"]="⏺️"
 
 # qBittorrent
 COMMANDS["qbittorrent"]="qbittorrent"
