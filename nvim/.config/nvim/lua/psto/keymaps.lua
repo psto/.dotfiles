@@ -23,10 +23,6 @@ keymap("n", "<C-Down>", ":resize -2<CR>", opts)
 keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
--- Navigate buffers
-keymap("n", "<S-l>", ":bnext<CR>", opts)
-keymap("n", "<S-h>", ":bprevious<CR>", opts)
-
 -- clear last search highlighting
 keymap("n", "<esc>", ":noh<return>", { noremap = false })
 
@@ -60,6 +56,10 @@ keymap("v", "X", '"_X', opts)
 -- Reselect visual selection after indenting
 keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
+
+-- Navigate buffers
+keymap("n", "[b", ":bnext<CR>", opts)
+keymap("n", "]b", ":bprevious<CR>", opts)
 
 -- Jump to a quickfix/location list entry
 keymap("n", "[q", ":cprev<CR>zz", opts)
