@@ -75,6 +75,9 @@ bindsym $mod+Shift+x exec swaymsg [app_id=$pass_id] scratchpad show || exec $pas
 # Pin toggle floating windows
 bindsym $mod+Shift+s sticky toggle
 
+# Play mpv video from clipboard url
+bindsym $mod+y exec ~/.local/bin/playVidFromClipboard
+
 # Resource monitor
 bindsym F2 exec swaymsg [app_id=$resource_monitor] scratchpad show || exec footclient --app-id $resource_monitor -e btop, $maximize
 
