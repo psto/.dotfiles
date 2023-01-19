@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Copy a video url that mpv can play and call the script
+# In i3/sway bind to a key: bindsym $mod+y exec ~/.local/bin/playVideo
+# Requirements: cliphist, dunst, mpv
+
+videoURL=$(cliphist list | head -1 | cut -f2- -d ' ')
+
+notify-send -t 3000 "📺 Playing video" "$videoURL";
+mpv "$videoURL"
