@@ -207,6 +207,7 @@ return packer.startup(function(use)
   -- Writing mode
   use({ "folke/zen-mode.nvim" })
   use({ "folke/twilight.nvim" })
+  use({ "epwalsh/obsidian.nvim" })
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
