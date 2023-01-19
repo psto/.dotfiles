@@ -27,8 +27,8 @@ exec swayidle -w \
 # Start autotiling
 exec_always "pkill autotiling; autotiling"
 
-# Start clipman
-exec_always "pkill wl-paste; exec wl-paste -p -t text --watch clipman store --no-persist -P --histpath='~/.local/share/clipman-primary.json'"
+# Start clipboard
+exec_always "pkill wl-paste; exec wl-paste -p -t text --watch cliphist store"
 
 # Set gtk+ theme
 set $gnome-schema org.gnome.desktop.interface
