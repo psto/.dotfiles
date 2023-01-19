@@ -38,8 +38,10 @@ bindsym $mod+Shift+r reload
 # bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 bindsym $mod+Shift+e exec wlogout
 
-# Clipman clipboard
-bindsym $mod+c exec clipman pick -t wofi
+# Clipboard
+bindsym $mod+c exec cliphist list | rofi -dmenu \
+  -config ~/.config/rofi/tokyonight.rasi \
+  -theme-str "#window { width: 900;}" | cliphist decode | wl-copy
 
 # Resize floating windows
 bindsym $mod+Shift+c $larger

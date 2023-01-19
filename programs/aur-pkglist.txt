@@ -5,7 +5,7 @@ beekeeper-studio-bin
 btop
 brave-beta-bin
 cava
-clipman
+cliphist-bin
 czkawka-cli-bin
 element-desktop-nightly-bin
 github-desktop-bin
