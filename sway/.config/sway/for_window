@@ -19,6 +19,9 @@ for_window {
   [window_role = "task_dialog"]        floating enable
   [window_type = "menu"]               floating enable
   [title="^Volume Control$"]           floating enable
+  # prevent screen lock if window is in fullscreen mode
+  [class=".*"]                         inhibit_idle fullscreen
+  [app_id=".*"]                        inhibit_idle fullscreen
   # file explorer - xplr
   [app_id=$file_explorer] move to scratchpad, scratchpad show, $medium
   # keepassxc
