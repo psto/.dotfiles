@@ -82,7 +82,7 @@ bindsym $mod+y exec ~/.local/bin/playVidFromClipboard
 bindsym F2 exec swaymsg [app_id=$resource_monitor] scratchpad show || exec footclient --app-id $resource_monitor -e btop, $maximize
 
 # Screenshots
-bindsym $mod+shift+P exec slurp | grim -g - - | wl-copy && wl-paste > $(xdg-user-dir PICTURES)/$(date +'%Y-%m-%d-%H%M%S_grim.png')
+bindsym $mod+shift+P exec grim -g "$(slurp)" - | swappy -f -
 
 # Search files
 bindsym $mod+o exec ~/.local/bin/rofi-search
