@@ -34,6 +34,8 @@ for_window {
   [app_id=$term_fullscreen] move to scratchpad, scratchpad show, $maximize
   # resource monitor
   [app_id=$resource_monitor] move to scratchpad, scratchpad show, $maximize
+  # todo sleek
+  [app_id=$todo] move to scratchpad, scratchpad show, $smaller
   # firefox
   [title="^Library$"]                  floating enable
   [title="^Picture-in-Picture$"] { 

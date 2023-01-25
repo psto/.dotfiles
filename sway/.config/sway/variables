@@ -21,7 +21,8 @@ set {
   $pass keepassxc
   $pass_id org.keepassxc.KeePassXC
   $resource_monitor btop
-  $wallpaper /home/piotr/public/pictures/wallpapers/simon-stalenhag00.jpg
+  $todo sleek
+  $wallpaper /home/piotr/public/pictures/wallpapers/simon-stalenhag00-tokyo-night.jpg
 
   # container sizes
   $smaller border none, move position center, resize set width 960 height 540

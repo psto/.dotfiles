@@ -90,6 +90,8 @@ bindsym $mod+shift+P exec grim -g "$(slurp)" - | swappy -f -
 # Search files
 bindsym $mod+o exec ~/.local/bin/rofi-search
 
+# Todo.txt
+bindsym $mod+t exec swaymsg [app_id=$todo] scratchpad show || exec $todo, $smaller
 
 #
 # Moving around:
