@@ -63,7 +63,7 @@ alias gap="git add --patch"
 alias gb="git branch"
 alias gba="git branch --all"
 alias gbd="git branch -D"
-alias gc="git commit -m"
+alias gc="git commit"
 alias gco="git checkout"
 alias gcb="git branch | fzf | xargs git checkout"
 alias gcl="git clone"
@@ -105,14 +105,13 @@ alias n="navi"
 alias psf='ps -Ao comm,pcpu,pmem,pid --sort=-pcpu | grep '
 
 # mpv
-alias mpv='mpv --gpu-context=wayland' # opt into wayland
 alias mpvsp='mpv --save-position-on-quit' # mpv remember last played position
 
 # cheat
 cheat() { curl "http://cheat.sh/$1"; }
 
-# get weather
-alias wttr="curl wttr.in/Lubań"
+# get weather, set $HOMETOWN in /etc/environment                        21:07:01
+alias wttr="curl wttr.in/$HOMETOWN"
 
 # dragon-drop
 alias drag="dragon-drop"
