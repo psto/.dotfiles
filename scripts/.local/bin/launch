@@ -36,7 +36,7 @@ case $(file --mime-type "$@" -bL) in
       $launcher zathura "$@" 
       ;;
    image/jpeg | image/png)
-      $launcher imv-folder "$@"
+      $launcher imv-dir "$@"
       ;;
    text/plain | text/markdown | text/html | text/*)
       nvim "$@"
