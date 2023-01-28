@@ -204,6 +204,7 @@ local mappings = {
   },
   s = {
     name = "System",
+    c = { "<cmd>ChatGPT<CR>", "ChatGPT" },
     h = { "<cmd>lua _HTOP_TOGGLE()<CR>", "htop" },
     n = { "<cmd>lua _INTERACTIVE_CHEATSHEET_TOGGLE()<CR>", "Navi" },
     r = { "<cmd>lua _NODE_TOGGLE()<CR>", "Node REPL" },
