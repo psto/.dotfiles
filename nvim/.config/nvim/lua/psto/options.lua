@@ -93,5 +93,5 @@ opt.termguicolors = true
 -- async format on save and quit with lsp-format
 cmd [[cabbrev wq execute "Format sync" <bar> wq]]
 
--- approrpiately highlight codefences returned from denols
-g.markdown_fenced_languages = { "ts=typescript" }
+-- approrpiately highlight codefences (codeblocks)
+g.markdown_fenced_languages = { "css", "html", "javascript", "typescript", "lua", "vim" }
