@@ -1,4 +1,4 @@
-local keymap = vim.api.nvim_set_keymap
+local keymap = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
 -- Set leader key to space
@@ -79,7 +79,7 @@ keymap("n", "<M-r>", "<Plug>RestNvim", opts)
 -- harpoon
 keymap(
   "n",
-  "<tab>",
+  ";",
   "<cmd>lua require('telescope').extensions.harpoon.marks(require('telescope.themes').get_dropdown{previewer = false, initial_mode='normal', prompt_title='Harpoon'})<cr>"
   ,
   opts

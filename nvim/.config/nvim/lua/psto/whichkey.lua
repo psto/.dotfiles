@@ -89,7 +89,7 @@ local m_opts = {
 }
 
 local m_mappings = {
-  m = { '<cmd>lua require("harpoon.mark").add_file()<cr>', "Harpoon" },
+  m = { '<cmd>lua require("harpoon.mark").add_file()<cr>', "Harpoon Mark" },
   ["."] = { '<cmd>lua require("harpoon.ui").nav_next()<cr>', "Harpoon Next" },
   [","] = { '<cmd>lua require("harpoon.ui").nav_prev()<cr>', "Harpoon Prev" },
   s = { "<cmd>Telescope harpoon marks<cr>", "Search Files" },
