@@ -116,6 +116,20 @@ return packer.startup(function(use)
     "hrsh7th/cmp-cmdline",
   })
   use({ "Exafunction/codeium.vim" })
+  use("aduros/ai.vim")
+  use({
+    "jackMort/ChatGPT.nvim",
+    config = function()
+      require("chatgpt").setup({
+        -- optional configuration
+      })
+    end,
+    requires = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim"
+    }
+  })
 
   -- Snippets
   use({
