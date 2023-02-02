@@ -79,7 +79,7 @@ keymap("n", "<M-r>", "<Plug>RestNvim", opts)
 -- harpoon
 keymap(
   "n",
-  ";",
+  "<m-;>",
   "<cmd>lua require('telescope').extensions.harpoon.marks(require('telescope.themes').get_dropdown{previewer = false, initial_mode='normal', prompt_title='Harpoon'})<cr>"
   ,
   opts
