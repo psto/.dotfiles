@@ -8,7 +8,7 @@ vim.g.indent_blankline_filetype_exclude = {
   "help",
   "startify",
   "dashboard",
-  "packer",
+  "lazy",
   "neogitstatus",
   "NvimTree",
   "Trouble",

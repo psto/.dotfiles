@@ -1,4 +1,3 @@
-require("psto/impatient") -- needs to be first
 require("psto/options")
 require("psto/autocommands")
 require("psto/plugins")
