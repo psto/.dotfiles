@@ -35,11 +35,11 @@ autocmd({ "TextYankPost" }, {
 })
 
 -- automatically rebalance windows on vim resize
--- autocmd({ "VimResized" }, {
---   callback = function()
---     vim.cmd "wincmd ="
---   end,
--- })
+autocmd({ "VimResized" }, {
+  callback = function()
+    vim.cmd "wincmd ="
+  end,
+})
 
 -- terminal transparency can be set also with picom or hyprland
 -- autocmd({ "ColorScheme" }, {
@@ -55,6 +55,3 @@ autocmd("FileType", {
     vim.opt_local.spell = true
   end,
 })
-
--- run spotlight plugin
-autocmd("CursorHold", { callback = require('spotlight').run })
