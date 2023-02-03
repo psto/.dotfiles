@@ -2,7 +2,7 @@ local keymap = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
 -- Set leader key to space
-vim.g.mapleader = " "
+-- vim.g.mapleader = " " -- must be set before lazy.nvim
 
 -- Run the last command
 keymap("n", "<leader><leader>c", ":<up>", { noremap = false })
@@ -90,3 +90,33 @@ keymap('i', '<c-;>', function() return vim.fn['codeium#CycleCompletions'](1) end
 keymap('i', '<c-,>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true })
 keymap('i', '<c-x>', function() return vim.fn['codeium#Clear']() end, { expr = true })
 keymap('i', '<c-cr>', function() return vim.fn['codeium#Accept']() end, { expr = true })
+
+-- telescope
+keymap("n", "<c-p>", [[<CMD>Telescope find_files<CR>]], opts)
+-- search dotfiles
+keymap(
+  "n",
+  "<leader>vd",
+  [[:lua require('psto.telescope.setup').search_dotfiles()<CR>]],
+  opts
+)
+-- search nvim config
+keymap(
+  "n",
+  "<leader>vc",
+  [[:lua require('psto.telescope.setup').search_nvim_dotfiles()<CR>]],
+  opts
+)
+-- show buffers
+keymap(
+  "n",
+  "<s-tab>",
+  "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false, initial_mode='normal'})<cr>"
+  ,
+  opts
+)
+
+-- trouble
+keymap("n", "<leader>xx", [[<cmd>TroubleToggle<cr>]], opts)
+keymap("n", "<leader>xq", [[<cmd>TroubleToggle quickfix<cr>]], opts)
+keymap("n", "<leader>xl", [[<cmd>TroubleToggle loclist<cr>]], opts)

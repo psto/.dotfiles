@@ -92,6 +92,7 @@ opt.termguicolors = true
 
 -- async format on save and quit with lsp-format
 cmd [[cabbrev wq execute "Format sync" <bar> wq]]
+-- cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
 
 -- approrpiately highlight codefences (codeblocks)
 g.markdown_fenced_languages = { "css", "html", "javascript", "typescript", "lua", "vim" }
