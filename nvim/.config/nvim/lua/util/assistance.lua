@@ -1,5 +1,4 @@
 -- taken from https://github.com/adityastomar67/NvStar
-local JOB      = require "plenary.job"
 local TERMINAL = require("toggleterm.terminal").Terminal
 local M        = {}
 
