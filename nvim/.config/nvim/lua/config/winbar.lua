@@ -31,7 +31,7 @@ M.winbar_filetype_exclude = {
 M.get_filename = function()
   local filename = vim.fn.expand "%:t"
   local extension = vim.fn.expand "%:e"
-  local f = require "psto/functions"
+  local f = require "util/functions"
 
   if not f.isempty(filename) then
     local file_icon, file_icon_color =
@@ -67,7 +67,7 @@ local get_gps = function()
     return ""
   end
 
-  if not require("psto/functions").isempty(gps_location) then
+  if not require("util/functions").isempty(gps_location) then
     return " " .. gps_location
   else
     return ""
@@ -86,7 +86,7 @@ M.get_winbar = function()
   if excludes() then
     return
   end
-  local f = require "psto/functions"
+  local f = require "util/functions"
   local value = M.get_filename()
 
   local gps_added = false
@@ -130,7 +130,7 @@ M.create_winbar = function()
         callback = function()
           local status_ok, _ = pcall(vim.api.nvim_buf_get_var, 0, "lsp_floating_window")
           if not status_ok then
-            require("psto/winbar").get_winbar()
+            require("config/winbar").get_winbar()
           end
         end,
       }
