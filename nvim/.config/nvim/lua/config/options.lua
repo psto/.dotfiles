@@ -31,6 +31,7 @@ opt.scrolloff = 8 -- Make it so there are always ten lines below my cursor
 opt.spelloptions = "camel" -- spell check camel case
 opt.laststatus = 3 -- Show the status bar
 opt.timeoutlen = 300 -- Time in milliseconds to wait for a mapped sequence to complete
+opt.signcolumn = "yes" -- Display sign column to not shift the layout with diagnostics signs
 
 -- Tabs
 -- opt.autoindent = true
