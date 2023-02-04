@@ -1,7 +1,6 @@
 return {
   -- Debugging
   { "PatschD/zippy.nvim", event = "BufReadPre" },
-  { 'michaelb/sniprun', build = 'bash ./install.sh', event = "BufReadPre" },
 
   -- Diagnostics
   { "folke/trouble.nvim",
