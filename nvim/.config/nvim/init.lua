@@ -4,3 +4,4 @@ require("config/keymaps")
 require("config/lazy")
 require("config/winbar")
 
+-- TODO: sniprun, assistance, noice?
