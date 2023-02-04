@@ -1,13 +1,32 @@
 return {
   {
-    "kylechui/nvim-surround",
-    event = "VeryLazy",
-    config = function() require("nvim-surround").setup({}) end,
+    "windwp/nvim-autopairs",
+    event = "BufReadPre",
+    opts = {
+      check_ts = true,
+      ts_config = {
+        lua = { "string", "source" },
+        javascript = { "string", "template_string" },
+      },
+      disable_filetype = { "TelescopePrompt", "spectre_panel" },
+      fast_wrap = {
+        map = "<M-e>",
+        chars = { "{", "[", "(", '"', "'" },
+        pattern = string.gsub([[ [%'%"%)%>%]%)%}%,] ]], "%s+", ""),
+        offset = 0, -- Offset from pattern match
+        end_key = "$",
+        keys = "qwertyuiopzxcvbnmasdfghjkl",
+        check_comma = true,
+        highlight = 'Search',
+        highlight_grey = 'Comment'
+      },
+    },
+    config = function(_, opts) require("nvim-autopairs").setup(opts) end
   },
   {
-    "windwp/nvim-autopairs",
-    event = "VeryLazy",
-    config = function() require("nvim-autopairs").setup {} end
+    "kylechui/nvim-surround",
+    event = "BufReadPre",
+    config = function() require("nvim-surround").setup() end,
   },
   {
     "windwp/nvim-ts-autotag", -- auto close and rename html tag
@@ -64,6 +83,13 @@ return {
           { name = 'cmdline' }
         })
       })
+
+      -- Insert `(` after select function or method item for nvim-autopairs
+      local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+      cmp.event:on(
+        'confirm_done',
+        cmp_autopairs.on_confirm_done()
+      )
 
       return {
         completion = {
