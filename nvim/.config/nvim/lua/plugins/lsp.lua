@@ -50,16 +50,8 @@ return {
     -- Use an on_attach function to only map the following keys
     -- after the language server attaches to the current buffer
     local on_attach = function(client, bufnr)
-      local function buf_set_keymap(...)
-        vim.api.nvim_buf_set_keymap(bufnr, ...)
-      end
-
-      local function buf_set_option(...)
-        vim.api.nvim_buf_set_option(bufnr, ...)
-      end
-
       -- Enable completion triggered by <c-x><c-o>
-      buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
+      vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
       -- formatting with lsp-format
       require("lsp-format").on_attach(client)
@@ -70,23 +62,24 @@ return {
       end
 
       -- Mappings.
-      local opts = { noremap = true, silent = true }
+      local keymap = vim.keymap.set
+      local bufopts = { noremap = true, silent = true, buffer = bufnr }
 
       -- See `:help vim.lsp.*` for documentation on any of the below functions
-      buf_set_keymap("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
-      buf_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-      buf_set_keymap("n", "gT", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
-      buf_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-      buf_set_keymap("n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
-      buf_set_keymap("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts)
-      buf_set_keymap("n", "gr", "<cmd>Telescope lsp_references<CR>", opts)
-      buf_set_keymap("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-      buf_set_keymap("n", "<space>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
-      buf_set_keymap("n", "<space>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", opts)
-      buf_set_keymap("n", "<space>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", opts)
-      -- buf_set_keymap("n", "<space>cr", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-      -- buf_set_keymap("n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-      -- buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.format({ async = true })<CR>", opts)
+      keymap("n", "gd", "<cmd>Telescope lsp_definitions<CR>", bufopts)
+      keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", bufopts)
+      keymap("n", "gT", "<cmd>lua vim.lsp.buf.type_definition()<CR>", bufopts)
+      keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", bufopts)
+      keymap("n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", bufopts)
+      keymap("n", "gi", "<cmd>Telescope lsp_implementations<CR>", bufopts)
+      keymap("n", "gr", "<cmd>Telescope lsp_references<CR>", bufopts)
+      keymap("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<CR>", bufopts)
+      keymap("n", "<space>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", bufopts)
+      keymap("n", "<space>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", bufopts)
+      keymap("n", "<space>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", bufopts)
+      -- keymap("n", "<space>cr", "<cmd>lua vim.lsp.buf.rename()<CR>", bufopts)
+      -- keymap("n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", bufopts)
+      -- keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.format({ async = true })<CR>", bufopts)
 
       local signs = {
         { name = "DiagnosticSignError", text = "" },
