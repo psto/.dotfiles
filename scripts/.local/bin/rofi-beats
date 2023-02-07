@@ -26,58 +26,49 @@ menu(){
 }
 
 main() {
-	choice=$(menu | rofi -dmenu -config ~/.config/rofi/tokyonight.rasi | cut -d. -f1)
+	choice=$(menu | rofi -dmenu -i -config ~/.config/rofi/tokyonight.rasi | cut -d. -f1)
 
 	case $choice in
 		1)
 			notification "Lofi Girl ☕️🎶";
             URL="https://play.streamafrica.net/lofiradio"
-			break
 			;;
 		2)
 			notification "Chillhop ☕️🎶";
             URL="http://stream.zeno.fm/fyn8eh3h5f8uv"
-			break
 			;;
 		3)
 			notification "Box Lofi ☕️🎶";
             URL="http://stream.zeno.fm/f3wvbbqmdg8uv"
-			break
 			;;
 		4)
 			notification "The Bootleg Boy ☕️🎶";
             URL="http://stream.zeno.fm/0r0xa792kwzuv"
-			break
 			;;
 		5)
 			notification "Radio Spinner ☕️🎶";
             URL="https://live.radiospinner.com/lofi-hip-hop-64"
-			break
 			;;
 		6)
 			notification "SmoothChill ☕️🎶";
             URL="https://media-ssl.musicradio.com/SmoothChill"
-			break
 			;;
 		7)
 			notification "somafm IDM ☕️🎶";
             URL="https://ice1.somafm.com/cliqhop-256-mp3"
-			break
 			;;
 		8)
 			notification "soma fm Vaporwaves ☕️🎶";
             URL="https://ice1.somafm.com/vaporwaves-128-mp3"
-			break
 			;;
 		9)
 			notification "soma fm Groove Salad ☕️🎶";
             URL="https://ice6.somafm.com/groovesalad-256-mp3"
-			break
 			;;
 	esac
     # run mpv with args and selected url
     # added title arg to make sure the pkill command kills only this instance of mpv
-    mpv $ARGS --title="radio-mpv" $URL
+    mpv $ARGS --title="radio-mpv" "$URL"
 }
 
 pkill -f radio-mpv || main
