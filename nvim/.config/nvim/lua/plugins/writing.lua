@@ -15,7 +15,7 @@ return {
   { "folke/zen-mode.nvim", event = "BufReadPre" },
   {
     "epwalsh/obsidian.nvim",
-    event = "VeryLazy",
+    event = "BufEnter *.md",
     opts = {
       dir = "/home/piotr/public/Nextcloud/Documents/notes/obsidian-notes",
       notes_subdir = "Inbox",
