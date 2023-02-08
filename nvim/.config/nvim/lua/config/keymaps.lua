@@ -70,9 +70,6 @@ keymap("n", "]q", ":cnext<CR>zz", opts)
 keymap("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
 keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
 
--- ToggleTerm
-keymap("n", "<leader>t", "<cmd>:ToggleTerm<CR>", opts)
-
 -- REST client
 keymap("n", "<M-r>", "<Plug>RestNvim", opts)
 

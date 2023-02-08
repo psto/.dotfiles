@@ -99,6 +99,7 @@ return {
       b = { "<cmd>Telescope buffers<cr>", "Buffers" },
       c = { "<cmd>:bw<CR>", "Close Buffer" },
       e = { "<cmd>NeoTreeRevealToggle <CR>", "File Explorer" },
+      t = { "<cmd>ToggleTerm <CR>", "File Explorer" },
       q = { '<cmd>lua require("util/functions").smart_quit()<CR>', "Quit" },
       d = {
         name = "Debug",
