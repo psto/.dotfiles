@@ -3,15 +3,10 @@ return {
   event = "BufReadPre",
   dependencies = {
     "williamboman/mason.nvim",
-    {
-      "neovim/nvim-lspconfig", -- enable LSP
-      dependencies = {
-        'j-hui/fidget.nvim', -- LSP status updates
-      }
-    },
+    'j-hui/fidget.nvim', -- LSP status updates
     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
     "lukas-reineke/lsp-format.nvim",
-    { "SmiteshP/nvim-navic", dependencies = "neovim/nvim-lspconfig" },
+    "SmiteshP/nvim-navic",
   },
   config = function()
     local status_ok, nvim_lsp = pcall(require, "lspconfig")

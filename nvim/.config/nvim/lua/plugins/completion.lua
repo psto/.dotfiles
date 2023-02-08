@@ -35,6 +35,7 @@ return {
   },
   {
     "L3MON4D3/LuaSnip", -- snippets
+    event = "InsertEnter",
     dependencies = {
       "psto/friendly-snippets",
       config = function()
