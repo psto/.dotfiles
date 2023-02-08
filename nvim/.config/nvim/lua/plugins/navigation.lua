@@ -3,7 +3,9 @@ return {
     "karb94/neoscroll.nvim",
     event = "BufReadPre",
     config = function()
-      require("neoscroll").setup({})
+      require("neoscroll").setup({
+        mappings = { '<C-u>', '<C-d>', '<C-y>', '<C-e>', 'zt', 'zz', 'zb' },
+      })
     end,
   },
   {

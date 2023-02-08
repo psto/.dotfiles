@@ -77,7 +77,7 @@ return {
       -- keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.format({ async = true })<CR>", bufopts)
 
       local signs = {
-        { name = "DiagnosticSignError", text = "" },
+        { name = "DiagnosticSignError", text = "" }, --  or 
         { name = "DiagnosticSignWarn", text = "" },
         { name = "DiagnosticSignHint", text = "" },
         { name = "DiagnosticSignInfo", text = "" },
@@ -105,12 +105,12 @@ return {
 
       -- rounded borders for float windows
       -- TODO: solve conflict with noice plugin
-      vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-        border = "rounded",
-      })
-      vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-        border = "rounded",
-      })
+      -- vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+      --   border = "rounded",
+      -- })
+      -- vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+      --   border = "rounded",
+      -- })
 
       -- colors with document-color.nvim
       if client.server_capabilities.colorProvider then
