@@ -27,7 +27,9 @@ for_window {
   # keepassxc
   [app_id="org.keepassxc.KeePassXC"] move to scratchpad, scratchpad show
   # obsidian
-  [class=$notes] move to scratchpad, scratchpad show
+  [class=$notes] move to scratchpad, scratchpad show, $mediumer
+  # obsidian-nvim
+  [app_id=$notes_nvim] move to scratchpad, scratchpad show, $medium
   # terminal float
   [app_id=$term_small] move to scratchpad, scratchpad show, $smaller
   # terminal fullscreen
@@ -39,6 +41,7 @@ for_window {
   # firefox
   [title="^Library$"]                  floating enable
   [title="^Picture-in-Picture$"] { 
+      focus
       floating enable 
       border none
       sticky toggle
