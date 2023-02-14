@@ -71,7 +71,7 @@ bindsym $mod+n exec swaymsg [class=$notes] scratchpad show || exec obsidian, $me
 bindsym $mod+Shift+n exec swaymsg [app_id=$notes_nvim] scratchpad show || exec footclient --app-id $notes_nvim -e nvim +':cd %' ~/public/Nextcloud/Documents/notes/obsidian-notes, $medium
 
 # Passwords
-bindsym $mod+p exec ~/.local/bin/passrofi
+bindsym $mod+x exec ~/.local/bin/passrofi
 bindsym $mod+Shift+x exec swaymsg [app_id=$pass_id] scratchpad show || exec $pass
 
 # Pin toggle floating windows
@@ -87,7 +87,9 @@ bindsym F2 exec swaymsg [app_id=$resource_monitor] scratchpad show || exec footc
 bindsym $mod+m exec ~/.local/bin/rofi-beats
 
 # Screenshots
-bindsym $mod+shift+P exec grim -g "$(slurp)" - | swappy -f -
+bindsym $mod+p exec ~/.local/bin/grimshot --notify save active
+bindsym $mod+shift+p exec grim -g "$(slurp)" - | swappy -f -
+bindsym $mod+ctrl+p exec ~/.local/bin/grimshot --notify save output
 
 # Search files
 bindsym $mod+o exec ~/.local/bin/rofi-search
