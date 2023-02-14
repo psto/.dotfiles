@@ -19,6 +19,7 @@ set {
   $file_explorer xplr
   $menu ~/.local/bin/rofi-bangs
   $notes obsidian
+  $notes_nvim notes_nvim 
   $pass keepassxc
   $pass_id org.keepassxc.KeePassXC
   $resource_monitor btop
@@ -28,6 +29,7 @@ set {
   # container sizes
   $smaller border none, move position center, resize set width 960 height 540
   $medium border none, move position center, resize set width 960 height 740
+  $mediumer border none, move position center, resize set width 1200 height 960 
   $larger border none, move position center, resize set 1200 px 1400 px
   $maximize border none, move position center, resize set width 100 ppt height 100 ppt
   $top-right resize set 1264 px 800 px, move position 100ppt 0, move left 1264px
