@@ -14,15 +14,18 @@ notification(){
 }
 
 menu(){
-	printf "1. Lofi Girl\n"
-	printf "2. Chillhop\n"
-	printf "3. Box Lofi\n"
-	printf "4. The Bootleg Boy\n"
-	printf "5. Radio Spinner\n"
-	printf "6. SmoothChill\n"
-	printf "7. SomaFM IDM\n"
-	printf "8. SomaFM Vaporwaves\n"
-	printf "9. SomaFM Groove Salad"
+	printf "1. SomaFM IDM\n"
+	printf "2. SomaFM Vaporwaves\n"
+	printf "3. SomaFM Groove Salad\n"
+  printf "4. SomaFM Groove\n"
+  printf "5. SomaFM Sonic Universe\n"
+  printf "6. SomaFM DEF CON\n"
+	printf "7. Lofi Girl\n"
+	printf "8. Chillhop\n"
+	printf "9. Box Lofi\n"
+	printf "10. The Bootleg Boy\n"
+	printf "11. Radio Spinner\n"
+	printf "12. SmoothChill\n"
 }
 
 main() {
@@ -30,40 +33,52 @@ main() {
 
 	case $choice in
 		1)
+			notification "somaFM IDM ☕️🎶";
+            URL="https://ice1.somafm.com/cliqhop-256-mp3"
+			;;
+		2)
+			notification "somaFM Vaporwaves ☕️🎶";
+            URL="https://ice1.somafm.com/vaporwaves-128-mp3"
+			;;
+		3)
+			notification "somaFM Groove Salad ☕️🎶";
+            URL="https://ice6.somafm.com/groovesalad-256-mp3"
+			;;
+		4)
+			notification "somaFM Metal Detector ☕️🎶";
+            URL="https://somafm.com/nossl/metal130.pls"
+			;;
+		5)
+			notification "somaFM Sonic Universe ☕️🎶";
+            URL="https://somafm.com/sonicuniverse256.pls"
+			;;
+		6)
+			notification "somaFM DEF CON Radio ☕️🎶";
+            URL="https://somafm.com/defcon256.pls"
+			;;
+		7)
 			notification "Lofi Girl ☕️🎶";
             URL="https://play.streamafrica.net/lofiradio"
 			;;
-		2)
+		8)
 			notification "Chillhop ☕️🎶";
             URL="http://stream.zeno.fm/fyn8eh3h5f8uv"
 			;;
-		3)
+		9)
 			notification "Box Lofi ☕️🎶";
             URL="http://stream.zeno.fm/f3wvbbqmdg8uv"
 			;;
-		4)
+		10)
 			notification "The Bootleg Boy ☕️🎶";
             URL="http://stream.zeno.fm/0r0xa792kwzuv"
 			;;
-		5)
+		11)
 			notification "Radio Spinner ☕️🎶";
             URL="https://live.radiospinner.com/lofi-hip-hop-64"
 			;;
-		6)
+		12)
 			notification "SmoothChill ☕️🎶";
             URL="https://media-ssl.musicradio.com/SmoothChill"
-			;;
-		7)
-			notification "somafm IDM ☕️🎶";
-            URL="https://ice1.somafm.com/cliqhop-256-mp3"
-			;;
-		8)
-			notification "soma fm Vaporwaves ☕️🎶";
-            URL="https://ice1.somafm.com/vaporwaves-128-mp3"
-			;;
-		9)
-			notification "soma fm Groove Salad ☕️🎶";
-            URL="https://ice6.somafm.com/groovesalad-256-mp3"
 			;;
 	esac
     # run mpv with args and selected url
