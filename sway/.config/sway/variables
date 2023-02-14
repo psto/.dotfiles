@@ -11,7 +11,8 @@ set {
   $down j
   $up k
   $right l
-  $term kitty --single-instance
+  # $term kitty --single-instance
+  $term footclient 
   $term_small term_small
   $term_fullscreen term_fullscreen
   $browser /home/piotr/.local/bin/firefox-way
