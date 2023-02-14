@@ -11,9 +11,10 @@ exec_always echo "sway config trace: bindsym at $(date)"
 bindsym $mod+Return exec $term
 bindsym $mod+Shift+Return exec swaymsg [app_id=$term_small] scratchpad show || exec footclient --app-id $term_small, $smaller
 bindsym F1 exec swaymsg [app_id=$term_fullscreen] scratchpad show || exec footclient --app-id $term_fullscreen -e /home/piotr/.local/bin/tat, $maximize
+bindsym $mod+Tab exec swaymsg [app_id=$term_fullscreen] scratchpad show || exec footclient --app-id $term_fullscreen -e /home/piotr/.local/bin/tat
 
 # Start a browser
-bindsym $mod+w exec $browser
+bindsym $mod+w exec swaymsg [app_id=$firefox-nightly] focus || exec $browser 
 
 # Kill focused window
 bindsym $mod+q kill
