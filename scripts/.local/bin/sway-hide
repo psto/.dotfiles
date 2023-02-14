@@ -1,0 +1,82 @@
+#!/usr/bin/env bash
+# https://gitlab.com/wef/dotfiles/-/blob/master/bin/sway-hide
+# shellcheck disable=SC2034
+TIME_STAMP="20220627.151341"
+
+# Copyright (C) 2020-2021 Bob Hepple <bob dot hepple at gmail dot com>
+
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or (at
+# your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+# General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+PROG=$( basename "$0" )
+
+NO_RETURN=
+export POSIXLY_CORRECT="set"
+
+TEMP=$( getopt --options hn --longoptions help,no-return -- "$@" ) || exit 1
+eval set -- "$TEMP"
+
+for i in "$@"; do
+    case "$i" in
+        -h|--help)
+            echo "Usage: $PROG <gui-program> [args]"
+            echo
+            {
+                echo "Hides the current terminal (or whatever called $PROG) in the scratchpad and runs the gui-program"
+                echo "with optional [args]. Once it exits, the current terminal is restored from scratchpad"
+            } | fmt
+            echo
+            echo "  -n, --no-return       leave the terminal in the scrachpad"
+            exit 0
+            ;;
+        -n|--n*)
+            NO_RETURN="set"
+            shift
+            ;;
+        --)
+            shift
+            break
+            ;;
+    esac
+done
+
+# a bit tricky but just a bit faster - start the gui-program ASAP and
+# in background, but rely on the fact that the terminal has not yet
+# lost focus!!
+echo '$@='"$*"
+"$@" &
+
+#set -x
+{
+    read -r TERMINAL_ID
+    read -r TERMINAL_TYPE
+    read -r TERMINAL_BORDER
+} < <( swaymsg -t get_tree | jq -r '..| select(.type?) | select(.focused==true) | .id, .type, .border' )
+
+FLOATING="enable"
+[[ "$TERMINAL_TYPE" == "floating_con" ]] || FLOATING="disable"
+
+swaymsg "move window to scratchpad"
+
+[[ "$NO_RETURN" ]] && exit 0
+
+wait
+
+swaymsg "[con_id=$TERMINAL_ID] focus; floating $FLOATING; border $TERMINAL_BORDER"
+
+# Local Variables:
+# mode: shell-script
+# time-stamp-pattern: "4/TIME_STAMP=\"%:y%02m%02d.%02H%02M%02S\""
+# eval: (add-hook 'before-save-hook 'time-stamp)
+# End:
+
