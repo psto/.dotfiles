@@ -1,11 +1,3 @@
-unbind-key j
-unbind-key k
-unbind-key h
-unbind-key H
-unbind-key L
-unbind-key c
-unbind-key ,
-
 # set browser and redirect standard output/error to preserve newsboat interface
 browser "w3m %u"
 # browser "brave-beta %u >/dev/null 2>&1 &"
@@ -17,7 +9,16 @@ refresh-on-startup yes
 
 macro w set browser "mpv %u" ; open-in-browser ; set browser "brave %u"
 
-# bind keys
+# -- keymaps -------------------------------------------------------------------
+
+unbind-key j
+unbind-key k
+unbind-key h
+unbind-key H
+unbind-key L
+unbind-key c
+unbind-key ,
+
 bind-key ; macro-prefix
 bind-key h quit
 bind-key BACKSPACE quit
@@ -29,6 +30,8 @@ bind-key l open
 bind-key H prev-feed
 bind-key L next-feed
 bind-key c toggle-show-read-feeds
+
+# -- display -------------------------------------------------------------------
 
 color background          color8   default
 color listnormal          color8   default
