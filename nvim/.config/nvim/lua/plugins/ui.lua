@@ -26,13 +26,13 @@ return {
     end,
   },
   {
-    "mrshmllow/document-color.nvim", -- Pretty colors for css, tailwindcss
+    "NvChad/nvim-colorizer.lua",
     event = "BufReadPre",
-    config = function()
-      require("document-color").setup({
-        mode = "background", -- "background" | "foreground" | "single"
-      })
-    end,
+    opts = {
+      user_default_options = {
+        tailwind = true,
+      },
+    },
   },
   {
     "nvim-tree/nvim-web-devicons", -- pretty icons
