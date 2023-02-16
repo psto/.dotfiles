@@ -7,6 +7,8 @@
   pager = delta
 [alias]
   diff-words = diff --color-words='[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+'
+  evolution = log --oneline -p -S 
+  history = log --oneline -S
   last = log -1 HEAD --stat
   lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 [interactive]
