@@ -112,12 +112,6 @@ return {
       --   border = "rounded",
       -- })
 
-      -- colors with document-color.nvim
-      if client.server_capabilities.colorProvider then
-        -- Attach document colour support
-        require("document-color").buf_attach(bufnr)
-      end
-
       for _, sign in ipairs(signs) do
         vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
       end
@@ -126,7 +120,6 @@ return {
     local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
     -- Enable (broadcasting) snippet capability for completion
     capabilities.textDocument.completion.completionItem.snippetSupport = true
-    capabilities.textDocument.colorProvider = { dynamicRegistration = true }
 
     -- Use a loop to conveniently call 'setup' on multiple servers and
     -- map buffer local keybindings when the language server attaches
