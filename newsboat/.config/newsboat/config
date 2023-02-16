@@ -7,7 +7,7 @@ browser "w3m %u"
 prepopulate-query-feeds yes
 refresh-on-startup yes
 
-macro w set browser "mpv %u" ; open-in-browser ; set browser "brave %u"
+macro v set browser "setsid -f mpv --really-quiet --no-terminal" ; open-in-browser ; set browser firefox-nightly
 
 # -- keymaps -------------------------------------------------------------------
 
@@ -41,7 +41,8 @@ color listfocus_unread    color0   color8
 color info                color5   default
 color article             color8   default
 
-# highlights
+text-width 80
+
 highlight article "^(Feed|Link):.*$" color4 default 
 highlight article "^(Title|Date|Author):.*$" color4 default 
 highlight article "https?://[^ ]+" color10 default underline
