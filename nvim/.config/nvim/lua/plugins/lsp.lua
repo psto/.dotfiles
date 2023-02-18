@@ -6,7 +6,7 @@ return {
     'j-hui/fidget.nvim', -- LSP status updates
     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
     "lukas-reineke/lsp-format.nvim",
-    "SmiteshP/nvim-navic",
+    -- "SmiteshP/nvim-navic",
   },
   config = function()
     local status_ok, nvim_lsp = pcall(require, "lspconfig")
@@ -24,8 +24,8 @@ return {
     local m_status_ok, mason = pcall(require, "mason")
     if not m_status_ok then return end
 
-    local n_status_ok, navic = pcall(require, "nvim-navic")
-    if not n_status_ok then return end
+    -- local n_status_ok, navic = pcall(require, "nvim-navic")
+    -- if not n_status_ok then return end
 
     -- start mason
     mason.setup()
@@ -40,7 +40,7 @@ return {
     lsp_format.setup()
 
     -- navic for winbar
-    navic.setup({ separator = "  " })
+    -- navic.setup({ separator = "  " })
 
     -- Use an on_attach function to only map the following keys
     -- after the language server attaches to the current buffer
@@ -52,9 +52,9 @@ return {
       require("lsp-format").on_attach(client)
 
       -- attach navic to lsp only if client has symbol provider capability
-      if client.server_capabilities.documentSymbolProvider then
-        navic.attach(client, bufnr)
-      end
+      -- if client.server_capabilities.documentSymbolProvider then
+      --   navic.attach(client, bufnr)
+      -- end
 
       -- Mappings.
       local keymap = vim.keymap.set
@@ -78,9 +78,9 @@ return {
 
       local signs = {
         { name = "DiagnosticSignError", text = "" }, --  or 
-        { name = "DiagnosticSignWarn", text = "" },
-        { name = "DiagnosticSignHint", text = "" },
-        { name = "DiagnosticSignInfo", text = "" },
+        { name = "DiagnosticSignWarn",  text = "" },
+        { name = "DiagnosticSignHint",  text = "" },
+        { name = "DiagnosticSignInfo",  text = "" },
       }
 
       local config = {
@@ -150,19 +150,19 @@ return {
     -- })
 
     -- volar config
-    nvim_lsp.volar.setup({
-      on_attach = on_attach,
-      capabilities = capabilities,
-      filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json' },
-      init_options = {
-        typescript = {
-          tsdk = "/home/piotr/.local/share/npm/lib/node_modules/typescript/lib",
-        },
-      },
-      flags = {
-        debounce_text_changes = 150,
-      },
-    })
+    -- nvim_lsp.volar.setup({
+    --   on_attach = on_attach,
+    --   capabilities = capabilities,
+    --   filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json' },
+    --   init_options = {
+    --     typescript = {
+    --       tsdk = "/home/piotr/.local/share/npm/lib/node_modules/typescript/lib",
+    --     },
+    --   },
+    --   flags = {
+    --     debounce_text_changes = 150,
+    --   },
+    -- })
 
     -- cssls config
     nvim_lsp.cssls.setup({
@@ -273,13 +273,13 @@ return {
       },
     })
 
-    -- sumneko config
+    -- lua_ls config
     -- install on arch:$ sudo pacman -S lua-language-server
     local runtime_path = vim.split(package.path, ';')
     table.insert(runtime_path, 'lua/?.lua')
     table.insert(runtime_path, 'lua/?/init.lua')
 
-    require('lspconfig').sumneko_lua.setup {
+    require('lspconfig').lua_ls.setup {
       on_attach = on_attach,
       capabilities = capabilities,
       settings = {
