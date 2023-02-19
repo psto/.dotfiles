@@ -5,6 +5,7 @@ beekeeper-studio-bin
 btop
 brave-beta-bin
 cava
+chatgpt-desktop-bin
 cliphist-bin
 czkawka-cli-bin
 element-desktop-nightly-bin
@@ -25,6 +26,7 @@ navi
 neovim-nightly-bin
 nvim-packer-git
 obsidian
+ouch-bin
 qrcp-bin
 rbenv
 rofi-lbonn-wayland
@@ -37,6 +39,7 @@ streamlink-twitch-gui-bin
 swayhide
 timeshift
 ulauncher
+vimv
 visual-studio-code-bin
 vscode-codicons-git
 wayab-git
