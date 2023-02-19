@@ -92,9 +92,6 @@ alias la='exa -a --icons'
 # ranger alias
 alias r='ranger'
 
-# lf alias
-alias lf='lf-ueberzug' # ueberzug not working in wayland
-
 # xplr alias
 alias x="xplr"
 
