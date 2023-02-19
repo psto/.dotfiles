@@ -13,6 +13,13 @@ alias agi='doas apt-get install'
 alias agr='doas apt-get remove'
 alias agu='doas apt-get update'
 
+# confirm before overwriting something
+alias cp="cp -riv"
+alias mv='mv -iv'
+alias rm='rm -riv'
+alias tr='trash-put'
+alias mkdir='mkdir -pv'
+
 # git aliases
 alias g='lazygit'
 alias gs="git status -sb"
@@ -39,9 +46,6 @@ alias gcan="git commit --amend --no-edit"
 # use neovim
 alias vim='nvim'
 alias v='nvim'
-
-# use trash-put instead of rm
-alias rm='trash-put'
 
 # open vifm
 alias vf='vifm'
