@@ -84,15 +84,6 @@ alias wgets='wget --mirror --convert-links --adjust-extension --page-requisites 
 # terminal pomodoro timer
 alias pomodoro='notify-send "start 🍅" && sleep 5 && mpv --no-video ~/Music/open-ended.mp3 && notify-send "break time 😌" && sleep 1 && notify-send "🚨 end break 🚨" && mpv --no-video ~/Music/open-ended.mp3'
 
-# SHORTCUTS
-alias cdd='cd ~/Documents'
-alias cddo='cd ~/Downloads'
-alias cdm='cda ~/Music'
-alias cdv='cd ~/Videos'
-alias cdw='cd ~/workspace'
-alias stojanow='cd ~/workspace/stojanow.com'
-alias episteme='cd ~/workspace/episteme'
-
 # protonvpn-cli
 alias p='doas protonvpn'
 # protonvpn-cli disconnect
