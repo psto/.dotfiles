@@ -1,4 +1,7 @@
 # ALIASES
+alias sudo='doas'
+alias sudoedit='doas $EDITOR'
+alias doasedit='doas $EDITOR'
 
 # ls aliases
 alias ll='ls -alF'
@@ -6,9 +9,9 @@ alias la='ls -A'
 alias l='ls -CF'
 
 # manage packages
-alias agi='sudo apt-get install'
-alias agr='sudo apt-get remove'
-alias agu='sudo apt-get update'
+alias agi='doas apt-get install'
+alias agr='doas apt-get remove'
+alias agu='doas apt-get update'
 
 # git aliases
 alias gs='git status '
@@ -76,7 +79,7 @@ alias stojanow='cd ~/workspace/stojanow.com'
 alias episteme='cd ~/workspace/episteme'
 
 # protonvpn-cli
-alias p='sudo protonvpn'
+alias p='doas protonvpn'
 # protonvpn-cli disconnect
 alias pd="protonvpn-cli d"
 
