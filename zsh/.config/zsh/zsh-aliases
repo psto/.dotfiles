@@ -1,5 +1,7 @@
 #!/bin/sh
-alias g='lazygit'
+alias sudo='doas'
+alias sudoedit='doas $EDITOR'
+alias doasedit='doas $EDITOR'
 alias zsh-update-plugins="find "$ZDOTDIR/plugins" -type d -exec test -e '{}/.git' ';' -print0 | xargs -I {} -0 git -C {} pull -q"
 
 # nvim
@@ -57,6 +59,7 @@ alias yay-fzf-rm="yay -Qq | fzf --multi --preview 'yay -Qi {1}' | xargs -ro sudo
 alias mach_list_systemctl="systemctl list-unit-files --state=enabled"
 
 # git aliases
+alias g='lazygit'
 alias gs="git status -sb"
 alias ga="git add"
 alias gap="git add --patch"
