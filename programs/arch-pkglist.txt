@@ -8,10 +8,12 @@ broot
 calibre
 cmatrix
 dash
+doas
 docker
 docker-compose
 exa
 fd
+figlet
 fish
 flameshot
 foliate
@@ -50,6 +52,7 @@ redshift
 ripgrep
 ripgrep-all
 rofi-calc
+rsync
 scrot
 sd
 sddm
