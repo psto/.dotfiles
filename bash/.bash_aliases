@@ -14,12 +14,27 @@ alias agr='doas apt-get remove'
 alias agu='doas apt-get update'
 
 # git aliases
-alias gs='git status '
-alias ga='git add '
-alias gb='git branch '
-alias gc='git commit'
-alias gd='git diff'
-alias go='git checkout '
+alias g='lazygit'
+alias gs="git status -sb"
+alias ga="git add"
+alias gap="git add --patch"
+alias gb="git branch"
+alias gba="git branch --all"
+alias gbd="git branch -D"
+alias gc="git commit"
+alias gco="git checkout"
+alias gcb="git branch | fzf | xargs git checkout"
+alias gcl="git clone"
+alias gcp="git cherry-pick"
+alias gd="git diff -w"
+alias gdw="git diff-words"
+alias gp="git push"
+alias grc="git rebase --continue"
+alias gra="git rebase --abort"
+# "git lg" alias for pretty git log - set and forget
+# git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --"
+alias gl="git lg"
+alias gcan="git commit --amend --no-edit"
 
 # use neovim
 alias vim='nvim'
