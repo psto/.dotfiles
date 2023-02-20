@@ -71,8 +71,20 @@ export FZF_CTRL_T_COMMAND='ag -l --path-to-ignore ~/.agignore --nocolor --hidden
 # open new journal file with today's date as name
 alias journal='cd ~/Dropbox/journal/ && vim $(date +%d.%m.%Y).md'
 
+# dragon-drop
+alias drag="dragon-drop"
+
 # Easily search running processes
-alias 'psf'='ps ax | grep '
+alias psf='ps -Ao comm,pcpu,pmem,pid --sort=-pcpu | grep '
+
+# mpv
+alias mpvsp='mpv --save-position-on-quit' # mpv remember last played position
+
+# navi alias
+alias n="navi"
+
+# xplr alias
+alias x="xplr"
 
 # youtube-dl aliases
 # download youtube video as mp3
