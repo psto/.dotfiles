@@ -47,8 +47,16 @@ alias gcan="git commit --amend --no-edit"
 alias vim='nvim'
 alias v='nvim'
 
-# open vifm
-alias vf='vifm'
+# open
+alias open="xdg-open"
+
+# clear alias when in tmux
+alias c='clear'
+
+# ls aliasies
+alias ls='ls --color=auto'
+alias l='exa -l --icons'
+alias la='exa -a --icons'
 
 # ag searcher colors
 alias ag="ag --color-path 35 --color-match '1;35' --color-line-number 32"
@@ -59,9 +67,6 @@ alias python=python3
 # for fzf
 export FZF_DEFAULT_COMMAND='ag -l --path-to-ignore ~/.agignore --nocolor --hidden -g ""'
 export FZF_CTRL_T_COMMAND='ag -l --path-to-ignore ~/.agignore --nocolor --hidden -g ""'
-
-# fuck alias
-eval $(thefuck --alias fu)
 
 # open new journal file with today's date as name
 alias journal='cd ~/Dropbox/journal/ && vim $(date +%d.%m.%Y).md'
