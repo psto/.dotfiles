@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Disable laptop monitor if at least one external monitor is detected
+# Requirements: jq
+
+if [ "$XDG_SESSION_TYPE" = "wayland" ] && [ "$XDG_CURRENT_DESKTOP" = "sway" ]; then                         
+  number_of_outputs=$(swaymsg -t get_outputs | jq '. | length')
+
+  if [ "$number_of_outputs" -gt 1 ]; then
+    swaymsg output eDP-1 disable
+  fi
+fi              
