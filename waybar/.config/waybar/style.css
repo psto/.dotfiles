@@ -64,6 +64,10 @@ window#waybar {
 	color:#ee2e24;
 }
 
+#custom-notification {
+  color: #9ece6a;
+}
+
 #tray,
 #mode,
 #battery,
