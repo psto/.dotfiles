@@ -133,14 +133,18 @@ return {
           end, { "i", "s" }),
         },
         sources = cmp.config.sources({
+          { name = "codeium" },
           { name = "nvim_lsp" },
           { name = "luasnip" },
           { name = "path" },
-          { name = "buffer", keyword_length = 5 },
+          { name = "buffer",  keyword_length = 5 },
         }),
         formatting = {
           format = require("lspkind").cmp_format({
             mode = "symbol",
+            symbol_map = { Suggestion = "" }, -- icon for codeium
+            maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+            ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
           }),
         },
         window = {
@@ -154,7 +158,7 @@ return {
         },
         experimental = {
           ghost_text = {
-            ghost_text = true,
+            ghost_text = false,
           },
         },
       }
