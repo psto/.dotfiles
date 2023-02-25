@@ -5,6 +5,11 @@ exec_always echo "sway config trace: for_window at $(date)"
 #################################################################
 # to find window app_id, class, title, role use: swaymsg -t get_tree
 
+# asign apps to workspaces
+assign [app_id="Element-Nightly"] workspace 5
+assign [app_id="signal"] workspace 5
+assign [app_id="YouTube Music"] workspace 6
+
 for_window {
   [workspace="0"]                      floating enable
   [class="Anki"]                       floating enable
