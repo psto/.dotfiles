@@ -54,7 +54,10 @@ return {
       },
     },
     opts = {
+      background_colour = "#1a1b26",
+      stages = "fade",
       timeout = 3000,
+      top_down = false,
       max_height = function()
         return math.floor(vim.o.lines * 0.75)
       end,
