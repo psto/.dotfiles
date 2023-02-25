@@ -30,6 +30,9 @@ exec_always "pkill autotiling; autotiling"
 # Start clipboard
 exec_always "pkill wl-paste; exec wl-paste -p -t text --watch cliphist store"
 
+# Diasble laptop monitor if external monitor is connected
+exec_always "~/.local/bin/sway-disable-monitor"
+
 # Set gtk+ theme
 set $gnome-schema org.gnome.desktop.interface
 exec_always {
