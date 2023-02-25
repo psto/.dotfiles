@@ -4,7 +4,7 @@ return {
     lazy = false,
     priority = 1000,
     opts = {
-      style = "night", -- three styles: `storm`, a darker variant `night` and `day`
+      -- style = "night", -- three styles: `storm`, a darker variant `night` and `day`
       transparent = false, -- enable transparency
 
       on_highlights = function(hl, c)
@@ -39,7 +39,16 @@ return {
       end,
     },
     config = function(_, opts)
-      require("tokyonight").setup(opts)
+      local options = opts
+
+      local hour = tonumber(os.date("%H"))
+      if hour >= 8 and hour < 17 then
+        options.style = "day"
+      else
+        options.style = "night"
+      end
+
+      require("tokyonight").setup(options)
       vim.cmd('colorscheme tokyonight')
     end,
   },
