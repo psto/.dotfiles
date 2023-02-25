@@ -81,34 +81,23 @@ return {
         -- signature = { enabled = false },
         -- hover = { enabled = false }
       },
-
-      cmdline = {
-        enabled = true, -- enables the Noice cmdline UIview = "cmdline_popup", -- `cmdline` for a classic bottom cmdline or cmdline_popup for popup view
-        view = "cmdline",
-        opts = { buf_options = { filetype = "vim" } }, -- enable syntax highlighting in the cmdline
-        icons = {
-          ["/"] = { icon = " ", hl_group = "DiagnosticWarn" },
-          ["?"] = { icon = " ", hl_group = "DiagnosticWarn" },
-          [":"] = { icon = " ", hl_group = "DiagnosticInfo", firstc = false },
-        },
-      },
       presets = {
-        bottom_search = true,
-        command_palette = true,
+        bottom_search = false,
+        command_palette = false, -- center or top
         long_message_to_split = true,
         lsp_doc_border = true,
       },
       routes = {
         { -- hide written messages
+          view = "mini",
           filter = {
             event = "msg_show",
             kind = "",
             find = "written",
           },
-          opts = { skip = true },
         },
         { -- show @recording messages
-          view = "notify",
+          view = "mini",
           filter = { event = "msg_showmode" },
         },
         { -- hide empty messages when <S-K> hover
@@ -119,13 +108,13 @@ return {
       }
     },
     keys = {
-      { "<S-Enter>", function() require("noice").redirect(vim.fn.getcmdline()) end, mode = "c", desc = "Redirect Cmdline" },
-      { "<leader>snl", function() require("noice").cmd("last") end, desc = "Noice Last Message" },
-      { "<leader>snh", function() require("noice").cmd("history") end, desc = "Noice History" },
-      { "<leader>sna", function() require("noice").cmd("all") end, desc = "Noice All" },
+      { "<S-Enter>",   function() require("noice").redirect(vim.fn.getcmdline()) end, mode = "c",                 desc = "Redirect Cmdline" },
+      { "<leader>snl", function() require("noice").cmd("last") end,                   desc = "Noice Last Message" },
+      { "<leader>snh", function() require("noice").cmd("history") end,                desc = "Noice History" },
+      { "<leader>sna", function() require("noice").cmd("all") end,                    desc = "Noice All" },
       { "<c-f>", function() if not require("noice.lsp").scroll(4) then return "<c-f>" end end, silent = true, expr = true,
         desc = "Scroll forward", mode = { "i", "n", "s" } },
-      { "<c-b>", function() if not require("noice.lsp").scroll(-4) then return "<c-b>" end end, silent = true,
+      { "<c-b>", function() if not require("noice.lsp").scroll( -4) then return "<c-b>" end end, silent = true,
         expr = true, desc = "Scroll backward", mode = { "i", "n", "s" } },
     },
   },
