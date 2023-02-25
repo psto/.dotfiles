@@ -17,7 +17,7 @@ COMMANDS["edit-hypr"]='exec foot -a floating -e nvim ~/.config/hypr/hyprland.con
 LABELS["edit-hypr"]="✨"
 
 # Quickly sway
-COMMANDS["edit-sway"]='exec foot -a floating -e nvim ~/.config/sway/'
+COMMANDS["edit-sway"]='exec foot -a floating -e nvim +":cd %" ~/.config/sway/'
 LABELS["edit-sway"]="🌳"
 
 # Quickly edit this file
@@ -33,19 +33,27 @@ LABELS["edit-rofi-bangs"]="‼️"
 # LABELS["command_name"]=""
 
 # open bookmarks
-COMMANDS["bookmarks"]="~/.local/bin/rofi-surfraw-bookmarks.sh"
+COMMANDS["bookmarks"]="$HOME/.local/bin/rofi-surfraw-bookmarks.sh"
 LABELS["bookmarks"]="🔖"
+
+# Audacity
+COMMANDS["audacity "]='exec audacity'
+LABELS["audacity "]="🎧"
 
 # Broot
 COMMANDS["broot"]='exec foot -H -a floating -e broot'
-LABELS["broot"]=
+LABELS["broot"]="🗄️"
 
 # btop
 COMMANDS["btop"]='exec foot -F -e btop'
 LABELS["btop"]="📈"
 
+# ipinfo
+COMMANDS["ipinfo"]='exec foot -H -a floating -e http "ipinfo.io" | jq'
+LABELS["ipinfo"]="📈"
+
 # element
-COMMANDS["element"]='element-desktop-nightly'
+COMMANDS["element"]='element-desktop-nightly --enable-features=UseOzonePlatform --ozone-platform=wayland'
 LABELS["element"]="⚛️"
 
 # ksnip
@@ -53,7 +61,7 @@ COMMANDS["ksnip"]="ksnip"
 LABELS["ksnip"]="🖼️"
 
 # Listen to music
-COMMANDS["rofi-beats"]="~/.local/bin/rofi-beats"
+COMMANDS["rofi-beats"]="$HOME/.local/bin/rofi-beats"
 LABELS["rofi-beats"]="🎧"
 
 # lf file explorer
@@ -65,7 +73,7 @@ COMMANDS["obsidian-quick-note"]='exec foot -a floating -e ~/.local/bin/obsidian-
 LABELS["obsidian-quick-note"]="✏️"
 
 # Macho man pages
-COMMANDS["macho"]="~/.local/bin/macho"
+COMMANDS["macho"]="$HOME/.local/bin/macho"
 LABELS["macho"]="💪"
 
 # Navi
@@ -89,7 +97,7 @@ COMMANDS["calc"]="exec rofi -show calc -modi calc -no-show-match -no-sort -confi
 LABELS["calc"]="🧮"
 
 # Rofi WiFi
-COMMANDS["wifi"]="~/.local/bin/rofi-wifi"
+COMMANDS["wifi"]="$HOME/.local/bin/rofi-wifi"
 LABELS["wifi"]="📶"
 
 # SciToPdf
@@ -97,15 +105,15 @@ COMMANDS["scitopdf"]='exec foot -H -a floating -e scitopdf'
 LABELS["scitopdf"]="📄"
 
 # Search for files
-COMMANDS["fzf-search"]="~/.local/bin/rofi-search"
+COMMANDS["fzf-search"]="$HOME/.local/bin/rofi-search"
 LABELS["fzf-search"]="🔍"
 
 # Spotify
-COMMANDS["spotify"]='~/.local/bin/spotify-way'
+COMMANDS["spotify"]="$HOME/.local/bin/spotify-way"
 LABELS["spotify"]="🎧"
 
 # Suspend
-COMMANDS["suspend"]="suspend "${input}""
+COMMANDS["suspend"]='suspend "${input}"'
 LABELS["suspend"]="🥶"
 
 # Shutdown
@@ -117,7 +125,7 @@ COMMANDS["reboot"]='reboot'
 LABELS["reboot"]="🌄"
 
 # Tldr
-COMMANDS["tldr"]='exec foot -a floating -e tldr "${input}"'
+COMMANDS["tldr"]='exec foot -H -a floating -e tldr "${input}"'
 LABELS["tldr"]="🗒️"
 
 # Todo
@@ -137,7 +145,7 @@ LABELS["www"]="🌐"
 ################################################################################
 
 # open custom web searches
-COMMANDS["/"]="~/.local/bin/rofi-surfraw-websearch.sh"
+COMMANDS["/"]="$HOME/.local/bin/rofi-surfraw-websearch.sh"
 LABELS["/"]="🕸️"
 
 # Brave
@@ -149,6 +157,9 @@ LABELS["dev"]="💻"
 # DuckDuckGo
 COMMANDS["d"]='$browser https://duckduckgo.com/?q="${input}"'
 LABELS["d"]="🦆"
+# Domainr
+COMMANDS["dom"]='$browser https://domainr.com/?q="${input}"'
+LABELS["dom"]="🌐"
 # GitHub
 COMMANDS["gh"]='$browser https://github.com/search?q="${input}"'
 LABELS["gh"]="🐙"
@@ -195,7 +206,7 @@ COMMANDS["anki"]="anki"
 LABELS["anki"]="📇"
 
 # Brave Beta browser
-COMMANDS["brave"]="brave-beta"
+COMMANDS["brave"]="$HOME/.local/bin/brave-beta-gpu"
 LABELS["brave"]="🦁"
 
 # Beekeeper Studio
@@ -214,12 +225,24 @@ LABELS["bleachbit"]="🧹"
 COMMANDS["calibre"]="calibre"
 LABELS["calibre"]="📚"
 
+# ChatGPT
+COMMANDS["chat-gpt"]="chat-gpt"
+LABELS["chat-gpt"]="🤖"
+
+# Chatterino
+COMMANDS["chatterino"]="chatterino"
+LABELS["chatterino"]="💬"
+
+# Chromium
+COMMANDS["chromium"]="chromium"
+LABELS["chromium"]="🦾"
+
 # Discord
 COMMANDS["discord"]="discord"
 LABELS["discord"]="😮"
 
 # Firefox
-COMMANDS["firefox"]="~/.local/bin/firefox-way"
+COMMANDS["firefox"]="$HOME/.local/bin/firefox-way"
 LABELS["firefox"]="🦊"
 
 # Firefox Developer
@@ -262,6 +285,10 @@ LABELS["kitty"]="🐱"
 COMMANDS["mailspring"]='mailspring'
 LABELS["mailspring"]="📧"
 
+# Microsft Edge
+COMMANDS["microsoft-edge-stable"]="microsoft-edge-stable --enable-features=UseOzonePlatform --ozone-platform=wayland"
+LABELS["microsoft-edge-stable"]="♯"
+
 # Morgen
 COMMANDS["morgen"]="morgen"
 LABELS["morgen"]="🗓️"
@@ -276,7 +303,7 @@ LABELS["obsidian"]="🗒️"
 
 # OBS Studio
 COMMANDS["obs"]="obs -platform wayland"
-LABELS["obs-studio"]="⏺️"
+LABELS["obs"]="⏺️"
 
 # qBittorrent
 COMMANDS["qbittorrent"]="qbittorrent"
@@ -291,7 +318,7 @@ COMMANDS["peek"]="peek"
 LABELS["peek"]="👀"
 
 # Signal
-COMMANDS["signal-desktop"]="export LANG=pl_PL.UTF-8 && signal-desktop --use-tray-icon --start-in-tray"
+COMMANDS["signal-desktop"]="export LANG=pl_PL.UTF-8 && signal-desktop --use-tray-icon --use-tray-icon --enable-features=UseOzonePlatform --ozone-platform=wayland"
 LABELS["signal-desktop"]="📡"
 
 # SimpleScreenRecorder
@@ -305,6 +332,10 @@ LABELS["sioyek"]="📄"
 # Streamlink Twitch GUI
 COMMANDS["streamlink-twitch-gui"]="streamlink-twitch-gui"
 LABELS["streamlink-twitch-gui"]="🏞️"
+
+# Streamlink Twitch GUI
+COMMANDS["stretchly"]="stretchly --enable-features=UseOzonePlatform --ozone-platform=wayland"
+LABELS["stretchly"]="🧘"
 
 # Tor Browser
 COMMANDS["tor-browser"]="tor-browser"
@@ -331,7 +362,7 @@ COMMANDS["vpn-unlimited"]="vpn-unlimited"
 LABELS["vpn-unlimited"]="🕵️"
 
 # YouTube Music
-COMMANDS["youtube-music"]="~/.local/bin/youtube-music-desktop"
+COMMANDS["youtube-music"]="$HOME/.local/bin/youtube-music-desktop"
 LABELS["youtube-music"]="▶️ "
 
 # Zathura
@@ -370,7 +401,7 @@ choice=${value%%\ *}
 input=${value:$((${#choice}+1))}
 
 # Cancelled? bail out
-if test -z ${choice}
+if test -z "${choice}"
 then
 exit
 fi
@@ -380,7 +411,7 @@ if test ${COMMANDS[$choice]+isset}
 then
 # Execute the choice
 eval echo "Executing: ${COMMANDS[$choice]}"
-eval ${COMMANDS[$choice]}
+eval "${COMMANDS[$choice]}"
 else
 # eval $choice | rofi -config ~/.config/rofi/rofidmenu.rasi 
 
