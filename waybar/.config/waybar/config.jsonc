@@ -14,6 +14,7 @@
     "custom/recorder",
     "tray",
     "custom/notification",
+    "idle_inhibitor",
     "temperature",
     "cpu",
     "memory",
@@ -184,6 +185,13 @@
     ],
     "on-scroll-up": "light -A 1",
     "on-scroll-down": "light -U 1",
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "",
+      "deactivated": ""
+    }
   },
   "temperature": {
     "thermal-zone": 8,

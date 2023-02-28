@@ -87,7 +87,8 @@ window#waybar {
 #custom-spotify,
 #custom-weather,
 #custom-mail,
-#custom-media {
+#custom-media,
+#custom-notification {
   margin: 0px 0px 0px 10px;
   padding: 0 5px;
   /* border-top: 3px solid rgba(217, 216, 216, 0.5); */
