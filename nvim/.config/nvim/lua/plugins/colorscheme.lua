@@ -39,16 +39,7 @@ return {
       end,
     },
     config = function(_, opts)
-      local options = opts
-
-      local hour = tonumber(os.date("%H"))
-      if hour >= 8 and hour < 17 then
-        options.style = "day"
-      else
-        options.style = "night"
-      end
-
-      require("tokyonight").setup(options)
+      require("tokyonight").setup(opts)
       vim.cmd('colorscheme tokyonight')
     end,
   },
