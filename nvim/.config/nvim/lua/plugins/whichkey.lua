@@ -207,7 +207,13 @@ return {
         name = "System",
         c = { "<cmd>ChatGPT<CR>", "ChatGPT" },
         h = { "<cmd>lua _HTOP_TOGGLE()<CR>", "htop" },
-        n = { "<cmd>lua _NODE_TOGGLE()<CR>", "Node REPL" },
+        n = {
+          name = "Noice",
+          a = { "<cmd>lua require('noice').cmd('all')<CR>", "Noice All" },
+          h = { "<cmd>lua require('noice').cmd('history')<CR>", "Noice History" },
+          l = { "<cmd>lua require('noice').cmd('last')<CR>", "Noice Last Message" },
+        },
+        r = { "<cmd>lua _NODE_TOGGLE()<CR>", "Node REPL" },
         s = { "<cmd>lua require('util.assistance').so_input()<CR>", "  StackOverflow" },
         x = { "<cmd>lua _XPLR_TOGGLE()<CR>", "File Xplr" },
       }
