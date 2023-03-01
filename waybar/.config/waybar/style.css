@@ -64,15 +64,10 @@ window#waybar {
 	color:#ee2e24;
 }
 
-#custom-notification {
-  color: #9ece6a;
-}
-
 #tray,
 #mode,
 #battery,
 #temperature,
-#bluetooth,
 #cpu,
 #disk,
 #memory,
@@ -113,11 +108,6 @@ window#waybar {
 #backlight {
   color: #2ac3de;
 }
-
-#bluetooth {
-  color: #7aa2f7;
-}
-
 
 #clock {
   color: #b48ead;
