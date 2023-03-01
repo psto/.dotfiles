@@ -2,6 +2,7 @@ alacritty
 autotiling
 anki-bin
 beekeeper-studio-bin
+blueman
 btop
 brave-beta-bin
 cava

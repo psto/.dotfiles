@@ -13,6 +13,7 @@ assign [app_id="YouTube Music"] workspace 6
 for_window {
   [workspace="0"]                      floating enable
   [class="Anki"]                       floating enable
+  [app_id="blueman-manager"]           floating enable
   [app_id="floating"]                  floating enable
   [app_id="floating"]                  resize set height 540
   [app_id="floating"]                  resize set width 960
