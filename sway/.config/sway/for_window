@@ -33,7 +33,7 @@ for_window {
   # keepassxc
   [app_id="org.keepassxc.KeePassXC"] move to scratchpad, scratchpad show
   # obsidian
-  [class=$notes] move to scratchpad, scratchpad show, $mediumer
+  [app_id=$notes] move to scratchpad, scratchpad show, $mediumer
   # obsidian-nvim
   [app_id=$notes_nvim] move to scratchpad, scratchpad show, $medium
   # terminal float

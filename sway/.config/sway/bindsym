@@ -73,7 +73,7 @@ bindsym $mod+e exec swaymsg [app_id=$file_explorer] scratchpad show || exec foot
 bindsym $mod+Shift+M exec swaync-client -t -sw
 
 # Obsidian
-bindsym $mod+n exec swaymsg [class=$notes] scratchpad show || exec obsidian, $mediumer
+bindsym $mod+n exec swaymsg [app_id=$notes] scratchpad show || exec obsidian, $mediumer
 bindsym $mod+Shift+n exec swaymsg [app_id=$notes_nvim] scratchpad show || exec footclient --app-id $notes_nvim -e nvim +':cd %' ~/public/Nextcloud/Documents/notes/obsidian-notes, $medium
 
 # Passwords
