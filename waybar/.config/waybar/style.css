@@ -141,6 +141,11 @@ window#waybar {
   color: #bb9af7;
 }
 
+#mode {
+  background: #7aa2f7;
+  color: #1a1b26;
+}
+
 #pulseaudio {
   color: #b4f9f8;
 }
