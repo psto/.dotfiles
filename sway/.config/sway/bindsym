@@ -90,7 +90,7 @@ bindsym $mod+y exec ~/.local/bin/playVidFromClipboard
 bindsym F12 exec swaymsg [app_id=$resource_monitor] scratchpad show || exec footclient --app-id $resource_monitor -e btop, $maximize
 
 # Rofi beats
-bindsym $mod+m exec ~/.local/bin/rofi-beats
+bindsym $mod+Shift+b exec ~/.local/bin/rofi-beats
 
 # Screenshots
 bindsym $mod+p exec ~/.local/bin/grimshot --notify save active
@@ -206,6 +206,16 @@ bindsym $mod+space focus mode_toggle
 
 # Toggle waybar
 bindsym $mod+b exec killall -SIGUSR1 waybar
+
+#
+# Modes
+#
+# Move mode
+bindsym  $mod+m mode "move"
+# bindsym $a+$c+m mode "move"
+
+# Resize mode
+bindsym $mod+r mode "resize"
 
 #
 # Scratchpad:

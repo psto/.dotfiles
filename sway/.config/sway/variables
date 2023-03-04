@@ -24,7 +24,7 @@ set {
   $pass_id org.keepassxc.KeePassXC
   $resource_monitor btop
   $todo sleek
-  $wallpaper /home/piotr/public/pictures/wallpapers/brian_taylor-blade-runner-cityskape.jpg
+  $wallpaper /home/piotr/public/pictures/wallpapers/portal-to-another-world.jpg
 
   # container sizes
   $smaller border none, move position center, resize set width 960 height 540
