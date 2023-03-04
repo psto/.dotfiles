@@ -19,5 +19,38 @@ mode "resize" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod+r mode "resize"
 
+# Move Mode:
+mode "move" {
+    bindsym Left  exec ~/.local/bin/sway-move-to left
+    bindsym Right exec ~/.local/bin/sway-move-to right
+    bindsym Down  exec ~/.local/bin/sway-move-to bottom
+    bindsym Up    exec ~/.local/bin/sway-move-to top
+    bindsym h     exec ~/.local/bin/sway-move-to left
+    bindsym l     exec ~/.local/bin/sway-move-to right
+    bindsym j     exec ~/.local/bin/sway-move-to bottom
+    bindsym k     exec ~/.local/bin/sway-move-to top
+    # these reflect the position on the keyboard:
+    # w e r
+    # s d f
+    # x c v
+    bindsym w     exec ~/.local/bin/sway-move-to top-left
+    bindsym e     exec ~/.local/bin/sway-move-to mid-top
+    bindsym r     exec ~/.local/bin/sway-move-to top-right
+    bindsym s     exec ~/.local/bin/sway-move-to mid-left
+    bindsym d     exec ~/.local/bin/sway-move-to centre
+    bindsym f     exec ~/.local/bin/sway-move-to mid-right
+    bindsym x     exec ~/.local/bin/sway-move-to bottom-left
+    bindsym c     exec ~/.local/bin/sway-move-to mid-bottom
+    bindsym v     exec ~/.local/bin/sway-move-to bottom-right 
+
+    bindsym greater exec ~/.local/bin/sway-next-empty-workspace --take-focused
+    bindsym n       exec ~/.local/bin/sway-next-empty-workspace --take-focused
+    bindsym less    exec ~/.local/bin/sway-next-empty-workspace --reverse --take-focused
+    bindsym p       exec ~/.local/bin/sway-next-empty-workspace --reverse --take-focused
+
+    # Return to default mode
+    bindsym q mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
