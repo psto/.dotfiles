@@ -27,13 +27,16 @@ exec swayidle -w \
 # Start autotiling
 exec_always "pkill autotiling; autotiling"
 
+# Start GTK+ blueman bluetooth
+exec sleep 5 && blueman-applet
+
 # Start clipboard
 exec_always "pkill wl-paste; exec wl-paste -p -t text --watch cliphist store"
 
 # Diasble laptop monitor if external monitor is connected
 exec_always "~/.local/bin/sway-disable-monitor"
 
-# Set gtk+ theme
+# Set GTK+ theme
 set $gnome-schema org.gnome.desktop.interface
 exec_always {
     gsettings set $gnome-schema gtk-theme 'TokyoNight'
