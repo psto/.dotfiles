@@ -47,7 +47,6 @@ peek
 procs
 qbittorrent
 qutebrowser
-ranger
 redshift
 ripgrep
 ripgrep-all

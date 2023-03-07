@@ -31,7 +31,6 @@ sudo apt install -y mpv
 sudo apt install -y neovim
 sudo apt install -y preload
 sudo apt install -y tlp
-sudo apt install -y ranger
 sudo apt install -y silversearcher-ag
 sudo apt install -y synaptic
 sudo apt install -y tmux
