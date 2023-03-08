@@ -132,6 +132,18 @@ LABELS["tldr"]="🗒️"
 COMMANDS["do"]="exec rofi -modi TODO:~/.local/bin/rofi-todo -show TODO -config ~/.config/rofi/tokyonight.rasi"
 LABELS["do"]="todo"
 
+# Translate to define word
+COMMANDS["tren"]='exec foot -H -a floating -e trans en:en "${input}"'
+LABELS["tren"]="🇬🇧"
+
+# Translate to English
+COMMANDS["tren"]='exec foot -H -a floating -e trans pl:en "${input}"'
+LABELS["tren"]="🇬🇧"
+
+# Translate to Polish
+COMMANDS["trpl"]='exec foot -H -a floating -e trans :pl "${input}"'
+LABELS["trpl"]="🇵🇱"
+
 # Turn off screen
 COMMANDS["turn-off-screen"]='sleep 1 && hyprctl dispatch dpms off'
 LABELS["turn-off-screen"]="📴"
@@ -330,7 +342,7 @@ COMMANDS["sioyek"]="sioyek"
 LABELS["sioyek"]="📄"
 
 # Streamlink Twitch GUI
-COMMANDS["streamlink-twitch-gui"]="streamlink-twitch-gui"
+COMMANDS["streamlink-twitch-gui"]="streamlink-twitch-gui --tray"
 LABELS["streamlink-twitch-gui"]="🏞️"
 
 # Streamlink Twitch GUI
