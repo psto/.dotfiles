@@ -13,8 +13,6 @@ element-desktop-nightly-bin
 github-desktop-bin
 rofi-greenclip
 devour
-discord_arch_electron
-dropbox
 dragon-drop
 espanso-bin
 ffsend-bin
@@ -29,6 +27,7 @@ nvim-packer-git
 obsidian
 ouch-bin
 qrcp-bin
+paru-bin
 rbenv
 rofi-lbonn-wayland
 scitopdf-git
@@ -38,6 +37,7 @@ spotify
 spicetify-cli
 streamlink-twitch-gui-bin
 swayhide
+swaync
 timeshift
 ulauncher
 vimv
