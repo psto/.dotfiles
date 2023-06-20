@@ -28,10 +28,21 @@ for_window {
   # prevent screen lock if window is in fullscreen mode
   [class=".*"]                         inhibit_idle fullscreen
   [app_id=".*"]                        inhibit_idle fullscreen
+  # chromium
+  [title="^Save File$"]                floating enable
   # file explorer - xplr
   [app_id=$file_explorer] move to scratchpad, scratchpad show, $medium
   # keepassxc
   [app_id="org.keepassxc.KeePassXC"] move to scratchpad, scratchpad show
+  # nextcloud
+  [app_id="nextcloud"] {
+    focus
+    floating enable
+    resize set height 1000px
+    resize set width 1000px
+    move position 100ppt 0 
+    move left 1000px 
+  }
   # obsidian
   [app_id=$notes] move to scratchpad, scratchpad show, $mediumer
   # obsidian-nvim
