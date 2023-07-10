@@ -181,6 +181,9 @@ LABELS["g"]="🕵️"
 # Google Maps
 COMMANDS["gm"]='$browser https://www.google.com/maps/search/"${input}"'
 LABELS["gm"]="🗺️"
+# Google Scholar
+COMMANDS["gs"]='$browser https://scholar.google.com/scholar?q="${input}"'
+LABELS["gs"]="🎓"
 # IMBD search
 COMMANDS["imdb"]='$browser http://www.imdb.com/find?q="${input}"'
 LABELS["imdb"]="🎥"
@@ -208,6 +211,9 @@ LABELS["allegro"]="🛍️"
 # 1337
 COMMANDS["13"]='$browser https://1337x.to/search/"${input}"/1/'
 LABELS["13"]="☠️"
+# Yacy search
+COMMANDS["y"]='$browser http://141.144.255.91:8090/yacysearch.html?query="${input}"'
+LABELS["y"]="🔖"
 
 ################################################################################
 # Apps
@@ -380,6 +386,10 @@ LABELS["youtube-music"]="▶️ "
 # Zathura
 COMMANDS["zathura"]="zathura"
 LABELS["zathura"]="📄"
+
+# Zotero
+COMMANDS["zotero"]="zotero"
+LABELS["zotero"]="🇿"
 
 ################################################################################
 # Run Script
