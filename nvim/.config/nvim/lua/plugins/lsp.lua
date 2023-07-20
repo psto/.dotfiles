@@ -3,7 +3,11 @@ return {
   event = "BufReadPre",
   dependencies = {
     "williamboman/mason.nvim",
-    'j-hui/fidget.nvim', -- LSP status updates
+    -- 'j-hui/fidget.nvim', -- LSP status updates
+    {
+      "j-hui/fidget.nvim",
+      tag = "legacy",
+    },
     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
     "lukas-reineke/lsp-format.nvim",
     -- "SmiteshP/nvim-navic",
