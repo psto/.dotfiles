@@ -180,3 +180,6 @@ dist
 
 # Support for Project snippet scope
 !.vscode/*.code-snippets
+
+# git worktrees
+.worktrees/
