@@ -1,4 +1,5 @@
 alacritty
+authenticator
 autotiling
 anki-bin
 beekeeper-studio-bin
@@ -9,7 +10,7 @@ cava
 chatgpt-desktop-bin
 czkawka-cli-bin
 element-desktop-nightly-bin
-eza
+gdm-settings
 github-desktop-bin
 rofi-greenclip
 devour
@@ -37,6 +38,7 @@ spicetify-cli
 streamlink-twitch-gui-bin
 swayhide
 swaync
+swww
 timeshift
 ulauncher
 vimv
