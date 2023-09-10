@@ -88,9 +88,9 @@ alias open="xdg-open"
 alias c='clear'
 
 alias ls='ls --color=auto'
-# exa alias
-alias l='exa -l --icons'
-alias la='exa -a --icons'
+# eza alias
+alias l='eza -l --icons'
+alias la='eza -a --icons'
 
 # ranger alias
 alias r='ranger'

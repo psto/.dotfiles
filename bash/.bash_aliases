@@ -55,8 +55,8 @@ alias c='clear'
 
 # ls aliasies
 alias ls='ls --color=auto'
-alias l='exa -l --icons'
-alias la='exa -a --icons'
+alias l='eza -l --icons'
+alias la='eza -a --icons'
 
 # ag searcher colors
 alias ag="ag --color-path 35 --color-match '1;35' --color-line-number 32"

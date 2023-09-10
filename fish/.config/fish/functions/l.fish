@@ -1,3 +1,3 @@
-function l --description 'alias l=exa -l'
-    exa -l
+function l --description 'alias l=eza -l'
+    eza -l
 end

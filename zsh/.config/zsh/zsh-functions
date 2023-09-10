@@ -80,7 +80,7 @@ rga-fzf() {
 }
 
 # ls function
-do-ls() {emulate -L zsh; exa;}
+do-ls() {emulate -L zsh; eza;}
 
 # make a new directory and cd into it
 function mkcd { mkdir -p "$1" && cd "$1" }

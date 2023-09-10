@@ -18,7 +18,6 @@ sudo apt-get upgrade -y
 # install PPA's #
 sudo apt install -y bat
 sudo apt install -y cmatrix
-sudo apt install -y exa
 sudo apt install -y ffmpeg 
 sudo apt install -y fish
 sudo apt install -y flatpak
