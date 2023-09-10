@@ -6,6 +6,7 @@ bat
 bitwarden
 broot
 calibre
+cliphist
 cmatrix
 dash
 doas
@@ -41,6 +42,7 @@ newsboat
 nextcloud-client
 nmon
 obs-studio
+ouch
 pass
 pass-otp
 peek
