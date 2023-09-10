@@ -14,6 +14,7 @@ docker
 docker-compose
 dust
 erdtree
+eza
 fd
 figlet
 fish
@@ -22,10 +23,12 @@ foliate
 foot
 fzf
 gammastep
+gdm
 ghostscript
 gifski
 git-delta
 github-cli
+glow
 gpg-tui
 graphicsmagick
 grim
@@ -48,12 +51,14 @@ pass
 pass-otp
 peek
 procs
+progress
 qbittorrent
 qutebrowser
 redshift
 ripgrep
 ripgrep-all
 rofi-calc
+rofi-emoji
 rsync
 scrot
 sd
