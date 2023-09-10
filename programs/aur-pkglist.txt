@@ -10,6 +10,7 @@ chatgpt-desktop-bin
 cliphist-bin
 czkawka-cli-bin
 element-desktop-nightly-bin
+eza
 github-desktop-bin
 rofi-greenclip
 devour
