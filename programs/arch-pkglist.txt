@@ -12,7 +12,8 @@ dash
 doas
 docker
 docker-compose
-exa
+dust
+erdtree
 fd
 figlet
 fish
@@ -72,6 +73,10 @@ tor-browser
 trash-cli
 translate-shell  
 tree-sitter
+ttf-fira-code
+ttf-font-awesome
+ttf-jetbrains-mono
+ttf-nerd-fonts-symbols
 vlc
 xclip
 xorg-xbacklight
