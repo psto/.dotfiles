@@ -80,11 +80,12 @@ return {
       -- keymap("n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", bufopts)
       -- keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.format({ async = true })<CR>", bufopts)
 
+      local icons = require("util.icons")
       local signs = {
-        { name = "DiagnosticSignError", text = "" }, --  or 
-        { name = "DiagnosticSignWarn",  text = "" },
-        { name = "DiagnosticSignHint",  text = "" },
-        { name = "DiagnosticSignInfo",  text = "" },
+        { name = "DiagnosticSignError", text = icons.diagnostics.Error },
+        { name = "DiagnosticSignWarn",  text = icons.diagnostics.BoldWarning },
+        { name = "DiagnosticSignHint",  text = icons.diagnostics.BoldInformation },
+        { name = "DiagnosticSignInfo",  text = icons.diagnostics.BoldQuestion },
       }
 
       local config = {
