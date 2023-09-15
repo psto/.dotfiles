@@ -29,8 +29,6 @@ return {
           i = {
             ["<Esc>"] = actions.close,
             ["<C-c>"] = actions.close,
-            ["<Tab>"] = actions.close,
-            ["<S-Tab>"] = actions.close,
             ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
             ["<C-n>"] = actions.cycle_history_next,
             ["<C-p>"] = actions.cycle_history_prev,
@@ -41,8 +39,6 @@ return {
           n = {
             ["<Esc>"] = actions.close,
             ["q"] = actions.close,
-            ["<Tab>"] = actions.close,
-            ["<S-Tab>"] = actions.close,
             ["<C-j>"] = actions.move_selection_next,
             ["<C-k>"] = actions.move_selection_previous,
             ["j"] = actions.move_selection_next,
@@ -125,7 +121,6 @@ return {
     telescope.load_extension("undo")
     telescope.load_extension("harpoon")
   end,
-
   search_dotfiles = function()
     require("telescope.builtin").find_files({
       prompt_title = "< DOTFILES >",
@@ -133,7 +128,6 @@ return {
       hidden = true,
     })
   end,
-
   search_nvim_dotfiles = function()
     require("telescope.builtin").find_files({
       prompt_title = "< nvim DOTFILES >",
