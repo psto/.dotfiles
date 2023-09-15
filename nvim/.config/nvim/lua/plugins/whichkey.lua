@@ -98,7 +98,7 @@ return {
       a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Action" },
       b = { "<cmd>Telescope buffers<cr>", "Buffers" },
       c = { "<cmd>:bw<CR>", "Close Buffer" },
-      e = { "<cmd>NeoTreeRevealToggle <CR>", "File Explorer" },
+      e = { "<cmd>Neotree toggle<CR>", "File Explorer" },
       M = { "<cmd>Mason <CR> <CR>", "Mason" },
       t = { "<cmd>ToggleTerm <CR>", "File Explorer" },
       q = { '<cmd>lua require("util/functions").smart_quit()<CR>', "Quit" },
