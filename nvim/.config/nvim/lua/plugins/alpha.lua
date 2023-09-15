@@ -19,7 +19,7 @@ local M = {
       dashboard.section.buttons.val = {
           dashboard.button("e", " " .. " New file", ":ene <BAR> startinsert <CR>"),
           dashboard.button("SPC ff", " " .. " Find file", ":Telescope find_files <CR>"),
-          dashboard.button("SPC fo", " " .. " Recent files", ":Telescope oldfiles <CR>"),
+          dashboard.button("SPC fo", "󰄉 " .. " Recent files", ":Telescope oldfiles <CR>"),
           dashboard.button("SPC ft", " " .. " Find text", ":Telescope live_grep <CR>"),
           dashboard.button("SPC vc", " " .. " Config", ":lua require('psto.telescope.setup').search_nvim_dotfiles()<CR>"),
           dashboard.button("q", " " .. " Quit", ":qa<CR>"),
