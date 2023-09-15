@@ -171,7 +171,7 @@ return {
           "Prev Diagnostic",
         },
         l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
-        q = { "<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>", "Quickfix" },
+        q = { "<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>", "Diagnostic quickfix" },
         r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
         R = { "<cmd>TroubleToggle lsp_references<cr>", "References" },
         s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
@@ -185,6 +185,8 @@ return {
           "<cmd>Telescope lsp_workspace_diagnostics<cr>",
           "Workspace Diagnostics",
         },
+        x = { "<cmd>TroubleToggle quickfix<cr>", "Trouble quickfix" },
+        z = { "<cmd>TroubleToggle loclist<cr>", "Trouble loclist" },
       },
       L = {
         name = "Lazy",

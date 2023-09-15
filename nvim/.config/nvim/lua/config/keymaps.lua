@@ -106,8 +106,3 @@ keymap(
   ,
   opts
 )
-
--- trouble
-keymap("n", "<leader>xx", [[<cmd>TroubleToggle<cr>]], opts)
-keymap("n", "<leader>xq", [[<cmd>TroubleToggle quickfix<cr>]], opts)
-keymap("n", "<leader>xl", [[<cmd>TroubleToggle loclist<cr>]], opts)
