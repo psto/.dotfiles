@@ -13,11 +13,12 @@ return {
   config = function()
     local telescope = require("telescope")
     local actions = require("telescope.actions")
+    local icons = require("util.icons")
     telescope.setup({
       defaults = {
         file_ignore_patterns = { ".lock" },
         file_sorter = require("telescope.sorters").get_fzy_sorter,
-        prompt_prefix = "   ",
+        prompt_prefix = " " .. icons.ui.Search .. " ",
         color_devicons = true,
         winblend = 20,
 
