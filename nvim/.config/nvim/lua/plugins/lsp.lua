@@ -60,6 +60,11 @@ return {
       --   navic.attach(client, bufnr)
       -- end
 
+      -- enable inlay hints
+      if client.server_capabilities.inlayHintProvider then
+        vim.lsp.buf.inlay_hint(bufnr, true)
+      end
+
       -- Mappings.
       local keymap = vim.keymap.set
       local bufopts = { noremap = true, silent = true, buffer = bufnr }
@@ -140,19 +145,32 @@ return {
     end
 
     -- tsserver config
-    -- nvim_lsp.tsserver.setup({
-    --   on_attach = on_attach,
-    --   capabilities = capabilities,
-    --   root_dir = nvim_lsp.util.root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git"),
-    --   settings = {
-    --     completions = {
-    --       completeFunctionCalls = true
-    --     }
-    --   },
-    --   flags = {
-    --     debounce_text_changes = 150,
-    --   },
-    -- })
+    nvim_lsp.tsserver.setup({
+      on_attach = on_attach,
+      capabilities = capabilities,
+      root_dir = nvim_lsp.util.root_pattern("package.json"),
+      single_file_support = false,
+      init_options = {
+        preferences = {
+          includeInlayParameterNameHints = "all",
+          includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+          includeInlayFunctionParameterTypeHints = true,
+          includeInlayVariableTypeHints = true,
+          includeInlayPropertyDeclarationTypeHints = true,
+          includeInlayFunctionLikeReturnTypeHints = true,
+          includeInlayEnumMemberValueHints = true,
+          importModuleSpecifierPreference = 'non-relative'
+        },
+      },
+      settings = {
+        completions = {
+          completeFunctionCalls = true
+        }
+      },
+      flags = {
+        debounce_text_changes = 150,
+      },
+    })
 
     -- volar config
     -- nvim_lsp.volar.setup({
@@ -289,6 +307,7 @@ return {
       capabilities = capabilities,
       settings = {
         Lua = {
+          hint = { enable = true },
           runtime = {
             version = 'LuaJIT', -- Tell the language server which version of Lua you're using
             path = runtime_path, -- Setup your lua path
