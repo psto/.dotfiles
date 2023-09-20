@@ -163,6 +163,7 @@ return {
         a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
         d = { "<cmd>TroubleToggle<cr>", "Diagnostics" },
         f = { "<cmd>lua vim.lsp.buf.format({ async = true })<cr>", "Format" },
+        h = { "<cmd>lua vim.lsp.inlay_hint(0, nil)<cr>", "Hint" },
         i = { "<cmd>LspInfo<cr>", "Info" },
         j = {
           "<cmd>lua vim.diagnostic.goto_next({buffer=0})<CR>",
