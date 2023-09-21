@@ -9,7 +9,7 @@ browser='firefox-nightly'
 # List of defined 'bangs'
 
 # List apps to launch
-COMMANDS["run"]="rofi -modi drun -show drun -config ~/.config/rofi/tokyonight.rasi"
+COMMANDS["run"]="rofi -modi drun -show drun -config ~/.config/rofi/tokyo_night_transparent.rasi"
 LABELS["run"]="🏃"
 
 # Quickly hyper
@@ -40,6 +40,10 @@ LABELS["bookmarks"]="🔖"
 COMMANDS["audacity "]='exec audacity'
 LABELS["audacity "]="🎧"
 
+# Authenticator
+COMMANDS["authenticator"]='exec authenticator'
+LABELS["authenticator "]="🔐"
+
 # Broot
 COMMANDS["broot"]='exec foot -H -a floating -e broot'
 LABELS["broot"]="🗄️"
@@ -53,8 +57,12 @@ COMMANDS["ipinfo"]='exec foot -H -a floating -e http "ipinfo.io" | jq'
 LABELS["ipinfo"]="📈"
 
 # element
-COMMANDS["element"]='element-desktop-nightly --enable-features=UseOzonePlatform --ozone-platform=wayland'
+COMMANDS["element"]='element-desktop'
 LABELS["element"]="⚛️"
+
+# emoji
+COMMANDS["emo"]="exec rofi -modi emoji -show emoji -config ~/.config/rofi/tokyo_night_transparent.rasi"
+LABELS["emo"]="😎"
 
 # ksnip
 COMMANDS["ksnip"]="ksnip"
@@ -67,6 +75,10 @@ LABELS["rofi-beats"]="🎧"
 # lf file explorer
 COMMANDS["lf"]='exec foot -a floating -e lf'
 LABELS["lf"]="🗄️"
+
+# lobster
+COMMANDS["lobster"]='exec foot -e lobster --rofi'
+LABELS["lobster"]="🦞"
 
 # Obsidian quick note
 COMMANDS["obsidian-quick-note"]='exec foot -a floating -e ~/.local/bin/obsidian-quick-note'
@@ -93,7 +105,7 @@ COMMANDS["xkill"]='exec foot -a floating -e xkill "${input}"'
 LABELS["xkill"]="🔪"
 
 # Rofi Calc
-COMMANDS["calc"]="exec rofi -show calc -modi calc -no-show-match -no-sort -config ~/.config/rofi/tokyonight.rasi"
+COMMANDS["calc"]="exec rofi -show calc -modi calc -no-show-match -no-sort -config ~/.config/rofi/tokyo_night_transparent.rasi"
 LABELS["calc"]="🧮"
 
 # Rofi WiFi
@@ -129,7 +141,7 @@ COMMANDS["tldr"]='exec foot -H -a floating -e tldr "${input}"'
 LABELS["tldr"]="🗒️"
 
 # Todo
-COMMANDS["do"]="exec rofi -modi TODO:~/.local/bin/rofi-todo -show TODO -config ~/.config/rofi/tokyonight.rasi"
+COMMANDS["do"]="exec rofi -modi TODO:~/.local/bin/rofi-todo -show TODO -config ~/.config/rofi/tokyo_night_transparent.rasi"
 LABELS["do"]="todo"
 
 # Translate to define word
