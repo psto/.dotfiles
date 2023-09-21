@@ -409,7 +409,7 @@ done
 # Show rofi.
 function start()
 {
-print_menu | rofi -dmenu -p ":" -config ~/.config/rofi/tokyonight.rasi
+print_menu | rofi -dmenu -p ":" -config ~/.config/rofi/tokyo_night_transparent.rasi
 }
 
 # Run it
@@ -438,5 +438,5 @@ else
 # eval $choice | rofi -config ~/.config/rofi/rofidmenu.rasi 
 
 # prefer my above so I can use this same script to also launch appsa
-echo "Unknown command: ${choice}" | rofi -dmenu -p "error" -config ~/.config/rofi/tokyonight.rasi
+echo "Unknown command: ${choice}" | rofi -dmenu -p "error" -config ~/.config/rofi/tokyo_night_transparent.rasi && ~/.local/bin/rofi-bangs
 fi
