@@ -25,7 +25,7 @@ COMMANDS["edit-rofi-bangs"]='exec foot -a floating -e nvim ~/.local/bin/rofi-ban
 LABELS["edit-rofi-bangs"]="‼️"
 
 ################################################################################
-# Run other rofi scripts
+# Run other scripts
 ################################################################################
 
 # call another rofi script with input template
@@ -36,37 +36,13 @@ LABELS["edit-rofi-bangs"]="‼️"
 COMMANDS["bookmarks"]="$HOME/.local/bin/rofi-surfraw-bookmarks.sh"
 LABELS["bookmarks"]="🔖"
 
-# Audacity
-COMMANDS["audacity "]='exec audacity'
-LABELS["audacity "]="🎧"
-
-# Authenticator
-COMMANDS["authenticator"]='exec authenticator'
-LABELS["authenticator "]="🔐"
-
-# Broot
-COMMANDS["broot"]='exec foot -H -a floating -e broot'
-LABELS["broot"]="🗄️"
-
-# btop
-COMMANDS["btop"]='exec foot -F -e btop'
-LABELS["btop"]="📈"
-
 # ipinfo
 COMMANDS["ipinfo"]='exec foot -H -a floating -e http "ipinfo.io" | jq'
 LABELS["ipinfo"]="📈"
 
-# element
-COMMANDS["element"]='element-desktop'
-LABELS["element"]="⚛️"
-
 # emoji
 COMMANDS["emo"]="exec rofi -modi emoji -show emoji -config ~/.config/rofi/tokyo_night_transparent.rasi"
 LABELS["emo"]="😎"
-
-# ksnip
-COMMANDS["ksnip"]="ksnip"
-LABELS["ksnip"]="🖼️"
 
 # Listen to music
 COMMANDS["rofi-beats"]="$HOME/.local/bin/rofi-beats"
@@ -119,10 +95,6 @@ LABELS["scitopdf"]="📄"
 # Search for files
 COMMANDS["fzf-search"]="$HOME/.local/bin/rofi-search"
 LABELS["fzf-search"]="🔍"
-
-# Spotify
-COMMANDS["spotify"]="$HOME/.local/bin/spotify-way"
-LABELS["spotify"]="🎧"
 
 # Suspend
 COMMANDS["suspend"]='suspend "${input}"'
@@ -235,6 +207,14 @@ LABELS["y"]="🔖"
 COMMANDS["anki"]="anki"
 LABELS["anki"]="📇"
 
+# Audacity
+COMMANDS["audacity "]='exec audacity'
+LABELS["audacity "]="🎧"
+
+# Authenticator
+COMMANDS["authenticator"]='exec authenticator'
+LABELS["authenticator "]="🔐"
+
 # Brave Beta browser
 COMMANDS["brave"]="$HOME/.local/bin/brave-beta-gpu"
 LABELS["brave"]="🦁"
@@ -250,6 +230,14 @@ LABELS["bitwarden"]="🔒"
 # Bleachbit
 COMMANDS["bleachbit"]="bleachbit"
 LABELS["bleachbit"]="🧹"
+
+# Broot
+COMMANDS["broot"]='exec foot -H -a floating -e broot'
+LABELS["broot"]="🗄️"
+
+# btop
+COMMANDS["btop"]='exec foot -F -e btop'
+LABELS["btop"]="📈"
 
 # Calibre
 COMMANDS["calibre"]="calibre"
@@ -270,6 +258,10 @@ LABELS["chromium"]="🦾"
 # Discord
 COMMANDS["discord"]="discord"
 LABELS["discord"]="😮"
+
+# element
+COMMANDS["element"]='element-desktop'
+LABELS["element"]="⚛️"
 
 # Firefox
 COMMANDS["firefox"]="$HOME/.local/bin/firefox-way"
@@ -310,6 +302,10 @@ LABELS["keepassxc"]="🔐"
 # Kitty
 COMMANDS["kitty"]="kitty -1"
 LABELS["kitty"]="🐱"
+
+# ksnip
+COMMANDS["ksnip"]="ksnip"
+LABELS["ksnip"]="🖼️"
 
 # Mailspring
 COMMANDS["mailspring"]='mailspring'
@@ -358,6 +354,10 @@ LABELS["simplescreenrecorder"]="⏺️ "
 # Sioyek
 COMMANDS["sioyek"]="sioyek"
 LABELS["sioyek"]="📄"
+
+# Spotify
+COMMANDS["spotify"]="$HOME/.local/bin/spotify-way"
+LABELS["spotify"]="🎧"
 
 # Streamlink Twitch GUI
 COMMANDS["streamlink-twitch-gui"]="streamlink-twitch-gui --tray"
