@@ -4,7 +4,7 @@
 # In i3/sway bind to a key: bindsym $mod+y exec ~/.local/bin/playVideo
 # Requirements: cliphist, dunst, mpv
 
-videoURL=$(cliphist list | head -1 | cut -f2- -d ' ')
+videoURL=$(cliphist list | cliphist decode)
 
 notify-send -t 3000 "📺 Playing video" "$videoURL";
 mpv "$videoURL"
