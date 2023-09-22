@@ -1,0 +1,140 @@
+{
+    "preferences": {
+        "kw_tailwind": "tailwind",
+        "kw_github": "githubdocs"
+    },
+    "triggers": {
+        "kw": {
+            "keyword": "docs"
+        },
+        "kw_react": {
+            "keyword": "react"
+        },
+        "kw_vue": {
+            "keyword": "vue"
+        },
+        "kw_gitlab": {
+            "keyword": "gitlabdocs"
+        },
+        "kw_cypress": {
+            "keyword": "cypressdocs"
+        },
+        "kw_jest": {
+            "keyword": "jestdocs"
+        },
+        "kw_nuxt": {
+            "keyword": "nuxtdocs"
+        },
+        "kw_vuepress": {
+            "keyword": "vuepressdocs"
+        },
+        "kw_gatsby": {
+            "keyword": "gatsbydocs"
+        },
+        "kw_typescript": {
+            "keyword": "typescript"
+        },
+        "kw_echo": {
+            "keyword": "echodocs"
+        },
+        "kw_gridsome": {
+            "keyword": "gridsomedocs"
+        },
+        "kw_graphql": {
+            "keyword": "graphql"
+        },
+        "kw_eslint": {
+            "keyword": "eslintdocs"
+        },
+        "kw_scala": {
+            "keyword": "scaladocs"
+        },
+        "kw_webpack": {
+            "keyword": "webpackdocs"
+        },
+        "kw_apollo": {
+            "keyword": "apollodocs"
+        },
+        "kw_vuetify": {
+            "keyword": "vuetifydocs"
+        },
+        "kw_vuex": {
+            "keyword": "vuexdocs"
+        },
+        "kw_vue-router": {
+            "keyword": "vue-router"
+        },
+        "kw_parcel": {
+            "keyword": "parceldocs"
+        },
+        "kw_laravel": {
+            "keyword": "laraveldocs"
+        },
+        "kw_nestjs": {
+            "keyword": "nestjsdocs"
+        },
+        "kw_bootstrap": {
+            "keyword": "bootstrapdocs"
+        },
+        "kw_netlify": {
+            "keyword": "netlifydocs"
+        },
+        "kw_babel": {
+            "keyword": "babeldocs"
+        },
+        "kw_gorm": {
+            "keyword": "gormdocs"
+        },
+        "kw_grafana": {
+            "keyword": "grafanadocs"
+        },
+        "kw_prometheus": {
+            "keyword": "prometheusdocs"
+        },
+        "kw_prettier": {
+            "keyword": "prettierdocs"
+        },
+        "kw_prisma": {
+            "keyword": "prisma"
+        },
+        "kw_strapi": {
+            "keyword": "strapidocs"
+        },
+        "kw_helm": {
+            "keyword": "helmdocs"
+        },
+        "kw_directus": {
+            "keyword": "directusdocs"
+        },
+        "kw_flux": {
+            "keyword": "fluxdocs"
+        },
+        "kw_astro": {
+            "keyword": "astro"
+        },
+        "kw_vercel": {
+            "keyword": "vercel"
+        },
+        "kw_supbase": {
+            "keyword": "supabase"
+        },
+        "kw_nuxt3": {
+            "keyword": "nuxt"
+        },
+        "kw_vite": {
+            "keyword": "vite"
+        },
+        "kw_vitepress": {
+            "keyword": "vitepressdocs"
+        },
+        "kw_pinia": {
+            "keyword": "pinia"
+        },
+        "kw_cloudflare": {
+            "keyword": "cloudflare"
+        },
+        "kw_symfony": {
+            "keyword": "symfonydocs"
+        }
+    }
+}

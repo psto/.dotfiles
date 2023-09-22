@@ -1,0 +1,10 @@
+{
+    "preferences": {
+        "todoist_api_token": "57a67929fc486c53129e5ab0c59f7040269cfe2e"
+    },
+    "triggers": {
+        "todoist_kw": {
+            "keyword": "todo"
+        }
+    }
+}

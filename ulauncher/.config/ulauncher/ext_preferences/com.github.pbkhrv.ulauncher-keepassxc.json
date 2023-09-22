@@ -1,0 +1,12 @@
+{
+    "preferences": {
+        "database-path": "~/Dropbox/Passwords.kdbx",
+        "max-results": "6",
+        "inactivity-lock-timeout": "300"
+    },
+    "triggers": {
+        "search": {
+            "keyword": "kp"
+        }
+    }
+}

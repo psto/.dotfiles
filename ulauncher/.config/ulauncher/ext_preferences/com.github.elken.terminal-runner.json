@@ -1,0 +1,8 @@
+{
+    "preferences": {
+        "keyword": "?",
+        "showStdout": "true",
+        "showStderr": "true"
+    },
+    "triggers": {}
+}

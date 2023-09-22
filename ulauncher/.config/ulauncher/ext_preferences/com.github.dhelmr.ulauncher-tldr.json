@@ -1,0 +1,10 @@
+{
+    "preferences": {
+        "max_search_result_size": "12"
+    },
+    "triggers": {
+        "keyword": {
+            "keyword": "tldr"
+        }
+    }
+}

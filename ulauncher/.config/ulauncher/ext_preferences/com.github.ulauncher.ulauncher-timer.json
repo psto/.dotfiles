@@ -1,0 +1,10 @@
+{
+    "preferences": {
+        "persistent": "false"
+    },
+    "triggers": {
+        "keyword": {
+            "keyword": "timer"
+        }
+    }
+}

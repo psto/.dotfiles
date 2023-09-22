@@ -1,23 +1,26 @@
 {
-    "vue": {
-        "name": "VueJS",
-        "description": "the Progressive JavaScript Framework",
-        "icon": "images/docs/vue.png",
-        "algolia_index": "vuejs",
-        "algolia_application_id": "ML0LEBN7FQ",
-        "algolia_api_key": "f49cbd92a74532cc55cfbffa5e5a7d01",
-        "url": "https://vuejs.org/guide/introduction.html"
+    "preferences": {
+        "vue": {
+            "name": "VueJS",
+            "description": "the Progressive JavaScript Framework",
+            "icon": "images/docs/vue.png",
+            "algolia_index": "vuejs",
+            "algolia_application_id": "ML0LEBN7FQ",
+            "algolia_api_key": "f49cbd92a74532cc55cfbffa5e5a7d01",
+            "url": "https://vuejs.org/guide/introduction.html"
+        },
+        "tailwind": {
+            "name": "Tailwind",
+            "description": "the Progressive JavaScript Framework",
+            "icon": "images/docs/tailwind.png",
+            "algolia_index": "tailwindcss",
+            "algolia_application_id": "KNPXZI5B0M",
+            "algolia_api_key": "5fc87cef58bb80203d2207578309fab6",
+            "url": "https://tailwindcss.com/docs/installation/",
+            "facet_filters": [
+                "version:v3"
+            ]
+        }
     },
-    "tailwind": {
-        "name": "Tailwind",
-        "description": "the Progressive JavaScript Framework",
-        "icon": "images/docs/tailwind.png",
-        "algolia_index": "tailwindcss",
-        "algolia_application_id": "KNPXZI5B0M",
-        "algolia_api_key": "5fc87cef58bb80203d2207578309fab6",
-        "url": "https://tailwindcss.com/docs/installation/",
-        "facet_filters": [
-            "version:v3"
-        ]
-    }
+    "triggers": {}
 }

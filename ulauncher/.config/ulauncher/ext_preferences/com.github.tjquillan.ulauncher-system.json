@@ -1,0 +1,8 @@
+{
+    "preferences": {},
+    "triggers": {
+        "system_ext": {
+            "keyword": "s"
+        }
+    }
+}

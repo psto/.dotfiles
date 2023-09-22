@@ -1,0 +1,12 @@
+{
+    "preferences": {
+        "term": "kitty --class=\"floating\"",
+        "exec": "--",
+        "icon": "black"
+    },
+    "triggers": {
+        "kw": {
+            "keyword": ""
+        }
+    }
+}

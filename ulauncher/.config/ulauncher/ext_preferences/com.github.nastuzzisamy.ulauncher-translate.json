@@ -1,0 +1,11 @@
+{
+    "preferences": {
+        "from_lang": "auto",
+        "to_lang": "auto"
+    },
+    "triggers": {
+        "translate_keyword": {
+            "keyword": "tr"
+        }
+    }
+}

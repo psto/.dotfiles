@@ -1,0 +1,10 @@
+{
+    "preferences": {
+        "keyword": "r",
+        "keyword_terminal": ">",
+        "shell": "%",
+        "terminal": "x-terminal-emulator -- %",
+        "commands": ""
+    },
+    "triggers": {}
+}
