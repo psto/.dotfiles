@@ -211,6 +211,11 @@ return {
       s = {
         name = "System",
         c = { "<cmd>ChatGPT<CR>", "ChatGPT" },
+        d = {
+          name = "dotiles",
+          n = { '<cmd>lua require("plugins.telescope").search_nvim_dotfiles()<CR>', "Nvim dotfiels" },
+          s = { '<cmd>lua require("plugins.telescope").search_dotfiles()<CR>', "System dotfiels" },
+        },
         h = { "<cmd>lua _HTOP_TOGGLE()<CR>", "htop" },
         n = {
           name = "Noice",

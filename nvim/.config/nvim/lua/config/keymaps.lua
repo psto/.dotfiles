@@ -84,20 +84,7 @@ keymap(
 
 -- telescope
 keymap("n", "<c-p>", [[<CMD>Telescope find_files<CR>]], opts)
--- search dotfiles
-keymap(
-  "n",
-  "<leader>vd",
-  [[:lua require('psto.telescope.setup').search_dotfiles()<CR>]],
-  opts
-)
--- search nvim config
-keymap(
-  "n",
-  "<leader>vc",
-  [[:lua require('psto.telescope.setup').search_nvim_dotfiles()<CR>]],
-  opts
-)
+
 -- show buffers
 keymap(
   "n",
