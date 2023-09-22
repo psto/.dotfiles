@@ -17,15 +17,16 @@ menu(){
 	printf "1. SomaFM IDM\n"
 	printf "2. SomaFM Vaporwaves\n"
 	printf "3. SomaFM Groove Salad\n"
-  printf "4. SomaFM Groove\n"
+  printf "4. SomaFM Metal Detector\n"
   printf "5. SomaFM Sonic Universe\n"
   printf "6. SomaFM DEF CON\n"
-	printf "7. Lofi Girl\n"
-	printf "8. Chillhop\n"
-	printf "9. Box Lofi\n"
-	printf "10. The Bootleg Boy\n"
-	printf "11. Radio Spinner\n"
-	printf "12. SmoothChill\n"
+  printf "7. SomaFM Beat Blender\n"
+	printf "8. Lofi Girl\n"
+	printf "9. Chillhop\n"
+	printf "10. Box Lofi\n"
+	printf "11. The Bootleg Boy\n"
+	printf "12. Radio Spinner\n"
+	printf "13. SmoothChill\n"
 }
 
 main() {
@@ -61,22 +62,26 @@ main() {
             URL="https://play.streamafrica.net/lofiradio"
 			;;
 		8)
+			notification "somaFM Beat Blender☕️🎶";
+            URL="https://somafm.com/beatblender130.pls"
+			;;
+		9)
 			notification "Chillhop ☕️🎶";
             URL="http://stream.zeno.fm/fyn8eh3h5f8uv"
 			;;
-		9)
+		10)
 			notification "Box Lofi ☕️🎶";
             URL="http://stream.zeno.fm/f3wvbbqmdg8uv"
 			;;
-		10)
+		11)
 			notification "The Bootleg Boy ☕️🎶";
             URL="http://stream.zeno.fm/0r0xa792kwzuv"
 			;;
-		11)
+		12)
 			notification "Radio Spinner ☕️🎶";
             URL="https://live.radiospinner.com/lofi-hip-hop-64"
 			;;
-		12)
+		13)
 			notification "SmoothChill ☕️🎶";
             URL="https://media-ssl.musicradio.com/SmoothChill"
 			;;
