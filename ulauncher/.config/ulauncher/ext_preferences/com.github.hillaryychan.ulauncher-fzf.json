@@ -1,0 +1,14 @@
+{
+    "preferences": {
+        "search_type": "0",
+        "allow_hidden": "0",
+        "result_limit": "15",
+        "base_dir": "~",
+        "ignore_file": ""
+    },
+    "triggers": {
+        "kw": {
+            "keyword": "f"
+        }
+    }
+}

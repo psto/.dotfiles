@@ -1,0 +1,7 @@
+{
+    "preferences": {
+        "kw": "_",
+        "terminal": "/bin/konsole -e '/bin/zsh -c \"{command}; exec /bin/zsh\"'"
+    },
+    "triggers": {}
+}

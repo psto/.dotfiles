@@ -1,0 +1,8 @@
+{
+    "preferences": {},
+    "triggers": {
+        "window_switcher_kw": {
+            "keyword": "w"
+        }
+    }
+}

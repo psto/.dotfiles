@@ -1,0 +1,13 @@
+{
+    "preferences": {
+        "kw": "gh",
+        "kw_repos": "ghr",
+        "kw_search": "ghs",
+        "access_token": "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"
+    },
+    "triggers": {
+        "kw_gists": {
+            "keyword": "gists"
+        }
+    }
+}

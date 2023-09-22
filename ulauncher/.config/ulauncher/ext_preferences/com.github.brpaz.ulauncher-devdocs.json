@@ -1,0 +1,23 @@
+{
+    "preferences": {
+        "docs": "[\"javascript\", \"typescript\", \"git\", \"node\", \"express\", \"postgres\"]",
+        "open_doc_in": "Browser"
+    },
+    "triggers": {
+        "keyword": {
+            "keyword": "doc"
+        },
+        "php": {
+            "keyword": "php"
+        },
+        "javascript": {
+            "keyword": "js"
+        },
+        "golang": {
+            "keyword": "go"
+        },
+        "ruby": {
+            "keyword": "ruby~2.5"
+        }
+    }
+}
