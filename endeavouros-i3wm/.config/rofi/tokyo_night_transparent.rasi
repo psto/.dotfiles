@@ -3,6 +3,7 @@
  * Maintainer: psto <piotrstojanow@gmail.com>
  *******************************************************/
 * {
+    font: "SF Pro Display 14";
     selected-normal-foreground:  rgba ( 158, 206, 106, 100 % );
     foreground:                  rgba ( 169, 177, 214, 100 % );
     normal-foreground:           @foreground;
@@ -32,4 +33,46 @@
     alternate-active-foreground: @active-foreground;
     active-background:           rgba ( 29, 31, 33, 17 % );     /* todo */
     selected-active-background:  rgba ( 26, 28, 35, 100 % );    /* todo */
+}
+
+window {
+    /* properties for window widget */
+    transparency:                "real";
+    location:                    center;
+    anchor:                      center;
+    fullscreen:                  false;
+    width:                       600px;
+    x-offset:                    0px;
+    y-offset:                    0px;
+
+    /* properties for all widgets */
+    enabled:                     true;
+    margin:                      0px;
+    padding:                     0px;
+    border:                      0px solid;
+    cursor:                      "default";
+}
+
+/*****----- Main Box -----*****/
+mainbox {
+    enabled:                     true;
+    spacing:                     10px;
+    margin:                      0px;
+    padding:                     30px;
+    border:                      0px solid;
+    border-radius:               0px 0px 0px 0px;
+    background-color:            transparent;
+    children:                    [ "inputbar", "message", "listview" ];
+}
+
+/*****----- Inputbar -----*****/
+inputbar {
+    enabled:                     true;
+    spacing:                     10px;
+    margin:                      0px;
+    padding:                     0px;
+    border:                      0px solid;
+    border-radius:               0px;
+    background-color:            transparent;
+    children:                    [ "textbox-prompt-colon", "entry", "mode-switcher" ];
 }
