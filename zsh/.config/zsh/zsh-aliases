@@ -23,7 +23,6 @@ alias grep='grep --color=auto'
 alias cp="cp -riv"
 alias mv='mv -iv'
 alias rm='rm -riv'
-alias tr='trash-put'
 alias mkdir='mkdir -pv'
 
 # easier to read disk
@@ -80,9 +79,13 @@ alias gra="git rebase --abort"
 # git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --"
 alias gl="git lg"
 alias gcan="git commit --amend --no-edit"
+alias gw="git worktree"
 
 # open
 alias open="xdg-open"
+
+# fzf open editor
+alias e='fzf -m --bind ctrl-a:select-all,ctrl-d:deselect-all,ctrl-t:toggle-all --print0 --preview "bat --theme Dracula --color=always {}" | xargs -0 -o $EDITOR'
 
 # clear alias when in tmux
 alias c='clear'
@@ -91,6 +94,9 @@ alias ls='ls --color=auto'
 # eza alias
 alias l='eza -l --icons'
 alias la='eza -a --icons'
+alias ll='eza -al --group-directories-first'  # list directories first
+alias lt='eza -al --sort=modified'            # list by modified date
+alias lz='eza -alFr --color=always --sort=size | grep -v /' # list files by size
 
 # ranger alias
 alias r='ranger'
@@ -122,3 +128,7 @@ alias tsm="transmission-remote"
 # translate
 alias trpl="trans :pl"
 alias tren="trans pl:en"
+
+# yt-dlp
+alias yt="yt-dlp"
+alias yt-subs='yt-dlp --write-sub --write-auto-sub --sub-lang "en.*" --skip-download' #download subtitles only
