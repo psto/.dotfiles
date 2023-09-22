@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# use edge-tts (install using pip) to convert text to speech
+
+url=$(cliphist list | cliphist decode)
+#tmpfile=$(mktemp /tmp/text-to-play_XXXXX.txt)
+#text=$(reader -o "$url") # >! "$tmpfile"
+notify-send -t 3000 "🎧 Playing video" "$url";
+# sh -c edge-playback --voice en-GB-ThomasNeural --rate=+75% -f "$tmpfile" && rm "$tmpfile"
+edge-playback --voice en-GB-ThomasNeural --rate=+75% --text "$(reader -o $url)" # -f "$tmpfile" && rm "$tmpfile"
+# edge-tts --voice en-GB-ThomasNeural --rate=+75% -f "$tmpfile"
+# exec foot -H -a floating -e edge-playback --voice en-GB-ThomasNeural --rate=+75% --text "$text"

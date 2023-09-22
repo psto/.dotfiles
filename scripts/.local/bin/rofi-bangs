@@ -32,19 +32,23 @@ LABELS["edit-rofi-bangs"]="‼️"
 # COMMANDS["command_name"]=" '~/path/to/scrips' "${input}""
 # LABELS["command_name"]=""
 
-# open bookmarks
+# bookmarks
 COMMANDS["bookmarks"]="$HOME/.local/bin/rofi-surfraw-bookmarks.sh"
 LABELS["bookmarks"]="🔖"
-
-# ipinfo
-COMMANDS["ipinfo"]='exec foot -H -a floating -e http "ipinfo.io" | jq'
-LABELS["ipinfo"]="📈"
 
 # emoji
 COMMANDS["emo"]="exec rofi -modi emoji -show emoji -config ~/.config/rofi/tokyo_night_transparent.rasi"
 LABELS["emo"]="😎"
 
-# Listen to music
+# ipinfo
+COMMANDS["ipinfo"]='exec foot -H -a floating -e http "ipinfo.io" | jq'
+LABELS["ipinfo"]="📈"
+
+# killall
+COMMANDS["killall"]='exec foot -a floating -e killall "${input}"'
+LABELS["killall"]="🔪"
+
+# listen to music
 COMMANDS["rofi-beats"]="$HOME/.local/bin/rofi-beats"
 LABELS["rofi-beats"]="🎧"
 
@@ -55,10 +59,6 @@ LABELS["lf"]="🗄️"
 # lobster
 COMMANDS["lobster"]='exec foot -e lobster --rofi'
 LABELS["lobster"]="🦞"
-
-# Obsidian quick note
-COMMANDS["obsidian-quick-note"]='exec foot -a floating -e ~/.local/bin/obsidian-quick-note'
-LABELS["obsidian-quick-note"]="✏️"
 
 # Macho man pages
 COMMANDS["macho"]="$HOME/.local/bin/macho"
@@ -72,13 +72,17 @@ LABELS["navi"]="🧭"
 COMMANDS["ncdu"]='exec foot -a floating -e ncdu --color dark'
 LABELS["ncdu"]="💽"
 
-# killall
-COMMANDS["killall"]='exec foot -a floating -e killall "${input}"'
-LABELS["killall"]="🔪"
+# Obsidian quick note
+COMMANDS["obsidian-quick-note"]='exec foot -a floating -e ~/.local/bin/obsidian-quick-note'
+LABELS["obsidian-quick-note"]="✏️"
 
-# xkill
-COMMANDS["xkill"]='exec foot -a floating -e xkill "${input}"'
-LABELS["xkill"]="🔪"
+# open webpage
+COMMANDS["www"]='$browser "${input}"'
+LABELS["www"]="🌐"
+
+# Reboot
+COMMANDS["reboot"]='reboot'
+LABELS["reboot"]="🌄"
 
 # Rofi Calc
 COMMANDS["calc"]="exec rofi -show calc -modi calc -no-show-match -no-sort -config ~/.config/rofi/tokyo_night_transparent.rasi"
@@ -104,10 +108,6 @@ LABELS["suspend"]="🥶"
 COMMANDS["shutdown"]='shutdown "${input}"'
 LABELS["shutdown"]="📴"
 
-# Shutdown
-COMMANDS["reboot"]='reboot'
-LABELS["reboot"]="🌄"
-
 # Tldr
 COMMANDS["tldr"]='exec foot -H -a floating -e tldr "${input}"'
 LABELS["tldr"]="🗒️"
@@ -132,9 +132,13 @@ LABELS["trpl"]="🇵🇱"
 COMMANDS["turn-off-screen"]='sleep 1 && hyprctl dispatch dpms off'
 LABELS["turn-off-screen"]="📴"
 
-# Open webpage
-COMMANDS["www"]='$browser "${input}"'
-LABELS["www"]="🌐"
+# xkill
+COMMANDS["xkill"]='exec foot -a floating -e xkill "${input}"'
+LABELS["xkill"]="🔪"
+
+# YouTube FZF
+COMMANDS["ytf"]='exec foot -a floating -e ytfzf -t --async-thumbnails --thumbnail-quality=medium --detach -cO,Y,SI "${input}"'
+LABELS["ytf"]="🎬"
 
 ################################################################################
 # Search
