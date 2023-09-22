@@ -4,10 +4,12 @@ autorandr
 bandwhich
 bat
 bitwarden
+bottom
 broot
 calibre
 cliphist
 cmatrix
+cowsay
 dash
 doas
 docker
@@ -21,6 +23,7 @@ fish
 flameshot
 foliate
 foot
+fx
 fzf
 gammastep
 gdm
@@ -28,6 +31,7 @@ ghostscript
 gifski
 git-delta
 github-cli
+gitui
 glow
 gpg-tui
 graphicsmagick
@@ -94,6 +98,7 @@ zathura
 zathura-cb
 zathura-djvu
 zathura-pdf-mupdf
+zellij
 zoxide
 zsh
 
