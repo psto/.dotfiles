@@ -8,6 +8,7 @@ setopt HIST_FIND_NO_DUPS    # show command once while stepping though history
 # setopt HIST_IGNORE_ALL_DUPS # don't write duplicates to the history file
 
 # some useful options (man zshoptions)
+setopt clobber
 setopt autocd extendedglob nomatch menucomplete
 setopt interactive_comments
 setopt globdots     # show hidden files
@@ -17,10 +18,8 @@ setopt appendcreate # enable append redirection (>>) on files that don't exist
 stty stop undef		# Disable ctrl-s to freeze terminal.
 zle_highlight=('paste:none')
 
-# beeping is annoying
-unsetopt BEEP
-# fix "zsh: no matches found" https://github.com/ohmyzsh/ohmyzsh/issues/31
-unsetopt nomatch
+unsetopt BEEP # beeping is annoying
+unsetopt nomatch # fix "zsh: no matches found" https://github.com/ohmyzsh/ohmyzsh/issues/31
 
 # completions
 autoload -Uz compinit
@@ -92,10 +91,6 @@ export FZF_DEFAULT_COMMAND="rg --files --hidden --ignore-file ~/.config/git/giti
 export FZF_DEFAULT_OPTS="--color=fg:#f8f8f2,hl:#bd93f9 --color=fg+:#f8f8f2,bg+:#44475a,hl+:#bd93f9 --color=info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6 --color=marker:#ff79c6,spinner:#ffb86c,header:#6272a4 --preview 'bat --style=numbers --color=always --line-range :500 {}'"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
-# Edit line in vim with ctrl-e:
-autoload edit-command-line; zle -N edit-command-line
-# bindkey '^e' edit-command-line
-
 # ci", ci', ci`, di", etc
 autoload -U select-quoted
 zle -N select-quoted
@@ -120,8 +115,6 @@ xset r rate 210 40
 # Environment variables set everywhere
 export EDITOR="nvim"
 export TERMINAL="kitty"
-# export BROWSER="brave-beta"
-export BROWSER="firefox-nightly"
 
 # bat theme
 export BAT_THEME="base16"
