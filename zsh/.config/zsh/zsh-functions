@@ -66,7 +66,7 @@ function fcd() {
 
 # ripgrep-all with fzf
 rga-fzf() {
-	RG_PREFIX="rga --files-with-matches"
+	RG_PREFIX="rga --hidden --files-with-matches"
 	local file
 	file="$(
 		FZF_DEFAULT_COMMAND="$RG_PREFIX '$1'" \
@@ -76,7 +76,7 @@ rga-fzf() {
 				--preview-window="70%:wrap"
 	)" &&
 	echo "opening $file" &&
-	xdg-open "$file"
+	launch "$file"
 }
 
 # ls function
