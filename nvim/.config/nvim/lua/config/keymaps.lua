@@ -34,14 +34,14 @@ keymap("n", "<F5>", ":setlocal spell spelllang=pl<CR>", { noremap = false })
 keymap("n", "<F1>", "<nop>", { noremap = false })
 keymap("i", "<F1>", "<nop>", { noremap = false })
 
--- Press <ctr> + s to save document
+-- ctrl+s to save document
 keymap("n", "<c-s>", ":w<CR>", { noremap = false })
 
 -- Move selected line up or down
-keymap("v", "J", ":m '>+1<CR>gv=gv", { noremap = false })
-keymap("v", "K", ":m '<-2<CR>gv=gv", { noremap = false })
+keymap("v", "J", ":m '>+1<CR>gv=gv", { noremap = false, silent = true })
+keymap("v", "K", ":m '<-2<CR>gv=gv", { noremap = false, silent = true })
 
--- Select entire line wihtout new line character
+-- Select entire line without new line character
 keymap("n", "<S-b>", "0vg_", opts)
 
 -- Don't yank on paste
@@ -69,6 +69,9 @@ keymap("n", "]q", ":cnext<CR>zz", opts)
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 keymap("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
 keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
+
+-- enter "one-eyed fighting kirby" regex in command mode
+keymap("c", "<F2>", "\\(.*\\)", opts)
 
 -- REST client
 keymap("n", "<M-r>", "<Plug>RestNvim", opts)
