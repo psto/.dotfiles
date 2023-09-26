@@ -115,5 +115,8 @@ return {
         expr = true, desc = "Scroll backward", mode = { "i", "n", "s" } },
     },
   },
-  { "p00f/nvim-ts-rainbow", event = "BufReadPost" }, -- Highlights
+  {
+    url = "https://gitlab.com/HiPhish/rainbow-delimiters.nvim.git", -- rainbow parentheses
+    event = "BufReadPost"
+  },
 }
