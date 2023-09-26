@@ -38,7 +38,15 @@ return {
     "nvim-tree/nvim-web-devicons", -- pretty icons
     event = "VeryLazy",
     config = function()
-      require("nvim-web-devicons").setup({ default = true })
+      local devicons = require("nvim-web-devicons")
+      devicons.setup({ default = true })
+      devicons.set_icon({
+        astro = {
+          icon = "",
+          color = "#ff7e33",
+          name = "astro",
+        }
+      })
     end,
   },
   {
