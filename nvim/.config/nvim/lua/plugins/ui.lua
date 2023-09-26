@@ -85,7 +85,34 @@ return {
         bottom_search = false,
         command_palette = false, -- center or top
         long_message_to_split = true,
-        lsp_doc_border = true,
+        lsp_doc_border = false,
+      },
+      messages = {
+        -- NOTE: If you enable messages, then the cmdline is enabled automatically.
+        -- This is a current Neovim limitation.
+        enabled = true,              -- enables the Noice messages UI
+        view = "mini",               -- default view for messages
+        view_error = "mini",         -- view for errors
+        view_warn = "mini",          -- view for warnings
+        view_history = "messages",   -- view for :messages
+        view_search = "virtualtext", -- view for search count messages. Set to `false` to disable
+      },
+      commands = {
+        -- :Noice last
+        last = {
+          view = "popup",
+          opts = { enter = true, format = "details" },
+          filter = {
+            any = {
+              { event = "notify" },
+              { error = true },
+              { warning = true },
+              { event = "msg_show", kind = { "" } },
+              { event = "lsp",      kind = "message" },
+            },
+          },
+          filter_opts = { count = 1 },
+        },
       },
       routes = {
         { -- hide written messages
@@ -109,10 +136,22 @@ return {
     },
     keys = {
       { "<S-Enter>", function() require("noice").redirect(vim.fn.getcmdline()) end, mode = "c", desc = "Redirect Cmdline" },
-      { "<c-f>", function() if not require("noice.lsp").scroll(4) then return "<c-f>" end end, silent = true, expr = true,
-        desc = "Scroll forward", mode = { "i", "n", "s" } },
-      { "<c-b>", function() if not require("noice.lsp").scroll( -4) then return "<c-b>" end end, silent = true,
-        expr = true, desc = "Scroll backward", mode = { "i", "n", "s" } },
+      {
+        "<c-f>",
+        function() if not require("noice.lsp").scroll(4) then return "<c-f>" end end,
+        silent = true,
+        expr = true,
+        desc = "Scroll forward",
+        mode = { "i", "n", "s" }
+      },
+      {
+        "<c-b>",
+        function() if not require("noice.lsp").scroll(-4) then return "<c-b>" end end,
+        silent = true,
+        expr = true,
+        desc = "Scroll backward",
+        mode = { "i", "n", "s" }
+      },
     },
   },
   {
