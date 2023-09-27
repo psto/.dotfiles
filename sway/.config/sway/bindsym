@@ -76,6 +76,9 @@ bindsym $mod+Shift+M exec swaync-client -t -sw
 bindsym $mod+n exec swaymsg [app_id=$notes] scratchpad show || exec obsidian, $mediumer
 bindsym $mod+Shift+n exec swaymsg [app_id=$notes_nvim] scratchpad show || exec footclient --app-id $notes_nvim -e nvim +':cd %' ~/public/Nextcloud/Documents/notes/obsidian-notes, $medium
 
+# OpenAI's ChatGPT
+bindsym $mod+i exec swaymsg [app_id="chat-gpt"] scratchpad show || exec chat-gpt, $mediumer
+
 # Passwords
 bindsym $mod+x exec ~/.local/bin/passrofi
 bindsym $mod+Shift+x exec swaymsg [app_id=$pass_id] scratchpad show || exec $pass
