@@ -8,7 +8,10 @@ exec_always echo "sway config trace: for_window at $(date)"
 # asign apps to workspaces
 assign [app_id="Element-Nightly"] workspace 5
 assign [app_id="signal"] workspace 5
+assign [title="Spotify"] workspace 6
+assign [app_id="thunderbird"] workspace 8
 assign [app_id="YouTube Music"] workspace 6
+assign [title="Zotero"] workspace 4
 
 for_window {
   [workspace="0"]                      floating enable
@@ -18,8 +21,8 @@ for_window {
   [app_id="floating"]                  resize set height 540
   [app_id="floating"]                  resize set width 960
   [app_id="file-roller"]               floating enable
-  [class="Spotify"]                    floating enable
   [app_id="Thunar" title="^Copying.*"] floating enable
+  [title="^File Operation Progress$"]  floating enable
   [window_role = "bubble"]             floating enable
   [window_role = "dialog"]             floating enable
   [window_role = "task_dialog"]        floating enable
@@ -57,6 +60,8 @@ for_window {
   [app_id=$resource_monitor] move to scratchpad, scratchpad show, $maximize
   # todo sleek
   [app_id=$todo] move to scratchpad, scratchpad show, $smaller
+  # Zotero
+  [title="^Quick Format Citation$"]    floating enable
   # firefox
   [title="^Library$"]                  floating enable
   [title="^Picture-in-Picture$"] { 
