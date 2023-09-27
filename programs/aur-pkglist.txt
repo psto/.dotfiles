@@ -36,6 +36,7 @@ so-bin
 spotify
 spicetify-cli
 streamlink-twitch-gui-bin
+swayfx
 swayhide
 swaync
 swww
