@@ -28,6 +28,8 @@ for_window {
   # prevent screen lock if window is in fullscreen mode
   [class=".*"]                         inhibit_idle fullscreen
   [app_id=".*"]                        inhibit_idle fullscreen
+  # ChatGPT
+  [app_id="chat-gpt"] move to scratchpad, scratchpad show, $mediumer
   # chromium
   [title="^Save File$"]                floating enable
   # file explorer - xplr
