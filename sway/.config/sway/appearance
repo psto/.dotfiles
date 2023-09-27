@@ -26,3 +26,9 @@ font pango: monospace 0.001
 # exec_always sleep 4 && wayab -f 10 -o "HDMI-A-1:/home/piotr/public/pictures/wallpapers/video-wallpapers/unknown01-tokyo:fill:0.5,1.0" -o "eDP-1:/home/piotr/public/pictures/wallpapers/video-wallpapers/unknown01-tokyo:fill:0.5,1.0" 
 exec_always sleep 2 && wayab -f 10 -o "HDMI-A-1:/home/piotr/public/pictures/wallpapers/video-wallpapers/lonely-fire:fill:0.5,1.0" -o "eDP-1:/home/piotr/public/pictures/wallpapers/video-wallpapers/lonely-fire:fill:0.5,1.0" 
 
+# swayfx only
+blur enable
+blur_xray disable
+corner_radius 10
+shadows enable
+layer_effects 'waybar' 'blur enable; shadows enable; corner_radius 6'
