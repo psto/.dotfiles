@@ -63,5 +63,6 @@ exec rm -f /tmp/sovpipe && mkfifo /tmp/sovpipe && tail -f /tmp/sovpipe | sov -t 
 
 # Start applications on workspaces
 exec swaymsg "workspace 1; exec sleep 2 && $term"
+exec swaymsg "workspace 1; exec sleep 14 && $notes"
 exec swaymsg "workspace 2; exec sleep 3 && $browser"
 
