@@ -44,7 +44,7 @@ for_window {
     move left 1000px 
   }
   # obsidian
-  [app_id=$notes] move to scratchpad, scratchpad show, $mediumer
+  [app_id=$notes] move to scratchpad, $mediumer
   # obsidian-nvim
   [app_id=$notes_nvim] move to scratchpad, scratchpad show, $medium
   # terminal float
