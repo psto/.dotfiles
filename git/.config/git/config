@@ -7,6 +7,8 @@
   pager = delta
 [alias]
   diff-words = diff --color-words='[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+'
+  diff-staged = diff --cached
+  diff-upstream = !git fetch origin && git diff master origin/master
   evolution = log --oneline -p -S 
   history = log --oneline -S
   last = log -1 HEAD --stat
@@ -18,10 +20,14 @@
 [delta]
   navigate = true    # use n and N to move between diff sections
   light = false      # set to true if you're in a terminal w/ a light background color
-[merge]
-  conflictstyle = diff3
 [diff]
   colorMoved = default
+  tool = vimdiff
+[merge]
+  conflictstyle = diff3
+  tool = vimdiff
+[mergetool "vimdiff"]
+  path = nvim
 [pull]
   ff = only
 [init]
