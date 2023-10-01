@@ -94,10 +94,10 @@ return {
       }
 
       local config = {
-        virtual_text = false, -- disable annoying inline diagnostics
+        virtual_text = false,  -- disable annoying inline diagnostics
         virtual_lines = false, -- { only_current_line = true }, -- lsp_lines for current line
         signs = {
-          active = signs, -- show signs
+          active = signs,      -- show signs
         },
         update_in_insert = false,
         underline = true,
@@ -133,7 +133,7 @@ return {
 
     -- Use a loop to conveniently call 'setup' on multiple servers and
     -- map buffer local keybindings when the language server attaches
-    local servers = { "ansiblels", "astro", "bashls", "gopls", "marksman", "prismals", "svelte", "solidity_ls" }
+    local servers = { "ansiblels", "bashls", "gopls", "marksman", "prismals", "pylsp", "rnix", "svelte" }
     for _, lsp in ipairs(servers) do
       nvim_lsp[lsp].setup({
         on_attach = on_attach,
@@ -143,6 +143,16 @@ return {
         },
       })
     end
+
+    nvim_lsp.astro.setup({
+      on_attach = on_attach,
+      capabilities = capabilities,
+      init_options = {
+        typescript = {
+          tsdk = "/home/piotr/.local/share/npm/lib/node_modules/typescript/lib",
+        },
+      },
+    })
 
     -- tsserver config
     nvim_lsp.tsserver.setup({
@@ -198,11 +208,16 @@ return {
       on_attach = on_attach,
       capabilities = capabilities,
       root_dir = nvim_lsp.util.root_pattern("deno.json", "deno.jsonc"),
-      single_file_support = false,
     })
 
     -- eslint config
     nvim_lsp.eslint.setup({
+      on_attach = function(_, bufnr)
+        vim.api.nvim_create_autocmd("BufWritePre", {
+          buffer = bufnr,
+          command = "EslintFixAll",
+        })
+      end,
       capabilities = capabilities,
       root_dir = nvim_lsp.util.root_pattern(".eslintrc.json", ".eslintrc", ".eslintrc.js"),
     })
@@ -309,7 +324,7 @@ return {
         Lua = {
           hint = { enable = true },
           runtime = {
-            version = 'LuaJIT', -- Tell the language server which version of Lua you're using
+            version = 'LuaJIT',  -- Tell the language server which version of Lua you're using
             path = runtime_path, -- Setup your lua path
           },
           diagnostics = {
@@ -326,7 +341,6 @@ return {
 
     nvim_lsp.tailwindcss.setup({
       capabilities = capabilities,
-      on_attach = on_attach,
       cmd = { "tailwindcss-language-server", "--stdio" },
       filetypes = {
         "aspnetcorerazor", "astro", "astro-markdown", "blade", "django-html", "edge", "eelixir", "ejs", "erb", "eruby",
