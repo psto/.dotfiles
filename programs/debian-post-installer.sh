@@ -53,7 +53,6 @@ sudo flatpak install -y flathub com.github.Eloston.UngoogledChromium
 sudo flatpak install -y flathub org.flameshot.Flameshot
 sudo flatpak install -y flathub io.freetubeapp.FreeTube
 sudo flatpak install -y flathub org.gimp.GIMP
-sudo flatpak install -y flathub rest.insomnia.Insomnia
 sudo flatpak install -y flathub org.keepassxc.KeePassXC
 sudo flatpak install -y flathub org.libreoffice.LibreOffice
 sudo flatpak install -y flathub com.getmailspring.Mailspring
