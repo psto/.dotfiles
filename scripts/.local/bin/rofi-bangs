@@ -291,10 +291,6 @@ LABELS["github-desktop"]="🐙"
 COMMANDS["gimp"]="gimp"
 LABELS["gimp"]="🐺"
 
-# Insomnia
-COMMANDS["insomnia"]="insomnia"
-LABELS["insomnia"]="😴"
-
 # IPFS Desktop
 COMMANDS["ipfs-desktop"]="ipfs-desktop"
 LABELS["ipfs-desktop"]="🌐"

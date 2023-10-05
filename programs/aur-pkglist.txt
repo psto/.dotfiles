@@ -17,7 +17,6 @@ devour
 dragon-drop
 espanso-bin
 ffsend-bin
-insomnia-bin
 kitty
 lf
 mailspring
