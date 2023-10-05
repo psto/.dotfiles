@@ -2,13 +2,25 @@ return {
   {
     "lukas-reineke/indent-blankline.nvim",
     event = "BufReadPost",
+    main = "ibl",
     opts = {
-      -- char = "▏",
-      char = "│",
-      filetype_exclude = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy" },
-      show_trailing_blankline_indent = false,
-      show_current_context = true,
+      exclude = {
+        filetypes = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy" },
+      },
+      indent = {
+        char = "│",
+      },
+      scope = {
+        enabled = true,
+        show_start = false
+      },
+      whitespace = {
+        remove_blankline_trail = false,
+      }
     },
+    config = function(_, opts)
+      require("ibl").setup(opts)
+    end
   },
   {
     "nvim-lualine/lualine.nvim",
