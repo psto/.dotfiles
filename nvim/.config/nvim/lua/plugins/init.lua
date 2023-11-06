@@ -3,30 +3,28 @@ return {
   { "PatschD/zippy.nvim", event = "BufReadPre" },
 
   -- Diagnostics
-  { "folke/trouble.nvim",
+  {
+    "folke/trouble.nvim",
     event = "VeryLazy",
     dependencies = "nvim-tree/nvim-web-devicons",
   },
 
-  -- References
+  -- Diffview
   {
-    "RRethy/vim-illuminate",
-    event = "BufReadPost",
-    opts = { delay = 200 },
-    config = function(_, opts)
-      require("illuminate").configure(opts)
-      vim.api.nvim_create_autocmd("FileType", {
-        callback = function()
-          local buffer = vim.api.nvim_get_current_buf()
-          pcall(vim.keymap.del, "n", "]]", { buffer = buffer })
-          pcall(vim.keymap.del, "n", "[[", { buffer = buffer })
-        end,
-      })
-    end,
-    keys = {
-      { "]]", function() require("illuminate").goto_next_reference(false) end, desc = "Next Reference", },
-      { "[[", function() require("illuminate").goto_prev_reference(false) end, desc = "Prev Reference" },
+    "sindrets/diffview.nvim",
+    event = "BufReadPre",
+  },
+
+  -- DevDocs
+  {
+    "luckasRanarison/nvim-devdocs",
+    event = { "BufReadPost", "BufNewFile" },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+      "nvim-treesitter/nvim-treesitter",
     },
+    opts = {}
   },
 
   -- LSP
