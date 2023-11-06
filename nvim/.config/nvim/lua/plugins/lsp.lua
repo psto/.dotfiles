@@ -28,9 +28,6 @@ return {
     local m_status_ok, mason = pcall(require, "mason")
     if not m_status_ok then return end
 
-    -- local n_status_ok, navic = pcall(require, "nvim-navic")
-    -- if not n_status_ok then return end
-
     -- start mason
     mason.setup()
 
@@ -43,8 +40,6 @@ return {
     -- async formatter
     lsp_format.setup()
 
-    -- navic for winbar
-    -- navic.setup({ separator = "  " })
 
     -- Use an on_attach function to only map the following keys
     -- after the language server attaches to the current buffer
@@ -54,11 +49,6 @@ return {
 
       -- formatting with lsp-format
       require("lsp-format").on_attach(client)
-
-      -- attach navic to lsp only if client has symbol provider capability
-      -- if client.server_capabilities.documentSymbolProvider then
-      --   navic.attach(client, bufnr)
-      -- end
 
       -- enable inlay hints
       if client.server_capabilities.inlayHintProvider then

@@ -42,6 +42,4 @@ return {
   -- REST client
   { "NTBBloodbath/rest.nvim", dependencies = "nvim-lua/plenary.nvim", event = "BufReadPre" },
 
-  -- Statusline
-  { "SmiteshP/nvim-navic", dependencies = "neovim/nvim-lspconfig", event = "BufReadPre" },
 }
