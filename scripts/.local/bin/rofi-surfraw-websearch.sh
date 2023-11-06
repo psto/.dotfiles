@@ -19,4 +19,4 @@
 # set your browser (uncomment if needed, some GUI does not detect browser variable)
 # BROWSER=firefox
 
-surfraw -browser=$BROWSER $(sr -elvi | awk -F'-' '{print $1}' | sed '/:/d' | awk '{$1=$1};1' | rofi -config ~/.config/rofi/tokyonight.rasi -dmenu -i -p "rofi-surfraw-websearch: ")
+surfraw -browser=$BROWSER $(sr -elvi | awk -F'-' '{print $1}' | sed '/:/d' | awk '{$1=$1};1' | rofi -config ~/.config/rofi/tokyo_night_transparent.rasi -dmenu -i -p "rofi-surfraw-websearch: ")

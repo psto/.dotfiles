@@ -30,7 +30,7 @@ menu(){
 }
 
 main() {
-	choice=$(menu | rofi -dmenu -i -config ~/.config/rofi/tokyonight.rasi | cut -d. -f1)
+	choice=$(menu | rofi -dmenu -i -config ~/.config/rofi/tokyo_night_transparent.rasi | cut -d. -f1)
 
 	case $choice in
 		1)
@@ -58,12 +58,12 @@ main() {
             URL="https://somafm.com/defcon256.pls"
 			;;
 		7)
-			notification "Lofi Girl ☕️🎶";
-            URL="https://play.streamafrica.net/lofiradio"
-			;;
-		8)
 			notification "somaFM Beat Blender☕️🎶";
             URL="https://somafm.com/beatblender130.pls"
+			;;
+		8)
+			notification "Lofi Girl ☕️🎶";
+            URL="https://play.streamafrica.net/lofiradio"
 			;;
 		9)
 			notification "Chillhop ☕️🎶";

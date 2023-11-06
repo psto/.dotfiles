@@ -19,5 +19,5 @@
 # set your browser (uncomment if needed, some GUI does not detect browser variable)
 # BROWSER=firefox
 
-surfraw "$(cat ~/.config/surfraw/bookmarks | sed '/^$/d' | sed '/^#/d' | sed '/^\//d' | sort -n | rofi -config ~/.config/rofi/tokyonight.rasi \
+surfraw "$(cat ~/.config/surfraw/bookmarks | sed '/^$/d' | sed '/^#/d' | sed '/^\//d' | sort -n | rofi -config ~/.config/rofi/tokyo_night_transparent.rasi \
  -dmenu -mesg ">>> Edit to add new bookmarks at ~/.config/surfraw/bookmarks" -i -p "rofi-surfraw-bookmarks: ")"
