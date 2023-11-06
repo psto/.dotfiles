@@ -108,7 +108,7 @@ return {
         bottom_search = false,
         command_palette = false, -- center or top
         long_message_to_split = true,
-        lsp_doc_border = false,
+        lsp_doc_border = true,
       },
       messages = {
         -- NOTE: If you enable messages, then the cmdline is enabled automatically.
@@ -180,5 +180,42 @@ return {
   {
     url = "https://gitlab.com/HiPhish/rainbow-delimiters.nvim.git", -- rainbow parentheses
     event = "BufReadPost"
+  },
+  {
+    url = "https://github.com/lewis6991/satellite.nvim",
+    event = "BufReadPost",
+    opts = {
+      current_only = false,
+      winblend = 50,
+      zindex = 40,
+      excluded_filetypes = {},
+      width = 2,
+      handlers = {
+        cursor = {
+          enable = true,
+          symbols = { '⎺', '⎻', '⎼', '⎽' } -- Supports any number of symbols
+        },
+        search = { enable = true },
+        diagnostic = {
+          enable = true,
+          signs = { '-', '=', '≡' },
+          min_severity = vim.diagnostic.severity.HINT,
+        },
+        gitsigns = {
+          enable = true,
+          signs = { -- can only be a single character (multibyte is okay)
+            add = "│",
+            change = "│",
+            delete = "-",
+          },
+        },
+        marks = {
+          enable = true,
+          show_builtins = false, -- shows the builtin marks like [ ] < >
+          key = 'm'
+        },
+        quickfix = { signs = { '-', '=', '≡' } }
+      },
+    }
   },
 }
