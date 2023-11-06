@@ -57,6 +57,15 @@ keymap("v", "X", '"_X', opts)
 keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
+-- auto indent when insert on an empty line
+keymap("n", "i", function()
+  if #vim.fn.getline(".") == 0 then
+    return [["_cc]]
+  else
+    return "i"
+  end
+end, { expr = true, desc = "properly indent on empty line when insert" })
+
 -- Navigate buffers
 keymap("n", "[b", ":bnext<CR>", opts)
 keymap("n", "]b", ":bprevious<CR>", opts)
