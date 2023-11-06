@@ -33,6 +33,9 @@ return {
           section_separators = "",
           globalstatus = true,
           disabled_filetypes = { statusline = { "dashboard", "lazy" } },
+          symbols = {
+            modified = " ● ",
+          }
         },
       }
     end,

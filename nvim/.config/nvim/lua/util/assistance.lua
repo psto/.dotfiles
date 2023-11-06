@@ -7,7 +7,7 @@ function M.open_term(cmd, opts)
   opts           = opts or {}
   opts.size      = opts.size or vim.o.columns * 0.5
   opts.direction = opts.direction or "vertical"
-  opts.on_open   = opts.on_open or default_on_open
+  opts.on_open   = opts.on_open
   opts.on_exit   = opts.on_exit or nil
 
   local new_term = TERMINAL:new {

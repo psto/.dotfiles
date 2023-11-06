@@ -25,7 +25,7 @@ return {
   },
   {
     "kylechui/nvim-surround",
-    event = "BufReadPre",
+    event = "InsertEnter",
     config = function() require("nvim-surround").setup() end,
   },
   {

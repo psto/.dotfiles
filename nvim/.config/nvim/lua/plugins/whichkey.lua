@@ -149,6 +149,7 @@ return {
         p = { "<cmd>Gitsigns preview_hunk<CR>", "Preview Hunk" },
         r = { "<cmd>Gitsigns reset_hunk<CR>", "Reset Hunk" },
         R = { "<cmd>Gitsigns reset_buffer<CR>", "Reset Buffer" },
+        q = { "<cmd>Gitsigns setqflist<cr>", "Hunk List" },
         s = { "<cmd>Gitsigns stage_hunk<CR>", "Stage Hunk" },
         u = {
           "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",
@@ -225,6 +226,7 @@ return {
         },
         r = { "<cmd>lua _NODE_TOGGLE()<CR>", "Node REPL" },
         s = { "<cmd>lua require('util.assistance').so_input()<CR>", "  StackOverflow" },
+        w = { "<cmd>:%s/\\s\\+$//<CR>", "Trim Whitespaces" },
         x = { "<cmd>lua _XPLR_TOGGLE()<CR>", "File Xplr" },
       }
     }
