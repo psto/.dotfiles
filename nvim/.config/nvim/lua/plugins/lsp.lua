@@ -10,7 +10,11 @@ return {
     },
     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
     "lukas-reineke/lsp-format.nvim",
-    -- "SmiteshP/nvim-navic",
+  },
+  opts = {
+    inlay_hints = {
+      enabled = true
+    }
   },
   config = function()
     local status_ok, nvim_lsp = pcall(require, "lspconfig")
@@ -40,68 +44,74 @@ return {
     -- async formatter
     lsp_format.setup()
 
+    -- icons
+    local icons = require("util.icons")
+    local signs = {
+      { name = "DiagnosticSignError", text = icons.diagnostics.Error },
+      { name = "DiagnosticSignWarn",  text = icons.diagnostics.BoldWarning },
+      { name = "DiagnosticSignHint",  text = icons.diagnostics.BoldInformation },
+      { name = "DiagnosticSignInfo",  text = icons.diagnostics.BoldQuestion },
+    }
+    for _, sign in ipairs(signs) do
+      vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
+    end
 
-    -- Use an on_attach function to only map the following keys
-    -- after the language server attaches to the current buffer
+    local config = {
+      virtual_text = false,  -- disable annoying inline diagnostics
+      virtual_lines = false, -- { only_current_line = true }, -- lsp_lines for current line
+      signs = {
+        active = signs,      -- show signs
+      },
+      update_in_insert = false,
+      underline = true,
+      severity_sort = true,
+      float = {
+        focusable = false,
+        style = "minimal",
+        border = "rounded",
+        source = "always",
+        header = "",
+        prefix = "",
+      },
+    }
+    vim.diagnostic.config(config)
+
+    -- Mappings.
+    vim.api.nvim_create_autocmd('LspAttach', {
+      group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+      callback = function(ev)
+        -- Enable completion triggered by <c-x><c-o>
+        vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+
+        local keymap = vim.keymap.set
+        local bufopts = { noremap = true, silent = true, buffer = ev.buf }
+
+        -- See `:help vim.lsp.*` for documentation on any of the below functions
+        keymap("n", "gd", "<cmd>Telescope lsp_definitions<CR>", bufopts)
+        keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", bufopts)
+        keymap("n", "gT", "<cmd>lua vim.lsp.buf.type_definition()<CR>", bufopts)
+        keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", bufopts)
+        keymap("n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", bufopts)
+        keymap("n", "gi", "<cmd>Telescope lsp_implementations<CR>", bufopts)
+        keymap("n", "gr", "<cmd>Telescope lsp_references<CR>", bufopts)
+        keymap("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<CR>", bufopts)
+        keymap("n", "<space>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", bufopts)
+        keymap("n", "<space>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", bufopts)
+        keymap("n", "<space>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", bufopts)
+        -- keymap("n", "<space>cr", "<cmd>lua vim.lsp.buf.rename()<CR>", bufopts)
+        -- keymap("n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", bufopts)
+        -- keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.format({ async = true })<CR>", bufopts)
+      end,
+    })
+
     local on_attach = function(client, bufnr)
-      -- Enable completion triggered by <c-x><c-o>
-      vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-
       -- formatting with lsp-format
       require("lsp-format").on_attach(client)
 
       -- enable inlay hints
       if client.server_capabilities.inlayHintProvider then
-        vim.lsp.buf.inlay_hint(bufnr, true)
+        vim.lsp.inlay_hint(bufnr, true)
       end
-
-      -- Mappings.
-      local keymap = vim.keymap.set
-      local bufopts = { noremap = true, silent = true, buffer = bufnr }
-
-      -- See `:help vim.lsp.*` for documentation on any of the below functions
-      keymap("n", "gd", "<cmd>Telescope lsp_definitions<CR>", bufopts)
-      keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", bufopts)
-      keymap("n", "gT", "<cmd>lua vim.lsp.buf.type_definition()<CR>", bufopts)
-      keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", bufopts)
-      keymap("n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", bufopts)
-      keymap("n", "gi", "<cmd>Telescope lsp_implementations<CR>", bufopts)
-      keymap("n", "gr", "<cmd>Telescope lsp_references<CR>", bufopts)
-      keymap("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<CR>", bufopts)
-      keymap("n", "<space>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", bufopts)
-      keymap("n", "<space>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", bufopts)
-      keymap("n", "<space>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", bufopts)
-      -- keymap("n", "<space>cr", "<cmd>lua vim.lsp.buf.rename()<CR>", bufopts)
-      -- keymap("n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", bufopts)
-      -- keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.format({ async = true })<CR>", bufopts)
-
-      local icons = require("util.icons")
-      local signs = {
-        { name = "DiagnosticSignError", text = icons.diagnostics.Error },
-        { name = "DiagnosticSignWarn",  text = icons.diagnostics.BoldWarning },
-        { name = "DiagnosticSignHint",  text = icons.diagnostics.BoldInformation },
-        { name = "DiagnosticSignInfo",  text = icons.diagnostics.BoldQuestion },
-      }
-
-      local config = {
-        virtual_text = false,  -- disable annoying inline diagnostics
-        virtual_lines = false, -- { only_current_line = true }, -- lsp_lines for current line
-        signs = {
-          active = signs,      -- show signs
-        },
-        update_in_insert = false,
-        underline = true,
-        severity_sort = true,
-        float = {
-          focusable = false,
-          style = "minimal",
-          border = "rounded",
-          source = "always",
-          header = "",
-          prefix = "",
-        },
-      }
-      vim.diagnostic.config(config)
 
       -- rounded borders for float windows
       -- TODO: solve conflict with noice plugin
@@ -111,10 +121,6 @@ return {
       -- vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
       --   border = "rounded",
       -- })
-
-      for _, sign in ipairs(signs) do
-        vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
-      end
     end
 
     local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -123,7 +129,7 @@ return {
 
     -- Use a loop to conveniently call 'setup' on multiple servers and
     -- map buffer local keybindings when the language server attaches
-    local servers = { "ansiblels", "bashls", "gopls", "marksman", "prismals", "pylsp", "rnix", "svelte" }
+    local servers = { "ansiblels", "bashls", "html", "gopls", "marksman", "prismals", "pylsp", "rnix", "svelte" }
     for _, lsp in ipairs(servers) do
       nvim_lsp[lsp].setup({
         on_attach = on_attach,
@@ -312,7 +318,10 @@ return {
       capabilities = capabilities,
       settings = {
         Lua = {
-          hint = { enable = true },
+          hint = {
+            enable = true,
+            setType = true,
+          },
           runtime = {
             version = 'LuaJIT',  -- Tell the language server which version of Lua you're using
             path = runtime_path, -- Setup your lua path
