@@ -76,6 +76,9 @@ return {
           theme = "dropdown",
           previewer = false,
         },
+        git_status = {
+          previewer = true,
+        },
         grep_string = {
           theme = "dropdown",
         },
