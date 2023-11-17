@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# add to sway config:
+# bindsym Mod1+q exec ~/kill.sh
+
+# this script kills the window if the name matches
+# in case of wayland, the attribute 'app_id' is used while X11 windows use 'class'
+
+# current_window=$(swaymsg -t get_tree | grep -A 45 '"focused": true' | grep -E 'app_id|class' | cut -d \" -f 4 | grep .)
+#
+# swaymsg kill "$current_window"
+
+[[ "$1" ]] && {
+    echo "Usage: $( basename "$0" )"
+    echo
+    echo "kills the focused program"
+    exit 0
+}
+
+PID=$(swaymsg -t get_tree | jq '.. | select(.type?) | select(.focused==true).pid')
+
+if [[ "$PID" ]]; then
+    kill "$PID"
+else
+    swaynag -m "$0: No PID was obtained"
+fi
