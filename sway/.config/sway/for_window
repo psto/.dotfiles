@@ -8,7 +8,6 @@ exec_always echo "sway config trace: for_window at $(date)"
 # asign apps to workspaces
 assign [app_id="Element-Nightly"] workspace 5
 assign [app_id="signal"] workspace 5
-assign [title="Spotify"] workspace 6
 assign [app_id="thunderbird"] workspace 8
 assign [app_id="YouTube Music"] workspace 6
 assign [title="Zotero"] workspace 4
@@ -16,6 +15,7 @@ assign [title="Zotero"] workspace 4
 for_window {
   [workspace="0"]                      floating enable
   [class="Anki"]                       floating enable
+  [app_id="Authenticator"]             floating enable
   [app_id="blueman-manager"]           floating enable
   [app_id="floating"]                  floating enable
   [app_id="floating"]                  resize set height 540
@@ -28,6 +28,7 @@ for_window {
   [window_role = "task_dialog"]        floating enable
   [window_type = "menu"]               floating enable
   [title="^Volume Control$"]           floating enable
+  [title="Streamlink Twitch GUI"]      floating enable
   # prevent screen lock if window is in fullscreen mode
   [class=".*"]                         inhibit_idle fullscreen
   [app_id=".*"]                        inhibit_idle fullscreen
@@ -52,14 +53,16 @@ for_window {
   [app_id=$notes] move to scratchpad, $mediumer
   # obsidian-nvim
   [app_id=$notes_nvim] move to scratchpad, scratchpad show, $medium
+  # spotify
+  [title="^Spotify$"] move to scratchpad, $mediumer
   # terminal float
   [app_id=$term_small] move to scratchpad, scratchpad show, $smaller
   # terminal fullscreen
   [app_id=$term_fullscreen] move to scratchpad, scratchpad show, $maximize
   # resource monitor
   [app_id=$resource_monitor] move to scratchpad, scratchpad show, $maximize
-  # todo sleek
-  [app_id=$todo] move to scratchpad, scratchpad show, $smaller
+  # todo
+  [app_id=$todo] move to scratchpad, scratchpad show, $medium
   # Zotero
   [title="^Quick Format Citation$"]    floating enable
   # firefox
