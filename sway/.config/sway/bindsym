@@ -13,7 +13,7 @@ bindsym $mod+Shift+Return exec swaymsg [app_id=$term_small] scratchpad show || e
 bindsym $mod+Escape exec swaymsg [app_id=$term_fullscreen] scratchpad show || exec footclient --app-id $term_fullscreen -e /home/piotr/.local/bin/tat, $maximize
 
 # Start a browser
-bindsym $mod+w exec swaymsg [app_id=$firefox-nightly] focus || exec $browser 
+bindsym $mod+w exec swaymsg [app_id=$browser] focus || exec $browser 
 
 # Kill focused window
 bindsym $mod+q kill
@@ -78,6 +78,7 @@ bindsym $mod+Shift+n exec swaymsg [app_id=$notes_nvim] scratchpad show || exec f
 
 # OpenAI's ChatGPT
 bindsym $mod+i exec swaymsg [app_id="chat-gpt"] scratchpad show || exec chat-gpt, $mediumer
+bindsym $mod+Shift+i exec swaymsg [app_id="microsoft-edge"] scratchpad show || exec $edge, $mediumer
 
 # Passwords
 bindsym $mod+x exec ~/.local/bin/passrofi

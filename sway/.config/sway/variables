@@ -15,15 +15,18 @@ set {
   $term footclient 
   $term_small term_small
   $term_fullscreen term_fullscreen
-  $browser /home/piotr/.local/bin/firefox-way
-  $file_explorer xplr
+  # $browser /home/piotr/.local/bin/brave-beta-gpu
+  $browser firefox-nightly
+  $edge microsoft-edge-stable --enable-features=UseOzonePlatform --ozone-platform-hint=wayland
+  $file_explorer lf
   $menu ~/.local/bin/rofi-bangs
   $notes obsidian
   $notes_nvim notes_nvim 
   $pass keepassxc
   $pass_id org.keepassxc.KeePassXC
   $resource_monitor btop
-  $todo sleek
+  # $todo sleek
+  $todo planify
   $vim vim_client
   $wallpaper /home/piotr/public/pictures/wallpapers/portal-to-another-world.jpg
 

@@ -7,7 +7,7 @@ exec_always echo "sway config trace: for_window at $(date)"
 
 # asign apps to workspaces
 assign [app_id="Element-Nightly"] workspace 5
-assign [app_id="signal"] workspace 5
+assign [title="Signal"] workspace 5
 assign [app_id="thunderbird"] workspace 8
 assign [app_id="YouTube Music"] workspace 6
 assign [title="Zotero"] workspace 4
@@ -32,6 +32,8 @@ for_window {
   # prevent screen lock if window is in fullscreen mode
   [class=".*"]                         inhibit_idle fullscreen
   [app_id=".*"]                        inhibit_idle fullscreen
+  # BingAI
+  [app_id="microsoft-edge"] move to scratchpad, scratchpad show, $mediumer
   # ChatGPT
   [app_id="chat-gpt"] move to scratchpad, scratchpad show, $mediumer
   # chromium
