@@ -87,7 +87,8 @@ bindsym $mod+Shift+x exec swaymsg [app_id=$pass_id] scratchpad show || exec $pas
 bindsym $mod+Shift+s sticky toggle
 
 # Play mpv video from clipboard url
-bindsym $mod+y exec ~/.local/bin/playVidFromClipboard
+bindsym $mod+y exec swaymsg [title="Spotify"] scratchpad show || exec "$HOME/.local/bin/spotify-way", $maximize
+bindsym $mod+Shift+y exec ~/.local/bin/playVidFromClipboard
 
 # Resource monitor
 bindsym F12 exec swaymsg [app_id=$resource_monitor] scratchpad show || exec footclient --app-id $resource_monitor -e btop, $maximize
