@@ -5,10 +5,10 @@
   "modules-left": [
     "sway/workspaces",
     "sway/mode",
-    "sway/window"
+    "sway/window",
   ],
   "modules-center": [
-    "clock"
+    "clock",
   ],
   "modules-right": [
     "custom/recorder",
@@ -58,7 +58,29 @@
   },
   "clock": {
     "format": "<span></span> {:%H:%M}",
-    "format-alt": "<span></span> {:%a %b %d}"
+    "format-alt": "<span></span> {:%a %b %d}",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "calendar": {
+      "mode": "month",
+      "mode-mon-col": 3,
+      "weeks-pos": "right",
+      "on-scroll": 1,
+      "on-click-right": "mode",
+      "format": {
+        "months": "<span color='#c0caf5'><b>{}</b></span>",
+        "days": "<span color='#bb9af7'><b>{}</b></span>",
+        "weeks": "<span color='#7dcfff'><b>W{}</b></span>",
+        "weekdays": "<span color='#e0af68'><b>{}</b></span>",
+        "today": "<span color='#f7768e'><b><u>{}</u></b></span>"
+      }
+    },
+    "actions": {
+      "on-click-right": "mode",
+      "on-click-forward": "tz_up",
+      "on-click-backward": "tz_down",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down"
+    }
   },
   "cpu": {
     "interval": 5,
@@ -96,13 +118,10 @@
     "escape": true
   },
   "custom/powermenu": {
-    "return-type": "json",
-    "exec": "/home/piotr/.config/waybar/scripts/powermenu.sh",
-    "format": "<span font='Font Awesome'>{icon}</span>  {}",
+    "format": "<span font='Font Awesome'>{icon}</span>",
     "format-icons": [
       ""
     ],
-    "interval": 3600,
     "escape": true,
     "on-click": "wlogout"
   },
