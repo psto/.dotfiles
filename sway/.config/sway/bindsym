@@ -17,7 +17,7 @@ bindsym $mod+w exec swaymsg [app_id=$firefox-nightly] focus || exec $browser
 
 # Kill focused window
 bindsym $mod+q kill
-bindsym --release Control+Mod1+Delete exec xkill
+bindsym $mod+Shift+q exec ~/.local/bin/sway-kill
 
 # Start your launcher
 # bindsym $mod+d exec $menu
