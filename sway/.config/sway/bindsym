@@ -40,7 +40,7 @@ bindsym $mod+Shift+e exec wlogout
 
 # Clipboard
 bindsym $mod+c exec cliphist list | rofi -dmenu \
-  -config ~/.config/rofi/tokyonight.rasi \
+  -config ~/.config/rofi/tokyo_night_transparent.rasi \
   -theme-str "#window { width: 900;}" | cliphist decode | wl-copy
 
 # Resize floating windows
@@ -62,12 +62,12 @@ bindswitch lid:off output eDP-1 enable
 
 # Lock screen
 bindsym $mod+Shift+z exec swayidle -w  \
-  timeout 1 'swaylock -e -f -c 000000 -i $wallpaper -s fill' \
+  timeout 1 'swaylock -e -f -i $wallpaper -s fill' \
   timeout 2 'swaymsg "output * dpms off"' \
   resume 'swaymsg "output * dpms on"; pkill -nx swayidle'
 
 # File Explorer
-bindsym $mod+e exec swaymsg [app_id=$file_explorer] scratchpad show || exec footclient --app-id $file_explorer -e xplr ~, $medium
+bindsym $mod+e exec swaymsg [app_id=$file_explorer] scratchpad show || exec footclient --app-id $file_explorer -e $file_explorer ~, $medium
 
 # Notification control center
 bindsym $mod+Shift+M exec swaync-client -t -sw
@@ -135,10 +135,10 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 # Swap windows
-bindsym $mod+ctrl+$left mark swap, focus left, swap container with mark swap
-bindsym $mod+ctrl+$down mark swap, focus down, swap container with mark swap
-bindsym $mod+ctrl+$up mark swap, focus up, swap container with mark swap
-bindsym $mod+ctrl+$right mark swap, focus right, swap container with mark swap
+bindsym $mod+ctrl+$left mark swap, focus left, swap container with mark swap, focus right
+bindsym $mod+ctrl+$down mark swap, focus down, swap container with mark swap, focus up
+bindsym $mod+ctrl+$up mark swap, focus up, swap container with mark swap, focus down
+bindsym $mod+ctrl+$right mark swap, focus right, swap container with mark swap, focus left
 
 #
 # Workspaces:
@@ -184,7 +184,7 @@ bindsym $mod+Shift+0 floating enable, move container to workspace number 10
 
 # Worspace back and forth
 workspace_auto_back_and_forth yes
-# Window back and forth
+# Window back and forth with track_prev_focus
 bindsym $mod+Tab [con_mark=_prev] focus
 # bindsym $mod+grave workspace back_and_forth
 #
