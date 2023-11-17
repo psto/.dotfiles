@@ -106,6 +106,9 @@ bindsym $mod+o exec ~/.local/bin/rofi-search
 # Todo.txt
 bindsym $mod+t exec swaymsg [app_id=$todo] scratchpad show || exec $todo, $smaller
 
+# Vim
+bindsym $mod+v exec swaymsg [app_id=$vim_client] focus || exec footclient --app-id $vim_client -e /home/piotr/.local/bin/tat
+
 #
 # Moving around:
 #
