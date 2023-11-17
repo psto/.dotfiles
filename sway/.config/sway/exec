@@ -64,6 +64,9 @@ exec sleep 12 && nextcloud
 # Start sov
 exec rm -f /tmp/sovpipe && mkfifo /tmp/sovpipe && tail -f /tmp/sovpipe | sov -t 500
 
+# Start track back and forth window
+exec ~/.local/bin/track_prev_focus
+
 # Start applications on workspaces
 exec swaymsg "workspace 1; exec sleep 2 && $term"
 exec swaymsg "workspace 1; exec sleep 14 && $notes"

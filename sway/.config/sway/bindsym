@@ -10,7 +10,7 @@ exec_always echo "sway config trace: bindsym at $(date)"
 # Start a terminal
 bindsym $mod+Return exec $term
 bindsym $mod+Shift+Return exec swaymsg [app_id=$term_small] scratchpad show || exec footclient --app-id $term_small, $smaller
-bindsym $mod+Tab exec swaymsg [app_id=$term_fullscreen] scratchpad show || exec footclient --app-id $term_fullscreen -e /home/piotr/.local/bin/tat
+bindsym $mod+Escape exec swaymsg [app_id=$term_fullscreen] scratchpad show || exec footclient --app-id $term_fullscreen -e /home/piotr/.local/bin/tat, $maximize
 
 # Start a browser
 bindsym $mod+w exec swaymsg [app_id=$firefox-nightly] focus || exec $browser 
@@ -183,6 +183,8 @@ bindsym $mod+Shift+0 floating enable, move container to workspace number 10
 
 # Worspace back and forth
 workspace_auto_back_and_forth yes
+# Window back and forth
+bindsym $mod+Tab [con_mark=_prev] focus
 # bindsym $mod+grave workspace back_and_forth
 #
 # Layout stuff:
