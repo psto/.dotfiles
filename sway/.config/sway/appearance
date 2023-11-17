@@ -23,12 +23,17 @@ font pango: monospace 0.001
 # output * bg #24283b solid_color
 # output * bg $wallpaper fill
 # Animated wallpaper
-# exec_always sleep 4 && wayab -f 10 -o "HDMI-A-1:/home/piotr/public/pictures/wallpapers/video-wallpapers/unknown01-tokyo:fill:0.5,1.0" -o "eDP-1:/home/piotr/public/pictures/wallpapers/video-wallpapers/unknown01-tokyo:fill:0.5,1.0" 
-exec_always sleep 2 && wayab -f 10 -o "HDMI-A-1:/home/piotr/public/pictures/wallpapers/video-wallpapers/lonely-fire:fill:0.5,1.0" -o "eDP-1:/home/piotr/public/pictures/wallpapers/video-wallpapers/lonely-fire:fill:0.5,1.0" 
+exec_always "swww kill; swww init"
+exec_always sleep 2 && swww img -o "HDMI-A-1,eDP-1" "/home/piotr/public/pictures/wallpapers/video-wallpapers/kirokaze-lonely-fire.gif" 
 
 # swayfx only
-blur enable
-blur_xray disable
+blur on
+blur_radius 5
+blur_passes 1
 corner_radius 10
-shadows enable
-layer_effects 'waybar' 'blur enable; shadows enable; corner_radius 6'
+shadows on
+shadows_on_csd on
+shadow_blur_radius 20
+layer_effects "rofi" blur enable, shadows disable, corner_radius 10
+layer_effects "swaync-control-center" blur enable; blur_ignore_transparent enable;
+layer_effects 'waybar' blur enable; shadows disable;
