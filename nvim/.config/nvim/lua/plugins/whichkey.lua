@@ -143,8 +143,6 @@ return {
         d = { "<cmd>Gitsigns diffthis HEAD<cr>", "Diff" },
         e = { "<cmd>Gitsigns toggle_current_line_blame<CR>", "Git Blame" },
         g = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" },
-        j = { "<cmd>Gitsigns next_hunk<CR>", "Next Hunk" },
-        k = { "<cmd>Gitsigns prev_hunk<CR>", "Prev Hunk" },
         l = { "<cmd>lua require'gitsigns'.blame_line{full=true}<CR>", "Git Blame" },
         p = { "<cmd>Gitsigns preview_hunk<CR>", "Preview Hunk" },
         r = { "<cmd>Gitsigns reset_hunk<CR>", "Reset Hunk" },
