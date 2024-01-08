@@ -87,6 +87,7 @@ return {
 
       -- Insert `(` after select function or method item for nvim-autopairs
       local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+      local icons = require("util.icons")
       cmp.event:on(
         'confirm_done',
         cmp_autopairs.on_confirm_done()
@@ -142,9 +143,9 @@ return {
         formatting = {
           format = require("lspkind").cmp_format({
             mode = "symbol",
-            symbol_map = { Suggestion = icons.git.Octoface }, -- icon for codeium
-            maxwidth = 50,                                    -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
-            ellipsis_char = '...',                            -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+            symbol_map = { Suggestion = icons.misc.MagicWand }, -- icon for codeium
+            maxwidth = 50,                                      -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+            ellipsis_char = '...',                              -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
           }),
         },
         window = {
