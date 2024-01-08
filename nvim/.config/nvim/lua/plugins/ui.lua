@@ -25,8 +25,10 @@ return {
   {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
-    opts = function()
-      return {
+    config = function()
+      local icons = require("util.icons")
+
+      require("lualine").setup({
         options = {
           theme = "tokyonight",
           component_separators = "",
@@ -34,11 +36,27 @@ return {
           globalstatus = true,
           disabled_filetypes = { statusline = { "dashboard", "lazy" } },
           symbols = {
-            modified = " ● ",
+            modified = icons.git.LineModified .. " ",
           }
         },
-      }
-    end,
+        sections = {
+          lualine_a = { 'mode' },
+          lualine_b = { 'branch', 'diff', 'diagnostics' },
+          lualine_c = { 'filename' },
+          lualine_x = {
+            {
+              'vim.fn["codeium#GetStatusString"]()', -- codeium status
+              fmt = function(str)
+                return icons.misc.MagicWand .. " " .. str:lower():match("^%s*(.-)%s*$")
+              end
+            },
+            'encoding', 'fileformat', 'filetype'
+          },
+          lualine_y = { 'progress' },
+          lualine_z = { 'location' }
+        },
+      })
+    end
   },
   {
     "NvChad/nvim-colorizer.lua",

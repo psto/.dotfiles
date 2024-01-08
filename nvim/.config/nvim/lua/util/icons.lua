@@ -154,13 +154,14 @@ M.diagnostics = {
 }
 
 M.misc = {
+  CircuitBoard = "",
+  MagicWand = "",
+  Package = "",
   Robot = "󰚩",
+  Smiley = "󰞅",
   Squirrel = "",
   Tag = "",
   Watch = "",
-  Smiley = "󰞅",
-  Package = "",
-  CircuitBoard = "",
 }
 
 return M
