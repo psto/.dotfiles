@@ -5,6 +5,7 @@
   "modules-left": [
     "sway/workspaces",
     "sway/mode",
+    "sway/scratchpad",
     "sway/window",
   ],
   "modules-center": [
@@ -53,8 +54,8 @@
   },
   "sway/window": {
     "max-length": 60,
-    "tooltip": false
-    // "format": "( {} )"
+    "tooltip": false,
+    "format": "<span></span> {}"
   },
   "clock": {
     "format": "<span></span> {:%H:%M}",
@@ -211,6 +212,16 @@
       "activated": "",
       "deactivated": ""
     }
+  },
+  "sway/scratchpad": {
+    "format": "{icon} {count}",
+    "show-empty": false,
+    "format-icons": [
+      "",
+      ""
+    ],
+    "tooltip": true,
+    "tooltip-format": "{app}: {title}"
   },
   "temperature": {
     "thermal-zone": 8,
