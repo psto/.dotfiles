@@ -6,6 +6,7 @@
 
 #window {
   padding: 0 10px;
+  color: #565f89; /* sets color for sway/window */
 }
 
 window#waybar {
@@ -62,6 +63,15 @@ window#waybar {
 }
 #workspaces button.focused:hover {
   color: #bb9af7;
+}
+
+#scratchpad {
+  padding: 0 5px;
+  color: #565f89;
+}
+
+#scratchpad.empty {
+  background-color: transparent;
 }
 
 #custom-recorder {
