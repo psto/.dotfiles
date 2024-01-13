@@ -30,6 +30,21 @@
   "sway/mode": {
     "format": " {}"
   },
+  "sway/scratchpad": {
+    "format": "{icon} {count}",
+    "show-empty": false,
+    "format-icons": [
+      "",
+      ""
+    ],
+    "tooltip": true,
+    "tooltip-format": "{app}: {title}"
+  },
+  "sway/window": {
+    "max-length": 60,
+    "tooltip": false,
+    "format": "<span></span> {}"
+  },
   "sway/workspaces": {
     "disable-scroll": true,
     "all-outputs": true,
@@ -51,11 +66,6 @@
   "tray": {
     "icon-size": 20,
     "spacing": 8
-  },
-  "sway/window": {
-    "max-length": 60,
-    "tooltip": false,
-    "format": "<span></span> {}"
   },
   "clock": {
     "format": "<span></span> {:%H:%M}",
@@ -212,16 +222,6 @@
       "activated": "",
       "deactivated": ""
     }
-  },
-  "sway/scratchpad": {
-    "format": "{icon} {count}",
-    "show-empty": false,
-    "format-icons": [
-      "",
-      ""
-    ],
-    "tooltip": true,
-    "tooltip-format": "{app}: {title}"
   },
   "temperature": {
     "thermal-zone": 8,
