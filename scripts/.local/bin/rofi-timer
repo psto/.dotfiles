@@ -1,0 +1,33 @@
+#!/bin/env sh
+
+time="$(("$(rofi -config ~/.config/rofi/searchmenu.rasi -dmenu -p 'Minutes')"))m" # m for minutes
+
+if [ -z "$time" ] || [ $time -eq 0 ] ; then
+  exit 2
+fi
+
+message="$(rofi -config ~/.config/rofi/searchmenu.rasi -dmenu -p 'Message')"
+
+if [ -z "$message" ]; then
+  exit 2
+fi
+
+sleep "$time" && notify-send "$message"
+
+# Play the sound file in the background and get its process ID
+mpv --loop-file ~/public/music/ubuntu_add.mp3 &
+pid=$!
+
+# Loop until the user presses any key
+while true; do
+  # Prompt the user to stop the sound using rofi
+  stop="$(rofi -config ~/.config/rofi/searchmenu.rasi -dmenu -p "TIMER FOR: $message
+Press any key + Return to stop sound")"
+  # Break the loop if the user pressed a key
+  if [ -n "$stop" ]; then
+    break
+  fi
+done
+
+# Kill the mpv process
+kill $pid
