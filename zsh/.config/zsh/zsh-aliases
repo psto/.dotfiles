@@ -25,6 +25,12 @@ alias mv='mv -iv'
 alias rm='rm -riv'
 alias mkdir='mkdir -pv'
 
+# trash
+alias rmt="trashy put"
+alias rml="trashy list"
+alias rmr="trashy restore"
+alias rme="trashy empty --all"
+
 # easier to read disk
 alias free='free -m'            # show sizes in MB
 alias df='df -h'                # human-readable sizes
@@ -47,12 +53,12 @@ alias gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"
 alias archlinx-fix-keys="doas pacman-key --init && doas pacman-key --populate archlinux && doas pacman-key --refresh-keys"
 
 # fuzzy-search and install available pacman packages
-alias pacman-fzf="pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro doas pacman -S"
+alias pacmani="pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro doas pacman -S"
 # fuzzy-search and install available aur packages
-alias yay-fzf="yay -Slq | fzf --multi --preview 'yay -Si {1}' | xargs -ro yay -S"
+alias parui="paru -Slq | fzf --multi --preview 'paru -Si {1}' | xargs -ro paru -S"
 # list and remove installed packages
-alias pacman-fzf-rm="pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro doas pacman -Rns"
-alias yay-fzf-rm="yay -Qq | fzf --multi --preview 'yay -Qi {1}' | xargs -ro doas yay -Rns"
+alias pacmanrm="pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro doas pacman -Rns"
+alias parurm="paru -Qq | fzf --multi --preview 'paru -Qi {1}' | xargs -ro paru -Rns"
 
 # systemd
 alias mach_list_systemctl="systemctl list-unit-files --state=enabled"
@@ -90,16 +96,13 @@ alias e='fzf -m --bind ctrl-a:select-all,ctrl-d:deselect-all,ctrl-t:toggle-all -
 # clear alias when in tmux
 alias c='clear'
 
-alias ls='ls --color=auto'
+alias ls='ls -F --color=auto'
 # eza alias
 alias l='eza -l --icons'
 alias la='eza -a --icons'
 alias ll='eza -al --group-directories-first'  # list directories first
 alias lt='eza -al --sort=modified'            # list by modified date
 alias lz='eza -alFr --color=always --sort=size | grep -v /' # list files by size
-
-# ranger alias
-alias r='ranger'
 
 # xplr alias
 alias x="xplr"
@@ -130,5 +133,5 @@ alias trpl="trans :pl"
 alias tren="trans pl:en"
 
 # yt-dlp
-alias yt="yt-dlp"
+alias yt="yt-dlp -S res,ext:mp4:m4a --recode mp4"
 alias yt-subs='yt-dlp --write-sub --write-auto-sub --sub-lang "en.*" --skip-download' #download subtitles only

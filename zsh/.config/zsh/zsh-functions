@@ -1,31 +1,31 @@
 # Function to source files if they exist
 function zsh_add_file() {
-    [ -f "$ZDOTDIR/$1" ] && source "$ZDOTDIR/$1"
+  [ -f "$ZDOTDIR/$1" ] && source "$ZDOTDIR/$1"
 }
 
 function zsh_add_plugin() {
-    PLUGIN_NAME=$(echo $1 | cut -d "/" -f 2)
-    if [ -d "$ZDOTDIR/plugins/$PLUGIN_NAME" ]; then 
-        # For plugins
-        zsh_add_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.plugin.zsh" || \
-        zsh_add_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.zsh"
-    else
-        git clone "https://github.com/$1.git" "$ZDOTDIR/plugins/$PLUGIN_NAME"
-    fi
+  PLUGIN_NAME=$(echo $1 | cut -d "/" -f 2)
+  if [ -d "$ZDOTDIR/plugins/$PLUGIN_NAME" ]; then 
+    # For plugins
+    zsh_add_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.plugin.zsh" || \
+    zsh_add_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.zsh"
+  else
+    git clone "https://github.com/$1.git" "$ZDOTDIR/plugins/$PLUGIN_NAME"
+  fi
 }
 
 function zsh_add_completion() {
-    PLUGIN_NAME=$(echo $1 | cut -d "/" -f 2)
-    if [ -d "$ZDOTDIR/plugins/$PLUGIN_NAME" ]; then 
-        # For completions
-		completion_file_path=$(ls $ZDOTDIR/plugins/$PLUGIN_NAME/_*)
-		fpath+="$(dirname "${completion_file_path}")"
-        zsh_add_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.plugin.zsh"
-    else
-        git clone "https://github.com/$1.git" "$ZDOTDIR/plugins/$PLUGIN_NAME"
-		fpath+=$(ls $ZDOTDIR/plugins/$PLUGIN_NAME/_*)
-        [ -f $ZDOTDIR/.zccompdump ] && $ZDOTDIR/.zccompdump
-    fi
+  PLUGIN_NAME=$(echo $1 | cut -d "/" -f 2)
+  if [ -d "$ZDOTDIR/plugins/$PLUGIN_NAME" ]; then 
+    # For completions
+    completion_file_path=$(ls $ZDOTDIR/plugins/$PLUGIN_NAME/_*)
+    fpath+="$(dirname "${completion_file_path}")"
+    zsh_add_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.plugin.zsh"
+  else
+    git clone "https://github.com/$1.git" "$ZDOTDIR/plugins/$PLUGIN_NAME"
+  fpath+=$(ls $ZDOTDIR/plugins/$PLUGIN_NAME/_*)
+    [ -f $ZDOTDIR/.zccompdump ] && $ZDOTDIR/.zccompdump
+  fi
 	completion_file="$(basename "${completion_file_path}")"
 	if [ "$2" = true ] && compinit "${completion_file:1}"
 }
@@ -35,33 +35,37 @@ function mv-download() {
   __fname="$(ls -t ~/downloads | head -n 1)"
   __fpath="$HOME/downloads/"$__fname""
   mv "$__fpath" \.
+  echo "Moved $__fname to $__fpath"
 }
+
 # copy the latest downloaded file to current path
 function cp-download() {
-    __fname="$(ls -t ~/downloads | head -n 1)"
-    __fpath="$HOME/downloads/"$__fname""
-    cp -a "$__fpath" \.
+  __fname="$(ls -t ~/downloads | head -n 1)"
+  __fpath="$HOME/downloads/"$__fname""
+  cp -a "$__fpath" \.
+  echo "Copied $__fname to $__fpath"
 }
+
 # open the latest downloaded file
 function open-download() {
-    __fname="$(ls -t ~/downloads | head -n 1)"
-    __fpath="$HOME/downloads/"$__fname""
-    xdg-open "$__fpath"
+  __fname="$(ls -t ~/downloads | head -n 1)"
+  __fpath="$HOME/downloads/"$__fname""
+  xdg-open "$__fpath"
 }
 
 # fzf cd
 function fcd() {
-    local dir;
+  local dir;
 
-    while true; do
-      # exit with ^D
-      dir="$(ls -a1F | grep '[/@]$' | grep -v '^./$' | sed 's/@$//' | fzf --height 40% --reverse --no-multi --preview 'pwd' --preview-window=up,1,border-none --no-info)"
-      if [[ -z "${dir}" ]]; then
-        break
-      elif [[ -d "${dir}" ]]; then
-        cd "${dir}"
-      fi
-    done
+  while true; do
+    # exit with ^D
+    dir="$(ls -a1F | grep '[/@]$' | grep -v '^./$' | sed 's/@$//' | fzf --height 40% --reverse --no-multi --preview 'pwd' --preview-window=up,1,border-none --no-info)"
+    if [[ -z "${dir}" ]]; then
+      break
+    elif [[ -d "${dir}" ]]; then
+      cd "${dir}"
+    fi
+  done
 }
 
 # ripgrep-all with fzf
@@ -87,11 +91,11 @@ function mkcd { mkdir -p "$1" && cd "$1" }
 
 # OSC-7 escape sequence for foot terminal spawning new terminal in the same dir
 function osc7 {
-    local LC_ALL=C
-    export LC_ALL
+  local LC_ALL=C
+  export LC_ALL
 
-    setopt localoptions extendedglob
-    input=( ${(s::)PWD} )
-    uri=${(j::)input/(#b)([^A-Za-z0-9_.\!~*\'\(\)-\/])/%${(l:2::0:)$(([##16]#match))}}
-    print -n "\e]7;file://${HOSTNAME}${uri}\e\\"
+  setopt localoptions extendedglob
+  input=( ${(s::)PWD} )
+  uri=${(j::)input/(#b)([^A-Za-z0-9_.\!~*\'\(\)-\/])/%${(l:2::0:)$(([##16]#match))}}
+  print -n "\e]7;file://${HOSTNAME}${uri}\e\\"
 }
