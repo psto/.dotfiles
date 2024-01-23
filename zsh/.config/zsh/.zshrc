@@ -88,7 +88,8 @@ fi;
 
 export FZF_DEFAULT_COMMAND="rg --files --hidden --ignore-file ~/.config/git/gitignore"
 # FZF dracula theme
-export FZF_DEFAULT_OPTS="--color=fg:#f8f8f2,hl:#bd93f9 --color=fg+:#f8f8f2,bg+:#44475a,hl+:#bd93f9 --color=info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6 --color=marker:#ff79c6,spinner:#ffb86c,header:#6272a4 --preview 'bat --style=numbers --color=always --line-range :500 {}'"
+export FZF_DEFAULT_OPTS="--color=fg:#cfc9c2,hl:#ff9e64 --color=fg+:#cfc9c2,bg+:#24283b,hl+:#ff9e64 --color=info:#7aa2f7,prompt:#2ac3de,pointer:#2ac3de --color=marker:#9ece6a,spinner:#9ece6a,header:#9ece6a"
+export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always {}' --no-height --preview-window=65%"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # ci", ci', ci`, di", etc
