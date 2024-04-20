@@ -9,6 +9,7 @@ return {
     "nvim-telescope/telescope-ui-select.nvim",
     "debugloop/telescope-undo.nvim",
     "ThePrimeagen/harpoon",
+    "ThePrimeagen/git-worktree.nvim"
   },
   config = function()
     local telescope = require("telescope")
@@ -124,6 +125,7 @@ return {
     telescope.load_extension("ui-select")
     telescope.load_extension("undo")
     telescope.load_extension("harpoon")
+    telescope.load_extension("git_worktree")
   end,
   search_dotfiles = function()
     require("telescope.builtin").find_files({
