@@ -68,11 +68,6 @@ return {
         -- colors = {}, -- table of hex strings
         -- termcolors = {} -- table of colour name strings
       },
-      -- enable nvim-ts-context-commentstring plugin
-      context_commentstring = {
-        enable = true,
-        enable_autocmd = false,
-      }
     },
     config = function(_, opts)
       require("nvim-treesitter.configs").setup(opts)
