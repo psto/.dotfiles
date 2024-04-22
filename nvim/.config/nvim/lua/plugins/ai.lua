@@ -12,6 +12,14 @@ return {
       keymap('i', '<c-;>', function() return vim.fn['codeium#Accept']() end, { expr = true })
     end
   },
+  {
+    "dustinblackman/oatmeal.nvim",
+    cmd = { "Oatmeal" },
+    opts = {
+      backend = "openai",
+      model = "llama3-70b-8192",
+    },
+  },
   -- { "aduros/ai.vim", event = "BufReadPre" },
   -- {
   --   "jackMort/ChatGPT.nvim",
