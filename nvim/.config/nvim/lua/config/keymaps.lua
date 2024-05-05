@@ -74,11 +74,6 @@ keymap("n", "]b", ":bprevious<CR>", opts)
 keymap("n", "[q", ":cprev<CR>zz", opts)
 keymap("n", "]q", ":cnext<CR>zz", opts)
 
--- Diagnostics
--- See `:help vim.diagnostic.*` for documentation on any of the below functions
-keymap("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
-keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
-
 -- enter "one-eyed fighting kirby" regex in command mode
 keymap("c", "<F2>", "\\(.*\\)", opts)
 
