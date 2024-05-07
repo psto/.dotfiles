@@ -37,6 +37,26 @@ cmd unarchive ${{
   esac
 }}
 
+# drag and drop
+cmd dragon-drop ${{
+  dragon-drop
+}}
+
+# eza
+cmd on-select &{{
+  lf -remote "send $id set statfmt \"$(eza -ld --color=always "$f")\""
+}}
+
+#Combining fzf with ripgrep, you can interactively search in the contents of files under the current directory and select a file from the results:
+cmd fzf_search ${{ 
+  fzf
+}}
+
+# rename with vimv
+cmd rename ${{
+  vimv
+}}
+
 # Bindings
 # Remove some defaults
 map m
@@ -48,6 +68,8 @@ map d
 
 map ar archive
 map au unarchive
+map <c-t> :fzf_search
+
 # Basic Functions
 map . set hidden!
 map DD delete
@@ -59,3 +81,5 @@ map R reload
 map mf mkfile
 map md mkdir
 map C clear
+
+map r rename
