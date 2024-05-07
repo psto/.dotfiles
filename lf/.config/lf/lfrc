@@ -68,14 +68,40 @@ cmd on-cd &{{
   lf -remote "send $id set promptfmt \"$fmt\""
 }}
 
-#Combining fzf with ripgrep, you can interactively search in the contents of files under the current directory and select a file from the results:
 cmd fzf_search ${{ 
   fzf
 }}
 
-# rename with vimv
 cmd rename ${{
   vimv
+}}
+
+# Trash
+cmd trash ${{
+  files=$(printf "$fx" | tr '\n' ';')
+  while [ "$files" ]; do
+    file=${files%%;*}
+
+    trashy put "$(basename "$file")"
+    if [ "$files" = "$file" ]; then
+      files=''
+    else
+      files="${files#*;}"
+    fi
+  done
+}}
+cmd restore_trash ${{
+  trashy restore
+}}
+
+# zoxide
+cmd z %{{
+	result="$(zoxide query --exclude $PWD $@ | sed 's/\\/\\\\/g;s/"/\\"/g')"
+	lf -remote "send $id cd \"$result\""
+}}
+cmd zi ${{
+	result="$(zoxide query -i | sed 's/\\/\\\\/g;s/"/\\"/g')"
+	lf -remote "send $id cd \"$result\""
 }}
 
 # Bindings
@@ -108,4 +134,10 @@ map gp ${{clear; git pull --rebase || true; echo "press ENTER"; read ENTER}}
 map gs ${{clear; git status; echo "press ENTER"; read ENTER}}
 map gl ${{clear; git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit}}
 
+map dd trash
+map dr restore_trash
+
 map r rename
+
+map zz z
+map zi zi
