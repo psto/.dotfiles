@@ -6,6 +6,37 @@ set sixel true
 
 set previewer ~/.local/bin/lf-previewer
 
+# Custom Functions
+cmd mkdir ${{
+  printf "Directory Name: "
+  read ans
+  mkdir $ans
+}}
+
+cmd mkfile ${{
+  printf "File Name: "
+  read ans
+  $EDITOR $ans
+}}
+
+cmd open ${{
+  # ~/.local/bin/launch "$f"
+  xdg-open "$f"
+}}
+
+cmd archive ${{
+  ouch compress "$f" "$f".zip
+}}
+cmd unarchive ${{
+  case "$f" in
+    *.zip) unzip "$f" ;;
+    *.tar.gz) tar -xzvf "$f" ;;
+    *.tar.bz2) tar -xjvf "$f" ;;
+    *.tar) tar -xvf "$f" ;;
+    *) echo "Unsupported format" ;;
+  esac
+}}
+
 # Bindings
 # Remove some defaults
 map m
@@ -15,6 +46,8 @@ map "'"
 map '"'
 map d
 
+map ar archive
+map au unarchive
 # Basic Functions
 map . set hidden!
 map DD delete
