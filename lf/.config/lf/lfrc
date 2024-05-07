@@ -1,0 +1,28 @@
+# Basic Settings
+set hidden true
+set ignorecase true
+set icons true
+set sixel true
+
+set previewer ~/.local/bin/lf-previewer
+
+# Bindings
+# Remove some defaults
+map m
+map o
+map n
+map "'"
+map '"'
+map d
+
+# Basic Functions
+map . set hidden!
+map DD delete
+map p paste
+map x cut
+map y copy
+map <enter> open
+map R reload
+map mf mkfile
+map md mkdir
+map C clear
