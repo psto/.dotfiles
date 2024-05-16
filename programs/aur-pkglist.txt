@@ -30,6 +30,7 @@ paru-bin
 rbenv
 rofi-lbonn-wayland
 scitopdf-git
+sesh-bin
 sioyek
 so-bin
 spotify
