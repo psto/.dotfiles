@@ -57,6 +57,7 @@ window#waybar.empty #window {
   box-shadow: inherit;
   border-color: #bb9af7;
   color: #bb9af7;
+  transition: all 0.5s ease;
 }
 
 /* Repeat style here to ensure properties are overwritten as there's no !important and button:hover above resets the colour */
@@ -133,6 +134,11 @@ window#waybar.empty #window {
   background: #1a1b26;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
+}
+
+#clock:hover {
+  color: #bb9af7;
+  transition: all 0.5s ease;
 }
 
 #cpu {
