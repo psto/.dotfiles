@@ -33,6 +33,8 @@ tags
 [._]*.un~
 
 ### Node ###
+# Specified Node version
+.node-version
 # Logs
 logs
 *.log
