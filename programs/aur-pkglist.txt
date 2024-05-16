@@ -1,6 +1,6 @@
 alacritty
 authenticator
-autotiling
+autotiling-rs/
 anki-bin
 beekeeper-studio-bin
 blueman

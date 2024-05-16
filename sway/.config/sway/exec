@@ -28,7 +28,7 @@ exec swayidle -w \
 exec dbus-update-activation-environment --systemd --all
 
 # Start autotiling
-exec_always "pkill autotiling; autotiling"
+exec autotiling-rs
 
 # Start GTK+ blueman bluetooth
 exec sleep 5 && blueman-applet
