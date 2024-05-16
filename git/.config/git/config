@@ -13,6 +13,7 @@
   history = log --oneline -S
   last = log -1 HEAD --stat
   lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  pr = pull --rebase
 [interactive]
   diffFilter = delta --color-only
 [add.interactive]
