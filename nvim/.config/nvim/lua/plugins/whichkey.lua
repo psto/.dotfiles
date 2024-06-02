@@ -142,7 +142,8 @@ return {
         name = "Git",
         b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
         c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
-        d = { "<cmd>Gitsigns diffthis HEAD<cr>", "Diff" },
+        d = { '<cmd>lua require("util/functions").diffview_toggle()<CR>', "DiffViewToggle" },
+        D = { "<cmd>Gitsigns diffthis HEAD<cr>", "Diff" },
         e = { "<cmd>Gitsigns toggle_current_line_blame<CR>", "Git Blame" },
         g = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" },
         l = { "<cmd>lua require'gitsigns'.blame_line{full=true}<CR>", "Git Blame" },
@@ -163,7 +164,7 @@ return {
         name = "LSP",
         d = { "<cmd>TroubleToggle<cr>", "Diagnostics" },
         f = { "<cmd>lua vim.lsp.buf.format({ async = true })<cr>", "Format" },
-        h = { "<cmd>lua vim.lsp.inlay_hint(0, nil)<cr>", "Hint" },
+        h = { "<cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<cr>", "Hint" },
         i = { "<cmd>LspInfo<cr>", "Info" },
         j = {
           "<cmd>lua vim.diagnostic.goto_next({buffer=0})<CR>",
