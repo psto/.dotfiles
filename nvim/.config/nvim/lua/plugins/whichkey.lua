@@ -99,7 +99,8 @@ return {
       b = { "<cmd>Telescope buffers<cr>", "Buffers" },
       c = { "<cmd>:bw<CR>", "Close Buffer" },
       e = { "<cmd>Neotree toggle<CR>", "File Explorer" },
-      M = { "<cmd>Mason <CR> <CR>", "Mason" },
+      j = { "<cmd>Telescope jumplist<cr>", "Jumplist" },
+      M = { "<cmd>Mason<CR>", "Mason" },
       t = { "<cmd>ToggleTerm <CR>", "File Explorer" },
       q = { '<cmd>lua require("util/functions").smart_quit()<CR>', "Quit" },
       d = {

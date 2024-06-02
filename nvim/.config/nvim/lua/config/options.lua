@@ -32,6 +32,7 @@ opt.spelloptions = "camel" -- spell check camel case
 opt.laststatus = 3         -- Show the status bar
 opt.timeoutlen = 300       -- Time in milliseconds to wait for a mapped sequence to complete
 opt.signcolumn = "yes"     -- Display sign column to not shift the layout with diagnostics signs
+opt.jumpoptions = "stack"  -- Jumplist behaves like the tag stack
 
 -- Tabs
 -- opt.autoindent = true
@@ -78,6 +79,13 @@ opt.joinspaces = false -- Two spaces and grade school, we're done
 
 -- set fillchars=eob:~
 opt.fillchars = { eob = "~" }
+
+-- concealing characters for obsidian.nvim
+opt.conceallevel = 1
+
+-- set grep to ripgrep
+opt.grepprg = "rg --vimgrep --smart-case --hidden"
+opt.grepformat = "%f:%l:%c:%m"
 
 -- Netrw settings
 g.netrw_banner = 0    -- remove the directory banner

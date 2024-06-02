@@ -100,3 +100,6 @@ keymap(
   ,
   opts
 )
+
+-- add to jumplist
+keymap("n", "<m-m>", "<cmd>normal m'<cr>", opts)
