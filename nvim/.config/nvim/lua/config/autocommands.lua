@@ -57,7 +57,7 @@ autocmd("FileType", {
 })
 
 -- Go to last location when opening a buffer.
-vim.api.nvim_create_autocmd('BufReadPost', {
+autocmd('BufReadPost', {
   callback = function()
     local mark = vim.api.nvim_buf_get_mark(0, '"')
     local lcount = vim.api.nvim_buf_line_count(0)
@@ -65,4 +65,11 @@ vim.api.nvim_create_autocmd('BufReadPost', {
       pcall(vim.api.nvim_win_set_cursor, 0, mark)
     end
   end,
+})
+
+-- Always open quickfix window automatically.
+autocmd("QuickFixCmdPost", {
+  group = vim.api.nvim_create_augroup("AutoOpenQuickfix", { clear = true }),
+  pattern = { "[^l]*" },
+  command = "cwindow"
 })
