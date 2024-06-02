@@ -6,7 +6,11 @@ return {
     -- 'j-hui/fidget.nvim', -- LSP status updates
     {
       "j-hui/fidget.nvim",
-      tag = "legacy",
+      opts = {
+        notification = {
+          window = { winblend = 0 },
+        },
+      }
     },
     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
     "lukas-reineke/lsp-format.nvim",
@@ -46,21 +50,17 @@ return {
 
     -- icons
     local icons = require("util.icons")
-    local signs = {
-      { name = "DiagnosticSignError", text = icons.diagnostics.Error },
-      { name = "DiagnosticSignWarn",  text = icons.diagnostics.BoldWarning },
-      { name = "DiagnosticSignHint",  text = icons.diagnostics.BoldInformation },
-      { name = "DiagnosticSignInfo",  text = icons.diagnostics.BoldQuestion },
-    }
-    for _, sign in ipairs(signs) do
-      vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
-    end
 
     local config = {
       virtual_text = false,  -- disable annoying inline diagnostics
       virtual_lines = false, -- { only_current_line = true }, -- lsp_lines for current line
       signs = {
-        active = signs,      -- show signs
+        text = {
+          [vim.diagnostic.severity.ERROR] = icons.diagnostics.Error,
+          [vim.diagnostic.severity.WARN] = icons.diagnostics.BoldWarning,
+          [vim.diagnostic.severity.INFO] = icons.diagnostics.BoldInformation,
+          [vim.diagnostic.severity.HINT] = icons.diagnostics.BoldQuestion,
+        }
       },
       update_in_insert = false,
       underline = true,
@@ -90,7 +90,6 @@ return {
         keymap("n", "gd", "<cmd>Telescope lsp_definitions<CR>", bufopts)
         keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", bufopts)
         keymap("n", "gT", "<cmd>lua vim.lsp.buf.type_definition()<CR>", bufopts)
-        keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", bufopts)
         keymap("n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", bufopts)
         keymap("n", "gi", "<cmd>Telescope lsp_implementations<CR>", bufopts)
         keymap("n", "gr", "<cmd>Telescope lsp_references<CR>", bufopts)
@@ -101,13 +100,13 @@ return {
       end,
     })
 
-    local on_attach = function(client, bufnr)
+    local on_attach = function(client)
       -- formatting with lsp-format
       require("lsp-format").on_attach(client)
 
       -- enable inlay hints
       if client.server_capabilities.inlayHintProvider then
-        vim.lsp.inlay_hint(bufnr, true)
+        vim.lsp.inlay_hint.enable()
       end
 
       -- rounded borders for float windows

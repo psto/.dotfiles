@@ -22,6 +22,9 @@ if not status_ok then return end
 return lazy.setup("plugins", {
   defaults = { lazy = true },
   install = { colorscheme = { "tokyonight" } },
+  change_detection = {
+    notify = false,
+  },
   performance = {
     cache = {
       enabled = true,
