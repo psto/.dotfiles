@@ -25,7 +25,7 @@ end
 -- For StackOverflow Assistance
 function M.so_input()
   local buf = vim.api.nvim_get_current_buf()
-  local file_type = vim.api.nvim_buf_get_option(buf, "filetype")
+  local file_type = vim.api.nvim_get_option_value(buf, "filetype")
   vim.ui.input({ prompt = "StackOverflow input: ", default = file_type .. " " },
     function(input)
       local cmd = ""

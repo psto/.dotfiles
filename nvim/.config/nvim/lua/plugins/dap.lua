@@ -3,6 +3,7 @@ return {
   event = "BufReadPre",
   dependencies = {
     "rcarriga/nvim-dap-ui",
+    "nvim-neotest/nvim-nio",
     "jayp0521/mason-nvim-dap.nvim"
   },
   config = function()
@@ -68,8 +69,8 @@ return {
         },
       },
       floating = {
-        max_height = nil, -- These can be integers or a float between 0 and 1.
-        max_width = nil, -- Floats will be treated as percentage of your screen.
+        max_height = nil,  -- These can be integers or a float between 0 and 1.
+        max_width = nil,   -- Floats will be treated as percentage of your screen.
         border = "single", -- Border style. Can be "single", "double" or "rounded"
         mappings = {
           close = { "q", "<Esc>" },
@@ -98,19 +99,14 @@ return {
     local mason_nvim_dap = require("mason-nvim-dap")
 
     mason_nvim_dap.setup({
-      automatic_setup = true,
+      ensure_installed = { 'node2', 'chrome', 'firefox' },
+      handlers = {
+        function(config)
+          -- all sources with no handler get passed here
+          -- Keep original functionality
+          require('mason-nvim-dap').default_setup(config)
+        end,
+      },
     })
-
-    mason_nvim_dap.setup({
-      ensure_installed = { 'node2', 'chrome', 'firefox' }
-    })
-
-    mason_nvim_dap.setup_handlers {
-      function(source_name)
-        -- all sources with no handler get passed here
-        -- Keep original functionality of `automatic_setup = true`
-        require('mason-nvim-dap.automatic_setup')(source_name)
-      end,
-    }
   end
 }
