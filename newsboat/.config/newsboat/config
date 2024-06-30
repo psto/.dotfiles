@@ -3,6 +3,12 @@ browser "w3m %u"
 # browser "brave-beta %u >/dev/null 2>&1 &"
 # external-url-viewer "brave-beta"
 
+# Miniflux setup
+urls-source "miniflux"
+miniflux-url "https://feed.stojanow.org"
+miniflux-tokenfile "~/.config/newsboat/.newsboat/miniflux-token.txt"
+miniflux-flag-star "a"
+
 # Feed settings
 prepopulate-query-feeds yes
 refresh-on-startup yes
