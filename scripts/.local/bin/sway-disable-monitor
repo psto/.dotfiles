@@ -3,9 +3,19 @@
 # Requirements: jq
 
 if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
-  number_of_outputs=$(swaymsg -t get_outputs | jq '. | length')
+  if [ "$XDG_CURRENT_DESKTOP" = "sway" ]; then
+    number_of_outputs=$(swaymsg -t get_outputs | jq '. | length')
 
-  if [ "$number_of_outputs" -gt 1 ]; then
-    swaymsg output eDP-1 disable
+    if [ "$number_of_outputs" -gt 1 ]; then
+      swaymsg output eDP-1 disable
+    fi
   fi
-fi              
+
+  if [ "$XDG_CURRENT_DESKTOP" = "Hyprland" ]; then
+    number_of_outputs=$(hyprctl -m -j monitors | jq '.[] | length')
+
+    if [ "$number_of_outputs" -gt 1 ]; then
+      hyprctl keyword monitor eDP-1 disable
+    fi
+  fi              
+fi
