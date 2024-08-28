@@ -4,9 +4,12 @@
   "height": 30,
   "modules-left": [
     "sway/workspaces",
+    "hyprland/workspaces",
     "sway/mode",
+    "hyprland/submap",
     "sway/scratchpad",
     "sway/window",
+    "hyprland/window"
   ],
   "modules-center": [
     "clock",
@@ -30,6 +33,10 @@
   "sway/mode": {
     "format": " {}"
   },
+  "hyprland/submap": {
+    "format": " {}",
+    "tooltip": false
+  },
   "sway/scratchpad": {
     "format": "{icon} {count}",
     "show-empty": false,
@@ -41,6 +48,11 @@
     "tooltip-format": "{app}: {title}"
   },
   "sway/window": {
+    "max-length": 60,
+    "tooltip": false,
+    "format": "<span></span> {}"
+  },
+  "hyprland/window": {
     "max-length": 60,
     "tooltip": false,
     "format": "<span></span> {}"
@@ -62,6 +74,22 @@
       "9": "9 <span font='Font Awesome'></span>",
       "10": "0 <span font='Font Awesome'></span>"
     }
+  },
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "1": "1 <span font='Font Awesome'></span>",
+      "2": "2 <span font='Font Awesome'></span>",
+      "3": "3 <span font='Font Awesome'></span>",
+      "4": "4 <span font='Font Awesome'></span>",
+      "5": "5 <span font='Font Awesome'></span>",
+      "6": "6 <span font='Font Awesome'></span>",
+      "7": "7 <span font='Font Awesome'></span>",
+      "8": "8 <span font='Font Awesome'></span>",
+      "9": "9 <span font='Font Awesome'></span>",
+      "10": "0 <span font='Font Awesome'></span>",
+      "default": ""
+    },
   },
   "tray": {
     "icon-size": 20,
