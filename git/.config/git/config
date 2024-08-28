@@ -11,6 +11,7 @@
   diff-upstream = !git fetch origin && git diff master origin/master
   evolution = log --oneline -p -S 
   history = log --oneline -S
+  history-one-file = log --follow --patch -- 
   last = log -1 HEAD --stat
   lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
   pr = pull --rebase
@@ -25,7 +26,7 @@
   colorMoved = default
   tool = vimdiff
 [merge]
-  conflictstyle = diff3
+  conflictstyle = zdiff3
   tool = vimdiff
 [mergetool "vimdiff"]
   path = nvim
