@@ -39,6 +39,7 @@ spicetify-cli
 streamlink-twitch-gui-bin
 swayfx
 swayhide
+swaylock-effects
 swaync
 swww
 timeshift

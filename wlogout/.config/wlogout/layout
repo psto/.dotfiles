@@ -1,6 +1,6 @@
 {
     "label" : "lock",
-    "action" : "swaylock -e -f -c 000000 -i /home/piotr/public/pictures/wallpapers/simon-stalenhag00-tokyo-night.jpg -s fill",
+    "action" : "swaylock -e -f",
     "text" : "Lock",
     "keybind" : "l"
 }

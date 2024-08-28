@@ -105,7 +105,6 @@ zsh
 sway
 swaybg
 swayidle
-swaylock
 brightnessctl
 xdg-desktop-portal
 xorg-xwayland
