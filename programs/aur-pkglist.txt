@@ -31,6 +31,7 @@ rbenv
 rofi-lbonn-wayland
 scitopdf-git
 sesh-bin
+shikane
 sioyek
 so-bin
 spotify

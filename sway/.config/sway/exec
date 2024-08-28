@@ -61,6 +61,10 @@ exec "foot --server"
 # Start Nextcloud
 exec sleep 12 && nextcloud
 
+
+# Start shikane
+exec shikane
+
 # Start sov
 exec rm -f /tmp/sovpipe && mkfifo /tmp/sovpipe && tail -f /tmp/sovpipe | sov -t 500
 

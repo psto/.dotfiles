@@ -1,0 +1,45 @@
+[[profile]]
+name = "laptop"
+exec = ["notify-send shikane \"Profile $SHIKANE_PROFILE_NAME has been applied\""]
+    [[profile.output]]
+    # search for a matching serial number and model by full text comparison
+    search  = "n/eDP-[1-9]" # search for a matching name by regex
+    enable = true
+    mode = "1366x768@59.999Hz"
+
+[[profile]]
+name = "external"
+exec = ["notify-send shikane \"Profile $SHIKANE_PROFILE_NAME has been applied\""]
+    [[profile.output]]
+    search  = "n/eDP-[1-9]"
+    enable = false
+    mode = "1366x768@59.999Hz"
+
+    [[profile.output]]
+    search  = "n/HDMI-[ABC]-[1-9]"
+    enable = true
+    exec = ["echo This is output $SHIKANE_OUTPUT_NAME"]
+    mode = "2560x1440@59.951Hz"
+    position = "0,0"
+    scale = 1.0
+    transform = "normal"
+    adaptive_sync = false
+
+[[profile]]
+name = "dual"
+exec = ["notify-send shikane \"Profile $SHIKANE_PROFILE_NAME has been applied\""]
+    [[profile.output]]
+    search  = "n/eDP-[1-9]"
+    enable = true
+    mode = "1366x768@59.999Hz"
+    position = "-1366,672"
+
+    [[profile.output]]
+    search  = "n/HDMI-[ABC]-[1-9]"
+    enable = true
+    exec = ["echo This is output $SHIKANE_OUTPUT_NAME"]
+    mode = "2560x1440@59.951Hz"
+    position = "0,0"
+    scale = 1.0
+    transform = "normal"
+    adaptive_sync = false
