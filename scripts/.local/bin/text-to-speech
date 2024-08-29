@@ -1,12 +1,23 @@
-#!/bin/bash
+#!/bin/sh
 
-# use edge-tts (install using pip) to convert text to speech
+# Plays text from a clipboard url.
+# Requires: edge-tts (pip), sentriz/cliphist, mpv, mrusme/reader
 
 url=$(cliphist list | cliphist decode)
-#tmpfile=$(mktemp /tmp/text-to-play_XXXXX.txt)
-#text=$(reader -o "$url") # >! "$tmpfile"
-notify-send -t 3000 "🎧 Playing video" "$url";
-# sh -c edge-playback --voice en-GB-ThomasNeural --rate=+75% -f "$tmpfile" && rm "$tmpfile"
-edge-playback --voice en-GB-ThomasNeural --rate=+75% --text "$(reader -o $url)" # -f "$tmpfile" && rm "$tmpfile"
-# edge-tts --voice en-GB-ThomasNeural --rate=+75% -f "$tmpfile"
-# exec foot -H -a floating -e edge-playback --voice en-GB-ThomasNeural --rate=+75% --text "$text"
+
+notify-send -t 3000 "✍ Converting article...
+$url";
+
+main() {
+  # download article & remove underscores & images from markdown
+  /bin/reader --image-mode none -o "$url" > /tmp/article.txt && sed -i -e 's/http[s]\?:\/\/\S*//g ; s/www\.\S*//g' /tmp/article.txt
+
+  "$HOME/.local/bin/edge-tts" --file /tmp/article.txt --rate=+50% --write-media /tmp/article.mp3
+
+  mpv --volume=100 --player-operation-mode=pseudo-gui --title="text-to-speech-mpv" /tmp/article.mp3 
+}
+
+pkill -f text-to-speech-mpv || main
+
+rm /tmp/article.txt
+rm /tmp/article.mp3
