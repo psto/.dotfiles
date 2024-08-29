@@ -2,6 +2,21 @@ return {
   "folke/which-key.nvim",
   event = "VeryLazy",
   opts = {
+    spec = {
+      { "<leader>a", "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "Action",                                                         icon = { icon = require("util.icons").ui.Fire, color = "red" } },
+      { "<leader>d", group = "Debug" },
+      { "<leader>c", "<cmd>:bw<CR>",                           desc = "Close Buffer",                                                   icon = { icon = require("util.icons").ui.BoldClose, color = "yellow" } },
+      { "<leader>f", group = "Find" },
+      { "<leader>e", "<cmd>Neotree toggle<CR>",                desc = "File Explorer",                                                  icon = { icon = require("util.icons").ui.FolderOpen, color = "azure" } },
+      { "<leader>g", group = "Git",                            icon = { icon = require("util.icons").git.Logo, color = "red" } },
+      { "m",         group = "Harpoon" },
+      { "<leader>j", "<cmd>Telescope jumplist<cr>",            desc = "Jumplist",                                                       icon = require("util.icons").ui.List },
+      { "<leader>L", group = "Lazy",                           icon = { icon = require("util.icons").misc.Sleep, color = "blue" } },
+      { "<leader>l", group = "LSP",                            icon = { icon = require("util.icons").misc.MagicWand, color = "yellow" } },
+      { "<leader>M", "<cmd>Mason<CR>",                         desc = "Mason",                                                          icon = { icon = require("util.icons").ui.Package, color = "orange" } },
+      { "<leader>r", group = "Replace",                        icon = { icon = require("util.icons").ui.Watches, color = "gray" } },
+      { "<leader>s", group = "System",                         icon = require("util.icons").ui.Dashboard },
+    },
     plugins = {
       marks = true,       -- shows a list of your marks on ' and `
       registers = true,   -- shows your registers on " in NORMAL or <C-r> in INSERT mode
@@ -21,219 +36,99 @@ return {
         g = true,             -- bindings for prefixed with g
       },
     },
-    -- add operators that will trigger motion and text object completion
-    -- to enable all native operators, set the preset / operators plugin above
-    -- operators = { gc = "Comments" },
-    key_labels = {
-      -- override the label used to display some keys. It doesn't effect WK in any other way.
-      -- For example:
-      -- ["<space>"] = "SPC",
-      ["<leader>"] = "SPC",
-      -- ["<cr>"] = "RET",
-      -- ["<tab>"] = "TAB",
-    },
-    icons = {
-      breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
-      separator = "➜", -- symbol used between a key and it's label
-      group = "+", -- symbol prepended to a group
-    },
-    popup_mappings = {
-      scroll_down = "<c-d>", -- binding to scroll down inside the popup
-      scroll_up = "<c-u>",   -- binding to scroll up inside the popup
-    },
-    window = {
-      border = "rounded",       -- none, single, double, shadow
-      position = "bottom",      -- bottom, top
-      margin = { 1, 0, 1, 0 },  -- extra window margin [top, right, bottom, left]
-      padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
-      winblend = 0,
-    },
-    layout = {
-      height = { min = 4, max = 25 },                                             -- min and max height of the columns
-      width = { min = 20, max = 50 },                                             -- min and max width of the columns
-      spacing = 3,                                                                -- spacing between columns
-      align = "center",                                                           -- align columns left, center or right
-    },
-    ignore_missing = true,                                                        -- enable this to hide mappings for which you didn't specify a label
-    hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " }, -- hide mapping boilerplate
-    show_help = false,                                                            -- show help message on the command line when the popup is visible
-    -- triggers = "auto", -- automatically setup triggers
-    -- triggers = {"<leader>"} -- or specify a list manually
-    triggers_blacklist = {
-      -- list of mode / prefixes that should never be hooked by WhichKey
-      -- this is mostly relevant for key maps that start with a native binding
-      -- most people should not need to change this
-      i = { "j", "k" },
-      v = { "j", "k" },
-    },
+    show_help = false, -- show help message on the command line when the popup is visible
   },
-  config = function(_, opts)
-    local wk = require("which-key")
-    local l_opts = {
-      mode = "n",     -- NORMAL mode
-      prefix = "<leader>",
-      buffer = nil,   -- Global mappings. Specify a buffer number for buffer local mappings
-      silent = true,  -- use `silent` when creating keymaps
-      noremap = true, -- use `noremap` when creating keymaps
-      nowait = true,  -- use `nowait` when creating keymaps
-    }
-    local m_opts = {
-      mode = "n",
-      prefix = "m",
-      buffer = nil,
-      silent = true,
-      noremap = true,
-      nowait = true,
-    }
-
-    local m_mappings = {
-      m = { '<cmd>lua require("harpoon.mark").add_file()<cr>', "Harpoon Mark" },
-      ["."] = { '<cmd>lua require("harpoon.ui").nav_next()<cr>', "Harpoon Next" },
-      [","] = { '<cmd>lua require("harpoon.ui").nav_prev()<cr>', "Harpoon Prev" },
-      s = { "<cmd>Telescope harpoon marks<cr>", "Search Files" },
-      [";"] = { '<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>', "Harpoon UI" },
-    }
-
-    local mappings = {
-      a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Action" },
-      b = { "<cmd>Telescope buffers<cr>", "Buffers" },
-      c = { "<cmd>:bw<CR>", "Close Buffer" },
-      e = { "<cmd>Neotree toggle<CR>", "File Explorer" },
-      j = { "<cmd>Telescope jumplist<cr>", "Jumplist" },
-      M = { "<cmd>Mason<CR>", "Mason" },
-      t = { "<cmd>ToggleTerm <CR>", "File Explorer" },
-      q = { '<cmd>lua require("util/functions").smart_quit()<CR>', "Quit" },
-      d = {
-        name = "Debug",
-        b = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Breakpoint" },
-        c = { "<cmd>lua require'dap'.continue()<cr>", "Continue" },
-        d = { "<cmd>:g/console.lo/dd<cr>", "Remove console logs" },
-        g = { "<cmd>lua require('zippy').insert_print()<CR>", "Console log" },
-        i = { "<cmd>lua require'dap'.step_into()<cr>", "Into" },
-        o = { "<cmd>lua require'dap'.step_over()<cr>", "Over" },
-        O = { "<cmd>lua require'dap'.step_out()<cr>", "Out" },
-        r = { "<cmd>lua require'dap'.repl.toggle()<cr>", "Repl" },
-        l = { "<cmd>lua require'dap'.run_last()<cr>", "Last" },
-        u = { "<cmd>lua require'dapui'.toggle()<cr>", "UI" },
-        x = { "<cmd>lua require'dap'.terminate()<cr>", "Exit" },
-      },
-      f = {
-        name = "Find",
-        b = { "<cmd>Telescope git_branches<cr>", "Checkout Branch" },
-        c = { "<cmd>Telescope git_bcommits<cr>", "Buffer's commits" },
-        C = { "<cmd>Telescope commands<cr>", "Commands" },
-        d = { "<cmd>Telescope diagnostics<cr>", "Find Errors" },
-        f = { "<cmd>Telescope find_files<cr>", "Find Files" },
-        h = { "<cmd>Telescope help_tags<cr>", "Help" },
-        H = { "<cmd>Telescope highlights<cr>", "Highlights" },
-        k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
-        M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
-        o = { "<cmd>Telescope oldfiles<cr>", "Recent File" },
-        p = { "<cmd>Telescope file_browser path=%:p:h<CR>", "File Browser" },
-        q = { "<cmd>Telescope quickfix <CR>", "Quickfix List" },
-        Q = { "<cmd>Telescope quickfixhistory <CR>", "Quickfix History" },
-        r = { "<cmd>Telescope resume<cr>", "Last Search" },
-        R = { "<cmd>Telescope registers<cr>", "Registers" },
-        s = { "<cmd>Telescope spell_suggest theme=get_cursor<CR>", "Spelling" },
-        t = { "<cmd>Telescope live_grep<cr>", "Find Text" },
-        u = { "<cmd>Telescope undo<cr>", "Undo" },
-        w = { "<cmd>Telescope grep_string<cr>", "Find Word" },
-      },
-      g = {
-        name = "Git",
-        b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
-        c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
-        d = { '<cmd>lua require("util/functions").diffview_toggle()<CR>', "DiffViewToggle" },
-        D = { "<cmd>Gitsigns diffthis HEAD<cr>", "Diff" },
-        e = { "<cmd>Gitsigns toggle_current_line_blame<CR>", "Git Blame" },
-        g = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" },
-        l = { "<cmd>lua require'gitsigns'.blame_line{full=true}<CR>", "Git Blame" },
-        o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
-        p = { "<cmd>Gitsigns preview_hunk<CR>", "Preview Hunk" },
-        q = { "<cmd>Gitsigns setqflist<cr>", "Hunk List" },
-        r = { "<cmd>Gitsigns reset_hunk<CR>", "Reset Hunk" },
-        R = { "<cmd>Gitsigns reset_buffer<CR>", "Reset Buffer" },
-        s = { "<cmd>Gitsigns stage_hunk<CR>", "Stage Hunk" },
-        t = { "<cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<cr>", "Create worktree" },
-        u = {
-          "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",
-          "Undo Stage Hunk",
-        },
-        w = { "<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<cr>", "List worktrees" },
-      },
-      l = {
-        name = "LSP",
-        d = { "<cmd>TroubleToggle<cr>", "Diagnostics" },
-        f = { "<cmd>lua vim.lsp.buf.format({ async = true })<cr>", "Format" },
-        h = { "<cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<cr>", "Hint" },
-        i = { "<cmd>LspInfo<cr>", "Info" },
-        j = {
-          "<cmd>lua vim.diagnostic.goto_next({buffer=0})<CR>",
-          "Next Diagnostic",
-        },
-        k = {
-          "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>",
-          "Prev Diagnostic",
-        },
-        l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
-        q = { "<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>", "Diagnostic quickfix" },
-        r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
-        R = { "<cmd>TroubleToggle lsp_references<cr>", "References" },
-        s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
-        S = {
-          "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
-          "Workspace Symbols",
-        },
-        u = { "<cmd>LuaSnipUnlinkCurrent<cr>", "Unlink Snippet" },
-        v = { "<cmd>lua require('lsp_lines').toggle()<cr>", "Virtual Text" },
-        w = {
-          "<cmd>Telescope lsp_workspace_diagnostics<cr>",
-          "Workspace Diagnostics",
-        },
-        x = { "<cmd>TroubleToggle quickfix<cr>", "Trouble quickfix" },
-        z = { "<cmd>TroubleToggle loclist<cr>", "Trouble loclist" },
-      },
-      L = {
-        name = "Lazy",
-        c = { "<cmd>Lazy clean<cr>", "Clean" },
-        h = { "<cmd>Lazy check<cr>", "Check" },
-        i = { "<cmd>Lazy install<cr>", "Install" },
-        l = { "<cmd>Lazy<cr>", "Lazy" },
-        o = { "<cmd>Lazy log<cr>", "Log" },
-        s = { "<cmd>Lazy sync<cr>", "Sync" },
-        p = { "<cmd>Lazy profile<cr>", "Profile" },
-        u = { "<cmd>Lazy update<cr>", "Update" },
-      },
-      r = {
-        name = "Replace",
-        r = { "<cmd>lua require('spectre').open()<cr>", "Replace" },
-        w = { "<cmd>lua require('spectre').open_visual({select_word=true})<cr>", "Replace Word" },
-        f = { "<cmd>lua require('spectre').open_file_search()<cr>", "Replace Buffer" },
-      },
-      s = {
-        name = "System",
-        c = { "<cmd>ChatGPT<CR>", "ChatGPT" },
-        d = {
-          name = "dotiles",
-          n = { '<cmd>lua require("plugins.telescope").search_nvim_dotfiles()<CR>', "Nvim dotfiels" },
-          s = { '<cmd>lua require("plugins.telescope").search_dotfiles()<CR>', "System dotfiels" },
-        },
-        h = { "<cmd>lua _HTOP_TOGGLE()<CR>", "htop" },
-        n = {
-          name = "Noice",
-          a = { "<cmd>lua require('noice').cmd('all')<CR>", "Noice All" },
-          h = { "<cmd>lua require('noice').cmd('history')<CR>", "Noice History" },
-          l = { "<cmd>lua require('noice').cmd('last')<CR>", "Noice Last Message" },
-        },
-        r = { "<cmd>lua _NODE_TOGGLE()<CR>", "Node REPL" },
-        s = { "<cmd>lua require('util.assistance').so_input()<CR>", "  StackOverflow" },
-        w = { "<cmd>:%s/\\s\\+$//<CR>", "Trim Whitespaces" },
-        x = { "<cmd>lua _XPLR_TOGGLE()<CR>", "File Xplr" },
-      }
-    }
-
-    wk.setup(opts)
-    wk.register(mappings, l_opts)
-    wk.register(m_mappings, m_opts)
-  end,
+  keys = {
+    { "m,", '<cmd>lua require("harpoon.ui").nav_prev()<cr>', desc = "Harpoon Prev" },
+    { "m.", '<cmd>lua require("harpoon.ui").nav_next()<cr>', desc = "Harpoon Next" },
+    { "m;", '<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>', desc = "Harpoon UI" },
+    { "mm", '<cmd>lua require("harpoon.mark").add_file()<cr>', desc = "Harpoon Mark" },
+    { "ms", "<cmd>Telescope harpoon marks<cr>", desc = "Search Files" },
+    { "<leader>Lc", "<cmd>Lazy clean<cr>", desc = "Clean" },
+    { "<leader>Lh", "<cmd>Lazy check<cr>", desc = "Check" },
+    { "<leader>Li", "<cmd>Lazy install<cr>", desc = "Install" },
+    { "<leader>Ll", "<cmd>Lazy<cr>", desc = "Lazy" },
+    { "<leader>Lo", "<cmd>Lazy log<cr>", desc = "Log" },
+    { "<leader>Lp", "<cmd>Lazy profile<cr>", desc = "Profile" },
+    { "<leader>Ls", "<cmd>Lazy sync<cr>", desc = "Sync" },
+    { "<leader>Lu", "<cmd>Lazy update<cr>", desc = "Update" },
+    { "<leader>b", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
+    { "<leader>dO", "<cmd>lua require'dap'.step_out()<cr>", desc = "Out" },
+    { "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", desc = "Breakpoint" },
+    { "<leader>dc", "<cmd>lua require'dap'.continue()<cr>", desc = "Continue" },
+    { "<leader>dd", "<cmd>:g/console.lo/dd<cr>", desc = "Remove console logs" },
+    { "<leader>dg", "<cmd>lua require('zippy').insert_print()<CR>", desc = "Console log" },
+    { "<leader>di", "<cmd>lua require'dap'.step_into()<cr>", desc = "Into" },
+    { "<leader>dl", "<cmd>lua require'dap'.run_last()<cr>", desc = "Last" },
+    { "<leader>do", "<cmd>lua require'dap'.step_over()<cr>", desc = "Over" },
+    { "<leader>dr", "<cmd>lua require'dap'.repl.toggle()<cr>", desc = "Repl" },
+    { "<leader>du", "<cmd>lua require'dapui'.toggle()<cr>", desc = "UI" },
+    { "<leader>dx", "<cmd>lua require'dap'.terminate()<cr>", desc = "Exit" },
+    { "<leader>fC", "<cmd>Telescope commands<cr>", desc = "Commands" },
+    { "<leader>fH", "<cmd>Telescope highlights<cr>", desc = "Highlights" },
+    { "<leader>fM", "<cmd>Telescope man_pages<cr>", desc = "Man Pages" },
+    { "<leader>fQ", "<cmd>Telescope quickfixhistory <CR>", desc = "Quickfix History" },
+    { "<leader>fR", "<cmd>Telescope registers<cr>", desc = "Registers" },
+    { "<leader>fb", "<cmd>Telescope git_branches<cr>", desc = "Checkout Branch" },
+    { "<leader>fc", "<cmd>Telescope git_bcommits<cr>", desc = "Buffer's commits" },
+    { "<leader>fd", "<cmd>Telescope diagnostics<cr>", desc = "Find Errors" },
+    { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
+    { "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Help" },
+    { "<leader>fk", "<cmd>Telescope keymaps<cr>", desc = "Keymaps" },
+    { "<leader>fo", "<cmd>Telescope oldfiles<cr>", desc = "Recent File" },
+    { "<leader>fp", "<cmd>Telescope file_browser path=%:p:h<CR>", desc = "File Browser" },
+    { "<leader>fq", "<cmd>Telescope quickfix <CR>", desc = "Quickfix List" },
+    { "<leader>fr", "<cmd>Telescope resume<cr>", desc = "Last Search" },
+    { "<leader>fs", "<cmd>Telescope spell_suggest theme=get_cursor<CR>", desc = "Spelling" },
+    { "<leader>ft", "<cmd>Telescope live_grep<cr>", desc = "Find Text" },
+    { "<leader>fu", "<cmd>Telescope undo<cr>", desc = "Undo" },
+    { "<leader>fw", "<cmd>Telescope grep_string<cr>", desc = "Find Word" },
+    { "<leader>gD", "<cmd>Gitsigns diffthis HEAD<cr>", desc = "Git Diff" },
+    { "<leader>gR", "<cmd>Gitsigns reset_buffer<CR>", desc = "Reset Buffer" },
+    { "<leader>gb", "<cmd>Telescope git_branches<cr>", desc = "Checkout branch" },
+    { "<leader>gc", "<cmd>Telescope git_commits<cr>", desc = "Checkout commit" },
+    { "<leader>gd", '<cmd>lua require("util/functions").diffview_toggle()<CR>', desc = "DiffViewToggle" },
+    { "<leader>ge", "<cmd>Gitsigns toggle_current_line_blame<CR>", desc = "Git Blame" },
+    { "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", desc = "Lazygit" },
+    { "<leader>gl", "<cmd>lua require'gitsigns'.blame_line{full=true}<CR>", desc = "Git Blame" },
+    { "<leader>go", "<cmd>Telescope git_status<cr>", desc = "Open changed file" },
+    { "<leader>gp", "<cmd>Gitsigns preview_hunk<CR>", desc = "Preview Hunk" },
+    { "<leader>gq", "<cmd>Gitsigns setqflist<cr>", desc = "Hunk List" },
+    { "<leader>gr", "<cmd>Gitsigns reset_hunk<CR>", desc = "Reset Hunk" },
+    { "<leader>gs", "<cmd>Gitsigns stage_hunk<CR>", desc = "Stage Hunk" },
+    { "<leader>gt", "<cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<cr>", desc = "Create worktree" },
+    { "<leader>gu", "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>", desc = "Undo Stage Hunk" },
+    { "<leader>gw", "<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<cr>", desc = "List worktrees" },
+    { "<leader>lR", "<cmd>TroubleToggle lsp_references<cr>", desc = "References" },
+    { "<leader>lS", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", desc = "Workspace Symbols" },
+    { "<leader>ld", "<cmd>TroubleToggle<cr>", desc = "Diagnostics" },
+    { "<leader>lf", "<cmd>lua vim.lsp.buf.format({ async = true })<cr>", desc = "Format" },
+    { "<leader>lh", "<cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<cr>", desc = "Hint" },
+    { "<leader>li", "<cmd>LspInfo<cr>", desc = "Info" },
+    { "<leader>lj", "<cmd>lua vim.diagnostic.goto_next({buffer=0})<CR>", desc = "Next Diagnostic" },
+    { "<leader>lk", "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>", desc = "Prev Diagnostic" },
+    { "<leader>ll", "<cmd>lua vim.lsp.codelens.run()<cr>", desc = "CodeLens Action" },
+    { "<leader>lq", "<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>", desc = "Diagnostic quickfix" },
+    { "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>", desc = "Rename" },
+    { "<leader>ls", "<cmd>Telescope lsp_document_symbols<cr>", desc = "Document Symbols" },
+    { "<leader>lu", "<cmd>LuaSnipUnlinkCurrent<cr>", desc = "Unlink Snippet" },
+    { "<leader>lv", "<cmd>lua require('lsp_lines').toggle()<cr>", desc = "Virtual Text" },
+    { "<leader>lw", "<cmd>Telescope lsp_workspace_diagnostics<cr>", desc = "Workspace Diagnostics" },
+    { "<leader>lx", "<cmd>TroubleToggle quickfix<cr>", desc = "Trouble quickfix" },
+    { "<leader>lz", "<cmd>TroubleToggle loclist<cr>", desc = "Trouble loclist" },
+    { "<leader>q", '<cmd>lua require("util/functions").smart_quit()<CR>', desc = "Quit" },
+    { "<leader>rf", "<cmd>lua require('spectre').open_file_search()<cr>", desc = "Replace Buffer" },
+    { "<leader>rr", "<cmd>lua require('spectre').open()<cr>", desc = "Replace" },
+    { "<leader>rw", "<cmd>lua require('spectre').open_visual({select_word=true})<cr>", desc = "Replace Word" },
+    { "<leader>sc", "<cmd>ChatGPT<CR>", desc = "ChatGPT" },
+    { "<leader>sd", group = "dotiles" },
+    { "<leader>sdn", '<cmd>lua require("plugins.telescope").search_nvim_dotfiles()<CR>', desc = "Nvim dotfiels" },
+    { "<leader>sds", '<cmd>lua require("plugins.telescope").search_dotfiles()<CR>', desc = "System dotfiels" },
+    { "<leader>sh", "<cmd>lua _HTOP_TOGGLE()<CR>", desc = "htop" },
+    { "<leader>sr", "<cmd>lua _NODE_TOGGLE()<CR>", desc = "Node REPL" },
+    { "<leader>ss", "<cmd>lua require('util.assistance').so_input()<CR>", desc = " StackOverflow" },
+    { "<leader>sw", "<cmd>:%s/\\s\\+$//<CR>", desc = "Trim Whitespaces" },
+    { "<leader>sx", "<cmd>lua _XPLR_TOGGLE()<CR>", desc = "File Xplr" },
+    { "<leader>t", "<cmd>ToggleTerm <CR>", desc = "ToggleTerm" },
+  }
 }
