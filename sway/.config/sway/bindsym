@@ -91,6 +91,12 @@ bindsym $mod+Shift+s sticky toggle
 bindsym $mod+y exec swaymsg [title="Spotify"] scratchpad show || exec "$HOME/.local/bin/spotify-way", $maximize
 bindsym $mod+Shift+y exec ~/.local/bin/playVidFromClipboard
 
+# Play text-to-speech
+bindsym $mod+Shift+t exec ~/.local/bin/text-to-speech
+
+# Translate image
+bindsym $mod+Ctrl+t exec ~/.local/bin/translate-image
+
 # Resource monitor
 bindsym F12 exec swaymsg [app_id=$resource_monitor] scratchpad show || exec footclient --app-id $resource_monitor -e btop, $maximize
 
