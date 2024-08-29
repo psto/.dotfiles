@@ -7,4 +7,4 @@
 videoURL=$(cliphist list | cliphist decode)
 
 notify-send -t 3000 "📺 Playing video" "$videoURL";
-mpv "$videoURL"
+mpv --speed=2 --profile=youtube "$videoURL" 
