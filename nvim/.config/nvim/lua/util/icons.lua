@@ -38,6 +38,7 @@ M.kind = {
 }
 
 M.git = {
+  Logo = "",
   LineAdded = "",
   LineModified = "",
   LineRemoved = "",
@@ -155,6 +156,7 @@ M.diagnostics = {
 
 M.misc = {
   CircuitBoard = "",
+  Sleep = "󰒲",
   MagicWand = "",
   Package = "",
   Robot = "󰚩",
