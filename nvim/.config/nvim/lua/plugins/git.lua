@@ -1,11 +1,8 @@
 return {
-  -- Diffview
   {
     "sindrets/diffview.nvim",
     event = "BufReadPre",
   },
-
-  -- gitsigns
   {
     "lewis6991/gitsigns.nvim", -- Async signs!
     event = "BufReadPre",
@@ -31,8 +28,6 @@ return {
       })
     end
   },
-
-  -- Git Worktree
   {
     "ThePrimeagen/git-worktree.nvim",
     event = { "BufReadPost", "BufNewFile" },
@@ -40,5 +35,4 @@ return {
       require("git-worktree").setup()
     end
   },
-
 }
