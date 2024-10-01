@@ -9,12 +9,6 @@ return {
     dependencies = "nvim-tree/nvim-web-devicons",
   },
 
-  -- Diffview
-  {
-    "sindrets/diffview.nvim",
-    event = "BufReadPre",
-  },
-
   -- DevDocs
   {
     "luckasRanarison/nvim-devdocs",
