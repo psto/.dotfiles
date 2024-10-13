@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 layout=$(hyprctl getoption general:layout | grep "str" | awk -F '"' '{print $2}')
 

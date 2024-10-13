@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # add to sway config:
 # bindsym Mod1+q exec ~/kill.sh

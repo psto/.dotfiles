@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 # Plays text from a clipboard url.
 # Requires: edge-tts (pip), sentriz/cliphist, mpv, mrusme/reader

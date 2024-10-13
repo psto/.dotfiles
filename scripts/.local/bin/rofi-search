@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env sh
+
 # to open text files in nvim set xdg-mime 
 # also in .local/share/applications/nvim.desktop Exec=kitty -e nvim %F
 # OR use custom launch script: ~/.local/bin/launch
