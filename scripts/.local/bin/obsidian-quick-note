@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 noteFilename="$HOME/public/Nextcloud/Documents/notes/obsidian-notes/Inbox/quick-$(date +%Y-%m-%d).md"
 

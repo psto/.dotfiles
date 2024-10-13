@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 # add more args here according to preference
 ARGS="--volume=60"

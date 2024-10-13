@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 # if not currently in tmux
 if [ -z "$TMUX" ]; then

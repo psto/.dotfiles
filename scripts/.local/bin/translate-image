@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 # Grab screenshot and translate it to english
 # Requires: slurp, grim, tesseract-data-swe, translate-shell, foot terminal

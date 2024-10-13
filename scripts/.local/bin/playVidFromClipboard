@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Copy a video url that mpv can play and call the script
 # In i3/sway bind to a key: bindsym $mod+y exec ~/.local/bin/playVideo

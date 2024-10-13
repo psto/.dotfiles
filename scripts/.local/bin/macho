@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 manual=$(apropos -s ${SECTION:-''} ${@:-.} | \
     grep -v -E '^.+ \(0\)' |\
