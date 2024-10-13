@@ -1,4 +1,4 @@
-#!/bin/env sh
+#!/usr/bin/env sh
 
 time="$(("$(rofi -config ~/.config/rofi/searchmenu.rasi -dmenu -p 'Minutes')"))m" # m for minutes
 
