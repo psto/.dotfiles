@@ -135,9 +135,9 @@ keymap M-M  EXTERN_LINK
 # keymap  yy EXTERN_LINK   "url=%s ; printf "%b" "$url" | xsel -b ; printf "%b" "$url" | tmux load-buffer -"
 # keymap  YY EXTERN        "url=%s ; printf "%b" "$url" | xsel -b ; printf "%b" "$url" | tmux load-buffer -"
 
-keymap  xa EXTERN        "~/.w3m/cgi-bin/save_bookmark_surfraw.cgi"
-keymap  xB COMMAND       "EXTERN ~/.w3m/cgi-bin/fzf_bookmarks_surfraw.cgi; GOTO file:/cgi-bin/goto_tmux_clipboard.cgi"
-keymap  xb COMMAND       "EXTERN ~/.w3m/cgi-bin/fzf_bookmarks_w3m.cgi; GOTO file:/cgi-bin/goto_tmux_clipboard.cgi"
+keymap  xa EXTERN        "~/.local/state/w3m/cgi-bin/save_bookmark_surfraw.cgi"
+keymap  xB COMMAND       "EXTERN ~/.local/state/w3m/cgi-bin/fzf_bookmarks_surfraw.cgi; GOTO file:/cgi-bin/goto_tmux_clipboard.cgi"
+keymap  xb COMMAND       "EXTERN ~/.local/state/w3m/cgi-bin/fzf_bookmarks_w3m.cgi; GOTO file:/cgi-bin/goto_tmux_clipboard.cgi"
 # queue download, external media player (queued), etc
 keymap  xc EXTERN_LINK   'NQDIR=$XDG_CACHE_HOME/w3m_queue nq curl -s --output-dir ~/downloads -O'
 keymap  xd EXTERN_LINK   'NQDIR=$XDG_CACHE_HOME/w3m_queue nq wget -q -c -P ~/downloads'
@@ -146,7 +146,7 @@ keymap  xi EXTERN_LINK   'w3m -o display_image=1 -o imgdisplay=w3mimgdisplay'
 keymap  xm EXTERN_LINK   "NQDIR=$XDG_CACHE_HOME/mpv_queue nq mpv --quiet --ytdl-format='bestvideo[height<=480]+bestaudio/best[height<=480]' >/dev/null 2>&1"
 
 # The surfraw engine too slow on Termux and not useful in common workflow
-#keymap  xf COMMAND       "SHELL ~/.w3m/cgi-bin/fzf_surfraw_tmux.cgi; GOTO file:/cgi-bin/goto_tmux_clipboard.cgi"
+#keymap  xf COMMAND       "SHELL ~/.local/state/w3m/cgi-bin/fzf_surfraw_tmux.cgi; GOTO file:/cgi-bin/goto_tmux_clipboard.cgi"
 
 # queue-monitoring
 keymap  xs SHELL         'watch NQDIR=$XDG_CACHE_HOME/w3m_queue fq -anq \| tail'
@@ -270,9 +270,9 @@ keymap W WRAP_TOGGLE
 # }}}
 # User-defined bindings {{{
 keymap  :b       SHELL "$EDITOR ~/.config/surfraw/bookmarks"
-keymap  :c       SHELL "$EDITOR ~/.w3m/config"
-keymap  :k       SHELL "$EDITOR ~/.w3m/keymap"
-keymap  :u       SHELL "$EDITOR ~/.w3m/urimethodmap"
+keymap  :c       SHELL "$EDITOR ~/.local/state/w3m/config"
+keymap  :k       SHELL "$EDITOR ~/.local/state/w3m/keymap"
+keymap  :u       SHELL "$EDITOR ~/.local/state/w3m/urimethodmap"
 # }}}
 # Scripts/cgi-bin {{{
 keymap pp GOTO file:/cgi-bin/goto_clipboard.cgi
@@ -345,8 +345,8 @@ keymap M-[28~   MENU
 # User scripts {{{
 
 # surfraw prompt
-keymap xs COMMAND  "READ_SHELL ~/.w3m/cgi-bin/fzf_surfraw.cgi ; GOTO file:/cgi-bin/goto_clipboard_primary.cgi"
+keymap xs COMMAND  "READ_SHELL ~/.local/state/w3m/cgi-bin/fzf_surfraw.cgi ; GOTO file:/cgi-bin/goto_clipboard_primary.cgi"
 
 # w3m function prompt
-keymap C-P COMMAND "READ_SHELL ~/.w3m/cgi-bin/functions.cgi ; BACK ; GOTO file:/cgi-bin/run_command.cgi ; BACK"
+keymap C-P COMMAND "READ_SHELL ~/.local/state/w3m/cgi-bin/functions.cgi ; BACK ; GOTO file:/cgi-bin/run_command.cgi ; BACK"
 # }}}
