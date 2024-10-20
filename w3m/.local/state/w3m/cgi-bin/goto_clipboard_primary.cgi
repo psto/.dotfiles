@@ -6,7 +6,7 @@
 # DEPEND: w3m  xsel
 # RQMTS:  1. allow permissions and put this script in /usr/lib/w3m/cgi-bin/
 #
-#         2. $EDITOR ~/.w3m/keymap
+#         2. $EDITOR ~/.local/state/w3m/keymap
 #                       # paste url and go (current tab)
 #                       keymap  pp      GOTO        /usr/lib/w3m/cgi-bin/goto_clipboard_primary.cgi
 #
@@ -14,7 +14,7 @@
 #                       keymap  PP      TAB_GOTO    /usr/lib/w3m/cgi-bin/goto_clipboard_primary.cgi
 #
 #         3. set the default open-url to current url
-#               sed -i 's:default_url.*:default_url 1:g' ~/.w3m/config
+#               sed -i 's:default_url.*:default_url 1:g' ~/.local/state/w3m/config
 #
 # REFF:   https://github.com/felipesaa/A-vim-like-firefox-like-configuration-for-w3m
 # CLOG:   2021-02-05 version 0.2 reset url back to 1 (aka edit current url)
