@@ -127,6 +127,7 @@ return {
     { "<leader>sh", "<cmd>lua _HTOP_TOGGLE()<CR>", desc = "htop" },
     { "<leader>sr", "<cmd>lua _NODE_TOGGLE()<CR>", desc = "Node REPL" },
     { "<leader>ss", "<cmd>lua require('util.assistance').so_input()<CR>", desc = " StackOverflow" },
+    { "<leader>su", "<cmd>lua require('util/functions').get_url_title()<CR>", desc = "Get url title" },
     { "<leader>sw", "<cmd>:%s/\\s\\+$//<CR>", desc = "Trim Whitespaces" },
     { "<leader>sx", "<cmd>lua _XPLR_TOGGLE()<CR>", desc = "File Xplr" },
     { "<leader>t", "<cmd>ToggleTerm <CR>", desc = "ToggleTerm" },
