@@ -16,7 +16,7 @@ local M = {}
 
 function M.smart_quit()
   local bufnr = vim.api.nvim_get_current_buf()
-  local modified = vim.api.nvim_buf_get_option(bufnr, "modified")
+  local modified = vim.api.nvim_get_option_value("modified", { buf = bufnr })
   if modified then
     vim.ui.input({
       prompt = "You have unsaved changes. Quit anyway? (y/n) ",
@@ -40,6 +40,25 @@ function M.diffview_toggle()
     -- No open Diffview exists: open a new one
     vim.cmd.DiffviewOpen()
   end
+end
+
+function M.get_url_title()
+  -- grap url from cliboard
+  local url = vim.fn.getreg "+"
+
+  -- use curl to fetch url
+  local handle = io.popen("curl -s " .. url)
+  if not handle then return end
+  local result = handle:read("*a")
+  handle:close()
+
+  -- grab text between <title></title> tag from result BUT don't include the <title></title>
+  local title = result:match("<title>(.-)</title>")
+
+  local markdown_url = "[" .. title .. "](" .. url .. ")"
+
+  -- write markdown_url into current file
+  vim.api.nvim_put({ markdown_url }, "l", false, true)
 end
 
 return M
