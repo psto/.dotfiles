@@ -1,9 +1,18 @@
 #!/bin/sh
-HISTFILE=~/.zsh_history
-setopt appendhistory        # append history (no overwriting)
-#setopt sharehistory         # share history across terminals
-setopt incappendhistory     # immediately append to the history file, not just when a term is killed
+
+# History options
+HISTSIZE=1000000
+SAVEHIST=$HISTSIZE
+setopt APPEND_HISTORY       # append history (no overwriting)
 setopt HIST_FIND_NO_DUPS    # show command once while stepping though history
+setopt HIST_IGNORE_DUPS     # don't record an event that was just recorded again
+setopt HIST_IGNORE_SPACE    # don't store commands prefixed with a space
+setopt HIST_NO_STORE        # don't store history commands
+setopt HIST_REDUCE_BLANKS   # remove superfluous blanks from each command line
+setopt HIST_SAVE_NO_DUPS    # don't write a duplicate event to the history file
+setopt HIST_VERIFY          # don't execute immediately upon history expansion
+setopt INC_APPEND_HISTORY   # immediately append to the history file
+setopt SHARE_HISTORY        # share history across terminals
 # turn off HIST_IGNORE_ALL_DUPS if using ZSH_AUTOSUGGEST_STRATEGY=(history match_prev_cmd)
 # setopt HIST_IGNORE_ALL_DUPS # don't write duplicates to the history file
 
