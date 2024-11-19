@@ -20,8 +20,7 @@ bindsym $mod+q kill
 bindsym $mod+Shift+q exec ~/.local/bin/sway-kill
 
 # Start your launcher
-# bindsym $mod+d exec $menu
-bindsym $mod+d exec ~/.local/bin/rofi-bangs
+bindsym $mod+d exec $menu
 
 # Drag floating windows by holding down $mod and left mouse button.
 # Resize them with right mouse button + $mod.

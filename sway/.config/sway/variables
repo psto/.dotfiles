@@ -19,7 +19,7 @@ set {
   $browser firefox-nightly
   $edge microsoft-edge-stable --enable-features=UseOzonePlatform --ozone-platform-hint=wayland
   $file_explorer lf
-  $menu ~/.local/bin/rofi-bangs
+  $menu ~/.local/bin/rofi-bangs-toggle
   $notes obsidian
   $notes_nvim notes_nvim 
   $pass keepassxc
