@@ -94,7 +94,10 @@ bindsym $mod+Shift+y exec ~/.local/bin/playVidFromClipboard
 bindsym $mod+Shift+t exec ~/.local/bin/text-to-speech
 
 # Translate image
-bindsym $mod+Ctrl+t exec ~/.local/bin/translate-image
+bindsym $mod+z exec ~/.local/bin/translate-image
+
+# Get text from image
+bindsym $mod+Ctrl+i exec ~/.local/bin/ocr-image
 
 # Resource monitor
 bindsym F12 exec swaymsg [app_id=$resource_monitor] scratchpad show || exec footclient --app-id $resource_monitor -e btop, $maximize
