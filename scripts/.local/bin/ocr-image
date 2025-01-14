@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+
+# Grab text from image
+# Requires: slurp, grim, tesseract-data-swe
+local IMAGE, TEXT
+
+IMAGE=/tmp/"$(date +%Y%m%d-%H%M%S)".png
+grim -g "$(slurp)" "$IMAGE"
+TEXT="$(tesseract "$IMAGE" - -l swe)"
+wl-copy "$TEXT"
+notify-send "copied!"
+rm -rf "$IMAGE"
