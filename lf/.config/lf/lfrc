@@ -76,6 +76,14 @@ cmd fzf_search ${{
   fzf
 }}
 
+cmd tmux_session ${{
+  nohup footclient -e tmux new-session -A -s "$f" &
+}}
+
+cmd play_mpv ${{
+  mpv "$f"
+}}
+
 cmd rename ${{
   vimv
 }}
@@ -132,6 +140,9 @@ map R reload
 map mf mkfile
 map md mkdir
 map C clear
+
+map <c-o> play_mpv
+map <c-x> tmux_session
 
 map gb :git_branch
 map gp ${{clear; git pull --rebase || true; echo "press ENTER"; read ENTER}}
