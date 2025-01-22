@@ -40,6 +40,10 @@ LABELS["bookmarks"]="🔖"
 COMMANDS["emo"]="exec rofi -modi emoji -show emoji -config ~/.config/rofi/tokyo_night_transparent.rasi"
 LABELS["emo"]="😎"
 
+# gocheat
+COMMANDS["cheat"]='exec foot -a floating -e gocheat'
+LABELS["cheat"]="📝"
+
 # ipinfo
 COMMANDS["ipinfo"]='exec foot -H -a floating -e http "ipinfo.io" | jq'
 LABELS["ipinfo"]="📈"
@@ -112,25 +116,37 @@ LABELS["suspend"]="🥶"
 COMMANDS["shutdown"]='shutdown "${input}"'
 LABELS["shutdown"]="📴"
 
+# Text-to-Speech
+COMMANDS["tts"]="zsh -c $HOME/.local/bin/text-to-speech"
+LABELS["tts"]="🎤"
+
 # Tldr
 COMMANDS["tldr"]='exec foot -H -a floating -e tldr "${input}"'
 LABELS["tldr"]="🗒️"
 
 # Todo
 COMMANDS["do"]="exec rofi -modi TODO:~/.local/bin/rofi-todo -show TODO -config ~/.config/rofi/tokyo_night_transparent.rasi"
-LABELS["do"]="todo"
+LABELS["do"]="✅"
 
 # Translate to define word
-COMMANDS["tren"]='exec foot -H -a floating -e trans en:en "${input}"'
-LABELS["tren"]="🇬🇧"
+COMMANDS["en"]='exec foot -H -a floating -e trans en:en "${input}"'
+LABELS["en"]="🇬🇧"
 
-# Translate to English
-COMMANDS["tren"]='exec foot -H -a floating -e trans pl:en "${input}"'
-LABELS["tren"]="🇬🇧"
+# Translate to English from Polish
+COMMANDS["pen"]='exec foot -H -a floating -e trans pl:en "${input}"'
+LABELS["pen"]="🇬🇧"
 
 # Translate to Polish
-COMMANDS["trpl"]='exec foot -H -a floating -e trans :pl "${input}"'
-LABELS["trpl"]="🇵🇱"
+COMMANDS["pl"]='exec foot -H -a floating -e trans :pl "${input}"'
+LABELS["pl"]="🇵🇱"
+
+# Translate to Portuguese
+COMMANDS["pt"]='exec foot -H -a floating -e trans pt-PT:en "${input}"'
+LABELS["pt"]="🇵🇹"
+
+# Translate to English from Portuguese
+COMMANDS["ept"]='exec foot -H -a floating -e trans en:pt-PT "${input}"'
+LABELS["ept"]="🇵🇹"
 
 # Turn off screen
 COMMANDS["turn-off-screen"]='sleep 1 && hyprctl dispatch dpms off'
