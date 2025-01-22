@@ -4,7 +4,17 @@
 # In i3/sway bind to a key: bindsym $mod+y exec ~/.local/bin/playVideo
 # Requirements: cliphist, dunst, mpv
 
+# Get the URL from the clipboard
 videoURL=$(cliphist list | cliphist decode)
 
-notify-send -t 3000 "📺 Playing video" "$videoURL";
+# Fetch the HTML content and extract the title
+if ! htmlContent=$(curl -s "$videoURL"); then
+  notify-send -t 3000 "❌ Error" "Failed to fetch the URL: $videoURL"
+  exit 1
+fi
+
+title=$(echo "$htmlContent" | grep -oP '(?<=<title>)(.*)(?=</title>)')
+
+notify-send -t 3000 "📺 $title"
+
 mpv --speed=2 --profile=youtube "$videoURL" 
