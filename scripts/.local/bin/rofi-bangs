@@ -195,6 +195,9 @@ LABELS["gs"]="🎓"
 # IMBD search
 COMMANDS["imdb"]='$browser http://www.imdb.com/find?q="${input}"'
 LABELS["imdb"]="🎥"
+# Perplexity.ai search
+COMMANDS["p"]='$browser https://www.perplexity.ai/?q="${input}"'
+LABELS["p"]="🤖"
 # Tmdb search
 COMMANDS["tmdb"]='$browser https://www.themoviedb.org/search?query="${input}"'
 LABELS["tmdb"]="🎥"
@@ -207,6 +210,9 @@ LABELS["wi"]="📚"
 # Wikipedia PL search
 COMMANDS["wipl"]='$browser https://pl.m.wikipedia.org/wiki/"${input}"'
 LABELS["wipl"]="📚"
+# WordHippo search
+COMMANDS["wh"]='$browser https://www.wordhippo.com/what-is/another-word-for/"${input}".html'
+LABELS["wh"]="🦛"
 # You Code search
 COMMANDS["you"]='$browser https://you.com/search?q="${input}&fromSearchBar=true&tbm=youcode"'
 LABELS["you"]="💻"
