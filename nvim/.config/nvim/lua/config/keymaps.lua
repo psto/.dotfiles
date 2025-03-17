@@ -66,14 +66,6 @@ keymap("n", "i", function()
   end
 end, { expr = true, desc = "properly indent on empty line when insert" })
 
--- Navigate buffers
-keymap("n", "[b", ":bnext<CR>", opts)
-keymap("n", "]b", ":bprevious<CR>", opts)
-
--- Jump to a quickfix/location list entry
-keymap("n", "[q", ":cprev<CR>zz", opts)
-keymap("n", "]q", ":cnext<CR>zz", opts)
-
 -- enter "one-eyed fighting kirby" regex in command mode
 keymap("c", "<F2>", "\\(.*\\)", opts)
 
