@@ -48,121 +48,43 @@ return {
   },
   -- auto completion
   {
-    "hrsh7th/nvim-cmp",
-    event = "InsertEnter",
+    'saghen/blink.cmp',
+    lazy = "VeryLazy",
     dependencies = {
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-path",
-      "hrsh7th/cmp-cmdline",
-      "saadparwaiz1/cmp_luasnip",
-      "onsails/lspkind-nvim",
+      "psto/friendly-snippets",
+      -- 'saadparwaiz1/cmp_luasnip',
+      { 'L3MON4D3/LuaSnip', version = 'v2.*' },
     },
-    opts = function()
-      local cmp = require("cmp")
-      local luasnip = require("luasnip")
-
-      local check_backspace = function()
-        local col = vim.fn.col(".") - 1
-        return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
-      end
-
-      -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
-      cmp.setup.cmdline({ '/', '?' }, {
-        mapping = cmp.mapping.preset.cmdline(),
-        sources = {
-          { name = 'buffer' }
-        }
-      })
-
-      -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-      cmp.setup.cmdline(':', {
-        mapping = cmp.mapping.preset.cmdline(),
-        sources = cmp.config.sources({
-          { name = 'path' }
-        }, {
-          { name = 'cmdline' }
-        })
-      })
-
-      -- Insert `(` after select function or method item for nvim-autopairs
-      local cmp_autopairs = require('nvim-autopairs.completion.cmp')
-      local icons = require("util.icons")
-      cmp.event:on(
-        'confirm_done',
-        cmp_autopairs.on_confirm_done()
-      )
-
-      return {
-        completion = {
-          completeopt = "menu,menuone,noselect",
-        },
-        snippet = {
-          expand = function(args)
-            require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
-          end,
-        },
-        mapping = cmp.mapping.preset.insert {
-          ["<C-k>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
-          ["<C-j>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
-          ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
-          ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
-          ["<C-Space>"] = cmp.mapping.complete(),
-          ["<C-e>"] = cmp.mapping.abort(),
-          ["<CR>"] = cmp.mapping.confirm { select = false },
-          ["<Tab>"] = cmp.mapping(function(fallback)
-            if luasnip.expand_or_locally_jumpable() then
-              luasnip.expand_or_jump()
-            elseif cmp.visible() then
-              cmp.select_next_item()
-            elseif luasnip.jumpable(1) then
-              luasnip.jump(1)
-            elseif check_backspace() then
-              fallback()
-            else
-              fallback()
-            end
-          end, { "i", "s" }),
-          ["<S-Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-              cmp.select_prev_item()
-            elseif luasnip.jumpable(-1) then
-              luasnip.jump(-1)
-            else
-              fallback()
-            end
-          end, { "i", "s" }),
-        },
-        sources = cmp.config.sources({
-          { name = "codeium" },
-          { name = "nvim_lsp" },
-          { name = "luasnip" },
-          { name = "path" },
-          { name = "buffer",  keyword_length = 5 },
-        }),
-        formatting = {
-          format = require("lspkind").cmp_format({
-            mode = "symbol",
-            symbol_map = { Suggestion = icons.misc.MagicWand }, -- icon for codeium
-            maxwidth = 50,                                      -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
-            ellipsis_char = '...',                              -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
-          }),
-        },
-        window = {
-          documentation = {
-            border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-          },
-          completion = {
-            border = "rounded",
-            winhighlight = "NormalFloat:Pmenu,NormalFloat:Pmenu,CursorLine:PmenuSel,Search:None",
-          },
-        },
-        experimental = {
-          ghost_text = {
-            ghost_text = false,
-          },
-        },
-      }
-    end,
+    version = '1.*',
+    ---@module 'blink.cmp'
+    ---@type blink.cmp.Config
+    opts = {
+      keymap = {
+        preset = 'super-tab', -- 'super-tab' for mappings similar to vscode
+        ['<C-y>'] = { 'select_and_accept' },
+        ["<C-j>"] = { "select_prev", "fallback" },
+        ["<C-k>"] = { "select_next", "fallback" },
+      },
+      appearance = {
+        nerd_font_variant = 'mono',
+      },
+      completion = {
+        -- 'full' will fuzzy match on the text before _and_ after the cursor
+        keyword = { range = 'full' },
+        documentation = { auto_show = true, auto_show_delay_ms = 500 },
+        ghost_text = { enabled = false },
+      },
+      sources = {
+        default = { 'lsp', 'path', 'snippets', 'buffer' },
+      },
+      fuzzy = { implementation = "prefer_rust_with_warning" },
+      snippets = {
+        preset = "luasnip",
+      },
+      signature = { enabled = true }, -- Experimental signature help support
+    },
+    -- allows extending the enabled_providers array elsewhere in your config
+    -- without having to redefine it
+    opts_extend = { "sources.default" }
   },
 }
