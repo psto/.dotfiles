@@ -12,7 +12,6 @@ return {
         },
       }
     },
-    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
     "lukas-reineke/lsp-format.nvim",
   },
   opts = {
@@ -23,9 +22,6 @@ return {
   config = function()
     local status_ok, nvim_lsp = pcall(require, "lspconfig")
     if not status_ok then return end
-
-    local l_status_ok, lsp_lines = pcall(require, "lsp_lines")
-    if not l_status_ok then return end
 
     local f_status_ok, fidget = pcall(require, "fidget")
     if not f_status_ok then return end
@@ -38,9 +34,6 @@ return {
 
     -- start mason
     mason.setup()
-
-    -- lsp_lines
-    lsp_lines.setup()
 
     -- Turn on lsp status information
     fidget.setup()
@@ -66,7 +59,7 @@ return {
       underline = true,
       severity_sort = true,
       float = {
-        focusable = false,
+        focusable = true,
         style = "minimal",
         border = "rounded",
         source = "always",
@@ -108,15 +101,6 @@ return {
       if client.server_capabilities.inlayHintProvider then
         vim.lsp.inlay_hint.enable()
       end
-
-      -- rounded borders for float windows
-      -- TODO: solve conflict with noice plugin
-      -- vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-      --   border = "rounded",
-      -- })
-      -- vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-      --   border = "rounded",
-      -- })
     end
 
     local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
