@@ -30,21 +30,23 @@ function M.smart_quit()
   end
 end
 
-function M.diffview_toggle()
-  local lib = require("diffview.lib")
-  local view = lib.get_current_view()
-  if view then
-    -- Current tabpage is a Diffview; close it
-    vim.cmd.DiffviewClose()
+function M.diffview_toggle(cmd)
+  if next(require("diffview.lib").views) == nil then
+    vim.cmd(cmd)
   else
-    -- No open Diffview exists: open a new one
-    vim.cmd.DiffviewOpen()
+    vim.cmd("DiffviewClose")
   end
 end
 
 function M.get_url_title()
   -- grap url from cliboard
   local url = vim.fn.getreg "+"
+  local is_url = url:match('[a-z]*://[^ >,;]*')
+  if not is_url then
+    -- vim.api.nvim_put({ url }, "l", true, true)
+    vim.api.nvim_feedkeys('p', 'n', true)
+    return
+  end
 
   -- use curl to fetch url
   local handle = io.popen("curl -s " .. url)
@@ -55,10 +57,10 @@ function M.get_url_title()
   -- grab text between <title></title> tag from result BUT don't include the <title></title>
   local title = result:match("<title>(.-)</title>")
 
-  local markdown_url = "[" .. title .. "](" .. url .. ")"
+  local markdown_url = " [" .. title .. "](" .. url .. ")"
 
   -- write markdown_url into current file
-  vim.api.nvim_put({ markdown_url }, "l", false, true)
+  vim.api.nvim_put({ markdown_url }, "", true, true)
 end
 
 return M
