@@ -59,9 +59,23 @@ return {
         },
         sections = {
           lualine_a = { 'mode' },
-          lualine_b = { 'branch', 'diff', 'diagnostics' },
-          lualine_c = { 'filename' },
+          lualine_b = { 'branch' },
+          lualine_c = {
+            'filename',
+            {
+              'diff',
+              colored = true,
+              diff_color = {
+                added    = { fg = '#9ece6a' },
+                modified = { fg = '#e0af68' },
+                removed  = { fg = '#f7768e' },
+              },
+              symbols = { added = icons.git.LineAdded .. ' ', modified = icons.git.LineModified .. ' ', removed = icons.git.LineRemoved .. ' ' },
+              source = nil,
+            },
+          },
           lualine_x = {
+            'diagnostics',
             {
               'vim.fn["codeium#GetStatusString"]()', -- codeium status
               fmt = function(str)
