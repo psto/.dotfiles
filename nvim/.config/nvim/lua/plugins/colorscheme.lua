@@ -4,8 +4,9 @@ return {
     lazy = false,
     priority = 1000,
     opts = {
-      style = "night",    -- three styles: `storm`, a darker variant `night` and `day`
-      transparent = true, -- enable transparency
+      style = "night",           -- three styles: `storm`, a darker variant `night` and `day`
+      transparent = true,        -- enable transparency
+      plugins = { auto = true }, -- auto enable plugins
 
       on_highlights = function(hl, c)
         hl.CursorLineNr = { fg = c.orange, bold = true }
