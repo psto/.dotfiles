@@ -69,9 +69,6 @@ end, { expr = true, desc = "properly indent on empty line when insert" })
 -- enter "one-eyed fighting kirby" regex in command mode
 keymap("c", "<F2>", "\\(.*\\)", opts)
 
--- REST client
-keymap("n", "<M-r>", "<Plug>RestNvim", opts)
-
 -- harpoon
 keymap(
   "n",
