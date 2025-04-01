@@ -2,10 +2,9 @@ return {
   "neovim/nvim-lspconfig",
   event = "BufReadPre",
   dependencies = {
-    "williamboman/mason.nvim",
-    -- 'j-hui/fidget.nvim', -- LSP status updates
+    { "williamboman/mason.nvim", opts = {} },
     {
-      "j-hui/fidget.nvim",
+      "j-hui/fidget.nvim", -- LSP status updates
       opts = {
         notification = {
           window = { winblend = 0 },
@@ -23,30 +22,11 @@ return {
     local status_ok, nvim_lsp = pcall(require, "lspconfig")
     if not status_ok then return end
 
-    local f_status_ok, fidget = pcall(require, "fidget")
-    if not f_status_ok then return end
-
-    local lf_status_ok, lsp_format = pcall(require, "lsp-format")
-    if not lf_status_ok then return end
-
-    local m_status_ok, mason = pcall(require, "mason")
-    if not m_status_ok then return end
-
-    -- start mason
-    mason.setup()
-
-    -- Turn on lsp status information
-    fidget.setup()
-
-    -- async formatter
-    lsp_format.setup()
-
-    -- icons
     local icons = require("util.icons")
 
     local config = {
-      virtual_text = false,  -- disable annoying inline diagnostics
-      virtual_lines = false, -- { only_current_line = true }, -- lsp_lines for current line
+      virtual_text = false,                    -- disable annoying inline diagnostics
+      virtual_lines = { current_line = true }, -- lsp_lines for current line
       signs = {
         text = {
           [vim.diagnostic.severity.ERROR] = icons.diagnostics.Error,

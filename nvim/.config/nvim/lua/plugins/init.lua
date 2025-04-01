@@ -7,18 +7,10 @@ return {
     "folke/trouble.nvim",
     event = "VeryLazy",
     dependencies = "nvim-tree/nvim-web-devicons",
+    opts = {}
   },
 
-  -- DevDocs
   {
-    "luckasRanarison/nvim-devdocs",
-    event = { "BufReadPost", "BufNewFile" },
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim",
-      "nvim-treesitter/nvim-treesitter",
-    },
-    opts = {}
   },
 
   -- LSP
@@ -30,8 +22,4 @@ return {
   --   end,
   --   dependencies = { { "nvim-tree/nvim-web-devicons" } }
   -- },
-
-  -- REST client
-  { "NTBBloodbath/rest.nvim", dependencies = "nvim-lua/plenary.nvim", event = "BufReadPre" },
-
 }
