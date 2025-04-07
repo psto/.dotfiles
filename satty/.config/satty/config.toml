@@ -1,0 +1,7 @@
+[general]
+fullscreen = true
+early-exit = true
+copy-command = "wl-copy"
+output-filename = "/home/piotr/public/pictures/screenshots/%Y-%m-%d_%H:%M:%S-satty.png"
+action-on-enter = "save-to-clipboard"
+disable-notifications = false
