@@ -47,7 +47,7 @@
     "dnd",
     "mpris",
     "notifications",
-    "volume",
+    "volume"
   ],
   "widget-config": {
     "inhibitors": {
@@ -71,5 +71,8 @@
       "image-size": 96,
       "image-radius": 12
     },
+    "volume": {
+      "text": "Volume"
+    }
   }
 }
