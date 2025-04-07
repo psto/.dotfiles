@@ -1,62 +1,70 @@
 {
-    "b4ad9176-64bd-4e51-9fdc-6e8cfbda7088": {
-        "id": "b4ad9176-64bd-4e51-9fdc-6e8cfbda7088",
-        "name": "Google Search",
-        "keyword": "g",
-        "cmd": "https://google.com/search?q=%s",
-        "icon": "/usr/share/ulauncher/media/google-search-icon.png",
-        "is_default_search": false,
-        "run_without_argument": false,
-        "added": 1650611859.917561
-    },
-    "bd0a7b58-e730-4ec8-8fd5-35cec9424335": {
-        "id": "bd0a7b58-e730-4ec8-8fd5-35cec9424335",
-        "name": "Stack Overflow",
-        "keyword": "so",
-        "cmd": "https://stackoverflow.com/search?q=%s",
-        "icon": "/usr/share/ulauncher/media/stackoverflow-icon.svg",
-        "is_default_search": false,
-        "run_without_argument": false,
-        "added": 1650611859.9176743
-    },
-    "e4faed26-0890-4e56-b0dd-998d6b7c7cd2": {
-        "id": "e4faed26-0890-4e56-b0dd-998d6b7c7cd2",
-        "name": "Wikipedia",
-        "keyword": "wiki",
-        "cmd": "https://en.wikipedia.org/wiki/%s",
-        "icon": "/usr/share/ulauncher/media/wikipedia-icon.png",
-        "is_default_search": false,
-        "run_without_argument": false,
-        "added": 1650611859.9177713
-    },
-    "d5e88d65-997a-4e50-9671-be257938f0ee": {
-        "id": "d5e88d65-997a-4e50-9671-be257938f0ee",
-        "name": "Brave",
-        "keyword": "b",
-        "cmd": "https://search.brave.com/search?q=%s&source=desktop",
-        "icon": "/opt/brave.com/brave-beta/product_logo_128_beta.png",
-        "is_default_search": true,
-        "run_without_argument": false,
-        "added": 1650611961.3398967
-    },
-    "06d34589-7506-4a54-be24-4c6541559450": {
-        "id": "06d34589-7506-4a54-be24-4c6541559450",
-        "name": "DuckDuckGo",
-        "keyword": "d",
-        "cmd": "https://duckduckgo.com/?q=%s",
-        "icon": "~/Pictures/misc/duckduckgo.png",
-        "is_default_search": true,
-        "run_without_argument": false,
-        "added": 1653897282.8473258
-    },
-    "e75e8e33-49b1-4987-8a45-f53467788f03": {
-        "id": "e75e8e33-49b1-4987-8a45-f53467788f03",
-        "name": "You",
-        "keyword": "y",
-        "cmd": "https://you.com/search?q=%s",
-        "icon": null,
-        "is_default_search": false,
-        "run_without_argument": false,
-        "added": 1660548646.1411572
-    }
+  "06d34589-7506-4a54-be24-4c6541559450": {
+    "added": 1653897282,
+    "cmd": "https://duckduckgo.com/?q=%s",
+    "icon": "/home/piotr/Pictures/misc/duckduckgo.png",
+    "id": "06d34589-7506-4a54-be24-4c6541559450",
+    "is_default_search": true,
+    "keyword": "d",
+    "name": "DuckDuckGo",
+    "run_without_argument": false
+  },
+  "b4ad9176-64bd-4e51-9fdc-6e8cfbda7088": {
+    "added": 1650611859,
+    "cmd": "https://google.com/search?q=%s",
+    "icon": "/usr/share/ulauncher/icons/google-search.png",
+    "id": "b4ad9176-64bd-4e51-9fdc-6e8cfbda7088",
+    "is_default_search": false,
+    "keyword": "g",
+    "name": "Google Search",
+    "run_without_argument": false
+  },
+  "bd0a7b58-e730-4ec8-8fd5-35cec9424335": {
+    "added": 1650611859,
+    "cmd": "https://stackoverflow.com/search?q=%s",
+    "icon": "/usr/share/ulauncher/icons/stackoverflow.svg",
+    "id": "bd0a7b58-e730-4ec8-8fd5-35cec9424335",
+    "is_default_search": false,
+    "keyword": "so",
+    "name": "Stack Overflow",
+    "run_without_argument": false
+  },
+  "d5e88d65-997a-4e50-9671-be257938f0ee": {
+    "added": 1650611961,
+    "cmd": "https://search.brave.com/search?q=%s&source=desktop",
+    "icon": "/opt/brave.com/brave-beta/product_logo_128_beta.png",
+    "id": "d5e88d65-997a-4e50-9671-be257938f0ee",
+    "is_default_search": true,
+    "keyword": "br",
+    "name": "Brave",
+    "run_without_argument": false
+  },
+  "e4faed26-0890-4e56-b0dd-998d6b7c7cd2": {
+    "added": 1650611859,
+    "cmd": "https://en.wikipedia.org/wiki/%s",
+    "icon": "/usr/share/ulauncher/icons/wikipedia.png",
+    "id": "e4faed26-0890-4e56-b0dd-998d6b7c7cd2",
+    "is_default_search": false,
+    "keyword": "wiki",
+    "name": "Wikipedia",
+    "run_without_argument": false
+  },
+  "e75e8e33-49b1-4987-8a45-f53467788f03": {
+    "added": 1660548646,
+    "cmd": "https://you.com/search?q=%s",
+    "id": "e75e8e33-49b1-4987-8a45-f53467788f03",
+    "is_default_search": false,
+    "keyword": "y",
+    "name": "You",
+    "run_without_argument": false
+  },
+  "hdpank5aqtz7wybvn2f1": {
+    "added": 1740005033,
+    "cmd": "https://pl.m.wikipedia.org/wiki/%s",
+    "id": "hdpank5aqtz7wybvn2f1",
+    "is_default_search": false,
+    "keyword": "wipl",
+    "name": "Wikipedia pl",
+    "run_without_argument": false
+  }
 }
