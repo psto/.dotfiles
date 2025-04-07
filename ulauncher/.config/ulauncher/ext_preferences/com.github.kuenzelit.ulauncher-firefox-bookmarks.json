@@ -1,0 +1,11 @@
+{
+    "preferences": {
+        "limit": "5",
+        "path": "~/.mozilla/firefox/"
+    },
+    "triggers": {
+        "kw": {
+            "keyword": "b"
+        }
+    }
+}
