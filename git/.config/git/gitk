@@ -1,0 +1,66 @@
+set mainfont {MonaspaceNeon 14}
+set textfont {MonaspaceNeon 14}
+set uifont {MonaspaceNeon 9 bold}
+set tabstop 8
+set findmergefiles 0
+set maxgraphpct 50
+set maxwidth 16
+set cmitmode patch
+set wrapcomment none
+set wrapdefault none
+set autocopy 0
+set autoselect 1
+set autosellen 40
+set showneartags 1
+set maxrefs 20
+set visiblerefs {"master"}
+set hideremotes 0
+set showlocalchanges 1
+set datetimeformat {%Y-%m-%d %H:%M:%S}
+set limitdiffs 1
+set uicolor #1a1b26
+set want_ttk 0
+set bgcolor #24283b
+set fgcolor #a9b1d6
+set uifgcolor #a9b1d6
+set uifgdisabledcolor #414868
+set colors {#f7768e #7aa2f7 #9ece6a #bb9af7 #e0af68}
+set diffcolors {#f7768e #9ece6a #7aa2f7}
+set mergecolors {#f7768e #7aa2f7 #9ece6a #bb9af7 #7dcfff}
+set markbgcolor #414868
+set diffcontext 3
+set selectbgcolor #24283b
+set foundbgcolor #7aa2f7
+set currentsearchhitbgcolor #7aa2f7
+set extdifftool meld
+set perfile_attrs 0
+set headbgcolor #414868
+set headfgcolor #a9b1d6
+set headoutlinecolor #a9b1d6
+set remotebgcolor #414868
+set tagbgcolor #414868
+set tagfgcolor #a9b1d6
+set tagoutlinecolor #414868
+set reflinecolor #414868
+set filesepbgcolor #24283b
+set filesepfgcolor #bb9af7
+set linehoverbgcolor #414868
+set linehoverfgcolor #a9b1d6
+set linehoveroutlinecolor #a9b1d6
+set mainheadcirclecolor #e0af68
+set workingfilescirclecolor #f7768e
+set indexcirclecolor #414868
+set circlecolors #7aa2f7
+set linkfgcolor #7aa2f7
+set circleoutlinecolor #1a1b26
+set diffbgcolors {#414868 #414868}
+set web_browser xdg-open
+set geometry(main) 625x658+1924+741
+set geometry(state) normal
+set geometry(topwidth) 623
+set geometry(topheight) 255
+set geometry(pwsash0) "580 1"
+set geometry(pwsash1) "600 1"
+set geometry(botwidth) 613
+set geometry(botheight) 391
+set permviews {}
