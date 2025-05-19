@@ -1,0 +1,38 @@
+#!/bin/env bash
+# Rename an image file using rofi
+
+old_name="$(readlink -f "$1")"
+
+# Exit if the input is not a file
+if [ ! -f "$old_name" ] ; then
+  exit 1
+fi
+
+dir_name=${old_name%/*}
+extension=""
+base_name_with_ext=$(basename "$old_name")
+base_name_only="$base_name_with_ext"
+
+# Check if the filename contains a dot (indicating a potential extension)
+if [[ "$base_name_with_ext" == *.* ]]; then
+  extension="${base_name_with_ext##*.}"
+  base_name_only="${base_name_with_ext%.*}"
+fi
+
+# Prompt for the new name & pre-fill rofi with the current name
+new_base_name=$(echo "$base_name_only" | rofi -dmenu -p 'New name: ' 2>/dev/null)
+
+# Exit if the user cancelled or entered an empty name
+if [[ -z "$new_base_name" ]] ; then
+  exit 0
+fi
+
+if [[ -n "$extension" ]]; then
+  final_new_name="${new_base_name}.${extension}"
+else
+  final_new_name="${new_base_name}"
+fi
+
+new_full_path="$dir_name/$final_new_name"
+
+mv -v "$old_name" "$new_full_path"

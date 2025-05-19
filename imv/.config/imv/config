@@ -5,6 +5,9 @@
 # Rotate the currently open image by 90 degrees by pressing 'R'
 <Shift+R> = exec mogrify -rotate 90 "$imv_current_file"
 
+# Re-name the current image
+<Shift+N> = exec ~/.local/bin/imv-rename "$imv_current_file"
+
 # vim bindings
 l=next
 h=prev
