@@ -3,8 +3,6 @@ exec_always echo "sway config trace: exec at $(date)"
 #################################################################
 ## Output configuration
 #################################################################
-# Example configuration:
-# output HDMI-A-1 resolution 1920x1080 position 1920,0
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 output eDP-1 position -1366 672 res 1366x768
 output HDMI-A-1 position 0 0 res 2560x1440@59.951Hz
@@ -30,19 +28,22 @@ exec dbus-update-activation-environment --systemd --all
 # Start autotiling
 exec autotiling-rs
 
+# Start shikane
+exec shikane
+
 # Start GTK+ blueman bluetooth
 exec sleep 5 && blueman-applet
 
 # Start clipboard
-exec_always "pkill wl-paste; exec wl-paste -p -t text --watch cliphist store"
-
-# Diasble laptop monitor if external monitor is connected
-exec_always "~/.local/bin/sway-disable-monitor"
+exec wl-paste --type text --watch cliphist store
+exec wl-paste --type image --watch cliphist store
+exec clipse -listen
 
 # Set GTK+ theme
 set $gnome-schema org.gnome.desktop.interface
 exec_always {
-    gsettings set $gnome-schema gtk-theme 'TokyoNight'
+    # use darkman to set the theme instead
+    # gsettings set $gnome-schema gtk-theme 'TokyoNight'
     gsettings set $gnome-schema icon-theme 'Qogir'
     gsettings set $gnome-schema cursor-theme 'Qogir'
     gsettings set $gnome-schema cursor-size '16'
@@ -51,19 +52,19 @@ exec_always {
 
 # Start swaync notification daemon
 exec swaync
-
-# Start gammastep (redshift alternative)
-exec sleep 10 && gammastep -l $(curl -s "https://location.services.mozilla.com/v1/geolocate?key=geoclue" | jq -r '"\(.location.lat):\(.location.lng)"')
+exec_always sleep 1.5; shikanectl reload
 
 # Start foot terminal server
 exec "foot --server"
 
-# Start Nextcloud
-exec sleep 12 && nextcloud
+# Start nm-applet
+exec nm-applet --indicator
 
+# OSD server
+exec swayosd-server
 
-# Start shikane
-exec shikane
+# Start Safe Eyes
+exec safeeyes -e
 
 # Start sov
 exec rm -f /tmp/sovpipe && mkfifo /tmp/sovpipe && tail -f /tmp/sovpipe | sov -t 500
@@ -72,7 +73,8 @@ exec rm -f /tmp/sovpipe && mkfifo /tmp/sovpipe && tail -f /tmp/sovpipe | sov -t 
 exec ~/.local/bin/track_prev_focus
 
 # Start applications on workspaces
-exec swaymsg "workspace 1; exec sleep 2 && $term"
-exec swaymsg "workspace 1; exec sleep 14 && $notes"
+exec swaymsg "workspace 1; exec sleep 2 && $term -e tmux"
 exec swaymsg "workspace 2; exec sleep 3 && $browser"
-
+exec swaymsg "workspace 3; exec sleep 10 && $notes"
+exec swaymsg "workspace 4; exec sleep 20 && anki"
+exec swaymsg "workspace 4; exec sleep 25 && $todo"
