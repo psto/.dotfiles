@@ -5,7 +5,7 @@ exec_always echo "sway config trace: misc at $(date)"
 #################################################################
 gaps inner 10
 hide_edge_borders smart # hide border on workspace with one window
-smart_gaps on           # no gaps if one window
+smart_gaps off           # no gaps if one window
 # class                 border   background  text     indicator  border
 client.focused          #9D7CD8  #9D7CD8     #A9B1D6  #9D7CD8    #9D7CD8
 client.unfocused        #1A1B26  #1A1B26     #A9B1D6  #16161d    #16161d
@@ -21,10 +21,10 @@ font pango: monospace 0.001
 
 # Wallpaper
 # output * bg #24283b solid_color
-# output * bg $wallpaper fill
+output * bg $wallpaper fill
 # Animated wallpaper
-exec_always "swww kill; swww init"
-exec_always sleep 2 && swww img -o "HDMI-A-1,eDP-1" "/home/piotr/public/pictures/wallpapers/video-wallpapers/kirokaze-lonely-fire.gif" 
+# exec_always "swww kill; swww init"
+# exec_always sleep 2 && swww img -o "HDMI-A-1,eDP-1" "/home/piotr/public/pictures/wallpapers/video-wallpapers/kirokaze-lonely-fire.gif" 
 
 # swayfx only
 blur on
