@@ -3,6 +3,7 @@ alias sudo='doas'
 alias sudoedit='doas $EDITOR'
 alias doasedit='doas $EDITOR'
 alias zsh-update-plugins="find "$ZDOTDIR/plugins" -type d -exec test -e '{}/.git' ';' -print0 | xargs -I {} -0 git -C {} pull -q"
+alias hed="nvim + $HISTFILE" # edit recent zsh history
 
 # nvim
 alias nvimrc='nvim ~/.config/nvim/'
@@ -30,6 +31,8 @@ alias rmt="trashy put"
 alias rml="trashy list"
 alias rmr="trashy restore"
 alias rme="trashy empty --all"
+# remove paru cache
+alias rmparu='cd ~/.cache/paru/clone && dua && ([ -n "$(ls -A)" ] && trashy put * || echo "No cache"); cd -'
 
 # easier to read disk
 alias free='free -m'            # show sizes in MB
@@ -125,8 +128,17 @@ alias n="navi"
 # Easily search running processes
 alias psf='ps -Ao comm,pcpu,pmem,pid --sort=-pcpu | grep '
 
+# WiFi signal strength
+alias wifisignal='watch -n1 nmcli device wifi'
+
 # mpv
 alias mpvsp='mpv --save-position-on-quit' # mpv remember last played position
+
+# adb
+alias adb='HOME="$XDG_DATA_HOME"/android adb'
+
+# wget
+alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts" 
 
 # cheat
 cheat() { curl "http://cheat.sh/$1"; }
@@ -136,6 +148,9 @@ alias wttr="curl wttr.in/$HOMETOWN"
 
 # dragon-drop
 alias drag="dragon-drop"
+
+# npm-check-updates update global packages
+alias ncuu="ncu -ug | tail -2 | sh"
 
 # transmission-remote
 alias tsm="transmission-remote"
