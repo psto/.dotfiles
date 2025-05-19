@@ -1,5 +1,6 @@
 # set browser and redirect standard output/error to preserve newsboat interface
-browser "w3m %u"
+# browser "w3m %u"
+browser "cha %u"
 # browser "brave-beta %u >/dev/null 2>&1 &"
 # external-url-viewer "brave-beta"
 
@@ -16,7 +17,6 @@ refresh-on-startup yes
 macro v set browser "setsid -f mpv --really-quiet --no-terminal" ; open-in-browser ; set browser firefox-nightly
 
 # -- keymaps -------------------------------------------------------------------
-
 unbind-key j
 unbind-key k
 unbind-key h
@@ -37,6 +37,8 @@ bind-key H prev-feed
 bind-key L next-feed
 bind-key c toggle-show-read-feeds
 
+macro f set browser firefox-nightly ; open-in-browser ; toggle-article-read "read"
+
 # -- display -------------------------------------------------------------------
 
 color background          color8   default
@@ -45,7 +47,7 @@ color listnormal_unread   color12  default
 color listfocus           color0   color8
 color listfocus_unread    color0   color8
 color info                color5   default
-color article             color8   default
+color article             color7   default
 
 text-width 80
 
