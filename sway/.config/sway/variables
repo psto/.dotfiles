@@ -6,16 +6,17 @@ exec_always "sway config trace: echo vars at $(date)"
 set {
   # Logo key. Use Mod1 for Alt.
   $mod Mod4
+
   # Home row direction keys, like vim
   $left h
   $down j
   $up k
   $right l
-  # $term kitty --single-instance
+
+  # Applications
   $term footclient 
   $term_small term_small
   $term_fullscreen term_fullscreen
-  # $browser /home/piotr/.local/bin/brave-beta-gpu
   $browser firefox-nightly
   $edge microsoft-edge-stable --enable-features=UseOzonePlatform --ozone-platform-hint=wayland
   $file_explorer lf
@@ -25,17 +26,16 @@ set {
   $pass keepassxc
   $pass_id org.keepassxc.KeePassXC
   $resource_monitor btop
-  # $todo sleek
   $todo planify
   $vim vim_client
-  $wallpaper /home/piotr/public/pictures/wallpapers/portal-to-another-world.jpg
+  $wallpaper ~/.dotfiles/misc/Wallpapers/Nighthawks-tokyo-night.jpg
 
-  # container sizes
+  # Container sizes
   $smaller border none, move position center, resize set width 960 height 540
-  $medium border none, move position center, resize set width 960 height 740
-  $mediumer border none, move position center, resize set width 1200 height 960 
-  $larger border none, move position center, resize set 1200 px 1400 px
-  $maximize border none, move position center, resize set width 100 ppt height 100 ppt
-  $top-right resize set 1264 px 800 px, move position 100ppt 0, move left 1264px
+  $medium border none, resize set width 960 height 740
+  $mediumer border none, resize set width 50ppt height 70 ppt
+  $larger border none, resize set 1200 px 1400 px
+  $maximize border none, resize set width 100 ppt height 100 ppt
+  $top-right floating enable, sticky toggle, resize set width 500px height 280px, move position 100ppt 0, move left 500px
 }
 
