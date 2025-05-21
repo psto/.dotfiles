@@ -1,0 +1,24 @@
+[[session]]
+name = "tmux config ⚙️"
+path = "~/.dotfiles/tmux/.config/tmux"
+startup_command = "/usr/bin/nvim tmux.conf"
+
+[[session]]
+name = "episteme 📒"
+path = "~/public/code/projects/episteme"
+startup_command = "/usr/bin/nvim -c 'Telescope find_files'"
+
+[[session]]
+name = "friendly-snippets 📇"
+path = "~/public/code/projects/friendly-snippets"
+startup_command = "/usr/bin/nvim -c 'Telescope find_files'"
+
+[[session]]
+name = "obsidian 🗒️"
+path = "~/public/documents/notes/obsidian-notes"
+startup_command = "/usr/bin/nvim -c 'Neotree float'"
+
+[[session]]
+name = "stojanow 👨‍💻"
+path = "~/public/code/projects/stojanow.com"
+startup_command = "/home/piotr/.local/bin/tmux-startup-dev"
