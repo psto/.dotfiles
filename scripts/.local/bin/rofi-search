@@ -4,8 +4,8 @@
 # also in .local/share/applications/nvim.desktop Exec=kitty -e nvim %F
 # OR use custom launch script: ~/.local/bin/launch
 rg --no-messages --files ~/public ~/downloads \
-  -g "!{*.srt,*.rar,*.txt,*.zip,*.nfo}" | rofi -show window \
+  -g "!{*.srt,*.rar,*.txt,*.zip,*.nfo}" | sed "s|$HOME/||" | rofi -show window \
   -config ~/.config/rofi/tokyo_night_transparent.rasi \
   -threads 0 \
-  -theme-str "#window { width: 900;}" \
-  -dmenu -sort -sorting-method fzf -i -p "find" | xargs -d "\n" xdg-open
+  -theme-str "#window { width: 50%;}" \
+  -dmenu -sort -sorting-method fzf -i -p "find" | sed "s|^|$HOME/|" | xargs -d "\n" gio open
