@@ -6,5 +6,6 @@
 IMAGE=/tmp/"$(date +%Y%m%d-%H%M%S)".png
 grim -g "$(slurp)" "$IMAGE"
 TRANSLATED="$(tesseract "$IMAGE" - -l swe | trans --indent 0 --brief :en --no-bidi)"
+wl-copy "$TRANSLATED"
 foot -H -a floating -e echo "$TRANSLATED"
 rm -rf "$IMAGE"

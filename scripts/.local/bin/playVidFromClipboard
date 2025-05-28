@@ -2,10 +2,10 @@
 
 # Copy a video url that mpv can play and call the script
 # In i3/sway bind to a key: bindsym $mod+y exec ~/.local/bin/playVideo
-# Requirements: cliphist, dunst, mpv
+# Requirements: cliphist or clipse, curl, mpv
 
 # Get the URL from the clipboard
-videoURL=$(cliphist list | cliphist decode)
+videoURL=$(clipse -p)
 
 # Fetch the HTML content and extract the title
 if ! htmlContent=$(curl -s "$videoURL"); then
