@@ -1,0 +1,9 @@
+[metadata]
+name = "pacman"
+description = "A channel to view pacman packages"
+
+[source]
+command = "pacman -Q | awk '{print $1}'"
+
+[preview]
+command = 'pacman -Qi "{}"'
