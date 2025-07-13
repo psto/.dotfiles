@@ -1,0 +1,6 @@
+[metadata]
+name = "systemd-journal"
+description = "A channel to view systemd journal"
+
+[source]
+command = 'journalctl --since "1 hour ago" --no-pager --output=short-iso'
