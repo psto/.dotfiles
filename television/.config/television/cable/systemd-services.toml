@@ -1,0 +1,9 @@
+[metadata]
+name = "systemd-services"
+description = "A channel to view systemd services"
+
+[source]
+command = 'systemctl list-units --type=service --all --no-pager'
+
+[preview]
+command = 'systemctl status {0}'
