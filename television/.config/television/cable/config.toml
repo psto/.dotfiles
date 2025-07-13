@@ -1,0 +1,11 @@
+[metadata]
+name = "config"
+description = "A channel to select from your .config files"
+requirements = ["fd", "bat"]
+
+[source]
+command = "fd --hidden -t f . $HOME/.config"
+
+
+[preview]
+command = "bat -n --color=always '{}'"
