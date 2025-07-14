@@ -1,0 +1,11 @@
+[metadata]
+name = "git-issues"
+description = "A channel to select from git issues"
+requirements = ["gh"]
+
+[source]
+command = "gh issue list --json number,title --template '{{range .}}{{tablerow .number .title}}{{end}}'"
+output = "{split: :0}"
+
+[preview]
+command = "gh issue view {split: :0}"
