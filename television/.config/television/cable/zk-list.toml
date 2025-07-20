@@ -1,0 +1,10 @@
+[metadata]
+name = "zk-list"
+description = "A channel to find and select notes file"
+requirements = ["bat"]
+
+[source]
+command = "cd $HOME/public/documents/notes/obsidian-notes/ && zk list --format path"
+
+[preview]
+command = "bat -n --color=always $HOME/public/documents/notes/obsidian-notes/\"{}\""
