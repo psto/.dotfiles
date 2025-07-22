@@ -1,0 +1,6 @@
+[metadata]
+name = "processes"
+description = "A channel to view system processes"
+
+[source]
+command = 'ps aux --sort=-%mem | head -n 20'
