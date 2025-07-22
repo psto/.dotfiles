@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+tmux new-window -n 'server' 'npm run dev'
+tmux new-window
+tmux select-window -t 1
+tmux send-keys "nvim -c 'Telescope find_files'" Enter
