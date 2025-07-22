@@ -1,0 +1,31 @@
+#!/bin/env bash
+
+if [[ ! $1 =~ ^(https://|www.) ]]; then
+  echo "Please provide a valid URL starting with 'https://' or 'www'."
+  exit 1
+fi
+
+url="$1"
+
+# Parse the optional -m argument
+model="gemini-2.5-flash"
+if [[ $2 == "-m" && -n $3 ]]; then
+  model="$3"
+fi
+
+# Make API call, parse and summarize the discussion
+curl -s "$url.json" | \
+  jq -r '.[] | .data.children[].data | recurse(
+        if (.replies? | type == "object")
+        then .replies.data.children[]? | .data
+        else empty
+        end
+      )
+    | select(.author and .body)
+    | "\(.author): \(.body)"
+  ' | \
+  llm -m "$model" -s 'Summarize the themes of the opinions expressed here.
+  For each theme, output a markdown header.
+  Include direct "quotations" (with author attribution) where appropriate.
+  You MUST quote directly from users when crediting them, with double quotes.
+  Fix HTML entities. Output markdown. Go long.'
