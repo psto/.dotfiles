@@ -15,6 +15,8 @@
   last = log -1 HEAD --stat
   lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
   pr = pull --rebase
+  dt = "! args=$@; shift $#; nvim -c \"DiffviewOpen $args\""
+  mergetool = "!nvim -c DiffviewOpen"
 [interactive]
   diffFilter = delta --color-only
 [add.interactive]
@@ -22,20 +24,48 @@
 [delta]
   navigate = true    # use n and N to move between diff sections
   light = false      # set to true if you're in a terminal w/ a light background color
+  minus-style                   = syntax "#37222c"
+  minus-non-emph-style          = syntax "#37222c"
+  minus-emph-style              = syntax "#713137"
+  minus-empty-line-marker-style = syntax "#37222c"
+  line-numbers-minus-style      = "#914c54"
+  plus-style                    = syntax "#20303b"
+  plus-non-emph-style           = syntax "#20303b"
+  plus-emph-style               = syntax "#2c5a66"
+  plus-empty-line-marker-style  = syntax "#20303b"
+  line-numbers-plus-style       = "#449dab"
+  line-numbers-zero-style       = "#3b4261"
 [diff]
   colorMoved = default
-  tool = vimdiff
+  tool = nvimdiff
+[difftool]
+  prompt = false
+[grep] 
+  lineNumber = true
 [merge]
   conflictstyle = zdiff3
-  tool = vimdiff
-[mergetool "vimdiff"]
-  path = nvim
+  tool = nvimmerge
+[mergetool "nvimmerge"]
+  cmd = nvim -f -c \"DiffviewOpen\"
 [pull]
   ff = only
+[push]
+  autoSetupRemote = true
+[rerere]
+	enabled = true
 [init]
-  defaultBranch = main
+	defaultBranch = main
 [filter "lfs"]
   clean = git-lfs clean -- %f
   smudge = git-lfs smudge -- %f
   process = git-lfs filter-process
   required = true
+[commit]
+	verbose = true
+[help]
+  autocorrect = prompt
+[maintenance]
+  auto = true
+  strategy = incremental
+[credential]
+	helper = libsecret
