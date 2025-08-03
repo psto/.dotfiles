@@ -1,21 +1,25 @@
 * {
-	background-image: none;
-}
-window {
-	background-color: rgba(36, 40, 59, 0.9);
-}
-button {
-  color: #cfc9c2;
-	background-color: #24283b;
-  border: 2px solid #5a4a78;
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: 25%;
+  background-image: none;
 }
 
-button:focus, button:active, button:hover {
-	background-color: #5a4a78;
-	outline-style: none;
+window {
+  background-color: rgba(26, 27, 38, 0.90);
+}
+
+button {
+  color: #cfc9c2;
+  background-color: #24283b;
+  border: 2px solid rgba(26, 27, 38, 0.90);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 25%;
+}
+
+button:focus,
+button:active,
+button:hover {
+  background-color: #5a4a78;
+  outline-style: none;
 }
 
 #lock {

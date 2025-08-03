@@ -12,7 +12,7 @@
 }
 {
     "label" : "logout",
-    "action" : "loginctl kill-user 1000",
+    "action" : "loginctl kill-user $USER",
     "text" : "Logout",
     "keybind" : "o"
 }
