@@ -10,14 +10,8 @@ opt.pumblend = 17 -- transparent popup
 opt.wildmode = "longest:full"
 opt.wildoptions = "pum"
 
--- Helper function for transparency formatting
-local alpha = function()
-  return string.format("%x", math.floor(255 * vim.g.transparency or 0.8))
-end
--- g:neovide_transparency should be 0 if you want to unify transparency of content and title bar.
-g.neovide_transparency = 0.8
+g.neovide_opacity = 0.8
 g.transparency = 0.8
-g.neovide_background_color = "#0f1117" .. alpha()
 
 opt.showmode = false
 opt.showcmd = true
@@ -106,3 +100,6 @@ opt.termguicolors = true
 
 -- approrpiately highlight codefences (codeblocks)
 g.markdown_fenced_languages = { "css", "html", "javascript", "typescript", "lua", "vim" }
+
+-- silent deprecated warning
+vim.deprecate = function() end
