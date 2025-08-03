@@ -31,8 +31,6 @@ alias rmt="trashy put"
 alias rml="trashy list"
 alias rmr="trashy restore"
 alias rme="trashy empty --all"
-# remove paru cache
-alias rmparu='cd ~/.cache/paru/clone && dua && ([ -n "$(ls -A)" ] && trashy put * || echo "No cache"); cd -'
 
 # easier to read disk
 alias free='free -m'            # show sizes in MB
@@ -55,6 +53,10 @@ alias gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"
 # For when keys break
 alias archlinx-fix-keys="doas pacman-key --init && doas pacman-key --populate archlinux && doas pacman-key --refresh-keys"
 
+# paru 
+alias p="paru"
+# remove paru cache
+alias rmparu='DPC="$HOME/.cache/paru/clone"; output=$(dua "$DPC" 2>/dev/null); [ -n "$output" ] && { echo "$output"; trashy put "$DPC"/*; } || echo "No cache"'
 # fuzzy-search and install available pacman packages
 alias pacmani="pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro doas pacman -S"
 # fuzzy-search and install available aur packages
@@ -62,6 +64,7 @@ alias parui="paru -Slq | fzf --multi --preview 'paru -Si {1}' | xargs -ro paru -
 # list and remove installed packages
 alias pacmanrm="pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro doas pacman -Rns"
 alias parurm="paru -Qq | fzf --multi --preview 'paru -Qi {1}' | xargs -ro paru -Rns"
+alias prm="paru -Scc && rmparu"
 
 # systemd
 alias mach_list_systemctl="systemctl list-unit-files --state=enabled"
@@ -86,6 +89,7 @@ alias gds="git diff --staged"
 alias gp="git push"
 alias gpl="git pull"
 alias gpr="git pull --rebase"
+alias gr="git restore"
 alias grc="git rebase --continue"
 alias gra="git rebase --abort"
 alias grf="git reflog --date=iso"
@@ -118,6 +122,7 @@ alias la='eza -a --icons'
 alias ll='eza -al --group-directories-first'  # list directories first
 alias lt='eza -al --sort=modified'            # list by modified date
 alias lz='eza -alFr --color=always --sort=size | grep -v /' # list files by size
+alias lgs='eza --long --git --icons' # list git status
 
 # xplr alias
 alias x="xplr"
@@ -149,8 +154,14 @@ alias wttr="curl wttr.in/$HOMETOWN"
 # dragon-drop
 alias drag='dragon-drop "$(fzf)"'
 
+# i2pd webconsole 
+alias i2pds="curl --silent http://localhost:7070 | htmlq --text .content | sed -n '1,5p; 27,28p;' | glow"
+
 # npm-check-updates update global packages
-alias ncuu="ncu -ug | tail -2 | sh"
+alias ncuu="ncu -ug | tail -2 | xargs -I '{}' sh -c 'echo \"executing: {}\" && {}'"
+
+# taskwarrior-tui
+alias tt="taskwarrior-tui"
 
 # transmission-remote
 alias tsm="transmission-remote"
@@ -159,6 +170,15 @@ alias tsm="transmission-remote"
 alias trpl="trans :pl"
 alias tren="trans pl:en"
 
+# upgrade all packages 
+alias upgrade-all="paru; ncuu; uv tool upgrade --all; cargo install-update -a"
+
 # yt-dlp
 alias ytd="yt-dlp -S res,ext:mp4:m4a --recode mp4"
 alias ytd-subs='yt-dlp --write-sub --write-auto-sub --sub-lang "en.*" --skip-download' #download subtitles only
+
+
+# zenta 
+alias breath='zenta now --quick' 
+alias breathe='zenta now'
+alias reflect='zenta reflect'
