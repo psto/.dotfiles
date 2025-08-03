@@ -1,9 +1,9 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdate",
-    event = "BufReadPost",
-    opts = {
+    lazy   = false,
+    build  = ":TSUpdate",
+    opts   = {
       ensure_installed = {
         "astro",
         "bash",

@@ -2,7 +2,7 @@ return {
   "neovim/nvim-lspconfig",
   event = "BufReadPre",
   dependencies = {
-    { "williamboman/mason.nvim", opts = {} },
+    { "mason-org/mason.nvim", opts = {} },
     {
       "j-hui/fidget.nvim", -- LSP status updates
       opts = {

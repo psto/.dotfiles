@@ -1,7 +1,7 @@
 --AI completion
 return {
   {
-    "Exafunction/codeium.vim",
+    "Exafunction/windsurf.vim",
     event = "BufReadPre",
     config = function()
       local keymap = vim.keymap.set

@@ -104,11 +104,6 @@ return {
     url = "https://github.com/lewis6991/satellite.nvim",
     event = "BufReadPost",
     opts = {
-      current_only = false,
-      winblend = 50,
-      zindex = 40,
-      excluded_filetypes = {},
-      width = 2,
       handlers = {
         cursor = {
           enable = true,

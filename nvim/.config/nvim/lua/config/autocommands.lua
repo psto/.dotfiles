@@ -41,13 +41,6 @@ autocmd({ "VimResized" }, {
   end,
 })
 
--- terminal transparency can be set also with picom or hyprland
--- autocmd({ "ColorScheme" }, {
---   callback = function()
---     vim.cmd "hi Normal ctermbg=none guibg=none cterm=none"
---   end,
--- })
-
 -- Use spelling for markdown files ‘]s’ to find next, ‘[s’ for previous, 'z=‘ for suggestions when on one.
 autocmd("FileType", {
   pattern = { "html", "markdown", "text" },
