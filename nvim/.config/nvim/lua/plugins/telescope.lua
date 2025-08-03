@@ -43,8 +43,10 @@ return {
           n = {
             ["<Esc>"] = actions.close,
             ["q"] = actions.close,
-            ["<C-j>"] = actions.move_selection_next,
-            ["<C-k>"] = actions.move_selection_previous,
+            ["<C-j>"] = actions.cycle_history_next,
+            ["<C-k>"] = actions.cycle_history_prev,
+            ["<C-n>"] = actions.move_selection_next,
+            ["<C-p>"] = actions.move_selection_previous,
             ["j"] = actions.move_selection_next,
             ["k"] = actions.move_selection_previous,
             ["dd"] = require("telescope.actions").delete_buffer,
@@ -70,6 +72,10 @@ return {
           previewer = false,
           initial_mode = "normal",
         },
+        diagnostics = {
+          theme = "ivy",
+          initial_mode = "normal",
+        },
         find_files = {
           theme = "dropdown",
           hidden = true,
@@ -89,19 +95,19 @@ return {
           theme = "dropdown",
         },
         lsp_references = {
-          theme = "dropdown",
+          theme = "ivy",
           initial_mode = "normal",
         },
         lsp_definitions = {
-          theme = "dropdown",
+          theme = "ivy",
           initial_mode = "normal",
         },
         lsp_declarations = {
-          theme = "dropdown",
+          theme = "ivy",
           initial_mode = "normal",
         },
         lsp_implementations = {
-          theme = "dropdown",
+          theme = "ivy",
           initial_mode = "normal",
         },
       },
