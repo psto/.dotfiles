@@ -1,10 +1,8 @@
 [binds]
-# Delete and then close an open image by pressing 'X'
-<Shift+X> = exec rm "$imv_current_file"; close
-
+# Delete and then close an opened image by pressing 'X'
+<Shift+X> = exec trashy put "$imv_current_file"; close
 # Rotate the currently open image by 90 degrees by pressing 'R'
 <Shift+R> = exec mogrify -rotate 90 "$imv_current_file"
-
 # Re-name the current image
 <Shift+N> = exec ~/.local/bin/imv-rename "$imv_current_file"
 
@@ -22,3 +20,9 @@ k=zoom -1
 
 [aliases]
 write = exec convert "$imv_current_file"
+
+[options]
+background = #1a1b26
+overlay_font = JetBrains Mono:10
+overlay_background_color = #24283b
+overlay_text_color = #7aa2f7
