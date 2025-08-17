@@ -1,0 +1,111 @@
+#!/bin/bash
+
+# Script to add cards to anki from neovim
+
+LOG_FILE=/tmp/.anki_debug.log
+
+echo "Starting script..." > "$LOG_FILE"
+
+if ! pgrep -fx "python3 /usr/bin/anki" > /dev/null; then
+    echo "Anki is not running. Launching Anki..." >> "$LOG_FILE"
+    anki &
+    sleep 10 # Wait to ensure Anki is up and running
+fi
+
+clipboard_text=$(clipse -p) # Get text from clipboard
+echo "Clipboard text: $clipboard_text" >> "$LOG_FILE"
+
+deck_name=$(curl 'http://localhost:8765' -s \
+  --header 'Content-Type: application/json' \
+  --data '{ "action": "deckNames" }' | jq '.[]' | fzf)
+
+ALL_NOTE_TYPES=$(curl 'http://localhost:8765' -s \
+  --header 'Content-Type: application/json' \
+  --data '{ "action": "modelNames", "version": 6 }' | jq -r '.result[]')
+
+if [ -z "$ALL_NOTE_TYPES" ]; then
+    echo "Error: Could not fetch note types from AnkiConnect. Is Anki running correctly?" >> "$LOG_FILE"
+    exit 1
+fi
+
+note_type=$(echo "$ALL_NOTE_TYPES" | fzf)
+FORMATTED_NOTE_TYPES=$(echo "$ALL_NOTE_TYPES" | sed 's/^/# /')
+
+TMP_FILE=$(mktemp)
+
+cat > "$TMP_FILE" <<EOF
+# Shared settings for all cardss
+# The noteType is a default and will be applied if noteType in fields is empty.
+deckName: $deck_name
+noteType: $note_type
+
+# Each card starts with '- fields:'. Use space separated tags.
+notes:
+  - fields:
+      Front: 
+      Back: 
+      Source: 
+    tags: 
+    noteType:
+
+---
+# --- Available Note Types (for autocomplete) ---
+# Remember that different Note Types have different fields!
+$FORMATTED_NOTE_TYPES
+EOF
+
+footclient -a "floating" -e nvim "$TMP_FILE" &
+NVM_PID=$!
+
+wait $NVM_PID
+
+if [ ! -s "$TMP_FILE" ]; then
+  echo "Neovim file is empty. Exiting." >> "$LOG_FILE"
+  rm "$TMP_FILE"
+  exit 1
+fi
+
+DECK_NAME=$(yq '.deckName' "$TMP_FILE" | jq -r | head -n 1)
+NOTE_TYPE=$(yq '.noteType' "$TMP_FILE" | jq -r | head -n 1)
+
+echo "Deck Name: $DECK_NAME" >> "$LOG_FILE"
+echo "Default Note Type: $NOTE_TYPE" >> "$LOG_FILE"
+
+payload=$(
+  yq '.notes' "$TMP_FILE" | jq -n \
+    --arg deck "$DECK_NAME" \
+    --arg note "$NOTE_TYPE" \
+    '
+    {
+      "action": "addNotes",
+      "version": 6,
+      "params": {
+        "notes": ((input // []) | map(
+          {
+            "deckName": $deck,
+            "modelName": (if .noteType and (.noteType | length > 0) then .noteType else $note end),
+            "fields": (.fields | map_values(if . == null then "" else . end)),
+            "tags": (if .tags then (.tags | split(", *") | map(select(length > 0))) else [] end)
+          }
+        ))
+      }
+    }
+    '
+)
+echo "Payload: $payload" >> "$LOG_FILE"
+
+# Send request to AnkiConnect
+response=$(curl -s -X POST -d "$payload" http://localhost:8765)
+echo "Response: $response" >> "$LOG_FILE"
+
+if echo "$response" | grep -q '"error":null'; then
+  echo "Cards added successfully!" >> "$LOG_FILE"
+else
+  {
+    printf "%s\n" "Failed to add card."
+    printf "Payload sent to AnkiConnect: %s\n" "$payload"
+    printf "Response from AnkiConnect: %s\n" "$response"
+  } >> "$LOG_FILE"
+fi
+
+rm "$TMP_FILE" # Clean up the temporary file

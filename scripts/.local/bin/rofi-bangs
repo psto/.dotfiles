@@ -32,6 +32,10 @@ LABELS["edit-rofi-bangs"]="‼️"
 # COMMANDS["command_name"]=" '~/path/to/scrips' "${input}""
 # LABELS["command_name"]=""
 
+# Add cards to Anki with nvim
+COMMANDS["add-cards"]="exec foot -a floating -e $HOME/.local/bin/anki-add-cards-nvim"
+LABELS["add-cards"]="📇"
+
 # bookmarks
 COMMANDS["bookmarks"]="$HOME/.local/bin/rofi-surfraw-bookmarks.sh"
 LABELS["bookmarks"]="🔖"
