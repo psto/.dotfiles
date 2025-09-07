@@ -1,18 +1,26 @@
 #!/usr/bin/env sh
 
-time="$(("$(rofi -config ~/.config/rofi/searchmenu.rasi -dmenu -p 'Minutes')"))m" # m for minutes
+time_input=$(rofi -config ~/.config/rofi/searchmenu.rasi -dmenu -p 'Minutes')
 
-if [ -z "$time" ] || [ $time -eq 0 ] ; then
-  exit 2
+# Replace comma with a dot for consistent decimal handling
+time_normalized=$(echo "$time_input" | sed 's/,/./g')
+
+# Exit if the time is empty or not a valid number
+if ! echo "$time_normalized" | grep -Eq '^[0-9]+(\.[0-9]+)?$' || [ -z "$time_normalized" ]; then
+    exit 1
 fi
 
-message="$(rofi -config ~/.config/rofi/searchmenu.rasi -dmenu -p 'Message')"
+# Convert minutes to seconds for the sleep command
+time_seconds=$(echo "$time_normalized * 60" | bc)
+
+message=$(rofi -config ~/.config/rofi/searchmenu.rasi -dmenu -p 'Message')
 
 if [ -z "$message" ]; then
-  exit 2
+    exit 2
 fi
 
-sleep "$time" && notify-send "$message"
+# Sleep for the calculated duration and send the notification
+sleep "$time_seconds" && notify-send "Timer done" "$message"
 
 # Play the sound file in the background and get its process ID
 mpv --loop-file ~/public/music/ubuntu_add.mp3 &
@@ -20,13 +28,13 @@ pid=$!
 
 # Loop until the user presses any key
 while true; do
-  # Prompt the user to stop the sound using rofi
-  stop="$(rofi -config ~/.config/rofi/searchmenu.rasi -dmenu -p "TIMER FOR: $message
-Press any key + Return to stop sound")"
-  # Break the loop if the user pressed a key
-  if [ -n "$stop" ]; then
-    break
-  fi
+    # Prompt the user to stop the sound using rofi.
+    stop=$(rofi -config ~/.config/rofi/searchmenu.rasi -dmenu -p "TIMER FOR: $message")
+
+    # Exit if the user pressed Enter (empty string) or typed something
+    if [ -n "$stop" ] || [ -z "$stop" ]; then
+        break
+    fi
 done
 
 # Kill the mpv process
