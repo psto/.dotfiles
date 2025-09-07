@@ -1,62 +1,170 @@
 #!/bin/bash
 
 # Script to add cards to anki from neovim
+CACHE_FILE="$HOME/.cache/anki_script_cache"
+LLM_CMD="$HOME/.local/bin/llm" 
+LOG_FILE=/tmp/anki_debug.log
 
-LOG_FILE=/tmp/.anki_debug.log
-
+# Overwrite the log file for the new session
 echo "Starting script..." > "$LOG_FILE"
 
 if ! pgrep -fx "python3 /usr/bin/anki" > /dev/null; then
-    echo "Anki is not running. Launching Anki..." >> "$LOG_FILE"
-    anki &
-    sleep 10 # Wait to ensure Anki is up and running
+  echo "Anki is not running. Launching Anki..." >> "$LOG_FILE"
+  anki &
+  sleep 10 # Wait to ensure Anki is up and running
 fi
 
 clipboard_text=$(clipse -p) # Get text from clipboard
 echo "Clipboard text: $clipboard_text" >> "$LOG_FILE"
 
-deck_name=$(curl 'http://localhost:8765' -s \
-  --header 'Content-Type: application/json' \
-  --data '{ "action": "deckNames" }' | jq '.[]' | fzf)
+# Check if the cache file exists and if the current clipboard content matches it.
+if [ -f "$CACHE_FILE" ]; then
+  last_clipboard_text=$(cat "$CACHE_FILE")
+  if [ "$clipboard_text" == "$last_clipboard_text" ]; then
+    notify-send "Anki" "Clipboard content matches cache. Exiting."
+    echo "Clipboard content matches cache. Exiting." >> "$LOG_FILE"
+    exit 0
+  fi
+fi
+
+# Initialize variables
+llm_input=""
+source_html=""
+page_title=""
+
+# --- JINA READER & AUTOMATIC SOURCE LINKING ---
+if [[ $clipboard_text =~ ^https?:// || $clipboard_text =~ ^www\. ]]; then
+  echo "URL detected. Fetching content..." >> "$LOG_FILE"
+  
+  page_title=$(curl -sL --max-time 10 -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36" "$clipboard_text" | grep -o '<title>.*</title>' | sed -e 's/<title>//' -e 's/<\/title>//' | head -n 1)
+  
+  if [ -z "$page_title" ]; then
+    echo "Warning: Could not fetch page title." >> "$LOG_FILE"
+    source_html="<a href=\"${clipboard_text}\">${clipboard_text}</a>"
+  else
+    echo "Page title fetched successfully: $page_title" >> "$LOG_FILE"
+    source_html="<a href=\"${clipboard_text}\">${page_title}</a>"
+  fi
+  echo "Generated Source: $source_html" >> "$LOG_FILE"
+
+  target_url="https://r.jina.ai/${clipboard_text}"
+  llm_input=$(curl -sL "$target_url")
+  echo "Content fetched from Jina Reader." >> "$LOG_FILE"
+else
+  llm_input="$clipboard_text"
+  source_html=""
+fi
+
+# --- DECK SELECTION & AUTOMATIC CREATION ---
+# deck_name=$(curl 'http://localhost:8765' -s \
+#   --header 'Content-Type: application/json' \
+#   --data '{ "action": "deckNames" }' | jq '.[]' | fzf)
+deck_name=""
+
+if [ -z "$deck_name" ]; then
+  if [ -n "$page_title" ]; then
+    sanitized_title=$(echo "$page_title" | tr -d '\n' | tr -s ':/\\?%*|"<>.' '-')
+    deck_name="Inbox::${sanitized_title}"
+  else
+    # --- FIX 2: Truncate deck name to a reasonable length ---
+    text_snippet=$(echo "$clipboard_text" | cut -d' ' -f1-5)
+    sanitized_snippet=$(echo "$text_snippet" | tr -d '\n' | tr -s ':/\\?%*|"<>.' '-')
+    # Truncate the final result to a max of 40 characters.
+    truncated_snippet=$(echo "$sanitized_snippet" | cut -c1-40)
+
+    if [ -n "$truncated_snippet" ]; then
+      deck_name="Inbox::${truncated_snippet}"
+    else
+      timestamp=$(date +"%y-%m-%d %H:%M")
+      deck_name="Inbox::Text - ${timestamp}"
+    fi
+  fi
+
+  echo "No deck selected. Attempting to create and use new deck: $deck_name" >> "$LOG_FILE"
+
+  create_deck_response=$(curl http://localhost:8765 -s -X POST \
+    -d "{\"action\": \"createDeck\", \"version\": 6, \"params\": {\"deck\": \"${deck_name}\"}}")
+  echo "AnkiConnect createDeck response: $create_deck_response" >> "$LOG_FILE"
+fi
+
+# Hardcode the default note type for Q/A cards
+note_type="Basic-source"
 
 ALL_NOTE_TYPES=$(curl 'http://localhost:8765' -s \
   --header 'Content-Type: application/json' \
   --data '{ "action": "modelNames", "version": 6 }' | jq -r '.result[]')
-
-if [ -z "$ALL_NOTE_TYPES" ]; then
-    echo "Error: Could not fetch note types from AnkiConnect. Is Anki running correctly?" >> "$LOG_FILE"
-    exit 1
-fi
-
-note_type=$(echo "$ALL_NOTE_TYPES" | fzf)
 FORMATTED_NOTE_TYPES=$(echo "$ALL_NOTE_TYPES" | sed 's/^/# /')
+
 
 TMP_FILE=$(mktemp)
 
-cat > "$TMP_FILE" <<EOF
-# Shared settings for all cardss
-# The noteType is a default and will be applied if noteType in fields is empty.
-deckName: $deck_name
-noteType: $note_type
+anki_cards_list=$($LLM_CMD -t anki-create-cards -m gemini-2.5-flash "$llm_input")
+echo "LLM Output:\n$anki_cards_list" >> "$LOG_FILE"
 
-# Each card starts with '- fields:'. Use space separated tags.
+fzf_options=$(echo "$anki_cards_list" | awk 'BEGIN { RS = "" } { gsub(/^[ \t\n]+|[ \t\n]+$/, ""); gsub(/\n/, " | "); print }')
+
+selected_options=$(echo "$fzf_options" | fzf --multi --bind 'ctrl-a:select-all' \
+  --preview "echo {} | sed 's/ | /\\n/g' | bat --color=always --language=markdown --style=plain" \
+  --preview-window 'down:50%:wrap')
+
+if [ -z "$selected_options" ]; then
+  echo "No cards selected. Exiting." >> "$LOG_FILE"
+  rm "$TMP_FILE"
+  exit 0
+fi
+
+cards=$(echo "$selected_options" | awk '{gsub(/ \| /, "\n"); print $0"\n"}')
+
+
+yaml_header=$(cat <<EOF
+deckName: "$deck_name"
+noteType: "$note_type"
 notes:
-  - fields:
-      Front: 
-      Back: 
-      Source: 
-    tags: 
-    noteType:
+EOF
+)
 
+notes_yaml=$(echo -e "$cards" | awk -v source_info="$source_html" '
+BEGIN { RS = "" }
+{
+    gsub(/^[ \t\n]+|[ \t\n]+$/, "", $0)
+    printf "  - fields:\n"
+    if ($0 ~ /^Text:/) {
+        text_val = $0; extra_val = ""
+        if (match(text_val, /\nExtra:/)) { extra_val = substr(text_val, RSTART + length("\nExtra:")); text_val = substr(text_val, 1, RSTART - 1) }
+        sub(/^Text:[ \t]*/, "", text_val); sub(/^[ \t]*/, "", extra_val)
+        printf "      Text: |\n        %s\n", text_val
+        if (extra_val != "") { printf "      Extra: |\n        %s\n", extra_val } else { printf "      Extra: \n" }
+        if (source_info != "") { printf "      Source: |\n        %s\n", source_info } else { printf "      Source: \n" }
+        printf "    tags: \n"
+        printf "    noteType: Cloze-source\n"
+    } else if ($0 ~ /^Front:/) {
+        front_val = $0; back_val = ""
+        if (match(front_val, /\nBack:/)) { back_val = substr(front_val, RSTART + length("\nBack:")); front_val = substr(front_val, 1, RSTART - 1) }
+        sub(/^Front:[ \t]*/, "", front_val); sub(/^[ \t]*/, "", back_val)
+        printf "      Front: |\n        %s\n", front_val
+        if (back_val != "") { printf "      Back: |\n        %s\n", back_val } else { printf "      Back: \n" }
+        if (source_info != "") { printf "      Source: |\n        %s\n", source_info } else { printf "      Source: \n" }
+        printf "    tags: \n"
+        printf "    noteType:\n"
+    }
+}
+')
+
+yaml_footer=$(cat <<EOF
 ---
 # --- Available Note Types (for autocomplete) ---
 # Remember that different Note Types have different fields!
 $FORMATTED_NOTE_TYPES
 EOF
+)
 
-footclient -a "floating" -e nvim "$TMP_FILE" &
+# Use printf for safe file construction
+printf "%s\n%s\n%s\n" "$yaml_header" "$notes_yaml" "$yaml_footer" > "$TMP_FILE"
+echo "Generated TMP_FILE content:\n$(cat "$TMP_FILE")" >> "$LOG_FILE"
+
+# --- OPEN FOR EDITING AND SEND TO ANKI ---
+nvim "$TMP_FILE" &
 NVM_PID=$!
-
 wait $NVM_PID
 
 if [ ! -s "$TMP_FILE" ]; then
@@ -71,36 +179,19 @@ NOTE_TYPE=$(yq '.noteType' "$TMP_FILE" | jq -r | head -n 1)
 echo "Deck Name: $DECK_NAME" >> "$LOG_FILE"
 echo "Default Note Type: $NOTE_TYPE" >> "$LOG_FILE"
 
-payload=$(
-  yq '.notes' "$TMP_FILE" | jq -n \
-    --arg deck "$DECK_NAME" \
-    --arg note "$NOTE_TYPE" \
-    '
-    {
-      "action": "addNotes",
-      "version": 6,
-      "params": {
-        "notes": ((input // []) | map(
-          {
-            "deckName": $deck,
-            "modelName": (if .noteType and (.noteType | length > 0) then .noteType else $note end),
-            "fields": (.fields | map_values(if . == null then "" else . end)),
-            "tags": (if .tags then (.tags | split(", *") | map(select(length > 0))) else [] end)
-          }
-        ))
-      }
-    }
-    '
-)
+payload=$(yq '.notes' "$TMP_FILE" | jq -n --arg deck "$DECK_NAME" --arg note "$NOTE_TYPE" '{action: "addNotes", version: 6, params: {notes: ((input // []) | map({deckName: $deck, modelName: (if .noteType and (.noteType | length > 0) then .noteType else $note end), fields: (.fields | map_values(if . == null then "" else . end)), tags: (if .tags then (.tags | split(", *") | map(select(length > 0))) else [] end)}))}}')
 echo "Payload: $payload" >> "$LOG_FILE"
 
-# Send request to AnkiConnect
 response=$(curl -s -X POST -d "$payload" http://localhost:8765)
 echo "Response: $response" >> "$LOG_FILE"
 
-if echo "$response" | grep -q '"error":null'; then
+if [ "$(echo "$response" | jq -r '.error')" == "null" ]; then
+  notify-send "Anki" "Cards added successfully!"
   echo "Cards added successfully!" >> "$LOG_FILE"
+  # On success, update the cache with the clipboard text we just processed.
+  echo "$clipboard_text" > "$CACHE_FILE"
 else
+  notify-send "Anki" "Failed to add cards."
   {
     printf "%s\n" "Failed to add card."
     printf "Payload sent to AnkiConnect: %s\n" "$payload"
@@ -108,4 +199,4 @@ else
   } >> "$LOG_FILE"
 fi
 
-rm "$TMP_FILE" # Clean up the temporary file
+rm "$TMP_FILE"
