@@ -1,13 +1,31 @@
 return {
   {
     "sindrets/diffview.nvim",
-    event = "BufReadPre",
+    lazy = false, -- false to use as git difftool; see git aliases in .dotfiles
   },
   {
     "lewis6991/gitsigns.nvim", -- Async signs!
     event = "BufReadPre",
+    keys = {
+      {
+        "q",
+        "<cmd>DiffviewClose<CR>",
+        ft = { "DiffviewFileHistory" },
+        desc = "`q` to close diff view",
+      },
+    },
     config = function()
       local icons = require("util.icons")
+
+      require('diffview').setup({
+        keymaps = {
+          view = {
+            { "n", "<C-q>", "<cmd>:DiffviewClose<CR>" },
+            { "n", "<C-x>", "<cmd>:DiffviewClose<CR>" },
+          },
+        },
+      })
+
       require("gitsigns").setup({
         on_attach = function(buffer)
           local gs = package.loaded.gitsigns

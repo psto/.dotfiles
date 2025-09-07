@@ -36,6 +36,8 @@ opt.laststatus = 3         -- Show the status bar
 opt.timeoutlen = 300       -- Time in milliseconds to wait for a mapped sequence to complete
 opt.signcolumn = "yes"     -- Display sign column to not shift the layout with diagnostics signs
 opt.jumpoptions = "stack"  -- Jumplist behaves like the tag stack
+-- remove https://www.reddit.com/r/neovim/comments/1myfvla/does_anyone_know_a_good_diff_view_library/
+opt.diffopt = "internal,filler,closeoff,inline:word,linematch:40"
 
 -- Tabs
 -- opt.autoindent = true
