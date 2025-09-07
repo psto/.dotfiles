@@ -127,9 +127,6 @@ xset r rate 210 40
 export EDITOR="nvim"
 export TERMINAL="kitty"
 
-# bat theme
-export BAT_THEME="base16"
-
 # z
 eval "$(zoxide init zsh)"
 
