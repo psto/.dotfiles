@@ -69,15 +69,6 @@ end, { expr = true, desc = "properly indent on empty line when insert" })
 -- enter "one-eyed fighting kirby" regex in command mode
 keymap("c", "<F2>", "\\(.*\\)", opts)
 
--- harpoon
-keymap(
-  "n",
-  "<m-;>",
-  "<cmd>lua require('telescope').extensions.harpoon.marks(require('telescope.themes').get_dropdown{previewer = false, initial_mode='normal', prompt_title='Harpoon'})<cr>"
-  ,
-  opts
-)
-
 -- telescope
 keymap("n", "<c-p>", [[<CMD>Telescope find_files<CR>]], opts)
 

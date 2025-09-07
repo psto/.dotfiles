@@ -1,5 +1,17 @@
 return {
   {
+    'developedbyed/marko.nvim',
+    event = "VeryLazy",
+    config = function()
+      require('marko').setup({
+        width = 100,
+        height = 100,
+        border = "rounded",
+        title = " Marks ",
+      })
+    end,
+  },
+  {
     "alexghergh/nvim-tmux-navigation",
     event = "VeryLazy",
     opts = {

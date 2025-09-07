@@ -8,7 +8,6 @@ return {
     "nvim-telescope/telescope-file-browser.nvim",
     "nvim-telescope/telescope-ui-select.nvim",
     "debugloop/telescope-undo.nvim",
-    "ThePrimeagen/harpoon",
     "ThePrimeagen/git-worktree.nvim"
   },
   config = function()
@@ -17,7 +16,7 @@ return {
     local icons = require("util.icons")
     telescope.setup({
       defaults = {
-        file_ignore_patterns = { ".lock" },
+        file_ignore_patterns = { ".lock", ".jj/" },
         file_sorter = require("telescope.sorters").get_fzy_sorter,
         prompt_prefix = " " .. icons.ui.Search .. " ",
         color_devicons = true,
@@ -139,7 +138,6 @@ return {
     telescope.load_extension("file_browser")
     telescope.load_extension("ui-select")
     telescope.load_extension("undo")
-    telescope.load_extension("harpoon")
     telescope.load_extension("git_worktree")
   end,
   search_dotfiles = function()

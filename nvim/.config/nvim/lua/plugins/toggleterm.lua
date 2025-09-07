@@ -32,9 +32,8 @@ local M = {
       hidden = true,
       direction = "float",
       float_opts = {
-        border = "none",
-        width = 100000,
-        height = 100000,
+        border = "curved",
+        winblend = 0,
       },
       count = 99,
     }
