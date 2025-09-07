@@ -23,8 +23,11 @@ cmd open ${{
   # ~/.local/bin/launch "$f"
   if [ "$XDG_CURRENT_DESKTOP" = "sway" ]; then
     swaymsg move to scratchpad
+  elif [ "$XDG_CURRENT_DESKTOP" = "niri" ]; then
+    "$HOME/.local/bin/niri-swallow" "$f"
+  else
+    xdg-open "$f"
   fi
-  xdg-open "$f"
 }}
 
 cmd archive ${{
@@ -73,7 +76,7 @@ cmd on-cd &{{
 }}
 
 cmd fzf_search ${{ 
-  fzf
+  ~/.local/bin/launch "$(fzf)"
 }}
 
 cmd tmux_session ${{
@@ -128,6 +131,7 @@ map d
 map ar archive
 map au unarchive
 map <c-t> :fzf_search
+map <c-p> :fzf_search
 
 # Basic Functions
 map . set hidden!
