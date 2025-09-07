@@ -1,0 +1,31 @@
+#!/usr/bin/env sh
+
+# Quickly open files/directories with nvim & fasd by "cding" to the file's directory
+#
+# Usage: n [filename_or_directory]
+#
+# If given a filename, searches for file with fasd, cd, then opens with nvim.
+# If no file found, searches for directory with fasd, cd, then opens nvim.
+# If no filename (no argument), opens nvim in the current directory.
+
+if [ -z "$1" ]; then
+  nvim
+  exit 0
+fi
+
+file_path=$(fasd -f "$1")
+
+if [ -n "$file_path" ]; then
+  cd "$(dirname "$file_path")" && nvim "$(basename "$file_path")"
+  exit 0
+else
+  directory_path=$(fasd -d "$1")
+  if [ -n "$directory_path" ]; then
+    cd "$directory_path" || exit 1
+    nvim -c 'Telescope find_files'
+    exit 0
+  else
+    echo "No file or directory found matching '$1'"
+    exit 1
+  fi
+fi
