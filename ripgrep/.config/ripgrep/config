@@ -1,9 +1,7 @@
 # Every line is a shell argument, after trimming whitespace
 
 # Using glob patterns to include/exclude files or folders
---glob
-!.git/*
+--glob=!{.git,.jj}/*
 
 # ignore files
---ignore-file 
-/home/piotr/.config/git/gitignore
+--ignore-file=/home/piotr/.config/git/gitignore
