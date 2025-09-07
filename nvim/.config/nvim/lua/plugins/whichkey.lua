@@ -9,7 +9,6 @@ return {
       { "<leader>f", group = "Find" },
       { "<leader>e", "<cmd>Neotree toggle<CR>",                desc = "File Explorer",                                                  icon = { icon = require("util.icons").ui.FolderOpen, color = "azure" } },
       { "<leader>g", group = "Git",                            icon = { icon = require("util.icons").git.Logo, color = "red" } },
-      { "m",         group = "Harpoon" },
       { "<leader>j", "<cmd>Telescope jumplist<cr>",            desc = "Jumplist",                                                       icon = require("util.icons").ui.List },
       { "<leader>L", group = "Lazy",                           icon = { icon = require("util.icons").misc.Sleep, color = "blue" } },
       { "<leader>l", group = "LSP",                            icon = { icon = require("util.icons").misc.MagicWand, color = "yellow" } },
@@ -39,11 +38,6 @@ return {
     show_help = false, -- show help message on the command line when the popup is visible
   },
   keys = {
-    { "m,",          '<cmd>lua require("harpoon.ui").nav_prev()<cr>',                                                                                        desc = "Harpoon Prev" },
-    { "m.",          '<cmd>lua require("harpoon.ui").nav_next()<cr>',                                                                                        desc = "Harpoon Next" },
-    { "m;",          '<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>',                                                                               desc = "Harpoon UI" },
-    { "mm",          '<cmd>lua require("harpoon.mark").add_file()<cr>',                                                                                      desc = "Harpoon Mark" },
-    { "ms",          "<cmd>Telescope harpoon marks<cr>",                                                                                                     desc = "Search Files" },
     { "<leader>Lc",  "<cmd>Lazy clean<cr>",                                                                                                                  desc = "Clean" },
     { "<leader>Lh",  "<cmd>Lazy check<cr>",                                                                                                                  desc = "Check" },
     { "<leader>Li",  "<cmd>Lazy install<cr>",                                                                                                                desc = "Install" },
@@ -134,5 +128,6 @@ return {
     { "<leader>sw",  "<cmd>:%s/\\s\\+$//<CR>",                                                                                                               desc = "Trim Whitespaces" },
     { "<leader>sx",  "<cmd>lua _XPLR_TOGGLE()<CR>",                                                                                                          desc = "File Xplr" },
     { "<leader>t",   "<cmd>ToggleTerm <CR>",                                                                                                                 desc = "ToggleTerm" },
+    { "<leader>x",   '<cmd>lua require("util/functions").toggle_quickfix()<CR>',                                                                             desc = "DiffViewToggle" },
   }
 }

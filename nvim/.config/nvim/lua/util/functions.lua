@@ -24,6 +24,17 @@ function M.diffview_toggle(cmd)
   end
 end
 
+function M.toggle_quickfix()
+  local windows = vim.fn.getwininfo()
+  for _, win in pairs(windows) do
+    if win["quickfix"] == 1 then
+      vim.cmd.cclose()
+      return
+    end
+  end
+  vim.cmd.copen()
+end
+
 function M.get_url_title()
   -- grap url from cliboard
   local url = vim.fn.getreg "+"
