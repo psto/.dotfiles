@@ -1,9 +1,9 @@
 #!/bin/sh
-
 # History options
-HISTSIZE=1000000
-SAVEHIST=$HISTSIZE
+export HISTSIZE=1000000
+export SAVEHIST=$HISTSIZE
 setopt APPEND_HISTORY       # append history (no overwriting)
+setopt EXTENDED_HISTORY     # record command start time
 setopt HIST_FIND_NO_DUPS    # show command once while stepping though history
 setopt HIST_IGNORE_DUPS     # don't record an event that was just recorded again
 setopt HIST_IGNORE_SPACE    # don't store commands prefixed with a space
@@ -12,6 +12,7 @@ setopt HIST_REDUCE_BLANKS   # remove superfluous blanks from each command line
 setopt HIST_SAVE_NO_DUPS    # don't write a duplicate event to the history file
 setopt HIST_VERIFY          # don't execute immediately upon history expansion
 setopt INC_APPEND_HISTORY   # immediately append to the history file
+setopt INC_APPEND_HISTORY_TIME # record command duration
 setopt SHARE_HISTORY        # share history across terminals
 # turn off HIST_IGNORE_ALL_DUPS if using ZSH_AUTOSUGGEST_STRATEGY=(history match_prev_cmd)
 # setopt HIST_IGNORE_ALL_DUPS # don't write duplicates to the history file
@@ -30,9 +31,18 @@ zle_highlight=('paste:none')
 unsetopt BEEP # beeping is annoying
 unsetopt nomatch # fix "zsh: no matches found" https://github.com/ohmyzsh/ohmyzsh/issues/31
 
-# completions
+# Completions
+fpath=("${ZDOTDIR}"/completion $fpath) # add completions path
+
+# Speed up zsh compinit by only checking cache once a day.
 autoload -Uz compinit
-zstyle ':completion:*' menu select
+if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
+	compinit;
+else
+	compinit -C;
+fi;
+
+# Load extra completion modules and options
 zmodload zsh/complist
 _comp_options+=(globdots)		# Include hidden files.
 
@@ -58,6 +68,7 @@ zsh_add_plugin "Aloxaf/fzf-tab" # must be before zsh-autosuggestions & fast-synt
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zdharma-continuum/fast-syntax-highlighting"
 zsh_add_plugin "hlissner/zsh-autopair"
+# zsh_add_plugin "zsh-users/zsh-completions"
 # For more plugins: https://github.com/unixorn/awesome-zsh-plugins
 # More completions https://github.com/zsh-users/zsh-completions
 
@@ -66,41 +77,35 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#668ac4"
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 
 # Hooks
-add-zsh-hook chpwd do-ls
+add-zsh-hook chpwd status-ls
 add-zsh-hook -Uz chpwd osc7 # OSC-7 escape sequence for foot terminal
 
 # Key-bindings
-bindkey -s '^f' 'zi^M'
-bindkey -s '^z' 'zi^M'
+bindkey -s '^x' ' __zoxide_zi^M'
 bindkey -a '^[[3~' delete-char # bind delete key
 bindkey "^n" up-line-or-beginning-search # Up
 bindkey "^p" down-line-or-beginning-search # Down
-bindkey "^k" up-line-or-beginning-search # Up
-bindkey "^j" down-line-or-beginning-search # Down
+bindkey '^k' history-search-backward
+bindkey '^j' history-search-forward
+bindkey '^f' autosuggest-accept
 bindkey -r "^u"
 bindkey -r "^d"
+bindkey -r '^G'  # unbind ^G for fzf-git.sh
+bindkey "^Y" modified-fzf-history-widget
 
-# FZF 
+# FZF
 [ -f /usr/share/fzf/completion.zsh ] && source /usr/share/fzf/completion.zsh
 [ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
 [ -f /usr/share/doc/fzf/examples/completion.zsh ] && source /usr/share/doc/fzf/examples/completion.zsh
 [ -f /usr/share/doc/fzf/examples/key-bindings.zsh ] && source /usr/share/doc/fzf/examples/key-bindings.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# fnm
 [ -f $ZDOTDIR/completion/_fnm ] && fpath+="$ZDOTDIR/completion/"
 
-# Speed up zsh compinit by only checking cache once a day.
-if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
-	compinit;
-else
-	compinit -C;
-fi;
-
-export FZF_DEFAULT_COMMAND="rg --files --hidden --ignore-file ~/.config/git/gitignore"
-# FZF dracula theme
-export FZF_DEFAULT_OPTS="--color=fg:#cfc9c2,hl:#ff9e64 --color=fg+:#cfc9c2,bg+:#24283b,hl+:#ff9e64 --color=info:#7aa2f7,prompt:#2ac3de,pointer:#2ac3de --color=marker:#9ece6a,spinner:#9ece6a,header:#9ece6a"
-export FZF_DEFAULT_OPTS="--highlight-line --info=inline-right --ansi --layout=reverse --border=none --color=bg+:#283457 --color=bg:#16161e --color=border:#27a1b9 --color=fg:#c0caf5 --color=gutter:#16161e --color=header:#ff9e64 --color=hl+:#2ac3de --color=hl:#2ac3de --color=info:#545c7e --color=marker:#ff007c --color=pointer:#ff007c --color=prompt:#2ac3de --color=query:#c0caf5:regular --color=scrollbar:#27a1b9 --color=separator:#ff9e64 --color=spinner:#ff007c"
-export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always {}' --no-height --preview-window=65%"
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+# Completion styling
+zstyle ':fzf-tab:*' use-fzf-default-opts yes
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza -1 --color=always $realpath'
 
 # ci", ci', ci`, di", etc
 autoload -U select-quoted
@@ -120,18 +125,16 @@ for m in visual viopp; do
   done
 done
 
-# Speedy keys
-xset r rate 210 40
-
-# Environment variables set everywhere
-export EDITOR="nvim"
-export TERMINAL="kitty"
-
 # z
-eval "$(zoxide init zsh)"
+eval "$(zoxide init --cmd cd zsh)"
+eval "$(fasd --init auto)"
+unalias sd
 
 # atuin
 eval "$(atuin init zsh)"
 
-# broot init
-source /home/piotr/.config/broot/launcher/bash/br
+# starship prompt
+eval "$(starship init zsh)"
+
+# fzf-git
+source "$HOME/.local/bin/fzf-git.sh"
