@@ -5,7 +5,7 @@ function zsh_add_file() {
 
 function zsh_add_plugin() {
   PLUGIN_NAME=$(echo $1 | cut -d "/" -f 2)
-  if [ -d "$ZDOTDIR/plugins/$PLUGIN_NAME" ]; then 
+  if [ -d "$ZDOTDIR/plugins/$PLUGIN_NAME" ]; then
     # For plugins
     zsh_add_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.plugin.zsh" || \
     zsh_add_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.zsh"
@@ -16,7 +16,7 @@ function zsh_add_plugin() {
 
 function zsh_add_completion() {
   PLUGIN_NAME=$(echo $1 | cut -d "/" -f 2)
-  if [ -d "$ZDOTDIR/plugins/$PLUGIN_NAME" ]; then 
+  if [ -d "$ZDOTDIR/plugins/$PLUGIN_NAME" ]; then
     # For completions
     completion_file_path=$(ls $ZDOTDIR/plugins/$PLUGIN_NAME/_*)
     fpath+="$(dirname "${completion_file_path}")"
@@ -68,6 +68,9 @@ function fcd() {
   done
 }
 
+# faster than cd ..
+up() { cd $(eval printf '../'%.0s {1..$1}); }
+
 # ripgrep-all with fzf
 rga-fzf() {
 	RG_PREFIX="rga --hidden --files-with-matches"
@@ -83,8 +86,15 @@ rga-fzf() {
 	launch "$file"
 }
 
-# ls function
-do-ls() {emulate -L zsh; eza;}
+# show git status or ls function
+status-ls() {
+  emulate -L zsh
+  if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    git status -sb
+  else
+    eza
+  fi
+}
 
 # make a new directory and cd into it
 function mkcd { mkdir -p "$1" && cd "$1" }
@@ -99,3 +109,70 @@ function osc7 {
   uri=${(j::)input/(#b)([^A-Za-z0-9_.\!~*\'\(\)-\/])/%${(l:2::0:)$(([##16]#match))}}
   print -n "\e]7;file://${HOSTNAME}${uri}\e\\"
 }
+
+# review changed files on this branch
+function review_changes() {
+  local base_branch="${1:-}"
+
+  if [ -z "$base_branch" ]; then
+    base_branch=$(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's@^refs/remotes/origin/@@')
+    [ -z "$base_branch" ] && base_branch="main"
+  fi
+
+  git diff --name-only "$base_branch"...HEAD | fzf \
+    --preview "git diff $base_branch...HEAD -- {} | delta --width \$FZF_PREVIEW_COLUMNS" \
+    --bind "enter:execute($EDITOR {})"
+}
+
+# show staged and unstaged file changes
+function changed_files() {
+  git status --short | awk '{print $2}' | fzf \
+    --preview "git diff --cached -- {} | delta --width \$FZF_PREVIEW_COLUMNS && git diff -- {} | delta --width \$FZF_PREVIEW_COLUMNS" \
+    --bind "enter:execute($EDITOR {})"
+}
+
+# Show diff for argument PR number for current repo
+function pr_diff() {
+  gh pr diff "$1" | delta
+}
+
+# Show PR files for argument PR number for current repo
+function pr_files() {
+  gh pr diff "$1" --name-only | fzf \
+    --bind "enter:execute($EDITOR {})"
+}
+
+
+# turn string into kebab case
+function kebab() {
+  echo "$*" | tr '[:upper:]' '[:lower:]' | sed 's/ /-/g' | tee >(wl-copy -n)
+}
+
+
+# fzf history with ctrl+d to delete
+modified-fzf-history-widget() {
+  local selected
+  setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases no_bash_rematch 2> /dev/null
+  # appends the current shell history buffer to the HISTFILE
+  builtin fc -AI $HISTFILE
+  # pushes entries from the $HISTFILE onto a stack and uses this history
+  builtin fc -p $HISTFILE $HISTSIZE $SAVEHIST
+  selected="$(builtin fc -rl 1 |
+    awk '{ cmd=$0; sub(/^[ \t]*[0-9]+\**[ \t]+/, "", cmd); if (!seen[cmd]++) print $0 }' |
+    FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} ${FZF_DEFAULT_OPTS-} -n2..,.. --scheme=history --bind=ctrl-r:toggle-sort,ctrl-z:ignore ${FZF_CTRL_R_OPTS-} --query=${(qqq)LBUFFER} --multi" $(__fzfcmd))"
+  local ret=$?
+	if [[ -n $selected ]]; then
+    if [[ "$selected" =~ ^[[:blank:]]*[[:digit:]]+ ]]; then
+	  builtin fc -pa "$HISTFILE"
+	  zle vi-fetch-history -n "$MATCH"
+    else # selected is a custom query, not from history
+      LBUFFER="$selected"
+    fi
+  fi
+  # Read the history from the history file into the history list
+  builtin fc -R $HISTFILE
+  zle reset-prompt
+  return $ret
+}
+zle -N modified-fzf-history-widget
+
