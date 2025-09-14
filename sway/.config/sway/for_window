@@ -11,17 +11,19 @@ assign [title="Signal"] workspace 5
 assign [app_id="thunderbird"] workspace 8
 assign [app_id="YouTube Music"] workspace 6
 assign [title="Zotero"] workspace 4
+no_focus [title="^Picture-in-Picture$"]
 
 for_window {
   [workspace="0"]                      floating enable
-  [class="Anki"]                       floating enable
+  [title="^Add$"]                      floating enable # Anki Add card
   [app_id="Authenticator"]             floating enable
   [app_id="blueman-manager"]           floating enable
   [app_id="floating"]                  floating enable
-  [app_id="floating"]                  resize set height 540
-  [app_id="floating"]                  resize set width 960
+  [app_id="floating"]                  resize set height 640
+  [app_id="floating"]                  resize set width 1060
   [app_id="file-roller"]               floating enable
-  [app_id="Thunar" title="^Copying.*"] floating enable
+  [app_id="thunar" title="^Copying.*"] floating enable
+  [app_id="org.gnome.FileRoller"]      floating enable
   [title="^File Operation Progress$"]  floating enable
   [window_role = "bubble"]             floating enable
   [window_role = "dialog"]             floating enable
@@ -32,51 +34,45 @@ for_window {
   # prevent screen lock if window is in fullscreen mode
   [class=".*"]                         inhibit_idle fullscreen
   [app_id=".*"]                        inhibit_idle fullscreen
-  # BingAI
-  [app_id="microsoft-edge"] move to scratchpad, scratchpad show, $mediumer
-  # ChatGPT
-  [app_id="chat-gpt"] move to scratchpad, scratchpad show, $mediumer
   # chromium
   [title="^Save File$"]                floating enable
   # file explorer - xplr
   [app_id=$file_explorer] move to scratchpad, scratchpad show, $medium
   # keepassxc
   [app_id="org.keepassxc.KeePassXC"] move to scratchpad, scratchpad show
-  # nextcloud
-  [app_id="nextcloud"] {
-    focus
-    floating enable
-    resize set height 1000px
-    resize set width 1000px
-    move position 100ppt 0 
-    move left 1000px 
-  }
   # obsidian
-  [app_id=$notes] move to scratchpad, $mediumer
+  [app_id=$notes] $mediumer
+  # Monophony
+  [app_id="io.gitlab.zehkira.Monophony"] move to scratchpad, scratchpad show, opacity 0.95, $medium
   # obsidian-nvim
   [app_id=$notes_nvim] move to scratchpad, scratchpad show, $medium
+  # pavucontrol
+  [app_id="org.pulseaudio.pavucontrol"] floating on, opacity 0.95, move position cursor, move down 10px
   # spotify
-  [title="^Spotify$"] move to scratchpad, $mediumer
+  [app_id="spotify"] move to scratchpad, scratchpad show, opacity 0.95
+  # thunar
+  [app_id="thunar"] opacity 0.95
   # terminal float
-  [app_id=$term_small] move to scratchpad, scratchpad show, $smaller
+  [app_id=$term_small] $smaller
   # terminal fullscreen
   [app_id=$term_fullscreen] move to scratchpad, scratchpad show, $maximize
   # resource monitor
   [app_id=$resource_monitor] move to scratchpad, scratchpad show, $maximize
   # todo
   [app_id=$todo] move to scratchpad, scratchpad show, $medium
+  # text-to-speech-mpv script
+  [title="^text-to-speech-mpv"] $top-right
   # Zotero
-  [title="^Quick Format Citation$"]    floating enable
+  [title="^Quick Format Citation$"] floating enable
   # firefox
-  [title="^Library$"]                  floating enable
-  [title="^Picture-in-Picture$"] { 
-      focus
-      floating enable 
+  [title="^Library$"] floating enable
+  [title="^Picture-in-Picture$"] {
+      floating enable
       border none
       sticky toggle
       resize set height 280px
       resize set width 500px
-      move position 100ppt 0 
-      move left 500px 
-  } 
+      move position 100ppt 0
+      move left 500px
+  }
 }
