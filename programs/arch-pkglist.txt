@@ -73,6 +73,7 @@ qutebrowser
 redshift
 ripgrep
 ripgrep-all
+rofi
 rofi-calc
 rofi-emoji
 rsync

@@ -1,22 +1,22 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.1" encoding="UTF-8"?>
 
 <channel name="thunar" version="1.0">
   <property name="last-view" type="string" value="ThunarIconView"/>
   <property name="last-icon-view-zoom-level" type="string" value="THUNAR_ZOOM_LEVEL_100_PERCENT"/>
-  <property name="last-window-width" type="int" value="1051"/>
-  <property name="last-window-height" type="int" value="774"/>
-  <property name="last-window-maximized" type="bool" value="true"/>
-  <property name="last-separator-position" type="int" value="157"/>
+  <property name="last-window-width" type="int" value="1263"/>
+  <property name="last-window-height" type="int" value="1397"/>
+  <property name="last-window-maximized" type="bool" value="false"/>
+  <property name="last-separator-position" type="int" value="159"/>
   <property name="last-show-hidden" type="bool" value="true"/>
   <property name="misc-single-click" type="bool" value="false"/>
   <property name="hidden-bookmarks" type="array">
     <value type="string" value="file:///home/piotr/Desktop"/>
   </property>
-  <property name="last-side-pane" type="string" value="ThunarShortcutsPane"/>
+  <property name="last-side-pane" type="string" value="THUNAR_SIDEPANE_TYPE_SHORTCUTS"/>
   <property name="misc-middle-click-in-tab" type="bool" value="true"/>
   <property name="misc-recursive-permissions" type="string" value="THUNAR_RECURSIVE_PERMISSIONS_NEVER"/>
   <property name="last-details-view-zoom-level" type="string" value="THUNAR_ZOOM_LEVEL_38_PERCENT"/>
   <property name="last-details-view-visible-columns" type="string" value="THUNAR_COLUMN_DATE_MODIFIED,THUNAR_COLUMN_NAME,THUNAR_COLUMN_SIZE,THUNAR_COLUMN_TYPE"/>
-  <property name="last-details-view-column-widths" type="string" value="50,50,121,115,50,85,50,50,329,50,50,69,50,501"/>
+  <property name="last-details-view-column-widths" type="string" value="50,50,121,115,50,401,50,50,392,50,50,67,50,122"/>
   <property name="last-splitview-separator-position" type="int" value="601"/>
 </channel>
