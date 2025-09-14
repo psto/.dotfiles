@@ -2,7 +2,7 @@
 alias sudo='doas'
 alias sudoedit='doas nvim -u NONE'
 alias doasedit='doas nvim -u NONE'
-alias zsh-update-plugins="find "$ZDOTDIR/plugins" -type d -exec test -e '{}/.git' ';' -print0 | xargs -I {} -0 git -C {} pull -q"
+alias zsh-update-plugins="find "$ZDOTDIR/plugins" -mindepth 1 -maxdepth 1 -type d -print0 | parallel -0 git -C {} pull -q"
 alias hed="nvim + $HISTFILE" # edit recent zsh history
 
 # nvim
@@ -16,6 +16,7 @@ alias mirror="doas reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacma
 alias mirrord="doas reflector --latest 50 --number 20 --sort delay --save /etc/pacman.d/mirrorlist"
 alias mirrors="doas reflector --latest 50 --number 20 --sort score --save /etc/pacman.d/mirrorlist"
 alias mirrora="doas reflector --latest 50 --number 20 --sort age --save /etc/pacman.d/mirrorlist"
+alias mirrorf="doas reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist"
 
 # Colorize grep output (good for log files)
 alias grep='grep --color=auto'
@@ -53,7 +54,7 @@ alias gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"
 # For when keys break
 alias archlinx-fix-keys="doas pacman-key --init && doas pacman-key --populate archlinux && doas pacman-key --refresh-keys"
 
-# paru 
+# paru
 alias p="paru"
 # remove paru cache
 alias rmparu='DPC="$HOME/.cache/paru/clone"; output=$(dua "$DPC" 2>/dev/null); [ -n "$output" ] && { echo "$output"; trashy put "$DPC"/*; } || echo "No cache"'
@@ -64,7 +65,7 @@ alias parui="paru -Slq | fzf --multi --preview 'paru -Si {1}' | xargs -ro paru -
 # list and remove installed packages
 alias pacmanrm="pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro doas pacman -Rns"
 alias parurm="paru -Qq | fzf --multi --preview 'paru -Qi {1}' | xargs -ro paru -Rns"
-alias prm="paru -Scc && rmparu"
+alias prm="yes | paru -Scc && rmparu"
 
 # systemd
 alias mach_list_systemctl="systemctl list-unit-files --state=enabled"
@@ -106,6 +107,12 @@ alias gwr="git worktree remove"
 alias gh-create-private='gh repo create --private --source=. --remote=origin && git push -u --all && gh browse'
 alias gh-create-public='gh repo create --public --source=. --remote=origin && git push -u --all && gh browse'
 
+# jj aliases
+alias jjd="jj diff -a"
+alias jjdd='jj diff --stat'
+alias jjrg="rg --no-require-git" # git grep for jj
+alias jjs="jj status"
+
 # open
 alias open="xdg-open"
 
@@ -142,8 +149,11 @@ alias mpvsp='mpv --save-position-on-quit' # mpv remember last played position
 # adb
 alias adb='HOME="$XDG_DATA_HOME"/android adb'
 
+# atuin
+alias asr="atuin scripts run"
+
 # wget
-alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts" 
+alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts"
 
 # cheat
 cheat() { curl "http://cheat.sh/$1"; }
@@ -154,7 +164,7 @@ alias wttr="curl wttr.in/$HOMETOWN"
 # dragon-drop
 alias drag='dragon-drop "$(fzf)"'
 
-# i2pd webconsole 
+# i2pd webconsole
 alias i2pds="curl --silent http://localhost:7070 | htmlq --text .content | sed -n '1,5p; 27,28p;' | glow"
 
 # npm-check-updates update global packages
@@ -170,15 +180,23 @@ alias tsm="transmission-remote"
 alias trpl="trans :pl"
 alias tren="trans pl:en"
 
-# upgrade all packages 
+# upgrade all packages
 alias upgrade-all="paru; ncuu; uv tool upgrade --all; cargo install-update -a"
+# remove all packages cache
+alias cacherm="uv cache clean; npm cache clean --force; cargo cache --autoclean; go clean -cache; prm"
 
 # yt-dlp
 alias ytd="yt-dlp -S res,ext:mp4:m4a --recode mp4"
-alias ytd-subs='yt-dlp --write-sub --write-auto-sub --sub-lang "en.*" --skip-download' #download subtitles only
+alias ytd-subs='yt-dlp --write-auto-sub --sub-lang "en.*" --convert-subs=srt --skip-download $video_url'
 
+# fasd
+alias m='f -e mpv' # quick opening files with mpv
+alias o='a -e xdg-open' # quick opening files with xdg-open
 
-# zenta 
-alias breath='zenta now --quick' 
+# zenta
+alias breath='zenta now --quick'
 alias breathe='zenta now'
 alias reflect='zenta reflect'
+
+# notmuch
+alias notmuchrm="notmuch search --format=text0 --output=files tag:trash | xargs -0 --no-run-if-empty rm -v"
