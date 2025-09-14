@@ -4,10 +4,10 @@ mode "resize" {
     # right will grow the containers width
     # up will shrink the containers height
     # down will grow the containers height
-    bindsym $left resize shrink width 10px
-    bindsym $down resize grow height 10px
-    bindsym $up resize shrink height 10px
-    bindsym $right resize grow width 10px
+    bindsym $left resize shrink width 20px
+    bindsym $down resize shrink height 20px
+    bindsym $up resize grow height 20px
+    bindsym $right resize grow width 20px
 
     # Ditto, with arrow keys
     bindsym Left resize shrink width 10px
@@ -42,7 +42,7 @@ mode "move" {
     bindsym f     exec ~/.local/bin/sway-move-to mid-right
     bindsym x     exec ~/.local/bin/sway-move-to bottom-left
     bindsym c     exec ~/.local/bin/sway-move-to mid-bottom
-    bindsym v     exec ~/.local/bin/sway-move-to bottom-right 
+    bindsym v     exec ~/.local/bin/sway-move-to bottom-right
 
     bindsym greater exec ~/.local/bin/sway-next-empty-workspace --take-focused
     bindsym n       exec ~/.local/bin/sway-next-empty-workspace --take-focused
@@ -53,4 +53,58 @@ mode "move" {
     bindsym q mode "default"
     bindsym Return mode "default"
     bindsym Escape mode "default"
+}
+
+mode "position" {
+    bindsym 1 resize set width 10ppt
+    bindsym 2 resize set width 20ppt
+    bindsym 3 resize set width 30ppt
+    bindsym 4 resize set width 40ppt
+    bindsym 5 resize set width 50ppt
+    bindsym 6 resize set width 60ppt
+    bindsym 7 resize set width 70ppt
+    bindsym 8 resize set width 80ppt
+    bindsym 9 resize set width 90ppt
+
+    bindsym h resize shrink width 10ppt
+    bindsym l resize grow width 10ppt
+    bindsym j resize shrink height 10ppt
+    bindsym k resize grow height 10ppt
+
+    bindsym z resize set height 90ppt
+    bindsym x resize set height 50ppt
+    bindsym c resize set height 30ppt
+
+
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+mode Mouse {
+    bindsym a mode default, exec 'wl-kbptr-sway-active-win; swaymsg mode Mouse'
+    bindsym Shift+a mode default, exec 'wl-kbptr; swaymsg mode Mouse'
+
+    # Mouse move
+    bindsym h seat seat0 cursor move -15 0
+    bindsym j seat seat0 cursor move 0 15
+    bindsym k seat seat0 cursor move 0 -15
+    bindsym l seat seat0 cursor move 15 0
+
+    # Left button
+    bindsym s seat seat0 cursor press button1
+    bindsym --release s seat seat0 cursor release button1
+
+    # Middle button
+    bindsym d seat seat0 cursor press button2
+    bindsym --release d seat seat0 cursor release button2
+
+    # Right button
+    bindsym f seat seat0 cursor press button3
+    bindsym --release f seat seat0 cursor release button3
+
+    bindsym e exec wlrctl pointer scroll 10 0
+    bindsym r exec wlrctl pointer scroll -10 0
+
+    bindsym Escape mode default
 }

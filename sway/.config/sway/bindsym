@@ -229,11 +229,17 @@ bindsym $mod+b exec killall -SIGUSR1 waybar
 # Modes
 #
 # Move mode
-bindsym  $mod+m mode "move"
-# bindsym $a+$c+m mode "move"
+bindsym $mod+m mode "move"
 
 # Resize mode
 bindsym $mod+r mode "resize"
+
+# Position mode
+bindsym $mod+Shift+v mode "position"
+
+# Mouse mode with wl-kbptr
+bindsym $mod+g exec wl-kbptr-sway-active-win -o modes=floating','click -o mode_floating.source=detect
+bindsym $mod+Shift+g mode Mouse
 
 #
 # Scratchpad:
