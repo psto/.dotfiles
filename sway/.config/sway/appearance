@@ -14,7 +14,7 @@ client.urgent           #DB4B4B  #DB4B4B     #c0caf5  #DB4B4B
 default_border pixel 1
 
 # Titlebar
-titlebar_padding 1 1 
+titlebar_padding 1 1
 # Font for window titles and the bar (unless different font is used in bar {})
 # workaround for https://github.com/swaywm/sway/issues/7350
 font pango: monospace 0.001
@@ -24,7 +24,7 @@ font pango: monospace 0.001
 output * bg $wallpaper fill
 # Animated wallpaper
 # exec_always "swww kill; swww init"
-# exec_always sleep 2 && swww img -o "HDMI-A-1,eDP-1" "/home/piotr/public/pictures/wallpapers/video-wallpapers/kirokaze-lonely-fire.gif" 
+# exec_always sleep 2 && swww img -o "HDMI-A-1,eDP-1" "/home/piotr/public/pictures/wallpapers/video-wallpapers/kirokaze-lonely-fire.gif"
 
 # swayfx only
 blur on
