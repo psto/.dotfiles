@@ -6,7 +6,7 @@ customCommands:
   - key: '<c-space>'
     command: 'git diff --color-words {{.SelectedFile.Name}}'
     context: 'global'
-    subprocess: true
+    output: terminal
 gui:
   nerdFontsVersion: "3"
   theme:

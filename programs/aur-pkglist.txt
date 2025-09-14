@@ -39,7 +39,6 @@ pyprland
 rbenv
 reader-bin
 rescrobbled-git
-rofi-wayland
 scitopdf-git
 sesh-bin
 shikane
