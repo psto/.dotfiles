@@ -13,15 +13,15 @@ COMMANDS["run"]="rofi -modi drun -show drun -config ~/.config/rofi/tokyo_night_t
 LABELS["run"]="🏃"
 
 # Quickly hyper
-COMMANDS["edit-hypr"]='exec foot -a floating -e nvim ~/.config/hypr/hyprland.conf'
+COMMANDS["edit-hypr"]='exec footclient -a floating -e nvim ~/.config/hypr/hyprland.conf'
 LABELS["edit-hypr"]="✨"
 
 # Quickly sway
-COMMANDS["edit-sway"]='exec foot -a floating -e nvim +":cd %" ~/.config/sway/'
+COMMANDS["edit-sway"]='exec footclient -a floating -e nvim +":cd %" ~/.config/sway/'
 LABELS["edit-sway"]="🌳"
 
 # Quickly edit this file
-COMMANDS["edit-rofi-bangs"]='exec foot -a floating -e nvim ~/.local/bin/rofi-bangs'
+COMMANDS["edit-rofi-bangs"]='exec footclient -a floating -e nvim ~/.local/bin/rofi-bangs'
 LABELS["edit-rofi-bangs"]="‼️"
 
 ################################################################################
@@ -33,12 +33,28 @@ LABELS["edit-rofi-bangs"]="‼️"
 # LABELS["command_name"]=""
 
 # Add cards to Anki with nvim
-COMMANDS["add-cards"]="exec foot -a floating -e $HOME/.local/bin/anki-add-cards-nvim"
+COMMANDS["add-cards"]="exec foot -e $HOME/.local/bin/anki-add-cards-nvim"
 LABELS["add-cards"]="📇"
+
+# ariang downloads
+COMMANDS["ariang"]='$browser file:///usr/share/ariang-allinone/index.html#!/downloading'
+LABELS["ariang"]="⬇️"
 
 # bookmarks
 COMMANDS["bookmarks"]="$HOME/.local/bin/rofi-surfraw-bookmarks.sh"
 LABELS["bookmarks"]="🔖"
+
+# cotp
+COMMANDS["cotp-auth"]='exec foot -a floating -e cotp'
+LABELS["cotp-auth"]="🔐"
+
+# Download
+COMMANDS["download"]="$HOME/.local/bin/rofi-aria"
+LABELS["download"]="⬇️"
+
+# Duck.ai
+COMMANDS["dai"]='exec foot -a floating -e ~/.local/bin/ddgs chat -m 4'
+LABELS["dai"]="🦆"
 
 # emoji
 COMMANDS["emo"]="exec rofi -modi emoji -show emoji -config ~/.config/rofi/tokyo_night_transparent.rasi"
@@ -53,7 +69,7 @@ COMMANDS["ipinfo"]='exec foot -H -a floating -e http "ipinfo.io" | jq'
 LABELS["ipinfo"]="📈"
 
 # killall
-COMMANDS["killall"]='exec foot -a floating -e killall "${input}"'
+COMMANDS["ka"]='exec foot -a floating -e killall "${input}"'
 LABELS["killall"]="🔪"
 
 # listen to music
@@ -133,6 +149,14 @@ COMMANDS["en"]='exec foot -H -a floating -e trans en:en "${input}"'
 LABELS["en"]="🇬🇧"
 
 # Translate to English from Polish
+COMMANDS["ben"]='exec foot -H -a floating -e trans bg:en "${input}"'
+LABELS["ben"]="🇧🇬"
+
+# Translate to Bulgarian
+COMMANDS["bg"]='exec foot -H -a floating -e trans :bg "${input}"'
+LABELS["bg"]="🇧🇬"
+
+# Translate to English from Polish
 COMMANDS["pen"]='exec foot -H -a floating -e trans pl:en "${input}"'
 LABELS["pen"]="🇬🇧"
 
@@ -148,6 +172,10 @@ LABELS["pt"]="🇵🇹"
 COMMANDS["ept"]='exec foot -H -a floating -e trans en:pt-PT "${input}"'
 LABELS["ept"]="🇵🇹"
 
+# Text to Portuguese Speech
+COMMANDS["tts-pt"]='~/.local/bin/read-pt-site.py "${input}"'
+LABELS["tts-pt"]="🇵🇹"
+
 # Turn off screen
 COMMANDS["turn-off-screen"]='sleep 1 && hyprctl dispatch dpms off'
 LABELS["turn-off-screen"]="📴"
@@ -160,6 +188,17 @@ LABELS["xkill"]="🔪"
 COMMANDS["ytf"]='exec foot -a floating -e ytfzf -t --async-thumbnails --thumbnail-quality=medium --detach -cO,Y,SI "${input}"'
 LABELS["ytf"]="🎬"
 
+# zenta breathe
+COMMANDS["breathe"]='exec foot -a floating -e zenta now'
+LABELS["breathe"]="🧘🏼"
+
+# zenta reflect
+COMMANDS["reflect"]='exec foot -a floating -e zenta reflect'
+LABELS["reflect"]="🧘🏼"
+
+# zk
+COMMANDS["zkr"]='exec footclient -H -a maximize -e zk review "${input}"'
+LABELS["zkr"]="🎴"
 
 # zk quick note
 COMMANDS["zkn"]='exec footclient -a floating -e zk ne "${input}"'
@@ -238,6 +277,11 @@ LABELS["y"]="🔖"
 # Apps
 ################################################################################
 
+
+# Aerc
+COMMANDS["aerc"]="foot -e aerc"
+LABELS["aerc"]="📧"
+
 # Anki
 COMMANDS["anki"]="anki"
 LABELS["anki"]="📇"
@@ -255,7 +299,7 @@ COMMANDS["brave"]="$HOME/.local/bin/brave-beta-gpu"
 LABELS["brave"]="🦁"
 
 # Beekeeper Studio
-COMMANDS["beekeeper-studio"]="beekeeper-studio"
+COMMANDS["beekeeper-studio"]="beekeeper-studio --enable-features=UseOzonePlatform --ozone-platform=wayland"
 LABELS["beekeeper-studio"]="🐝"
 
 # Bitwarden
@@ -265,6 +309,10 @@ LABELS["bitwarden"]="🔒"
 # Bleachbit
 COMMANDS["bleachbit"]="bleachbit"
 LABELS["bleachbit"]="🧹"
+
+# Blueman
+COMMANDS["blueman"]="blueman-manager"
+LABELS["blueman"]="🥶"
 
 # Broot
 COMMANDS["broot"]='exec foot -H -a floating -e broot'
@@ -286,9 +334,9 @@ LABELS["chat-gpt"]="🤖"
 COMMANDS["chatterino"]="chatterino"
 LABELS["chatterino"]="💬"
 
-# Chromium
-COMMANDS["chromium"]="chromium"
-LABELS["chromium"]="🦾"
+# Chrome
+COMMANDS["chrome"]="google-chrome-stable --disable-features=ExtensionManifestV2Unsupported,ExtensionManifestV2Disabled"
+LABELS["chrome"]="🦾"
 
 # Discord
 COMMANDS["discord"]="discord"
@@ -298,33 +346,44 @@ LABELS["discord"]="😮"
 COMMANDS["element"]='element-desktop'
 LABELS["element"]="⚛️"
 
-# Firefox
-COMMANDS["firefox"]="$HOME/.local/bin/firefox-way"
-LABELS["firefox"]="🦊"
-
 # Firefox Developer
 COMMANDS["firefox-nightly"]="firefox-nightly"
-LABELS["firefox-nightly"]="🐺"
+LABELS["firefox-nightly"]="🦊"
+
+# Firefox i2p
+COMMANDS["firefox-i2p"]="firefox-nightly -P 'i2p'"
+LABELS["firefox-i2p"]="🦝"
 
 # Foot
 COMMANDS["foot"]="footclient"
 LABELS["foot"]="🦶"
+
+# FreeTube
+COMMANDS["freetube"]="freetube --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-features=WaylandWindowDecorations --ozone-platform-hint=auto --enable-features=VaapiVideoDecodeLinuxGL --gpu-context=wayland"
+LABELS["freetube"]="🆓"
 
 # Galculator
 COMMANDS["galculator"]="galculator"
 LABELS["galculator"]="🧮"
 
 # Github Desktop
-COMMANDS["github-desktop"]="github-desktop"
+COMMANDS["github-desktop"]="github-desktop --enable-features=UseOzonePlatform --ozone-platform=wayland"
 LABELS["github-desktop"]="🐙"
 
 # Gimp
 COMMANDS["gimp"]="gimp"
 LABELS["gimp"]="🐺"
 
+# Hyprpicker
+COMMANDS["hyprpicker"]="exec hyprpicker -a"
+LABELS["hyprpicker"]="🎨"
+
 # IPFS Desktop
 COMMANDS["ipfs-desktop"]="ipfs-desktop"
-LABELS["ipfs-desktop"]="🌐"
+
+# Kalm
+COMMANDS["kalm"]="kalm"
+LABELS["kalm"]="🧘🏼‍♂"
 
 # KeepassXC
 COMMANDS["keepassxc"]="keepassxc"
@@ -338,13 +397,25 @@ LABELS["kitty"]="🐱"
 COMMANDS["ksnip"]="ksnip"
 LABELS["ksnip"]="🖼️"
 
+# Legcord
+COMMANDS["legcord"]="legcord --enable-features=UseOzonePlatform --ozone-platform=wayland"
+LABELS["legcord"]="🦿"
+
+# LocalSend
+COMMANDS["localsend"]="localsend"
+LABELS["localsend"]="📮"
+
 # Mailspring
 COMMANDS["mailspring"]='mailspring'
 LABELS["mailspring"]="📧"
 
 # Microsft Edge
 COMMANDS["microsoft-edge-stable"]="microsoft-edge-stable --enable-features=UseOzonePlatform --ozone-platform=wayland"
-LABELS["microsoft-edge-stable"]="♯"
+LABELS["microsoft-edge-stable"]="󰇩"
+
+# Monophony
+COMMANDS["monophony"]="monophony"
+LABELS["monophony"]="🎧"
 
 # Morgen
 COMMANDS["morgen"]="morgen"
@@ -370,13 +441,29 @@ LABELS["qbittorrent"]="☠️"
 COMMANDS["qutebrowser"]="qutebrowser"
 LABELS["qutebrowser"]="🌐"
 
+# pavucontrol
+COMMANDS["pavucontrol"]="pavucontrol"
+LABELS["pavucontrol"]="🎛️"
+
 # Peek
 COMMANDS["peek"]="peek"
 LABELS["peek"]="👀"
 
+# PopcornTime
+COMMANDS["popcorntime"]="popcorntime --enable-features=UseOzonePlatform --ozone-platform=wayland"
+LABELS["popcorntime"]="🐝"
+
+# Planify
+COMMANDS["planify"]="planify"
+LABELS["planify"]="🗓️"
+
 # Signal
-COMMANDS["signal-desktop"]="export LANG=pl_PL.UTF-8 && signal-desktop --use-tray-icon --use-tray-icon --enable-features=UseOzonePlatform --ozone-platform=wayland"
+COMMANDS["signal-desktop"]="env LANGUAGE=\"en-GB:pl-PL\" signal-desktop --use-tray-icon --enable-features=UseOzonePlatform --ozone-platform=wayland"
 LABELS["signal-desktop"]="📡"
+
+# Pinta
+COMMANDS["pinta"]="pinta"
+LABELS["pinta"]="🖌️"
 
 # SimpleScreenRecorder
 COMMANDS["simplescreenrecorder"]="simplescreenrecorder"
@@ -384,14 +471,14 @@ LABELS["simplescreenrecorder"]="⏺️ "
 
 # Sioyek
 COMMANDS["sioyek"]="sioyek"
-LABELS["sioyek"]="📄"
+LABELS["sioyek"]=""
 
 # Spotify
 COMMANDS["spotify"]="$HOME/.local/bin/spotify-way"
 LABELS["spotify"]="🎧"
 
 # Streamlink Twitch GUI
-COMMANDS["streamlink-twitch-gui"]="streamlink-twitch-gui --tray"
+COMMANDS["streamlink-twitch-gui"]="streamlink-twitch-gui --tray --enable-features=UseOzonePlatform --ozone-platform=wayland"
 LABELS["streamlink-twitch-gui"]="🏞️"
 
 # Streamlink Twitch GUI
@@ -402,6 +489,10 @@ LABELS["stretchly"]="🧘"
 COMMANDS["tor-browser"]="tor-browser"
 LABELS["tor-browser"]="🕵️"
 
+# Transmission GTK
+COMMANDS["transmission"]="transmission-gtk"
+LABELS["transmission"]="☠️"
+
 # Transmission Remote
 COMMANDS["transmission-remote"]="transmission-remote"
 LABELS["transmission-remote"]="☠️"
@@ -411,7 +502,7 @@ COMMANDS["thunar"]="thunar"
 LABELS["thunar"]="🗄️"
 
 # Visual Studio Code
-COMMANDS["code"]="code"
+COMMANDS["code"]="code --enable-features=UseOzonePlatform --ozone-platform=wayland"
 LABELS["code"]="📇"
 
 # VLC
@@ -428,7 +519,7 @@ LABELS["youtube-music"]="▶️ "
 
 # Zathura
 COMMANDS["zathura"]="zathura"
-LABELS["zathura"]="📄"
+LABELS["zathura"]=""
 
 # Zotero
 COMMANDS["zotero"]="zotero"
@@ -443,16 +534,15 @@ function print_menu()
 {
 for key in "${!LABELS[@]}"
 do
-# echo "$key ${LABELS}"
-echo "$key ${LABELS[$key]}"
-# my top version just shows the first field in labels row, not two words side by side
+echo "$key ${LABELS}"
+# echo "$key ${LABELS[$key]}"
 done
 }
 
 # Show rofi.
 function start()
 {
-print_menu | rofi -dmenu -p ":" -config ~/.config/rofi/tokyo_night_transparent.rasi
+print_menu | rofi -dmenu -p ":" -theme-str 'listview { scrollbar: false; } entry { placeholder: ""; }' -config ~/.config/rofi/tokyo_night_transparent.rasi
 }
 
 # Run it
@@ -478,8 +568,8 @@ then
 eval echo "Executing: ${COMMANDS[$choice]}"
 eval "${COMMANDS[$choice]}"
 else
-# eval $choice | rofi -config ~/.config/rofi/rofidmenu.rasi 
+# eval $choice | rofi -config ~/.config/rofi/rofidmenu.rasi
 
 # prefer my above so I can use this same script to also launch appsa
-echo "Unknown command: ${choice}" | rofi -dmenu -p "error" -config ~/.config/rofi/tokyo_night_transparent.rasi && ~/.local/bin/rofi-bangs
+echo "Unknown command: ${choice}" | rofi -dmenu -p "error" -theme-str 'listview { scrollbar: false; }' -config ~/.config/rofi/tokyo_night_transparent.rasi && ~/.local/bin/rofi-bangs
 fi
