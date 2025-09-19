@@ -1,0 +1,6 @@
+[metadata]
+name = "disk-usage"
+description = "A channel to view system space usage"
+
+[source]
+command = 'df -h'
