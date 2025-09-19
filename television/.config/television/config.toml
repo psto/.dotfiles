@@ -80,22 +80,17 @@ preview_size = 50
 
 # UI Features
 # -------------
-# Each feature can have two states: enabled/disabled and visible/not visible
-# - enabled: controls whether the feature is functional
-# - visible: controls whether the feature is displayed (only works if enabled)
-#
-# You can use the old array format for backward compatibility:
-# features = ["preview_panel", "status_bar", "remote_control"]
-#
-# Or use the new detailed format:
-[ui.features]
-preview_panel = { enabled = true, visible = true }
-help_panel = { enabled = true, visible = false }
-status_bar = { enabled = true, visible = true }
-remote_control = { enabled = true, visible = false }
-
 # Feature-specific configurations
 # Each feature can have its own configuration section
+[ui.input_bar]
+# Where to place the input bar in the UI (top or bottom)
+position = "top"
+# The input prompt string (defaults to ">" if not specified)
+prompt = ">"
+# header = "{}"
+# padding = {"left": 0, "right": 0, "top": 0, "bottom": 0}
+border_type = "rounded"
+
 [ui.status_bar]
 # Status bar separators (bubble):
 #separator_open = ""
@@ -110,6 +105,11 @@ size = 50
 #header = "{}"
 #footer = ""
 scrollbar = true
+
+[ui.help_panel]
+# Whether to split the help panel by categories
+show_categories = true
+hidden = true
 
 [ui.remote_control]
 # Whether to show channel descriptions in remote control mode
@@ -130,58 +130,72 @@ sort_alphabetically = true
 #   Home / Ctrl+a      - Go to input start
 #   End / Ctrl+e       - Go to input end
 #
-# CONFIGURABLE KEYBINDINGS (can be customized below):
+# CONFIGURABLE KEYBINDINGS (can be customized below)
 # --------------------------------------------------
 [keybindings]
 # Application control
 # ------------------
-# Quit the application
-quit = ["esc", "ctrl-c"]
+esc = "quit"
+ctrl-c = "quit"
 
 # Navigation and selection
 # -----------------------
-# Scrolling through entries
-select_next_entry = ["down", "ctrl-n"]
-select_prev_entry = ["up", "ctrl-p"]
-#select_next_page = "pagedown"
-#select_prev_page = "pageup"
+down = "select_next_entry"
+ctrl-n = "select_next_entry"
+up = "select_prev_entry"
+ctrl-p = "select_prev_entry"
 
 # History navigation
 # -----------------
-# Navigate through search query history
-select_prev_history = "ctrl-j"
-select_next_history = "ctrl-k"
+ctrl-j = "select_prev_history"
+ctrl-k = "select_next_history"
 
 # Multi-selection
 # --------------
-# Add entry to selection and move to the next entry
-toggle_selection_down = "tab"
-# Add entry to selection and move to the previous entry
-toggle_selection_up = "backtab"
-# Confirm selection
-confirm_selection = "enter"
+tab = "toggle_selection_down"
+backtab = "toggle_selection_up"
+enter = "confirm_selection"
 
 # Preview panel control
 # --------------------
-# Scrolling the preview pane
-scroll_preview_half_page_down = ["pagedown", "mousescrolldown"]
-scroll_preview_half_page_up = ["pageup", "mousescrollup"]
+pagedown = "scroll_preview_half_page_down"
+pageup = "scroll_preview_half_page_up"
 
 # Data operations
 # --------------
-# Copy the selected entry to the clipboard
-copy_entry_to_clipboard = "ctrl-y"
-# Reload the current source
-reload_source = "ctrl-r"
-# Cycle through the available sources for the current channel
-cycle_sources = "ctrl-s"
+ctrl-y = "copy_entry_to_clipboard"
+ctrl-r = "reload_source"
+ctrl-s = "cycle_sources"
 
 # UI Features
 # ----------
-toggle_remote_control = "ctrl-t"
-toggle_preview = "ctrl-o"
-toggle_help = "ctrl-h"
-toggle_status_bar = "f12"
+ctrl-t = "toggle_remote_control"
+ctrl-o = "toggle_preview"
+ctrl-h = "toggle_help"
+f12 = "toggle_status_bar"
+
+# Input field actions
+# ----------------------------------------
+backspace = "delete_prev_char"
+ctrl-w = "delete_prev_word"
+ctrl-u = "delete_line"
+delete = "delete_next_char"
+left = "go_to_prev_char"
+right = "go_to_next_char"
+home = "go_to_input_start"
+ctrl-a = "go_to_input_start"
+end = "go_to_input_end"
+ctrl-e = "go_to_input_end"
+
+# Event bindings
+# ----------------------------------------------------------------------------
+# Event bindings map non-keyboard events to actions
+# This includes mouse events, resize events, and custom events
+[events]
+# Mouse events
+# -----------
+mouse-scroll-up = "scroll_preview_up"
+mouse-scroll-down = "scroll_preview_down"
 
 # Shell integration
 # ----------------------------------------------------------------------------
@@ -198,7 +212,7 @@ fallback_channel = "files"
 [shell_integration.channel_triggers]
 # Add your channel triggers here. Each key is a channel that will be triggered
 # by the corresponding commands.
-# Example: say you want the following commands to trigger the following channels
+# Example say you want the following commands to trigger the following channels
 # when pressing <CTRL-T>:
 #          `git checkout`  should trigger the `git-branches` channel
 #          `ls`            should trigger the `dirs` channel
