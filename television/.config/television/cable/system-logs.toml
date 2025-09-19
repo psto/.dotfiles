@@ -1,0 +1,9 @@
+[metadata]
+name = "system-logs"
+description = "A channel to view system-logs"
+
+[source]
+command = "fd . '/var/log' --type f"
+
+[preview]
+command = 'bat -n --color=always {0}'
