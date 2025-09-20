@@ -1,12 +1,21 @@
+* {
+  border: none;
+  border-radius: 0;
+  font-family: "Fira Code", Cantarell, Noto Sans, sans-serif;
+  font-size: 15px;
+  min-height: 0;
+}
+
 #waybar {
   background: transparent;
-  font-family: "SF Pro Display", Cantarell, Noto Sans, sans-serif;
-  font-size: 14px;
+  font-family: "Fira Code", "SF Pro Display", Cantarell, Noto Sans, sans-serif;
+  font-size: 13px;
 }
 
 #window {
   padding: 0 10px;
-  color: #565f89; /* sets color for sway/window */
+  color: #565f89;
+  /* sets color for sway/window */
 }
 
 window#waybar {
@@ -16,8 +25,8 @@ window#waybar {
   text-shadow: none;
   transition-duration: 0s;
   color: #cfc9c2;
-  /* background-color: rgba(26, 27, 38, 0.8) */
-} 
+  background-color: rgba(26, 27, 38, 1);
+}
 
 window#waybar.empty #window {
   opacity: 0;
@@ -29,7 +38,7 @@ window#waybar.empty #window {
 }
 
 #tray {
-  border-bottom-left-radius: 10px;
+  border-bottom-left-radius: 0px;
 }
 
 #workspaces button {
@@ -37,6 +46,7 @@ window#waybar.empty #window {
   color: #565f89;
   border: 1px solid rgba(9, 85, 225, 0);
   border-radius: 10px;
+  transition: all 0.3s linear;
   min-width: 33px;
 }
 
@@ -49,7 +59,7 @@ window#waybar.empty #window {
 }
 
 #workspaces button.urgent {
-  background-color: #a96d1f;
+  background-color: #db4b4b;
   color: white;
 }
 
@@ -57,7 +67,7 @@ window#waybar.empty #window {
   box-shadow: inherit;
   border-color: #bb9af7;
   color: #bb9af7;
-  transition: all 0.5s ease;
+  transition: all 0.3s linear;
 }
 
 /* Repeat style here to ensure properties are overwritten as there's no !important and button:hover above resets the colour */
@@ -65,6 +75,7 @@ window#waybar.empty #window {
 #workspaces button.focused {
   color: #7aa2f7;
 }
+
 #workspaces button.focused:hover {
   color: #bb9af7;
 }
@@ -79,9 +90,9 @@ window#waybar.empty #window {
 }
 
 #custom-recorder {
-	font-size: 18px;
-	margin: 2px 7px 0px 7px;
-	color:#ee2e24;
+  font-size: 18px;
+  margin: 2px 7px 0px 7px;
+  color: #db4b4b;
 }
 
 #clock,
@@ -98,11 +109,9 @@ window#waybar.empty #window {
 #sway-language,
 #backlight,
 #custom-storage,
-#custom-cpu_speed,
 #custom-powermenu,
 #custom-spotify,
 #custom-weather,
-#custom-mail,
 #custom-media,
 #custom-notification {
   background: #1a1b26;
@@ -110,8 +119,30 @@ window#waybar.empty #window {
   padding: 0 5px;
 }
 
+#clock:hover,
+#tray:hover,
+#mode:hover,
+#battery:hover,
+#temperature:hover,
+#cpu:hover,
+#disk:hover,
+#memory:hover,
+#network:hover,
+#pulseaudio:hover,
+#idle_inhibitor:hover,
+#sway-language:hover,
+#backlight:hover,
+#custom-storage:hover,
+#custom-powermenu:hover,
+#custom-spotify:hover,
+#custom-weather:hover,
+#custom-media:hover {
+  color: #fff;
+  transition: all 0.5s linear;
+}
+
 #battery {
-  color:  #58d3a4;
+  color: #58d3a4;
 }
 
 #battery.warning {
@@ -138,7 +169,7 @@ window#waybar.empty #window {
 
 #clock:hover {
   color: #bb9af7;
-  transition: all 0.5s ease;
+  transition: all 0.3s linear;
 }
 
 #cpu {
