@@ -46,10 +46,9 @@ return {
   { "folke/zen-mode.nvim", event = "BufReadPre" },
   {
     "zk-org/zk-nvim",
-    event = "VeryLazy",
+    event = "BufReadPre",
     config = function()
       require("zk").setup({
-        -- See Setup section below
         picker = "telescope",
       })
     end

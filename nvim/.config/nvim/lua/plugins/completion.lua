@@ -1,6 +1,6 @@
 return {
   {
-    'echasnovski/mini.pairs',
+    "nvim-mini/mini.pairs",
     version = false,
     event = "BufReadPre",
     opts = {}
@@ -8,12 +8,12 @@ return {
   {
     "kylechui/nvim-surround",
     event = "InsertEnter",
-    config = function() require("nvim-surround").setup() end,
+    opts = {}
   },
   {
     "windwp/nvim-ts-autotag", -- auto close and rename html tag
     event = "BufReadPre",
-    config = function() require("nvim-ts-autotag").setup() end,
+    opts = {}
   },
   {
     "L3MON4D3/LuaSnip", -- snippets
