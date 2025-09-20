@@ -1,15 +1,16 @@
 {
-  "layer": "top",
+  "layer": "bottom",
   "position": "top",
-  "height": 30,
   "modules-left": [
     "sway/workspaces",
     "hyprland/workspaces",
+    "niri/workspaces",
     "sway/mode",
     "hyprland/submap",
     "sway/scratchpad",
     "sway/window",
-    "hyprland/window"
+    "hyprland/window",
+    "niri/window"
   ],
   "modules-center": [
     "clock",
@@ -22,9 +23,10 @@
     "custom/weather",
     "temperature",
     "cpu",
+    "custom/spacer",
     "memory",
     "disk",
-    "network",
+    // "network",
     "pulseaudio",
     "backlight",
     "battery",
@@ -53,6 +55,11 @@
     "format": "<span></span> {}"
   },
   "hyprland/window": {
+    "max-length": 60,
+    "tooltip": false,
+    "format": "<span></span> {}"
+  },
+  "niri/window": {
     "max-length": 60,
     "tooltip": false,
     "format": "<span></span> {}"
@@ -91,12 +98,30 @@
       "default": ""
     },
   },
+  "niri/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": true,
+    "disable-markup": false,
+    "format": "{icon}",
+    "format-icons": {
+      "1": "1 <span font='Font Awesome'></span>",
+      "2": "2 <span font='Font Awesome'></span>",
+      "3": "3 <span font='Font Awesome'></span>",
+      "4": "4 <span font='Font Awesome'></span>",
+      "5": "5 <span font='Font Awesome'></span>",
+      "6": "6 <span font='Font Awesome'></span>",
+      "7": "7 <span font='Font Awesome'></span>",
+      "8": "8 <span font='Font Awesome'></span>",
+      "9": "9 <span font='Font Awesome'></span>",
+      "10": "0 <span font='Font Awesome'></span>"
+    }
+  },
   "tray": {
     "icon-size": 20,
     "spacing": 8
   },
   "clock": {
-    "format": "<span></span> {:%H:%M}",
+    "format": "{:%H:%M}",
     "format-alt": "<span></span> {:%a %b %d}",
     "tooltip-format": "<tt><small>{calendar}</small></tt>",
     "calendar": {
@@ -123,18 +148,27 @@
   },
   "cpu": {
     "interval": 5,
-    "format": " {usage}%"
+    "format": " {usage}%",
+    "min-length": 5,
+    "align": 0.5
+  },
+  "custom/spacer": {
+    "format": "",
   },
   "disk": {
     "interval": 30,
     "format": " {free}",
+    "unit": "GB",
     "on-click": "exec footclient -a floating -e ncdu ",
-    "path": "/"
   },
   "memory": {
     "interval": 15,
     "format": "<span font='Font Awesome'>︁</span> {used:0.1f}G",
-    "tooltip": false
+    "tooltip": false,
+    "states": {
+      "warning": 10,
+      "critical": 14
+    }
   },
   "custom/notification": {
     "tooltip": false,
@@ -178,6 +212,7 @@
     "tooltip": true,
     "interval": 3600,
     "exec": "wttrbar --location $HOMETOWN",
+    "on-click": "wttrbar --location $HOMETOWN",
     "return-type": "json",
   },
   "battery": {
@@ -191,7 +226,7 @@
     ],
     "format-time": " ({H}h{M}m)",
     "format-charging": "<span font='Font Awesome'></span>  <span font='Font Awesome'>{icon}</span>  {capacity}% - {time}",
-    "format-full": "<span font='Font Awesome'></span>  <span font='Font Awesome'>{icon}</span>  100%",
+    "format-full": "<span font='Font Awesome'></span>  <span font='Font Awesome'>{icon}</span>",
     "interval": 15,
     "states": {
       "warning": 25,
@@ -199,18 +234,18 @@
     },
     "tooltip": false
   },
-  "network": {
-    "format": "{icon}",
-    // "format-alt": "<span font='Font Awesome'>︁</span> ︁{ipaddr}/{cidr} {icon}",
-    // "format-alt-click": "click-right",
-    "format-alt": "<span font='Font Awesome'></span> {essid} ({signalStrength}%)",
-    "format-alt-click": "click-right",
-    "format-wifi": "<span font='Font Awesome'></span> {signalStrength}%",
-    "format-ethernet": "<span font='Font Awesome'>︁</span> {ifname}",
-    "format-disconnected": "⚠ Disconnected",
-    "on-click": "/home/piotr/.local/bin/rofi-wifi",
-    "tooltip": false
-  },
+  // "network": {
+  //   "format": "{icon}",
+  //   // "format-alt": "<span font='Font Awesome'>︁</span> ︁{ipaddr}/{cidr} {icon}",
+  //   // "format-alt-click": "click-right",
+  //   "format-alt": "<span font='Font Awesome'></span> {essid} ({signalStrength}%)",
+  //   "format-alt-click": "click-right",
+  //   "format-wifi": "<span font='Font Awesome'></span> {signalStrength}%",
+  //   "format-ethernet": "<span font='Font Awesome'>︁</span> {ifname}",
+  //   "format-disconnected": "⚠ Disconnected",
+  //   "on-click": "/home/piotr/.local/bin/rofi-wifi",
+  //   "tooltip": false
+  // },
   "pulseaudio": {
     "format": "<span font='Font Awesome'>{icon:2}</span>{volume}%",
     "format-alt": "<span font='Font Awesome'>{icon:2}</span>{volume}%",
@@ -236,6 +271,7 @@
     "tooltip": false
   },
   "backlight": {
+    "device": "intel_backlight",
     "format": "{icon} {percent}%",
     "format-icons": [
       "",
