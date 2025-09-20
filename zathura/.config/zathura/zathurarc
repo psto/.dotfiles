@@ -13,6 +13,7 @@ map K zoom in
 map J zoom out
 map i recolor
 map p print
+map <A-a> exec '/home/piotr/.local/bin/anki-file-link.sh "$FILE"'
 
 # dark theme
 set notification-error-bg       "#ff5555" # Red
