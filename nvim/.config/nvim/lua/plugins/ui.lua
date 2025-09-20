@@ -1,6 +1,6 @@
 return {
   {
-    "echasnovski/mini.indentscope",
+    "nvim-mini/mini.indentscope",
     event = "BufReadPost",
     opts = {
       symbol = "│",

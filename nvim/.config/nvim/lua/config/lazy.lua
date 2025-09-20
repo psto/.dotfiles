@@ -29,9 +29,6 @@ return lazy.setup("plugins", {
     notify = false,
   },
   performance = {
-    cache = {
-      enabled = true,
-    },
     rtp = {
       disabled_plugins = {
         "gzip",

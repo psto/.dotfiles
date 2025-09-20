@@ -1,7 +1,7 @@
 return {
   {
     "sindrets/diffview.nvim",
-    lazy = false, -- false to use as git difftool; see git aliases in .dotfiles
+    lazy = "VeryLazy",
   },
   {
     "lewis6991/gitsigns.nvim", -- Async signs!
