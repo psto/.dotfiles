@@ -3,23 +3,29 @@
 }
 
 window {
-  background-color: rgba(26, 27, 38, 0.90);
+  background-color: rgba(26, 27, 38, 0.50);
+  font-size: 1.5rem;
 }
 
 button {
   color: #cfc9c2;
-  background-color: #24283b;
+  background-color: rgba(26, 27, 38, 0.90);
   border: 2px solid rgba(26, 27, 38, 0.90);
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 25%;
+  background-size: 30%;
+  box-shadow: 0 0 10px 2px transparent;
+  animation: gradient_f 20s ease-in infinite;
+  transition: all 0.3s ease-in;
 }
 
 button:focus,
 button:active,
 button:hover {
-  background-color: #5a4a78;
-  outline-style: none;
+  background-color: rgba(90, 74, 120, 0.90);
+  background-size: 50%;
+  animation: gradient_f 20s ease-in infinite;
+  transition: all 0.3s cubic-bezier(.55, 0.0, .28, 1.682), box-shadow 0.5s ease-in;
 }
 
 #lock {
