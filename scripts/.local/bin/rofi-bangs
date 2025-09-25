@@ -180,6 +180,10 @@ LABELS["tts-pt"]="🇵🇹"
 COMMANDS["turn-off-screen"]='sleep 1 && hyprctl dispatch dpms off'
 LABELS["turn-off-screen"]="📴"
 
+# Wallaper
+COMMANDS["wallpaper"]="exec foot -a floating -e bash -c /home/piotr/.local/bin/fzf-wallpapers"
+LABELS["wallpaper"]="🖼️"
+
 # xkill
 COMMANDS["xkill"]='exec foot -a floating -e xkill "${input}"'
 LABELS["xkill"]="🔪"

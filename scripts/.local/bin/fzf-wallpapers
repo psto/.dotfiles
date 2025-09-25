@@ -1,0 +1,27 @@
+#!/bin/bash
+
+NIRI_CONFIG="$HOME/.config/niri/config.kdl"
+CURRENT_WALLPAPER=""
+# Use the newest swaybg process if multiple are running
+SWAYBG_PID=$(pgrep -n swaybg 2>/dev/null)
+if [ -n "$SWAYBG_PID" ]; then
+  CURRENT_WALLPAPER=$(tr '\0' ' ' < "/proc/$SWAYBG_PID/cmdline" 2>/dev/null | awk -F ' -i ' '{print $2}' | awk '{print $1}')
+fi
+
+# Kill any existing swaybg processes
+pkill -f swaybg 2>/dev/null
+
+# Let user select a wallpaper with fzf
+WALLPAPER=$(find ~/public/pictures/wallpapers/ -type f | fzf --preview "swaybg -i {} -m fill" --preview-window=up:0%)
+
+# Set the selected wallpaper or restore the previous one
+if [ -n "$WALLPAPER" ]; then
+  # Replace the wallpaper path in the config file
+  sed -i "s|^\(\s*spawn-at-startup \"swaybg\" \"-i\"\s*\"\).*\"\s*\"-m\".*|\1$WALLPAPER\" \"-m\" \"fill\"|" "$NIRI_CONFIG"
+
+  nohup swaybg -i "$WALLPAPER" -m fill >/dev/null 2>&1 &
+  disown
+elif [ -n "$CURRENT_WALLPAPER" ]; then
+  nohup swaybg -i "$CURRENT_WALLPAPER" -m fill >/dev/null 2>&1 &
+  disown
+fi
