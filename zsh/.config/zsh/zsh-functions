@@ -110,6 +110,16 @@ function osc7 {
   print -n "\e]7;file://${HOSTNAME}${uri}\e\\"
 }
 
+function preview-drawings() {
+  fd --type f \
+    --extension svg \
+    --exclude 'Archives/Other/Excalidraw/' | \
+  fzf \
+    --preview 'chafa -f sixels {}' \
+    --preview-window 'down:90%' \
+    --bind 'enter:execute(imv {}),ctrl-/:change-preview-window(down,90%,border-horizontal|hidden|right)'
+}
+
 # review changed files on this branch
 function review_changes() {
   local base_branch="${1:-}"
@@ -176,3 +186,7 @@ modified-fzf-history-widget() {
 }
 zle -N modified-fzf-history-widget
 
+# Search for content & copy path
+function rgpath() {
+  rg -l "$@" | fzf | xargs -0 realpath | wl-copy
+}

@@ -131,6 +131,11 @@ alias lt='eza -al --sort=modified'            # list by modified date
 alias lz='eza -alFr --color=always --sort=size | grep -v /' # list files by size
 alias lgs='eza --long --git --icons' # list git status
 
+# find and copy full path
+alias cppath="fd . | fzf | xargs -0 realpath | wl-copy"
+# recent files copy path
+alias cprecent="fd . -t f --changed-within 1d | fzf | wl-copy"
+
 # xplr alias
 alias x="xplr"
 
