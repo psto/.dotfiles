@@ -1,0 +1,19 @@
+#!/bin/zsh
+# Display a random Stoic quote using cowsay
+
+QUOTES_FILE="$HOME/public/pictures/wallpapers/quotes-stoic.json"
+
+if [ -f "$QUOTES_FILE" ]; then
+  QUOTE_COUNT=$(jq '.quotes | length' "$QUOTES_FILE")
+
+  RANDOM_INDEX=$((RANDOM % QUOTE_COUNT))
+
+  QUOTE_TEXT=$(jq -r ".quotes[$RANDOM_INDEX].text" "$QUOTES_FILE")
+  QUOTE_AUTHOR=$(jq -r ".quotes[$RANDOM_INDEX].author" "$QUOTES_FILE")
+
+  FULL_QUOTE="$QUOTE_TEXT -- $QUOTE_AUTHOR"
+
+  cowsay -f stoic  "$FULL_QUOTE" <<< "$THE_COW"
+else
+  cowsay -f stoic "Quote file not found: $QUOTES_FILE" <<< "$THE_COW"
+fi

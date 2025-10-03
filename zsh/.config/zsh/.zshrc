@@ -138,3 +138,6 @@ eval "$(starship init zsh)"
 
 # fzf-git
 source "$HOME/.local/bin/fzf-git.sh"
+
+# stoic quote
+stoicsay | lolcat
