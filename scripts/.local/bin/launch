@@ -4,25 +4,33 @@
 # Usage: launch [FILE...]
 # Dependencies: file
 
-# Install i3-swallow (works with sway): pip3 install --user i3-swallow 
-# or devour (doesn't work with sway): yay -S --noconfirm devour
+# Install i3-swallow (works with sway): pip3 install --user i3-swallow
+# or devour (doesn't work with sway): yay -S devour
 # and replace "swallow" with "devour"
-# or swayhide for sway: yay -S --noconfirm swayhide
+# or swayhide for sway: yay -S swayhide
 # or use this sway-hide script: https://gitlab.com/wef/dotfiles/-/blob/master/bin/sway-hide
+# For niri use my niri-swallow script: https://github.com/psto/.dotfiles/blob/main/scripts/.local/bin/niri-swallow
 
 # Assign launcher based on session & desktop
-if [ "$XDG_SESSION_TYPE" = "wayland" ]; then                         
+if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
   if [ "$XDG_CURRENT_DESKTOP" = "sway" ]; then
-    # Sway launcher
     launcher="$HOME/.local/bin/sway-hide"
+  elif [ "$XDG_CURRENT_DESKTOP" = "niri" ]; then
+    launcher="$HOME/.local/bin/niri-swallow"
   else
     # No launcher if desktop has native window swallowing e.g. hyprland
-    launcher="" 
+    launcher=""
   fi
 else
   # Xorg launcher
   launcher=swallow
-fi              
+fi
+
+# Launch a directory with mpv
+if [ -d "$1" ]; then
+   $launcher mpv "$@"
+   exit 0
+fi
 
 case $(file --mime-type "$@" -bL) in
    # Check for the mimetype of your file (This is POSIX regex)
@@ -31,10 +39,10 @@ case $(file --mime-type "$@" -bL) in
       $launcher mpv "$@"
       ;;
    application/pdf | application/postscript)
-      $launcher zathura "$@" 
+      $launcher zathura "$@"
       ;;
    application/x-rar)
-      $launcher zathura "$@" 
+      $launcher zathura "$@"
       ;;
    image/jpeg | image/png)
       $launcher imv-dir "$@"
