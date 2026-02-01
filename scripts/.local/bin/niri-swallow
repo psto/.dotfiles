@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+# Get window/workspace info
+current_window_id=$(niri msg -j focused-window | jq '.id')
+current_workspace_id=$(niri msg -j focused-window | jq '.workspace_id')
+
+# Move terminal to a scratchpad workspace (set in niri config.kdl: workspace "scratchpad")
+niri msg action move-window-to-workspace --focus false --window-id "$current_window_id" "scratchpad"
+
+# Run the application (blocks until the app closes)
+"$@"
+
+# Bring terminal back
+niri msg action move-window-to-workspace --focus true --window-id "$current_window_id" "$current_workspace_id"
+niri msg action focus-window --id "$current_window_id"
