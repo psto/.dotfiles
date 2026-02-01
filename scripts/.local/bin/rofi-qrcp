@@ -1,0 +1,14 @@
+#!/bin/bash
+# Find any unhidden file in $HOME and transfer it using qrcp
+
+SELECTED=$(fd --type f . "$HOME" | sed "s|$HOME/||" | rofi \
+    -dmenu \
+    -i \
+    -p "qrcp" \
+    -config ~/.config/rofi/tokyo_night_transparent.rasi \
+    -theme-str "#window { width: 50%;}")
+
+if [ -n "$SELECTED" ]; then
+    FULL_PATH="$HOME/$SELECTED"
+    footclient -a floating -e qrcp "$FULL_PATH"
+fi
