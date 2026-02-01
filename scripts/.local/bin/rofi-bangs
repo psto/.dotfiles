@@ -108,6 +108,10 @@ LABELS["reboot"]="🌄"
 COMMANDS["calc"]="exec rofi -show calc -modi calc -no-show-match -no-sort -config ~/.config/rofi/tokyo_night_transparent.rasi"
 LABELS["calc"]="🧮"
 
+# Rofi qrcp
+COMMANDS["qrcp"]="$HOME/.local/bin/rofi-qrcp"
+LABELS["qrcp"]="📎"
+
 # Search Timer
 COMMANDS["timer"]="$HOME/.local/bin/rofi-timer"
 LABELS["timer"]="⏲️"
