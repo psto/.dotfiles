@@ -2,7 +2,6 @@
 set hidden true
 set ignorecase true
 set icons true
-set sixel true
 set shellopts '-eu'
 set previewer ~/.local/bin/lf-previewer
 
@@ -24,7 +23,7 @@ cmd open ${{
   if [ "$XDG_CURRENT_DESKTOP" = "sway" ]; then
     swaymsg move to scratchpad
   elif [ "$XDG_CURRENT_DESKTOP" = "niri" ]; then
-    "$HOME/.local/bin/niri-swallow" "$f"
+    ~/.local/bin/launch "$f"
   else
     xdg-open "$f"
   fi
@@ -75,7 +74,7 @@ cmd on-cd &{{
   lf -remote "send $id set promptfmt \"$fmt\""
 }}
 
-cmd fzf_search ${{ 
+cmd fzf_search ${{
   ~/.local/bin/launch "$(fzf)"
 }}
 
@@ -84,7 +83,7 @@ cmd tmux_session ${{
 }}
 
 cmd play_mpv ${{
-  mpv "$f"
+  ~/.local/bin/launch "$f"
 }}
 
 cmd rename ${{
