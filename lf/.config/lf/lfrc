@@ -86,6 +86,10 @@ cmd play_mpv ${{
   ~/.local/bin/launch "$f"
 }}
 
+cmd qrcp %{{
+  ~/.local/bin/launch footclient -a floating -e qrcp "$f"
+}}
+
 cmd rename ${{
   vimv
 }}
@@ -156,6 +160,8 @@ map dg drag
 
 map dd trash
 map dr restore_trash
+
+map Q qrcp
 
 map r rename
 
