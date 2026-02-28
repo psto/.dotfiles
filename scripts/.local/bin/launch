@@ -26,29 +26,32 @@ else
   launcher=swallow
 fi
 
+# If the first argument is a command AND not a local file, run it with launcher
+if command -v "$1" >/dev/null 2>&1 && [ ! -f "$1" ]; then
+  $launcher "$@"
+  exit 0
+fi
+
 # Launch a directory with mpv
 if [ -d "$1" ]; then
-   $launcher mpv "$@"
-   exit 0
+  $launcher mpv "$@"
+  exit 0
 fi
 
 case $(file --mime-type "$@" -bL) in
-   # Check for the mimetype of your file (This is POSIX regex)
-   video/* | audio/* | image/gif)
-      # Launch using your favorite application
-      $launcher mpv "$@"
-      ;;
-   application/pdf | application/postscript)
-      $launcher zathura "$@"
-      ;;
-   application/x-rar)
-      $launcher zathura "$@"
-      ;;
-   image/jpeg | image/png)
-      $launcher imv-dir "$@"
-      ;;
-   text/plain | text/markdown | text/html | text/*)
-      nvim "$@"
-      ;;
-   *) exit 1 ;;
+  # Check for the mimetype of your file (This is POSIX regex)
+  video/* | audio/* | image/gif)
+    # Launch using your favorite application
+    $launcher mpv "$@"
+    ;;
+  application/pdf | application/postscript | application/x-rar)
+    $launcher zathura "$@"
+    ;;
+  image/jpeg | image/png)
+    $launcher imv-dir "$@"
+    ;;
+  text/plain | text/markdown | text/html | text/*)
+    nvim "$@"
+    ;;
+  *) exit 1 ;;
 esac
