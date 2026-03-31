@@ -4,12 +4,6 @@ local opts = { noremap = true, silent = true }
 -- Set leader key to space
 -- vim.g.mapleader = " " -- must be set before lazy.nvim
 
--- Run the last command
-keymap("n", "<leader><leader>c", ":<up>", { noremap = false })
-
--- Remove whitespace
-keymap("n", "<leader>w", [[:%s/\s\+$//<CR>]], { noremap = false })
-
 -- -- Move around splits with <c-hjkl>
 keymap("n", "<c-j>", "<c-w>j", opts)
 keymap("n", "<c-k>", "<c-w>k", opts)
@@ -59,11 +53,11 @@ keymap("v", ">", ">gv", opts)
 
 -- auto indent when insert on an empty line
 keymap("n", "i", function()
-  if #vim.fn.getline(".") == 0 then
-    return [["_cc]]
-  else
-    return "i"
-  end
+	if #vim.fn.getline(".") == 0 then
+		return [["_cc]]
+	else
+		return "i"
+	end
 end, { expr = true, desc = "properly indent on empty line when insert" })
 
 -- enter "one-eyed fighting kirby" regex in command mode
@@ -74,11 +68,10 @@ keymap("n", "<c-p>", [[<CMD>Telescope find_files<CR>]], opts)
 
 -- show buffers
 keymap(
-  "n",
-  "<s-tab>",
-  "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false, initial_mode='normal'})<cr>"
-  ,
-  opts
+	"n",
+	"<s-tab>",
+	"<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false, initial_mode='normal'})<cr>",
+	opts
 )
 
 -- add to jumplist
