@@ -1,0 +1,2 @@
+#!/usr/bin/env sh
+footclient -a "file_explorer" -e "lf"
