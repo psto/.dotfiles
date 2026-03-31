@@ -2,45 +2,7 @@
 export PATH="$HOME/.local/bin":$PATH
 export MANPAGER='nvim +Man!'
 export MANWIDTH=999
-
-# Other XDG paths
-export XDG_DATA_HOME=${XDG_DATA_HOME:="$HOME/.local/share"}
-export XDG_CACHE_HOME=${XDG_CACHE_HOME:="$HOME/.cache"}
-export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:="$HOME/.config"}
-export XDG_STATE_HOME=${XDG_STATE_HOME:="$HOME/.local/state"}
-
-# Disable files
 export LESSHISTFILE=-
-
-# Fixing Paths
-export ANDROID_USER_HOME="$XDG_DATA_HOME/android"
-export CARGO_HOME="$XDG_DATA_HOME/cargo"
-export COREPACK_HOME="$XDG_CACHE_HOME/node/corepack"
-export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
-export DOTNET_CLI_HOME="$XDG_DATA_HOME"/dotnet
-export GNUPGHOME="$XDG_DATA_HOME/gnupg"
-export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
-export HISTFILE="$XDG_DATA_HOME/zsh/history"
-export IPFS_PATH="$XDG_CONFIG_HOME/ipfs/"
-export IPYTHONDIR="$XDG_CONFIG_HOME/ipython"
-export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME"/jupyter
-export NODE_REPL_HISTORY="$XDG_DATA_HOME/node_repl_history"
-export NOTMUCH_CONFIG="$XDG_CONFIG_HOME/notmuch/config"
-export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
-export PASSWORD_STORE_DIR="$XDG_DATA_HOME"/pass
-export PYTHON_HISTORY="$XDG_STATE_HOME/python/history"
-export RBENV_ROOT="$XDG_DATA_HOME/rbenv"
-export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/config"
-export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
-export RYE_HOME="$XDG_DATA_HOME/rye"
-export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
-export SQLITE_HISTORY="$XDG_DATA_HOME/sqlite_history"
-export TASKRC="$XDG_CONFIG_HOME/task/taskrc"
-export TASKDATA="$XDG_DATA_HOME/task/"
-export TERMINFO="$XDG_DATA_HOME"/terminfo # after installing wezterm terminfo file
-export WGETRC="$XDG_CONFIG_HOME/wgetrc"
-export W3M_DIR="$XDG_STATE_HOME/w3m"
-export ZK_NOTEBOOK_DIR="$HOME/public/documents/notes/obsidian-notes/"
 
 # FZF
 export FZF_DEFAULT_COMMAND="rg --files --hidden --ignore-file ~/.config/git/gitignore"
