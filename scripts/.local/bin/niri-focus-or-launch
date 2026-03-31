@@ -1,0 +1,69 @@
+#!/bin/env bash
+# Focus niri windows by providing an app_id or launch command
+set -o errexit
+set -o pipefail
+set -o nounset
+
+usage() {
+  echo "Usage: $0 [-h] <launch_command> [app_id]"
+  echo "  <launch_command>: The command to execute to launch the application."
+  echo "  [app_id]: Optional. The app_id to use for focusing if different from launch_command."
+  echo "  -h: Show this help message."
+  exit "${1:-0}"
+}
+
+while getopts "h" opt; do
+  case "$opt" in
+    h) usage 0 ;;
+    *) usage 1 ;;
+  esac
+done
+shift $((OPTIND - 1))
+
+if [ -z "${1:-}" ]; then
+  usage 1
+fi
+
+launch_command="$1"
+focus_app_id="${2:-$launch_command}"
+NIRI_SCRATCHPAD_WS="${NIRI_SCRATCHPAD_WS:-7}"
+
+focused=$(niri msg -j focused-window)
+current_window_id=$(echo "$focused" | jq '.id')
+current_workspace_id=$(echo "$focused" | jq '.workspace_id')
+is_floating=$(echo "$focused" | jq '.is_floating')
+
+# Get target window info
+selected=$(niri msg -j windows | jq --arg app_id "$focus_app_id" \
+  '[.[] | select(.app_id == $app_id) | {id, workspace_id}] | first')
+selected_window_id=$(echo "$selected" | jq -r '.id // empty')
+selected_window_workspace_id=$(echo "$selected" | jq -r '.workspace_id // empty')
+
+# Check if the workspace_id is scratchpad
+if [ "$selected_window_workspace_id" == "$NIRI_SCRATCHPAD_WS" ]; then
+  niri msg action move-window-to-workspace --focus false --window-id "$selected_window_id" "$current_workspace_id"
+fi
+
+# If selected_window_id is the same as current_window_id toggle between them
+if [ "$selected_window_id" == "$current_window_id" ]; then
+  if [ "$is_floating" == "true" ]; then
+    "$HOME/.local/bin/niri-scratchpad"
+  else
+    "$HOME/.local/bin/niri-back-and-forth"
+  fi
+  exit 0
+fi
+
+# Check if a matching window ID was found
+if [ -n "$selected_window_id" ]; then
+  niri msg action focus-window --id "$selected_window_id"
+else
+  if command -v "$launch_command" >/dev/null 2>&1; then
+    "$launch_command" &
+  elif [ -x "$HOME/.local/bin/$launch_command" ]; then
+    "$HOME/.local/bin/$launch_command" &
+  else
+    echo "Error: Application '$launch_command' not found or not executable." >&2
+    exit 1
+  fi
+fi
