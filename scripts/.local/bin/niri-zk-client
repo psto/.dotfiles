@@ -1,0 +1,2 @@
+#!/usr/bin/env sh
+footclient -a "zk_notes" -e "tmux" -c "sesh connect notes"
