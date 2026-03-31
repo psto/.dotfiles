@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+
+set -o errexit
+set -o pipefail
+set -o nounset
+
+SEND_NTFY=false
+
+while getopts "nh" opt; do
+  case $opt in
+    n) SEND_NTFY=true ;;
+    h) echo "Usage: $0 [-n] [-h]"; exit 0 ;;
+    *) echo "Usage: $0 [-n] [-h]" >&2; exit 1 ;;
+  esac
+done
+shift $((OPTIND - 1))
+
+time_input=$(vicinae dmenu --placeholder 'Minutes')
+time_normalized=$(echo "$time_input" | sed 's/,/./g')
+
+if [ -z "$time_normalized" ] || ! echo "$time_normalized" | grep -Eq '^[0-9]+(\.[0-9]+)?$'; then
+    exit 1
+fi
+message=$(vicinae dmenu --placeholder 'Message')
+
+if [ -z "$message" ]; then
+    message="Timer Up!"
+fi
+
+time_seconds=$((${time_normalized%.*} * 60))
+
+notify-send "Timer Set" "Alarm for '$message' in $time_normalized minutes."
+
+(
+  sleep "$time_seconds"
+  export DISPLAY="${DISPLAY:-:0}"
+  notify-send -u critical -t 0 'Timer Done' "$message"
+  if [ "$SEND_NTFY" = true ]; then
+      ntfy pub alerts "$message"
+  fi
+  mpv --no-config ~/public/music/ubuntu_add.mp3 &
+) & disown
