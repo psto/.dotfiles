@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+WINDOW_IDS_FILE="${XDG_CACHE_HOME:-$HOME/.cache}/niri_previous_window_id"
+
+if [[ ! -f "$WINDOW_IDS_FILE" ]]; then
+    echo "No previous window ID found." >&2
+    exit 1
+fi
+
+previous_id=$(< "$WINDOW_IDS_FILE")
+
+if [[ -z "$previous_id" ]]; then
+    echo "Previous window ID is empty." >&2
+    exit 1
+fi
+
+niri msg action focus-window --id "$previous_id"
