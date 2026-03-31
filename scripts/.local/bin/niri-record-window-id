@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+# Record the last two niri windows ids for niri-back-and-forth script
+
+set -o errexit
+set -o pipefail
+set -o nounset
+
+WINDOW_IDS_FILE="${XDG_CACHE_HOME:-$HOME/.cache}/niri_previous_window_id"
+
+mkdir -p "$(dirname "$WINDOW_IDS_FILE")"
+
+cleanup() {
+  rm -f "$WINDOW_IDS_FILE"
+}
+trap cleanup EXIT
+
+last_id=""
+previous_id=""
+
+while read -r event; do
+  if [[ "$event" == *"WindowFocusChanged"* ]]; then
+    current_window_id=$(jq -r '.WindowFocusChanged.id // empty' <<<"$event")
+
+    if [[ -n "$current_window_id" && "$current_window_id" != "$last_id" ]]; then
+      previous_id="$last_id"
+      last_id="$current_window_id"
+
+      if [[ -n "$previous_id" ]]; then
+        echo "$previous_id" >"$WINDOW_IDS_FILE"
+      fi
+    fi
+  fi
+done < <(niri msg --json event-stream)
