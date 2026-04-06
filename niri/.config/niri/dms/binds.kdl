@@ -1,39 +1,43 @@
 binds {
-    Mod+Space hotkey-overlay-title="Application Launcher" { 
-        spawn "dms" "ipc" "call" "spotlight" "toggle"; 
+    // Mod+Space hotkey-overlay-title="Application Launcher" {
+    //     spawn "dms" "ipc" "call" "spotlight" "toggle";
+    // }
+
+    // Mod+V hotkey-overlay-title="Clipboard Manager" {
+    //     spawn "dms" "ipc" "call" "clipboard" "toggle";
+    // }
+
+    // Mod+M hotkey-overlay-title="Task Manager" {
+    //     spawn "dms" "ipc" "call" "processlist" "toggle";
+    // }
+
+    // Mod+Comma hotkey-overlay-title="Settings" {
+    //     spawn "dms" "ipc" "call" "settings" "toggle";
+    // }
+
+    Mod+M hotkey-overlay-title="Notification Center" {
+        spawn "dms" "ipc" "call" "notifications" "toggle";
     }
 
-    Mod+V hotkey-overlay-title="Clipboard Manager" { 
-        spawn "dms" "ipc" "call" "clipboard" "toggle"; 
-    }
-
-    Mod+M hotkey-overlay-title="Task Manager" { 
-        spawn "dms" "ipc" "call" "processlist" "toggle"; 
-    }
-
-    Mod+Comma hotkey-overlay-title="Settings" { 
-        spawn "dms" "ipc" "call" "settings" "toggle"; 
-    }
-
-    Mod+N hotkey-overlay-title="Notification Center" {
-        spawn "dms" "ipc" "call" "notifications" "toggle"; 
-    }
-
-    Mod+Y hotkey-overlay-title="Browse Wallpapers" {
-        spawn "dms" "ipc" "call" "dankdash" "wallpaper";
-    }
+    // Mod+Y hotkey-overlay-title="Browse Wallpapers" {
+    //     spawn "dms" "ipc" "call" "dankdash" "wallpaper";
+    // }
 
     Mod+Shift+N hotkey-overlay-title="Notepad" {
-      spawn "dms" "ipc" "call" "notepad" "toggle";  
-    }
-    
-    Mod+Alt+L hotkey-overlay-title="Lock Screen" { 
-        spawn "dms" "ipc" "call" "lock" "lock"; 
+      spawn "dms" "ipc" "call" "notepad" "toggle";
     }
 
-    Ctrl+Alt+Delete hotkey-overlay-title="Task Manager" { 
-        spawn "dms" "ipc" "call" "processlist" "toggle"; 
-    }    
+    Mod+Alt+L hotkey-overlay-title="Lock Screen" {
+        spawn "dms" "ipc" "call" "lock" "lock";
+    }
+
+    Mod+Shift+E hotkey-overlay-title="Power Menu" {
+      spawn "dms" "ipc" "call" "powermenu" "toggle";
+    }
+
+    Ctrl+Alt+Delete hotkey-overlay-title="Task Manager" {
+        spawn "dms" "ipc" "call" "processlist" "toggle";
+    }
 
     // Audio
     XF86AudioRaiseVolume allow-when-locked=true {
@@ -48,12 +52,12 @@ binds {
     XF86AudioMicMute allow-when-locked=true {
         spawn "dms" "ipc" "call" "audio" "micmute";
     }
-    
+
     // BL
     XF86MonBrightnessUp allow-when-locked=true {
        spawn "dms" "ipc" "call" "brightness" "increment" "5" "";
     }
     XF86MonBrightnessDown allow-when-locked=true {
        spawn "dms" "ipc" "call" "brightness" "decrement" "5" "";
-    }  
+    }
 }
