@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+socket="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/foot-${WAYLAND_DISPLAY:-wayland-0}.sock"
+while [ ! -S "$socket" ]; do sleep 0.5; done
+footclient -a "terminal" -e "tmux"
