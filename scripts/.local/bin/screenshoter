@@ -1,0 +1,72 @@
+#!/usr/bin/env bash
+# Screenshot region, window or monitor(s) with grim and save to XDG_PICTURES_DIR
+
+set -o errexit
+set -o pipefail
+set -o nounset
+
+usage() {
+    cat <<EOF
+Usage: screenshoter [MODE]
+
+Screenshot modes:
+  region          Select a region to screenshot (default)
+  window          Screenshot the focused niri window
+  monitor-focused Screenshot the focused monitor
+  monitor-all     Screenshot all monitors
+
+Options:
+  -h, --help      Show this help message
+EOF
+}
+
+check_dependencies() {
+  local missing=()
+  for cmd in grim slurp niri satty jq; do
+    if ! command -v "$cmd" &>/dev/null; then
+      missing+=("$cmd")
+    fi
+  done
+  if ((${#missing[@]} > 0)); then
+    echo "Missing dependencies: ${missing[*]}" >&2
+    exit 1
+  fi
+}
+
+ensure_screenshot_dir() {
+  local dir="${XDG_PICTURES_DIR}/screenshots"
+  if [[ ! -d "$dir" ]]; then
+    mkdir -p "$dir"
+  fi
+}
+
+check_dependencies
+ensure_screenshot_dir
+
+MODE="${1:-region}"
+
+case "${MODE}" in
+  -h|--help)
+    usage
+    exit 0
+    ;;
+  region)
+    grim -g "$(slurp -d)" -
+    ;;
+  window)
+    niri msg action screenshot-window
+    sleep 0.5
+    wl-paste --type image/png
+    ;;
+  monitor-focused)
+    grim -o "$(niri msg --json focused-output | jq --raw-output .name)" -
+    ;;
+  monitor-all)
+    grim -
+    ;;
+  *)
+    echo "'${MODE}' is not a supported mode, aborting!" >&2
+    echo "Run 'screenshoter --help' for usage information." >&2
+    exit 1
+    ;;
+esac | satty --filename - --output-filename "${XDG_PICTURES_DIR}/screenshots/%Y-%m-%d_%H-%m-%S-dot.png"
