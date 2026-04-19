@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+
+# This script captures selected text from the Sioyek PDF viewer and creates a
+# new Markdown note in an Obsidian-based Incremental Reading (IR) folder.
+# It handles metadata, generates a timestamped UUID, and creates a clickable
+# link back to the specific PDF page.
+#
+# SIOYEK SETUP: add the following lines to your config files:
+#   File: ~/.config/sioyek/prefs_user.config
+#     new_command _ir_extract /home/piotr/.local/bin/ir-extract-sioyek "%{selected_text}" "%{file_path}" "%{page_number}"
+#
+#   File: ~/.config/sioyek/keys_user.config
+#     _ir_extract _ir_extract;add_highlight <C-x>
+#     (Note: This maps Ctrl+X to trigger the script and add a highlight)
+
+# Capture and immediately STRIP the literal quotes
+TEXT=$(echo "$1" | sed 's/"//g')
+FILE_PATH=$(echo "$2" | sed 's/"//g')
+PAGE=$(echo "$3" | sed 's/"//g')
+ZK_NOTEBOOK="$HOME/public/documents/notes/obsidian-notes/Areas/Read/IR"
+
+echo "Script started at $(date)"
+echo "Args: TEXT=$TEXT, FILE=$FILE_PATH, PAGE=$PAGE"
+
+# Ensure the directory exists
+mkdir -p "$ZK_NOTEBOOK"
+
+# Metadata
+UUID=$(date +%Y%m%d%H%M%S)
+DATE_FMT=$(date "+%Y-%m-%d %H:%M")
+FILENAME=$(basename "$FILE_PATH")
+TARGET_FILE="$ZK_NOTEBOOK/ir_${UUID}.md"
+
+# Clickable link
+ACTUAL_PAGE=$((PAGE + 1))
+SIOYEK_LINK="[Open PDF (Page $ACTUAL_PAGE)](<file://$FILE_PATH>)"
+
+cat << EOF > "$TARGET_FILE"
+---
+uuid: $UUID
+created: $DATE_FMT
+updated: $DATE_FMT
+tags:
+  - status/reading
+---
+
+# Extract: $FILENAME (Page $ACTUAL_PAGE)
+
+$TEXT
+
+Context: $SIOYEK_LINK
+EOF
+
+echo "File created at $TARGET_FILE"
