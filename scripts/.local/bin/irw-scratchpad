@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+footclient -a "ir_monitor" -e "$HOME/.local/bin/irw" "review" "--compact"
