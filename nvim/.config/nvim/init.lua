@@ -1,7 +1,3 @@
-require("config/options")
-require("config/autocommands")
-require("config/keymaps")
-require("config/lazy")
 require("vim._core.ui2").enable({
 	enable = true, -- Whether to enable or disable the UI.
 	msg = { -- Options related to the message module.
@@ -11,3 +7,7 @@ require("vim._core.ui2").enable({
 		timeout = 4000, -- Time a message is visible in the message window.
 	},
 })
+require("config/options")
+require("config/autocommands")
+require("config/keymaps")
+require("config/lazy")
