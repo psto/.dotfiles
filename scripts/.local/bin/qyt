@@ -1,0 +1,100 @@
+#!/usr/bin/env bash
+
+set -o errexit
+set -o pipefail
+set -o nounset
+
+usage() {
+  cat <<EOF
+Usage: qyt [OPTIONS] <youtube_url> [<prompt>]
+
+Ask questions about a YouTube video.
+
+Arguments:
+  youtube_url         The URL of the YouTube video
+  prompt              Question or prompt (default: summarize key takeaways)
+
+Options:
+  -m, --model <model> LLM model to use
+  -h, --help          Show this help message
+
+Examples:
+  qyt https://youtube.com/watch?v=abc123
+  qyt https://youtube.com/watch?v=abc123 "What is the main topic?"
+  qyt -m gemini-3-flash-preview https://youtube.com/watch?v=abc123 "Explain this"
+
+After the response, continue chatting with: llm chat -c
+EOF
+}
+
+check_dependencies() {
+  local missing=()
+  for cmd in yt-dlp curl llm sd; do
+    if ! command -v "$cmd" &>/dev/null; then
+      missing+=("$cmd")
+    fi
+  done
+  if ((${#missing[@]} > 0)); then
+    echo "Missing dependencies: ${missing[*]}" >&2
+    exit 1
+  fi
+}
+
+check_dependencies
+
+MODEL="gemini-flash-latest"
+POSITIONAL_ARGS=()
+
+while (($# > 0)); do
+  case "$1" in
+    -m|--model)
+      if [[ -z "${2:-}" ]]; then
+          echo "Error: --model requires an argument" >&2
+          exit 1
+      fi
+      MODEL="$2"
+      shift 2
+      ;;
+    -h|--help)
+      usage
+      exit 0
+      ;;
+    --)
+      shift
+      POSITIONAL_ARGS+=("$@")
+      break
+      ;;
+    *)
+      POSITIONAL_ARGS+=("$1")
+      shift
+      ;;
+  esac
+done
+
+set -- "${POSITIONAL_ARGS[@]}"
+
+if [[ $# -lt 1 ]]; then
+  echo "Error: youtube_url is required" >&2
+  usage >&2
+  exit 1
+fi
+
+YOUTUBE_URL="$1"
+QUESTION="${2:-summarise the key takeaways from the video}"
+
+SUBTITLE_URL=$(yt-dlp -q --skip-download --convert-subs srt --write-sub --sub-langs "en" --write-auto-sub --print "requested_subtitles.en.url" "$YOUTUBE_URL")
+
+if [[ -z "$SUBTITLE_URL" ]]; then
+  echo "Error: Could not retrieve subtitles for the video" >&2
+  exit 1
+fi
+
+CONTENT=$(curl -s "$SUBTITLE_URL" | sed '/^$/d' | grep -v '^[0-9]*$' | grep -v '\-->' | sed 's/<[^>]*>//g' | tr '\n' ' ')
+
+SYSTEM="You are a helpful assistant that can answer questions about the content.
+Reply concisely, in a few sentences.
+
+My first question is:
+${QUESTION}"
+
+echo "$CONTENT" | llm -m "$MODEL" -s "$SYSTEM" | sd
