@@ -9,14 +9,15 @@
   diff-words = diff --color-words='[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+'
   diff-staged = diff --cached
   diff-upstream = !git fetch origin && git diff master origin/master
-  evolution = log --oneline -p -S 
+  evolution = log --oneline -p -S
   history = log --oneline -S
-  history-one-file = log --follow --patch -- 
+  history-one-file = log --follow --patch --
   last = log -1 HEAD --stat
   lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
   pr = pull --rebase
   dt = "! args=$@; shift $#; nvim -c \"DiffviewOpen $args\""
   mergetool = "!nvim -c DiffviewOpen"
+	sync-dates = "!f() { git filter-branch -f --env-filter \"export GIT_COMMITTER_DATE=\\\"\\$GIT_AUTHOR_DATE\\\"\" $1..HEAD; }; f"
 [interactive]
   diffFilter = delta --color-only
 [add.interactive]
@@ -37,10 +38,10 @@
   line-numbers-zero-style       = "#3b4261"
 [diff]
   colorMoved = default
-  tool = nvimdiff
-[difftool]
-  prompt = false
-[grep] 
+  tool = nvim_difftool
+[difftool "nvim_difftool"]
+  cmd = nvim -c \"packadd nvim.difftool\" -c \"DiffTool $LOCAL $REMOTE\"
+[grep]
   lineNumber = true
 [merge]
   conflictstyle = zdiff3
