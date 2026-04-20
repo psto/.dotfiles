@@ -16,6 +16,10 @@ LABELS["run"]="🏃"
 COMMANDS["edit-hypr"]='exec footclient -a floating -e nvim ~/.config/hypr/hyprland.conf'
 LABELS["edit-hypr"]="✨"
 
+# Quickly niri
+COMMANDS["edit-niri"]='exec footclient -a floating -e nvim ~/.config/niri/config.kdl'
+LABELS["edit-niri"]="💻"
+
 # Quickly sway
 COMMANDS["edit-sway"]='exec footclient -a floating -e nvim +":cd %" ~/.config/sway/'
 LABELS["edit-sway"]="🌳"
@@ -60,6 +64,14 @@ LABELS["dai"]="🦆"
 COMMANDS["emo"]="exec rofi -modi emoji -show emoji -config ~/.config/rofi/tokyo_night_transparent.rasi"
 LABELS["emo"]="😎"
 
+# fetch article
+COMMANDS["fetch"]='exec sh -c ~/.local/bin/fetch-article'
+LABELS["fetch"]="❓"
+
+# get AI prompt
+COMMANDS["prompts"]='exec foot -a floating -e ~/.local/bin/get-prompt'
+LABELS["prompts"]="🤖"
+
 # gocheat
 COMMANDS["cheat"]='exec foot -a floating -e gocheat'
 LABELS["cheat"]="📝"
@@ -67,6 +79,10 @@ LABELS["cheat"]="📝"
 # ipinfo
 COMMANDS["ipinfo"]='exec foot -H -a floating -e http "ipinfo.io" | jq'
 LABELS["ipinfo"]="📈"
+
+# irw
+COMMANDS["irw"]='exec foot -H -e ~/.local/bin/irw review'
+LABELS["irw"]="x"
 
 # killall
 COMMANDS["ka"]='exec foot -a floating -e killall "${input}"'
@@ -96,9 +112,33 @@ LABELS["navi"]="🧭"
 COMMANDS["ncdu"]='exec foot -a floating -e ncdu --color dark'
 LABELS["ncdu"]="💽"
 
+# OCR image
+COMMANDS["ocr-image"]="$HOME/.local/bin/ocr-image"
+LABELS["ocr-image"]="📷"
+
 # open webpage
 COMMANDS["www"]='$browser "${input}"'
 LABELS["www"]="🌐"
+
+# pomodoro
+COMMANDS["pomod"]='exec foot -a floating -e pomo'
+LABELS["pomod"]="🍅"
+
+# pomodoro stats
+COMMANDS["pomos"]='exec foot -a maximize -e pomo stats'
+LABELS["pomos"]="🍅"
+
+# question an article with llm
+COMMANDS["q"]='exec foot -a floating -e ~/.local/bin/q "${input}"'
+LABELS["q"]="❓"
+
+# question a YouTube video with llm
+COMMANDS["qyt"]='exec foot -a floating -e ~/.local/bin/qyt "${input}"'
+LABELS["qyt"]="❓"
+
+# qr
+COMMANDS["qr"]='exec sh -c "wl-paste | qrencode -s 30 -o - | imv -"'
+LABELS["qr"]="❓"
 
 # Reboot
 COMMANDS["reboot"]='reboot'
@@ -112,8 +152,8 @@ LABELS["calc"]="🧮"
 COMMANDS["qrcp"]="$HOME/.local/bin/rofi-qrcp"
 LABELS["qrcp"]="📎"
 
-# Search Timer
-COMMANDS["timer"]="$HOME/.local/bin/rofi-timer"
+# Timer
+COMMANDS["timer"]='$HOME/.local/bin/timer "${input}"'
 LABELS["timer"]="⏲️"
 
 # Rofi WiFi
@@ -382,6 +422,10 @@ LABELS["github-desktop"]="🐙"
 COMMANDS["gimp"]="gimp"
 LABELS["gimp"]="🐺"
 
+# Helium
+COMMANDS["helium"]="helium-browser"
+LABELS["helium"]="🇭"
+
 # Hyprpicker
 COMMANDS["hyprpicker"]="exec hyprpicker -a"
 LABELS["hyprpicker"]="🎨"
@@ -550,7 +594,7 @@ done
 # Show rofi.
 function start()
 {
-print_menu | rofi -dmenu -p ":" -theme-str 'listview { scrollbar: false; } entry { placeholder: ""; }' -config ~/.config/rofi/tokyo_night_transparent.rasi
+print_menu | vicinae dmenu --placeholder ":"
 }
 
 # Run it
