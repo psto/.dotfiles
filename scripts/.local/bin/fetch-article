@@ -1,0 +1,191 @@
+#!/usr/bin/env bash
+
+set -o errexit
+set -o pipefail
+set -o nounset
+
+usage() {
+    cat <<EOF
+Usage: fetch-article [OPTIONS] [<url>]
+
+Fetch and save article content from URL.
+
+Arguments:
+url The URL to fetch (default: from clipboard)
+
+Options:
+-o, --output <dir> Output directory (default: ~/downloads/docs)
+--open Open file after saving
+-q, --quiet Suppress all output except errors
+-O, --output-filepath Output only the filepath (for scripting)
+-h, --help Show this help message
+
+Examples:
+fetch-article
+fetch-article https://example.com/article
+fetch-article -o ~/articles https://example.com/article
+fetch-article --open --quiet https://example.com/article
+fetch-article --output-filepath https://example.com/article
+EOF
+}
+
+check_dependencies() {
+  local missing=()
+  for cmd in curl wl-paste; do
+    if ! command -v "$cmd" &>/dev/null; then
+      missing+=("$cmd")
+    fi
+  done
+  if ((${#missing[@]} > 0)); then
+    echo "Missing dependencies: ${missing[*]}" >&2
+    exit 1
+  fi
+}
+
+cleanup() {
+  if [[ -f "${TEMP_FILEPATH:-}" ]]; then
+    rm -f "$TEMP_FILEPATH"
+  fi
+}
+
+check_dependencies
+
+trap cleanup EXIT
+
+OUTPUT_DIR="$HOME/downloads/docs"
+QUIET=false
+OPEN=false
+OUTPUT_FILEPATH_MODE=false
+POSITIONAL_ARGS=()
+
+while (($# > 0)); do
+case "$1" in
+-o|--output)
+if [[ -z "${2:-}" ]]; then
+echo "Error: --output requires an argument" >&2
+exit 1
+fi
+OUTPUT_DIR="$2"
+shift 2
+;;
+--open)
+OPEN=true
+shift
+;;
+-q|--quiet)
+QUIET=true
+shift
+;;
+-O|--output-filepath)
+OUTPUT_FILEPATH_MODE=true
+shift
+;;
+-h|--help)
+usage
+exit 0
+;;
+--)
+shift
+POSITIONAL_ARGS+=("$@")
+break
+;;
+*)
+POSITIONAL_ARGS+=("$1")
+shift
+;;
+esac
+done
+
+set -- "${POSITIONAL_ARGS[@]}"
+
+OUTPUT_DIR="${OUTPUT_DIR/#\~/$HOME}"
+
+SOURCE_URL="${1:-}"
+
+if [[ -z "$SOURCE_URL" ]]; then
+	CLIPBOARD_CONTENT=$(wl-paste --no-newline 2>/dev/null) || true
+	if [[ -z "$CLIPBOARD_CONTENT" ]]; then
+		echo "Error: No URL provided and clipboard is empty" >&2
+		exit 1
+	fi
+	SOURCE_URL="$CLIPBOARD_CONTENT"
+	if [[ "$QUIET" != true && "$OUTPUT_FILEPATH_MODE" != true ]]; then
+		echo "Using URL from clipboard: $SOURCE_URL"
+	fi
+else
+	if [[ "$QUIET" != true && "$OUTPUT_FILEPATH_MODE" != true ]]; then
+		echo "Using URL from command-line argument: $SOURCE_URL"
+	fi
+fi
+
+if ! printf '%s' "$SOURCE_URL" | grep -qE '^https?://'; then
+  echo "Error: The provided URL does not appear to be valid (must start with http:// or https://)" >&2
+  echo "URL was: $SOURCE_URL" >&2
+  exit 1
+fi
+
+TARGET_URL="https://r.jina.ai/${SOURCE_URL}"
+
+TEMP_FILEPATH=$(mktemp)
+if [[ -z "$TEMP_FILEPATH" ]]; then
+  echo "Error: Failed to create a temporary file" >&2
+  exit 1
+fi
+
+if ! mkdir -p "$OUTPUT_DIR"; then
+  echo "Error: Failed to create directory ${OUTPUT_DIR}" >&2
+  exit 1
+fi
+
+if [[ "$QUIET" != true && "$OUTPUT_FILEPATH_MODE" != true ]]; then
+	echo "Fetching content from: ${TARGET_URL}"
+fi
+
+if ! curl -sL -o "${TEMP_FILEPATH}" "${TARGET_URL}"; then
+  echo "Error: Failed to fetch content from ${TARGET_URL}" >&2
+  exit 1
+fi
+
+if [[ ! -s "${TEMP_FILEPATH}" ]]; then
+  echo "Error: Fetch seemed successful, but the output file is empty" >&2
+  echo "URL was: ${TARGET_URL}" >&2
+  exit 1
+fi
+
+if grep -q "Warning: Target URL returned error" "${TEMP_FILEPATH}"; then
+  echo "Error: r.jina.ai returned an error" >&2
+  cat "${TEMP_FILEPATH}" >&2
+  exit 1
+fi
+
+FIRST_LINE=$(head -n 1 "${TEMP_FILEPATH}")
+
+TIMESTAMP=$(date +%Y%m%d_%H%M%S)
+SANITIZED_TITLE="untitled"
+
+if echo "$FIRST_LINE" | grep -qE '^Title:'; then
+  RAW_TITLE=$(echo "$FIRST_LINE" | sed 's/^Title: //')
+  SANITIZED_TITLE=$(echo "$RAW_TITLE" | tr '[:upper:]' '[:lower:]' | sed 's/[[:space:]]\+/-/g; s/[^a-z0-9-]\+//g; s/^-//; s/-$//')
+fi
+
+OUTPUT_FILENAME="${TIMESTAMP}_${SANITIZED_TITLE}.txt"
+OUTPUT_FILEPATH="${OUTPUT_DIR}/${OUTPUT_FILENAME}"
+
+mv "${TEMP_FILEPATH}" "${OUTPUT_FILEPATH}"
+
+if [[ "$OUTPUT_FILEPATH_MODE" == true ]]; then
+echo "$OUTPUT_FILEPATH"
+elif [[ "$QUIET" != true ]]; then
+echo "Content saved successfully to: ${OUTPUT_FILEPATH}"
+if command -v notify-send &>/dev/null; then
+notify-send "fetch-article" "Content saved successfully to: ${OUTPUT_FILEPATH}"
+fi
+fi
+
+if [[ "$OPEN" == true ]]; then
+  if ! command -v xdg-open &>/dev/null; then
+    exit 1
+    echo "Error: xdg-open is required for --open but not found" >&2
+  fi
+  xdg-open "$OUTPUT_FILEPATH"
+fi
