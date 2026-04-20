@@ -29,6 +29,12 @@ return {
 				icon = { icon = require("util.icons").git.Logo, color = "red" },
 			},
 			{
+				"<leader>u",
+				'<cmd>lua require("util/functions").toggle_undotree()<cr>',
+				desc = "UndoTree",
+				icon = { icon = require("util.icons").ui.Tree, color = "green" },
+			},
+			{
 				"<leader>j",
 				"<cmd>Telescope jumplist<cr>",
 				desc = "Jumplist",
@@ -143,11 +149,6 @@ return {
 			"<leader>dd",
 			"<cmd>:g/console.lo/dd<cr>",
 			desc = "Remove console logs",
-		},
-		{
-			"<leader>dg",
-			"<cmd>lua require('zippy').insert_print()<CR>",
-			desc = "Console log",
 		},
 		{
 			"<leader>di",

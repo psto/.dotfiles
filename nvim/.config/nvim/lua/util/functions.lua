@@ -62,4 +62,9 @@ function M.get_url_title()
 	vim.api.nvim_put({ markdown_url }, "", true, true)
 end
 
+function M.toggle_undotree()
+	vim.cmd.packadd("nvim.undotree")
+	require("undotree").open()
+end
+
 return M
