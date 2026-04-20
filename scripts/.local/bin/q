@@ -1,0 +1,102 @@
+#!/usr/bin/env bash
+
+set -o errexit
+set -o pipefail
+set -o nounset
+
+usage() {
+  cat <<EOF
+Usage: q [OPTIONS] <article_url> [<prompt>]
+
+Ask questions about an article.
+
+Arguments:
+  article_url         The URL of the article
+  prompt              Question or prompt (default: summarize key takeaways)
+
+Options:
+  -m, --model <model> LLM model to use
+  -h, --help          Show this help message
+
+Examples:
+  q https://example.com/article
+  q https://example.com/article "What is the main topic?"
+  q -m gemini-3-flash-preview https://example.com/article "Explain this"
+
+After the response, continue chatting with: llm chat -c
+EOF
+}
+
+check_dependencies() {
+  local missing=()
+  for cmd in curl llm sd; do
+    if ! command -v "$cmd" &>/dev/null; then
+      missing+=("$cmd")
+    fi
+  done
+  if ((${#missing[@]} > 0)); then
+    echo "Missing dependencies: ${missing[*]}" >&2
+    exit 1
+  fi
+}
+
+check_dependencies
+
+MODEL="gemini-flash-latest"
+POSITIONAL_ARGS=()
+
+while (($# > 0)); do
+  case "$1" in
+    -m|--model)
+      if [[ -z "${2:-}" ]]; then
+        echo "Error: --model requires an argument" >&2
+        exit 1
+      fi
+      MODEL="$2"
+      shift 2
+      ;;
+    -h|--help)
+      usage
+      exit 0
+      ;;
+    --)
+      shift
+      POSITIONAL_ARGS+=("$@")
+      break
+      ;;
+    *)
+      POSITIONAL_ARGS+=("$1")
+      shift
+      ;;
+  esac
+done
+
+set -- "${POSITIONAL_ARGS[@]}"
+
+if [[ $# -lt 1 ]]; then
+  echo "Error: article_url is required" >&2
+  usage >&2
+  exit 1
+fi
+
+ARTICLE_URL="$1"
+QUESTION="${2:-summarise the key takeaways from the article}"
+
+if ! CONTENT=$(curl -s "https://r.jina.ai/$ARTICLE_URL"); then
+  echo "Error: curl command failed" >&2
+  exit 1
+fi
+
+if [[ "$CONTENT" == *"Warning: Target URL returned error"* ]]; then
+  echo "Error: r.jina.ai returned an error" >&2
+  echo "$CONTENT"
+  exit 1
+fi
+
+SYSTEM="You are a helpful assistant that can answer questions about the content.
+Reply concisely, in a few sentences.
+
+My first question is:
+${QUESTION}"
+
+echo "$CONTENT" | llm -m "$MODEL" -s "$SYSTEM" | sd
