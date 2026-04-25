@@ -1,0 +1,22 @@
+#!/usr/bin/env sh
+
+set -o errexit
+set -o nounset
+
+# Define the root directory of your prompts
+NOTES_DIR="$HOME/public/documents/notes/obsidian-notes/Resources/Programming/AI/AI prompts"
+
+file_list=$(find "$NOTES_DIR" -type f -name "*.md")
+
+selected_entry=$(printf "%s" "$file_list" | vicinae dmenu -p "Select a prompt")
+
+if [ -z "$selected_entry" ]; then
+  exit 0
+fi
+
+# Extract the content between the first pair of ``` and ``` from the selected file.
+prompt_content=$(sed -n '/^```/,/^```/p' -- "$selected_entry" | sed '1d;$d')
+
+printf '%s' "$prompt_content" | wl-copy
+
+notify-send "Prompt Copied" "$(basename "$selected_entry")"
