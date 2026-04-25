@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+# Search files via rg and vicinae dmenu and open with gio open
+#
+# Usage: vicinae-search [dirs...]
+# Default: $HOME/public $HOME/downloads
+
+SEARCH_DIRS="${*:-$HOME/public $HOME/downloads}"
+EXCLUDES="!{*.srt,*.rar,*.txt,*.zip,*.nfo}"
+rg --no-messages --files $SEARCH_DIRS -g "$EXCLUDES" \
+  | sed "s|$HOME/||" \
+  | vicinae dmenu \
+  | sed "s|^|$HOME/|" \
+  | xargs -d "\n" gio open

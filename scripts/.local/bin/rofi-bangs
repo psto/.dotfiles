@@ -165,7 +165,7 @@ COMMANDS["scitopdf"]='exec foot -H -a floating -e scitopdf'
 LABELS["scitopdf"]="📄"
 
 # Search for files
-COMMANDS["fzf-search"]="$HOME/.local/bin/rofi-search"
+COMMANDS["fzf-search"]="$HOME/.local/bin/vicinae-search"
 LABELS["fzf-search"]="🔍"
 
 # Suspend
