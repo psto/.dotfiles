@@ -1,0 +1,167 @@
+// This configuration is merged with the default vicinae configuration file, which you can obtain by running the `vicinae config default` command.
+// Every item defined in this file takes precedence over the values defined in the default config or any other imported file.
+//
+// You can make manual edits to this file, however you should keep in mind that this file may be written to by vicinae when a configuration change is made through the GUI.
+// When that happens, any custom comments or formatting will be lost.
+//
+// If you want to maintain a configuration file with your own comments and formatting, you should create a separate file and add it to the 'imports' array.
+//
+// Learn more about configuration at https://docs.vicinae.com/config
+
+{
+   "$schema": "https://vicinae.com/schemas/config.json",
+   "close_on_focus_loss": true,
+   "font": {
+      "normal": {
+         "family": "Inter Variable",
+         "size": 12
+      }
+   },
+   "theme": {
+      "light": {
+         "name": "tokyo-night"
+      },
+      "dark": {
+         "name": "tokyo-night"
+      }
+   },
+   "telemetry": {
+      "system_info": false
+   },
+   "launcher_window": {
+      "opacity": 0.8
+   },
+   "fallbacks": [
+      "@psto/sesh:sesh",
+      "@tegola/store.raycast.duck-duck-go-search:index",
+      "shortcuts:3e3c282c-2334-4cf7-89ed-d74f045c7297",
+      "files:search"
+   ],
+   "providers": {
+      "@elliotdes/store.raycast.google-tasks": {
+         "enabled": true
+      },
+      "@gebeto/store.raycast.translate": {
+         "preferences": {
+            "autoInput": true,
+            "defaultAction": "copy",
+            "lang1": "auto",
+            "lang2": "pl"
+         }
+      },
+      "@ilian/store.raycast.groq": {
+         "preferences": {
+            "enableStreaming": true,
+            "model": "openai/gpt-oss-120b",
+            "showMetadata": true
+         },
+         "entrypoints": {
+            "shorter": {
+               "enabled": true
+            }
+         }
+      },
+      "@knoopx/store.vicinae.firefox": {
+         "enabled": true,
+         "preferences": {
+            "profile_dir": ".mozilla/firefox/"
+         }
+      },
+      "@marcjulian/store.raycast.obsidian": {
+         "preferences": {
+            "configFileName": ".obsidian",
+            "vaultPath": "/home/piotr/public/documents/notes/obsidian-notes"
+         }
+      },
+      "@psto/sesh": {
+         "entrypoints": {
+            "sesh": {
+               "preferences": {
+                  "environmentPath": "/usr/local/bin",
+                  "openWithApp": "wezterm"
+               }
+            }
+         }
+      },
+      "@tegola/store.raycast.duck-duck-go-search": {
+         "entrypoints": {
+            "index": {
+               "alias": "d"
+            }
+         }
+      },
+      "@thomaslombart/store.raycast.todoist": {
+         "preferences": {
+            "focusLabelName": "",
+            "useConfetti": false
+         },
+         "entrypoints": {
+            "home": {
+               "preferences": {
+                  "view": "today"
+               }
+            }
+         }
+      },
+      "@tonka3000/store.raycast.weather": {
+         "preferences": {
+            "clockformat": "24h",
+            "defaultquery": "Lubań",
+            "unitsystem": "metric"
+         }
+      },
+      "@vimtor/store.raycast.video-downloader": {
+         "preferences": {
+            "autoLoadUrlFromClipboard": true,
+            "autoLoadUrlFromSelectedText": false,
+            "downloadPath": "/home/piotr/downloads",
+            "enableBrowserExtensionSupport": false,
+            "ffmpegPath": "/usr/bin/ffmpeg",
+            "ffprobePath": "/usr/bin/ffprobe",
+            "forceIpv4": false,
+            "homebrewPath": "",
+            "ytdlPath": "/usr/bin/yt-dlp"
+         }
+      },
+      "@wesleycoder/store.raycast.ntfy": {
+         "preferences": {
+            "cache": false,
+            "defaultServer": "https://ntfy.stojanow.org",
+            "defaultTopic": "alerts"
+         }
+      },
+      "@yosy2010/store.raycast.raytaskwarrior": {
+         "preferences": {
+            "taskPath": "/usr/bin/task"
+         }
+      },
+      "applications": {
+         "entrypoints": {
+            "dev.warp.Warp": {
+               "enabled": false
+            },
+            "spotify": {
+               "enabled": false
+            },
+            "spotify-launcher": {
+               "enabled": false
+            }
+         }
+      },
+      "core": {
+         "entrypoints": {
+            "sponsor": {
+               "enabled": false
+            }
+         }
+      },
+      "scripts": {
+         "preferences": {
+            "customDirs": [
+               "/home/piotr/.config/vicinae/scripts",
+               "/home/piotr/.local/share/vicinae/scripts"
+            ]
+         }
+      }
+   }
+}
