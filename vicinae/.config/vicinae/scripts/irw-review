@@ -1,0 +1,8 @@
+#!/bin/env sh
+# @vicinae.schemaVersion 1
+# @vicinae.title irw review
+# @vicinae.mode silent
+# @vicinae.argument1 { "type": "text", "placeholder": "extension", "optional": true }
+# @vicinae.icon 📖
+
+footclient -a "irw_monitor" -e "$HOME/.local/bin/irw" "review" "$1"
