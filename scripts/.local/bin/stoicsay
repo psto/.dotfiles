@@ -1,19 +1,48 @@
-#!/bin/zsh
-# Display a random Stoic quote using cowsay
+#!/usr/bin/env bash
+# Display a random Stoic quote and daily year progress with generous padding
 
+CACHE_DIR="$HOME/.cache"
+CACHE_FILE="$CACHE_DIR/year_progress_daily.txt"
 QUOTES_FILE="$HOME/public/pictures/wallpapers/quotes-stoic.json"
 
-if [ -f "$QUOTES_FILE" ]; then
-  QUOTE_COUNT=$(jq '.quotes | length' "$QUOTES_FILE")
+if [[ -f "$CACHE_FILE" ]]; then
+  CACHE_DATE=$(date -r "$CACHE_FILE" +"%Y-%m-%d" 2>/dev/null)
+  CURRENT_DATE=$(date +"%Y-%m-%d")
+else
+  CACHE_DATE=""
+  CURRENT_DATE="force_update"
+fi
 
+# Update the cache if it's a new day or the file is missing
+if [[ "$CACHE_DATE" != "$CURRENT_DATE" ]]; then
+  if command -v year-progress &>/dev/null; then
+    year-progress -o text > "$CACHE_FILE" 2>/dev/null
+  else
+    echo "Progress tracking active" > "$CACHE_FILE"
+  fi
+fi
+
+echo ""
+
+if [[ -f "$QUOTES_FILE" ]]; then
+  QUOTE_COUNT=$(jq '.quotes | length' "$QUOTES_FILE")
   RANDOM_INDEX=$((RANDOM % QUOTE_COUNT))
 
   QUOTE_TEXT=$(jq -r ".quotes[$RANDOM_INDEX].text" "$QUOTES_FILE")
   QUOTE_AUTHOR=$(jq -r ".quotes[$RANDOM_INDEX].author" "$QUOTES_FILE")
 
-  FULL_QUOTE="$QUOTE_TEXT -- $QUOTE_AUTHOR"
+  FULL_QUOTE="$QUOTE_TEXT — $QUOTE_AUTHOR"
 
-  cowsay -f stoic  "$FULL_QUOTE" <<< "$THE_COW"
+  # Wraps text to 80 characters max and applies 4-space left indent
+  echo "$FULL_QUOTE" | fmt -w 80 | while read -r line; do
+    printf "    %s\n" "$line"
+  done
 else
-  cowsay -f stoic "Quote file not found: $QUOTES_FILE" <<< "$THE_COW"
+  echo "    [!] Error: Quote file not found at $QUOTES_FILE"
+fi
+
+# Print the cached year progress below the quote
+if [[ -f "$CACHE_FILE" ]]; then
+  echo ""
+  sed 's/^/    /' "$CACHE_FILE"
 fi
