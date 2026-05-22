@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+#
+# interactively select and purge deleted taskwarrior tasks via fzf
+#
+# Usage: task-purge
+
+set -o nounset
+set -o pipefail
+
+command -v task >/dev/null 2>&1 || { echo "Error: 'task' command not found" >&2; exit 1; }
+command -v fzf  >/dev/null 2>&1 || { echo "Error: 'fzf' not found" >&2; exit 1; }
+
+deleted_list() {
+  task rc.verbose=nothing status:deleted all \
+    rc.report.all.columns=uuid,uuid.short,description.oneline \
+    rc.report.all.labels=UUID,Short,Description \
+    rc.defaultwidth=0 2>/dev/null |
+  awk '/^[0-9a-f-]{36} / {if (buf) print buf; buf=$0; next} {gsub(/^[[:space:]]+/, ""); buf = buf " " $0} END {if (buf) print buf}' |
+  sed -E 's/[0-9]{4}-[0-9]{2}-[0-9]{2}//g; s/  +/ /g'
+}
+export -f deleted_list
+
+deleted_list_output=$(deleted_list)
+
+if [ -z "$deleted_list_output" ]; then
+  echo "No deleted tasks found." >&2
+  exit 0
+fi
+
+SELECTED_UUIDS=$(printf '%s\n' "$deleted_list_output" | \
+  fzf --multi --with-nth=2.. \
+    --prompt="🗑️ Select tasks to PURGE (Tab to multi-select, Enter to purge, Ctrl+D to purge current): " \
+    --header="[Enter] Purge selected | [Ctrl+A] Select All | [Ctrl+D] Purge highlighted | [Tab] Toggle multi-select" \
+    --bind 'ctrl-a:select-all,ctrl-d:execute-silent(UUID=$(echo {} | awk "{print \$1}"); if [ -n "$UUID" ]; then task "$UUID" purge rc.confirmation=no; fi)+reload(bash -c deleted_list)' \
+    | awk '{print $1}') || true
+
+if [ -n "$SELECTED_UUIDS" ]; then
+  while read -r uuid; do
+    echo "Purging $uuid..."
+    task "$uuid" purge rc.confirmation=no || echo "Warning: failed to purge $uuid" >&2
+  done <<< "$SELECTED_UUIDS"
+fi
