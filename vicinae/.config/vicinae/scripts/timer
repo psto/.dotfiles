@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+# @vicinae.schemaVersion 1
+# @vicinae.title timer
+# @vicinae.mode silent
+# @vicinae.icon ⏲️
+# @vicinae.argument1 { "type": "text", "placeholder": "Minutes" }
+# @vicinae.argument2 { "type": "text", "placeholder": "Message", "optional": true }
+# @vicinae.argument3 { "type": "text", "placeholder": "-n", "optional": true }
+
+SEND_NTFY=false
+
+# Check for the -m flag
+if [ "$3" = "-n" ]; then
+  SEND_NTFY=true
+fi
+
+time_input="$1"
+message="${2:-Timer Up!}"
+
+# Validate and normalize input
+time_normalized=$(echo "$time_input" | sed 's/,/./g')
+
+if ! echo "$time_normalized" | grep -Eq '^[0-9]+(\.[0-9]+)?$' || [ -z "$time_normalized" ]; then
+    exit 1
+fi
+
+# Convert to seconds
+time_seconds=$(echo "$time_normalized * 60" | bc | cut -d'.' -f1)
+
+notify-send "Timer Started" "Alarm for '$message' in $time_normalized minutes."
+
+# Wrap the wait and the alerts in a subshell ( ... )
+(
+    sleep "$time_seconds"
+
+    export DISPLAY=:0
+    notify-send -u critical -t 0 'Timer Done' "$message"
+
+    # Only send to ntfy if the -n flag was passed
+    if [ "$SEND_NTFY" = true ]; then
+        ntfy pub alerts "$message"
+    fi
+
+    mpv --no-config ~/public/music/ubuntu_add.mp3 > /dev/null 2>&1
+) &
+
+# Release the background process and exit the main script
+disown
+exit 0
