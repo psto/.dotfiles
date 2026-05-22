@@ -61,7 +61,7 @@ source "$ZDOTDIR/zsh-functions"
 zsh_add_file "zsh-exports"
 zsh_add_file "zsh-vim-mode"
 zsh_add_file "zsh-aliases"
-zsh_add_file "zsh-prompt"
+# zsh_add_file "zsh-prompt"
 
 # Plugins
 zsh_add_plugin "Aloxaf/fzf-tab" # must be before zsh-autosuggestions & fast-syntax-highlighting

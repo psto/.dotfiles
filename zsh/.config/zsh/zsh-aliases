@@ -55,7 +55,7 @@ alias gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"
 alias archlinx-fix-keys="doas pacman-key --init && doas pacman-key --populate archlinux && doas pacman-key --refresh-keys"
 
 # paru
-alias p="paru"
+alias p="pacnews --lookup --sort asc && paru"
 # remove paru cache
 alias rmparu='DPC="$HOME/.cache/paru/clone"; output=$(dua "$DPC" 2>/dev/null); [ -n "$output" ] && { echo "$output"; trashy put "$DPC"/*; } || echo "No cache"'
 # fuzzy-search and install available pacman packages
@@ -88,11 +88,13 @@ alias gd="git diff -w"
 alias gdw="git diff-words"
 alias gds="git diff --staged"
 alias gp="git push"
+alias gpf="git push --force-with-lease"
 alias gpl="git pull"
 alias gpr="git pull --rebase"
 alias gr="git restore"
-alias grc="git rebase --continue"
 alias gra="git rebase --abort"
+alias grc="git rebase --continue"
+alias gri="git rebase -i --committer-date-is-author-date"
 alias grf="git reflog --date=iso"
 alias grfp="git reflog --date=iso --pretty"
 # "git lg" alias for pretty git log - set and forget
@@ -166,6 +168,16 @@ cheat() { curl "http://cheat.sh/$1"; }
 # get weather, set $HOMETOWN in /etc/environment                        21:07:01
 alias wttr="curl wttr.in/$HOMETOWN"
 
+# gtasks
+alias gt="gtasks"
+alias gtv="gtasks tasks -l TODO view"
+alias gtd="gtasks tasks -l TODO done "
+alias gta="gtasks tasks -l TODO add"
+alias gtrm="gtasks tasks -l TODO rm"
+
+# fabric
+alias fabric="fabric-ai"
+
 # dragon-drop
 alias drag='dragon-drop "$(fzf)"'
 
@@ -175,8 +187,18 @@ alias i2pds="curl --silent http://localhost:7070 | htmlq --text .content | sed -
 # npm-check-updates update global packages
 alias ncuu="ncu -ug | tail -2 | xargs -I '{}' sh -c 'echo \"executing: {}\" && {}'"
 
-# taskwarrior-tui
+# taskwarrior
+alias t="task"
+alias ta="task add"
+alias tdel="task delete"
+alias tnext="task next"
+alias tpurge="task-purge"
+alias tsum="task summary"
 alias tt="taskwarrior-tui"
+alias ttop="task top"
+alias tsync="task sync"
+alias twait="task waiting"
+alias twgsync='tw_gtasks_sync -p personal -l "TODO"'
 
 # transmission-remote
 alias tsm="transmission-remote"
