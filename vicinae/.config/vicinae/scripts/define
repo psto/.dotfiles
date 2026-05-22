@@ -1,0 +1,63 @@
+#!/usr/bin/env bash
+# @vicinae.schemaVersion 1
+# @vicinae.title define
+# @vicinae.mode fullOutput
+# @vicinae.argument1 { "type": "text", "placeholder": "Word", "optional": true }
+
+# Get word from argument $1
+word=$1
+
+# check if word is provided
+if [[ -z "$word" ]]; then
+  # grab word from clipboard
+  if command -v wl-paste &> /dev/null; then
+    word=$(wl-paste -p 2>/dev/null || wl-paste 2>/dev/null)
+  elif command -v xclip &> /dev/null; then
+    word=$(xclip -o -selection primary 2>/dev/null || xclip -o -selection clipboard 2>/dev/null)
+  fi
+fi
+
+# If word is empty, try the clipboard
+if [[ -z "$word" ]]; then
+  if command -v wl-paste &> /dev/null; then
+    word=$(wl-paste -p 2>/dev/null || wl-paste 2>/dev/null)
+  elif command -v xclip &> /dev/null; then
+    word=$(xclip -o -selection primary 2>/dev/null || xclip -o -selection clipboard 2>/dev/null)
+  fi
+fi
+
+# Trim whitespace
+word=$(echo "$word" | xargs)
+
+# Validation
+if [[ -z "$word" || "$word" =~ [\/] ]]; then
+  # notify-send -h string:bgcolor:#bf616a -t 3000 "Invalid input."
+  echo -e "\e[31mError: Invalid input.\e[0m"
+  exit 0
+fi
+
+# API Call
+query=$(curl -s --connect-timeout 5 --max-time 10 "https://api.dictionaryapi.dev/api/v2/entries/en_US/$word")
+
+if [ $? -ne 0 ]; then
+  echo -e "\e[31mError: Connection timeout.\e[0m"
+  exit 1
+fi
+
+if [[ "$query" == *"No Definitions Found"* ]]; then
+  echo -e "\e[31mError: No definitions found for '$word'.\e[0m"
+  exit 0
+fi
+
+# Parsing
+# def=$(echo "$query" | jq -r '[.[].meanings[] | {pos: .partOfSpeech, def: .definitions[].definition}] | .[:3].[] | "\n\(.pos). \(.def)"')
+# bullet points
+def=$(echo "$query" | jq -r '
+  [ .[].meanings[] | {pos: .partOfSpeech, def: .definitions[].definition} ]
+  | .[:3]
+  | .[]
+  | "<b>\(.pos)</b>: \(.def)"
+' | sed 's/^/• /')
+
+echo -e "# $word"
+echo "$def" | glow
