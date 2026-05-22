@@ -225,11 +225,11 @@ return {
 			"<cmd>Telescope diagnostics<cr>",
 			desc = "Find Errors",
 		},
-		{
-			"<leader>ff",
-			"<cmd>Telescope find_files<cr>",
-			desc = "Find Files",
-		},
+		-- {
+		-- 	"<leader>ff",
+		-- 	"<cmd>Telescope find_files<cr>",
+		-- 	desc = "Find Files",
+		-- },
 		{
 			"<leader>fh",
 			"<cmd>Telescope help_tags<cr>",
@@ -265,21 +265,21 @@ return {
 			"<cmd>Telescope spell_suggest theme=get_cursor<CR>",
 			desc = "Spelling",
 		},
-		{
-			"<leader>ft",
-			"<cmd>Telescope live_grep<cr>",
-			desc = "Find Text",
-		},
+		-- {
+		-- 	"<leader>ft",
+		-- 	"<cmd>Telescope live_grep<cr>",
+		-- 	desc = "Find Text",
+		-- },
 		{
 			"<leader>fu",
 			"<cmd>Telescope undo<cr>",
 			desc = "Undo",
 		},
-		{
-			"<leader>fw",
-			"<cmd>Telescope grep_string<cr>",
-			desc = "Find Word",
-		},
+		-- {
+		-- 	"<leader>fw",
+		-- 	"<cmd>Telescope grep_string<cr>",
+		-- 	desc = "Find Word",
+		-- },
 		{
 			"<leader>gD",
 			"<cmd>Gitsigns diffthis HEAD<cr>",

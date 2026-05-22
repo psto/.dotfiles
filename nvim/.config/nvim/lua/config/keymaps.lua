@@ -64,7 +64,7 @@ end, { expr = true, desc = "properly indent on empty line when insert" })
 keymap("c", "<F2>", "\\(.*\\)", opts)
 
 -- telescope
-keymap("n", "<c-p>", [[<CMD>Telescope find_files<CR>]], opts)
+keymap("n", "<c-p>", [[<cmd>FFFFind<CR>]], opts)
 
 -- show buffers
 keymap(
