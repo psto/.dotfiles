@@ -1,0 +1,17 @@
+#!/usr/bin/env sh
+
+# Select a sesh session via fzf, then convert popup to tiling window and connect
+
+FZF_CMD="fzf --no-sort --prompt='󱐋 ' --pointer='▶' --marker='✓' --border='rounded' --border-label=' sesh ' --header=' ^a all ^t tmux ^g configs ^x zoxide ^d kill ^f find' --header-first --layout='reverse' --inline-info --height='100%' --bind 'tab:down,btab:up' --bind 'ctrl-a:change-prompt(󱐋 )+reload(sesh list)' --bind 'ctrl-t:change-prompt(🪟 )+reload(sesh list -t)' --bind 'ctrl-g:change-prompt(⚙️ )+reload(sesh list -c)' --bind 'ctrl-x:change-prompt(📁 )+reload(sesh list -z)' --bind 'ctrl-f:change-prompt(🔎 )+reload(fd -H -d 2 -t d -E .Trash . ~)' --bind 'ctrl-d:execute(tmux kill-session -t {})+change-prompt(󱐋 )+reload(sesh list)'"
+
+footclient -a "terminal_popup" -e sh -c "
+  SELECTED=\$(sesh list | $FZF_CMD)
+  if [ -n \"\$SELECTED\" ]; then
+    printf '\033]176;terminal\033\\\\'
+    niri msg action move-window-to-tiling
+    niri msg action set-column-width 50%
+    exec sesh connect \"\$SELECTED\"
+  else
+    exit
+  fi
+"
