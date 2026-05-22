@@ -1,7 +1,7 @@
 [[session]]
-name = "tmux config"
-path = "~/.dotfiles/tmux/.config/tmux"
-startup_command = "/usr/bin/nvim tmux.conf"
+name = "dotfiles"
+path = "~/.dotfiles"
+startup_command = "/usr/bin/nvim -c 'Telescope find_files'"
 
 [[session]]
 name = "episteme"
@@ -14,11 +14,41 @@ path = "~/public/code/projects/friendly-snippets"
 startup_command = "/usr/bin/nvim -c 'Telescope find_files'"
 
 [[session]]
+name = "niri config"
+path = "~/.dotfiles/niri/.config/niri/"
+startup_command = "/usr/bin/nvim config.kdl"
+
+[[session]]
 name = "notes"
 path = "~/public/documents/notes/obsidian-notes"
 startup_command = "/home/piotr/.local/bin/tmux-zk-notes"
 
 [[session]]
+name = "nvim config"
+path = "~/.dotfiles/nvim/.config/nvim/"
+startup_command = "/usr/bin/nvim -c 'Telescope find_files'"
+
+[[session]]
 name = "stojanow"
 path = "~/public/code/projects/stojanow.com"
 startup_command = "/home/piotr/.local/bin/tmux-startup-dev"
+
+[[session]]
+name = "sway config"
+path = "~/.dotfiles/sway/.config/sway/"
+startup_command = "/usr/bin/nvim -c 'Telescope find_files'"
+
+[[session]]
+name = "tmux config"
+path = "~/.dotfiles/tmux/.config/tmux"
+startup_command = "/usr/bin/nvim tmux.conf"
+
+[[session]]
+name = "vicinae"
+path = "~/.dotfiles/vicinae/.config/vicinae"
+startup_command = "/usr/bin/nvim -c 'Telescope find_files'"
+
+[[session]]
+name = "zsh config"
+path = "~/.dotfiles/zsh/.config/zsh"
+startup_command = "/usr/bin/nvim -c 'Telescope find_files'"
