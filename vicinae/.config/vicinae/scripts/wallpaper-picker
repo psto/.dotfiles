@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+# @vicinae.schemaVersion 1
+# @vicinae.title Wallpaper Picker
+# @vicinae.mode silent
+# @vicinae.icon 🖼️
+
+NIRI_CONFIG="$HOME/.config/niri/config.kdl"
+WALLPAPER_DIR="$HOME/public/pictures/wallpapers/"
+
+SELECTED=$(find "$WALLPAPER_DIR" -type f | vicinae dmenu --placeholder "Select Wallpaper")
+
+if [ -z "$SELECTED" ]; then
+  exit 0
+fi
+
+DMS_PID=$(pgrep -x dms 2>/dev/null)
+SWAYBG_PID=$(pgrep -x swaybg 2>/dev/null)
+
+if [ -n "$DMS_PID" ]; then
+  MODE="dms"
+elif [ -n "$SWAYBG_PID" ]; then
+  MODE="swaybg"
+else
+  MODE="dms" # Default to dms
+fi
+
+if [ "$MODE" = "dms" ]; then
+  dms ipc call wallpaper set "$SELECTED"
+else
+  # Fallback swaybg behavior
+  # Update the Niri config so it persists on reboot
+  sed -i "s|^\(\s*spawn-at-startup \"swaybg\" \"-i\"\s*\"\).*\"\s*\"-m\".*|\1$SELECTED\" \"-m\" \"fill\"|" "$NIRI_CONFIG"
+
+  # Kill old instance and start new one
+  pkill -x swaybg 2>/dev/null
+  nohup swaybg -i "$SELECTED" -m fill >/dev/null 2>&1 &
+  disown
+fi
