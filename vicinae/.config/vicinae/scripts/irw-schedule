@@ -1,0 +1,15 @@
+#!/bin/env bash
+# @vicinae.schemaVersion 1
+# @vicinae.title irw read
+# @vicinae.mode silent
+# @vicinae.icon 📖
+
+selected=$(/home/piotr/.local/bin/irw schedule --raw | awk -F',' '{print substr($0, index($0,$6))}' | vicinae dmenu -p "Select files to untrack")
+
+if [[ -n "$selected" ]]; then
+  echo "$selected" | while IFS= read -r line; do
+    irw read "$line"
+  done
+else
+  print -P "%F{yellow}No files selected.%f"
+fi

@@ -1,0 +1,17 @@
+#!/bin/env sh
+# @vicinae.schemaVersion 1
+# @vicinae.title irw track
+# @vicinae.mode silent
+# @vicinae.icon 📖
+
+selected_file=$(fd --type f --exclude '.*' . "$HOME" | vicinae dmenu -p "Select a file")
+
+[ -z "$selected_file" ] && exit 0
+
+abs_path=$(realpath "$selected_file")
+
+if /home/piotr/.local/bin/irw track "$abs_path"; then
+  notify-send "✅ irw success" "Tracking: $(basename "$abs_path")" -u low
+else
+  notify-send "❌ irw error" "Failed to track: $(basename "$abs_path")" -u critical
+fi
