@@ -1,6 +1,8 @@
 aichat
+anki
 ansible
 aria2
+at
 atuin
 autorandr
 bandwhich
@@ -9,6 +11,7 @@ bitwarden
 bottom
 broot
 calibre
+chawan
 clamav
 cliphist
 cmatrix
@@ -19,6 +22,7 @@ ddgr
 doas
 docker
 docker-compose
+doggo
 dua-cli
 dust
 erdtree
@@ -27,12 +31,15 @@ fd
 figlet
 fish
 flameshot
+fnm
 foliate
 foot
 fx
 fzf
 gammastep
 gdm
+gdu
+gemini-cli
 ghostscript
 ghostty
 gifski
@@ -43,6 +50,7 @@ git-secrets
 github-cli
 gitui
 glow
+gnome-boxes
 gpg-tui
 graphicsmagick
 grim
@@ -50,6 +58,7 @@ gum
 hl
 htop
 httpie
+hurl
 hyperfine
 hyprpicker
 i2pd
@@ -72,6 +81,7 @@ nextcloud-client
 nmon
 obs-studio
 ollama
+openai-codex
 ouch
 pass
 pass-otp
@@ -81,7 +91,10 @@ procs
 progress
 qbittorrent
 qutebrowser
+rclone
 redshift
+remind
+ripasso
 ripgrep
 ripgrep-all
 rofi
@@ -98,6 +111,7 @@ starship
 stow
 surfraw
 swappy
+systemctl-tui
 television
 thermald
 the_silver_searcher
@@ -122,7 +136,9 @@ waybar
 wev
 wofi
 wf-recorder
+wiremix
 wtype
+yazi
 yq
 yt-dlp
 zathura
