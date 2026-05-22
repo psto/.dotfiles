@@ -36,30 +36,39 @@ function M.toggle_quickfix()
 end
 
 function M.get_url_title()
-	-- grap url from cliboard
 	local url = vim.fn.getreg("+")
 	local is_url = url:match("[a-z]*://[^ >,;]*")
+
 	if not is_url then
-		-- vim.api.nvim_put({ url }, "l", true, true)
 		vim.api.nvim_feedkeys("p", "n", true)
 		return
 	end
 
-	-- use curl to fetch url
-	local handle = io.popen("curl -s " .. url)
-	if not handle then
-		return
-	end
-	local result = handle:read("*a")
-	handle:close()
+	-- Use vim.system for an async, non-blocking call
+	-- We limit curl to 10 seconds and follow redirects (-L)
+	vim.system({ "curl", "-sL", url }, { text = true }, function(obj)
+		vim.schedule(function()
+			if obj.code ~= 0 or not obj.stdout then
+				vim.notify("Failed to fetch URL", vim.log.levels.ERROR)
+				return
+			end
 
-	-- grab text between <title></title> tag from result BUT don't include the <title></title>
-	local title = result:match("<title>(.-)</title>")
+			-- Extract title
+			local title = obj.stdout:match("<title>(.-)</title>")
 
-	local markdown_url = " [" .. title .. "](" .. url .. ")"
+			if title then
+				-- Clean up title (remove extra whitespace/newlines)
+				title = title:gsub("%s+", " "):gsub("^%s*(.-)%s*$", "%1")
+				local markdown_url = string.format("[%s](%s)", title, url)
 
-	-- write markdown_url into current file
-	vim.api.nvim_put({ markdown_url }, "", true, true)
+				-- Put text at cursor
+				vim.api.nvim_put({ markdown_url }, "c", true, true)
+			else
+				-- Fallback to just pasting the URL if no title found
+				vim.api.nvim_put({ url }, "c", true, true)
+			end
+		end)
+	end)
 end
 
 function M.toggle_undotree()
