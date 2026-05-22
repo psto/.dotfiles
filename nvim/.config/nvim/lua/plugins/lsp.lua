@@ -1,6 +1,7 @@
 return {
 	-- Main LSP Configuration
 	"neovim/nvim-lspconfig",
+	version = "*",
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
 		{ "mason-org/mason.nvim", opts = {} },
@@ -194,7 +195,7 @@ return {
 				root_markers = { "deno.json", "deno.jsonc" },
 			},
 			eslint = {
-				settings = { workingDirectories = { mode = "auto" } },
+				-- settings = { workingDirectories = { mode = "auto" } },
 				filetypes = {
 					"javascript",
 					"javascriptreact",
@@ -294,10 +295,8 @@ return {
 				filetypes = {
 					"javascript",
 					"javascriptreact",
-					"javascript.jsx",
 					"typescript",
 					"typescriptreact",
-					"typescript.tsx",
 				},
 				workspace_required = true,
 				root_markers = { "package.json" },
@@ -313,10 +312,10 @@ return {
 					"typescript.tsx",
 				},
 			},
-			vtsls = {
-				workspace_required = true,
-				root_markers = { "package.json" },
-			},
+			-- vtsls = {
+			-- 	workspace_required = true,
+			-- 	root_markers = { "package.json" },
+			-- },
 			vue_ls = {},
 		}
 
