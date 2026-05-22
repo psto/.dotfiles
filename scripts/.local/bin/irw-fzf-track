@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+selected_file=$(fd --type f --exclude '.*' --base-directory "$HOME" . | fzf --prompt="Track file: ")
+
+[ -z "$selected_file" ] && exit 0
+
+abs_path="$HOME/$selected_file"
+
+if irw track "$abs_path"; then
+  notify-send "✅ irw success" "Tracking: $(basename "$abs_path")" -u low
+else
+  notify-send "❌ irw error" "Failed to track: $(basename "$abs_path")" -u critical
+fi
