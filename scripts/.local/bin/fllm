@@ -1,0 +1,199 @@
+#!/usr/bin/env bash
+
+set -o errexit
+set -o pipefail
+set -o nounset
+
+usage() {
+    cat <<EOF
+Usage: fllm [options] [<file> ...] -- <prompt>
+   or: fllm [options] <prompt>
+
+Send files as context and a prompt to an LLM.
+
+Arguments:
+  files        Paths to files for context (before --)
+  --           Separator between files and prompt
+  prompt       Prompt text (after --, or all args if -- is omitted)
+
+Options:
+  -m <model>   Model to use (default: llm's default)
+  -h, --help   Show this help message
+
+Piping:
+  Data piped to stdin is merged with file arguments as additional context.
+  If no files are given, piped content is passed directly to llm.
+
+Environment:
+  FLLM_MAX_SIZE  Max total file size in bytes (default: 1048576)
+
+Examples:
+  fllm file1.txt -- summarize this content
+  fllm -m gpt-4o file1.txt file2.txt -- explain the key points
+  cat extra.txt | fllm file1.txt f2.txt -- compare these documents
+  fllm -m gpt-4o what is the capital of france
+EOF
+}
+
+check_dependencies() {
+    local missing=()
+    for cmd in files-to-prompt llm; do
+        if ! command -v "$cmd" &>/dev/null; then
+            missing+=("$cmd")
+        fi
+    done
+    if ((${#missing[@]} > 0)); then
+        echo "Error: missing dependencies: ${missing[*]}" >&2
+        echo "       Install with: pip install llm files-to-prompt" >&2
+        exit 1
+    fi
+}
+
+cleanup() {
+    if [[ -n "${TEMP_FILE:-}" && -f "$TEMP_FILE" ]]; then
+        rm -f "$TEMP_FILE"
+    fi
+}
+
+# ------------------------------------------------------------------
+# Argument parsing
+# ------------------------------------------------------------------
+
+MODEL=""
+FILES=()
+PROMPT=""
+SEEN_DASHDASH=false
+STDPASSTHROUGH=false
+TEMP_FILE=""
+
+if [ $# -eq 0 ] && [ -t 0 ]; then
+    usage >&2
+    exit 2
+fi
+
+while [ $# -gt 0 ]; do
+    case "$1" in
+        -h|--help)
+            usage
+            exit 0
+            ;;
+        --)
+            SEEN_DASHDASH=true
+            shift
+            # Everything after -- is the prompt
+            while [ $# -gt 0 ]; do
+                if [ -z "$PROMPT" ]; then
+                    PROMPT="$1"
+                else
+                    PROMPT+=" $1"
+                fi
+                shift
+            done
+            break
+            ;;
+        -m)
+            if [ $# -lt 2 ]; then
+                echo "Error: -m requires a model argument" >&2
+                exit 2
+            fi
+            MODEL="$2"
+            shift 2
+            ;;
+        -m?*)
+            # Handle -mmodelname (no space)
+            MODEL="${1#-m}"
+            shift
+            ;;
+        -*)
+            echo "Error: unknown option: $1" >&2
+            exit 2
+            ;;
+        *)
+            FILES+=("$1")
+            shift
+            ;;
+    esac
+done
+
+# No -- separator: all positional args are the prompt
+if [ "$SEEN_DASHDASH" = false ] && [ ${#FILES[@]} -gt 0 ]; then
+    PROMPT="${FILES[*]}"
+    FILES=()
+fi
+
+# ------------------------------------------------------------------
+# Pipe handling
+# ------------------------------------------------------------------
+
+if [ ! -t 0 ]; then
+    if [ ${#FILES[@]} -gt 0 ]; then
+        # Merge piped content with file arguments
+        TEMP_FILE=$(mktemp)
+        trap cleanup EXIT
+        cat >"$TEMP_FILE"
+        FILES+=("$TEMP_FILE")
+    else
+        STDPASSTHROUGH=true
+    fi
+fi
+
+# ------------------------------------------------------------------
+# Validation
+# ------------------------------------------------------------------
+
+check_dependencies
+
+for f in "${FILES[@]}"; do
+    if [ ! -f "$f" ]; then
+        echo "Error: file not found: $f" >&2
+        exit 1
+    fi
+done
+
+# Size check (only when files are involved)
+MAX_SIZE="${FLLM_MAX_SIZE:-1048576}"
+if [ ${#FILES[@]} -gt 0 ]; then
+    TOTAL_SIZE=0
+    for f in "${FILES[@]}"; do
+        size=$(wc -c <"$f")
+        TOTAL_SIZE=$((TOTAL_SIZE + size))
+    done
+
+    if [ "$TOTAL_SIZE" -gt "$MAX_SIZE" ]; then
+        cat >&2 <<ERRMSG
+Error: Combined file size (${TOTAL_SIZE} bytes) exceeds the limit
+       (${MAX_SIZE} bytes, set via FLLM_MAX_SIZE).
+
+This prevents accidentally sending large files (PDFs, images, binaries)
+to the LLM. Increase FLLM_MAX_SIZE if you need a larger limit.
+ERRMSG
+        exit 1
+    fi
+fi
+
+# Ensure there's something to do
+if [ ${#FILES[@]} -eq 0 ] && [ -z "$PROMPT" ] && [ "$STDPASSTHROUGH" = false ]; then
+    echo "Error: no input provided. Provide files, a prompt, or pipe data." >&2
+    exit 2
+fi
+
+# ------------------------------------------------------------------
+# Execution
+# ------------------------------------------------------------------
+
+MODEL_ARGS=()
+if [ -n "$MODEL" ]; then
+    MODEL_ARGS=(-m "$MODEL")
+fi
+
+PROMPT_ARGS=()
+if [ -n "$PROMPT" ]; then
+    PROMPT_ARGS=("$PROMPT")
+fi
+
+if [ ${#FILES[@]} -gt 0 ]; then
+    files-to-prompt "${FILES[@]}" | llm "${MODEL_ARGS[@]}" "${PROMPT_ARGS[@]}"
+else
+    # STDPASSTHROUGH or prompt-only: stdin flows through automatically to llm
+    llm "${MODEL_ARGS[@]}" "${PROMPT_ARGS[@]}"
+fi
