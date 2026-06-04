@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+# Define your clean list of target folders
+folders=(
+  "Archives/Books/"
+  "Archives/Courses/"
+  "Archives/People/"
+  "Areas/Ideas/"
+  "Areas/Questions/"
+  "Areas/Personal/"
+  "Areas/Write/Thoughts/"
+  "Areas/Write/Reviews/"
+  "Areas/Write/Fiction/"
+  "Areas/Write/Essays/"
+  "Projects/"
+  "Resources/"
+  "zettelkasten/"
+)
+
+# Loop through each folder and index it natively
+for folder in "${folders[@]}"; do
+  echo "--- Processing: $folder ---"
+
+  llm embed-multi obsidian \
+    --files "/home/piotr/public/documents/notes/obsidian-notes/$folder" "**/*.md" \
+    -m bge-m3 \
+    --store
+done
+
+echo "🎉 All specified folders have been successfully embedded into 'obsidian'!"
