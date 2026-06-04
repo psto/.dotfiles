@@ -152,6 +152,16 @@ function pr_files() {
     --bind "enter:execute($EDITOR {})"
 }
 
+# Automatically pipe llm output to rendermd.py when run interactively
+llmr() {
+  # Check if stdout is a terminal (tty)
+  if [[ -t 1 ]]; then
+    command llm "$@" | rendermd.py
+else
+    # Fall back to standard behavior if piping/redirecting elsewhere
+    command llm "$@"
+  fi
+}
 
 # turn string into kebab case
 function kebab() {
