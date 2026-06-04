@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+# Go back in time and finish Anki reviews
+
+set -e
+
+YESTERDAY=$(date -d "yesterday" '+%Y-%m-%d 08:00:00')
+
+echo "⏳ Going back in time..."
+echo "Disabling NTP and Wi-Fi..."
+
+# Disable NTP and turn off Wi-Fi
+doas timedatectl set-ntp false
+doas nmcli radio wifi off
+
+# Set the clock to yesterday
+echo "Setting system time to: $YESTERDAY"
+doas timedatectl set-time "$YESTERDAY"
+
+# --- THE INTERMISSION ---
+echo "--------------------------------------------------------"
+echo "🧙‍♂️ You are now in the past. Open Anki and do your reviews!"
+echo "--------------------------------------------------------"
+read -p "Press [ENTER] here when you are completely finished to return to the present..."
+
+# Cleanup and return to reality
+echo "⚡ Returning to the present..."
+echo "Enabling Wi-Fi and re-syncing network time..."
+
+doas nmcli radio wifi on
+doas timedatectl set-ntp true
+
+echo "✅ Done! Welcome back to the future."
