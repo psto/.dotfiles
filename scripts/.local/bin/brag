@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+
+# ==============================================================================
+# brag - Brain Retrieval-Augmented Generation
+# Description: Queries a local 'obsidian' embedding collection and pipes the
+#              context into an LLM via the llm CLI tool.
+# ==============================================================================
+
+set -e
+
+MODEL="groq/meta-llama/llama-4-scout-17b-16e-instruct"
+COLLECTION="obsidian"
+
+# --- Helper Functions ---
+error_exit() {
+  printf "❌ Error: %s\n" "$1" >&2
+  exit 1
+}
+
+show_usage() {
+  printf "Usage: brag \"[search query]\"\n"
+  printf "Example: brag \"Summarize my ideas on AI\"\n"
+}
+
+# --- Validation ---
+if [ -z "$1" ]; then
+  show_usage
+  exit 1
+fi
+
+QUERY="$1"
+
+if ! command -v llm >/dev/null 2>&1; then
+  error_exit "'llm' command-line tool is not installed or not in PATH."
+fi
+
+# --- Main Execution ---
+printf "🧠 Searching your vault and generating answer...\n"
+printf "%s\n" "------------------------------------------------"
+
+# Execute the RAG pipeline
+# capture the output of 'llm similar', pass it forward and display with rendermd
+if ! llm similar "${COLLECTION}" -n 5 -c "${QUERY}" | \
+  llm -m "${MODEL}" "Based on the text snippets provided below, answer the user's intent. Be concise and prioritize accuracy based on the provided text over general knowledge. Ensure you explicitly address the query and provide sources: ${QUERY}" | /home/piotr/.local/bin/rendermd.py; then
+  error_exit "The RAG pipeline failed to execute properly."
+fi
