@@ -39,18 +39,9 @@ selected=$(niri msg -j windows | jq --arg app_id "$focus_app_id" \
 selected_window_id=$(echo "$selected" | jq -r '.id // empty')
 selected_window_workspace_id=$(echo "$selected" | jq -r '.workspace_id // empty')
 
-# Check if the workspace_id is scratchpad
-if [ "$selected_window_workspace_id" == "$NIRI_SCRATCHPAD_WS" ]; then
-  niri msg action move-window-to-workspace --focus false --window-id "$selected_window_id" "$current_workspace_id"
-fi
-
 # If selected_window_id is the same as current_window_id toggle between them
 if [ "$selected_window_id" == "$current_window_id" ]; then
-  if [ "$is_floating" == "true" ]; then
-    "$HOME/.local/bin/niri-scratchpad"
-  else
-    "$HOME/.local/bin/niri-back-and-forth"
-  fi
+  "$HOME/.local/bin/niri-back-and-forth"
   exit 0
 fi
 
