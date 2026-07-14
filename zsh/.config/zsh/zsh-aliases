@@ -162,6 +162,7 @@ alias asr="atuin scripts run"
 
 # wget
 alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts"
+alias wgetdocs="wget --mirror --convert-links --adjust-extension --page-requisites --no-parent -e robots=off"
 
 # cheat
 cheat() { curl "http://cheat.sh/$1"; }
@@ -203,6 +204,33 @@ alias ttop="task top"
 alias tsync="task sync"
 alias twait="task waiting"
 alias twgsync='tw_gtasks_sync -p personal -l "TODO"'
+alias tbd="task burndown.daily"
+alias tbw="task burndown.weekly"
+alias tbm="task burndown.monthly"
+alias tghd="task ghistory.daily"
+alias tghw="task ghistory.weekly"
+alias tghm="task ghistory.monthly"
+# timewarrior
+alias tw="timew"
+alias tws="timew summary"
+alias twsy="timew summary yesterday"
+alias twsw="timew summary :week"
+alias twsm="timew summary :month"
+alias twg="timew tag"
+alias twdel="timew delete"
+alias twd="timew day"
+alias twdy="timew day yesterday"
+alias tww="timew week"
+alias twl="timew week :lastweek"
+alias twm="timew month"
+# taskvanguard
+alias tvg="vanguard"
+
+# remind
+alias rweek="remind -b1 -c+1"
+alias rweekn='remind -mc+ .config/remind/reminders.rem "$(date -d "+1 week" +%F)"'
+alias rmonth="remind -b1 -c1 -p ~/.config/remind/reminders.rem | rem2ps | ps2pdf - | zathura -"
+alias wyrd="wyrd \$XDG_CONFIG_HOME/remind/reminders.rem"
 
 # transmission-remote
 alias tsm="transmission-remote"
