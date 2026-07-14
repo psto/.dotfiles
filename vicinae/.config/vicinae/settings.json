@@ -90,19 +90,6 @@
             }
          }
       },
-      "@thomaslombart/store.raycast.todoist": {
-         "preferences": {
-            "focusLabelName": "",
-            "useConfetti": false
-         },
-         "entrypoints": {
-            "home": {
-               "preferences": {
-                  "view": "today"
-               }
-            }
-         }
-      },
       "@tonka3000/store.raycast.weather": {
          "preferences": {
             "clockformat": "24h",

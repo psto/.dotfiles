@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+# @vicinae.schemaVersion 1
+# @vicinae.title ntfy-clip
+# @vicinae.mode silent
+
+set -o errexit
+set -o pipefail
+set -o nounset
+
+# --- Configuration ---
+SERVER_URL="https://ntfy.stojanow.org"
+TOPIC="clipboard"
+TOKEN="${NTFY_TOKEN}"
+
+CLIP_CONTENT=$(wl-paste -n)
+
+if [[ -z "$CLIP_CONTENT" ]]; then
+    echo "❌ Clipboard is empty."
+    exit 1
+fi
+
+# Limit size (prevent sending massive accidental pastes, e.g., > 4KB)
+if [[ ${#CLIP_CONTENT} -gt 4096 ]]; then
+    echo "⚠️ Clipboard content too large (over 4KB). Aborting for safety."
+    exit 1
+fi
+
+# Send to ntfy
+if curl -H "Authorization: Bearer $TOKEN" \
+        -H "Title: Desktop Clipboard" \
+        -H "Tags: clipboard" \
+        -sf \
+        -d "$CLIP_CONTENT" \
+        "$SERVER_URL/$TOPIC" > /dev/null; then
+    echo "✅ Clipboard sent to phone!"
+    notify-send "✅ Clipboard sent to phone!"
+else
+    echo "❌ Failed to send."
+    notify-send "❌ Failed to send."
+    exit 1
+fi
