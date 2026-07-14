@@ -32,6 +32,7 @@ Examples:
   fllm -m gpt-4o file1.txt file2.txt -- explain the key points
   cat extra.txt | fllm file1.txt f2.txt -- compare these documents
   fllm -m gpt-4o what is the capital of france
+  fllm "file with spaces.md" -- 'prompt text'        # quote filenames with spaces
 EOF
 }
 
@@ -115,10 +116,20 @@ while [ $# -gt 0 ]; do
     esac
 done
 
-# No -- separator: all positional args are the prompt
+# No -- separator: try to split files from prompt intelligently
+# Convention: last arg is the prompt, preceding args are files.
+# Single arg that matches an existing file → file (promptless).
+# Single arg that is not a file → prompt-only (e.g. "what is...?" queries).
 if [ "$SEEN_DASHDASH" = false ] && [ ${#FILES[@]} -gt 0 ]; then
-    PROMPT="${FILES[*]}"
-    FILES=()
+    if [ ${#FILES[@]} -ge 2 ]; then
+        PROMPT="${FILES[-1]}"
+        FILES=("${FILES[@]:0:${#FILES[@]}-1}")
+    elif [ -f "${FILES[0]}" ]; then
+        :
+    else
+        PROMPT="${FILES[*]}"
+        FILES=()
+    fi
 fi
 
 # ------------------------------------------------------------------
@@ -146,6 +157,8 @@ check_dependencies
 for f in "${FILES[@]}"; do
     if [ ! -f "$f" ]; then
         echo "Error: file not found: $f" >&2
+        echo "Hint: quote filenames with spaces or use '--' to separate files from prompt." >&2
+        echo "      Example: fllm \"path/to/file with spaces.md\" -- 'your prompt'" >&2
         exit 1
     fi
 done
