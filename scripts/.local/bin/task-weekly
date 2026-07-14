@@ -1,22 +1,25 @@
 #!/usr/bin/env bash
 
-if date -d "next sunday" +%Y-%m-%d >/dev/null 2>&1; then
-  SUNDAY=$(date -d "next sunday" +%Y-%m-%d)
-  WEEK=$(date +%G-W%V) # %G ensures the correct year for ISO weeks
+if date -d "this Sunday" +%Y-%m-%d >/dev/null 2>&1; then
+  # Linux (GNU Date) - "this Sunday" resolves to the nearest upcoming Sunday
+  SUNDAY=$(date -d "this Sunday" +%Y-%m-%d)
+  WEEK=$(date -d "this Sunday" +%G-W%V)
 else
+  # macOS (BSD Date)
   SUNDAY=$(date -v+sun +%Y-%m-%d)
   WEEK=$(date -v+sun +%G-W%V)
 fi
 
-echo "🚀 Launching Obsidian and creating note for $WEEK..."
-
-# Trigger the zero-click Templater command
-# Obsidian > Plugins > Templater > Template hotkeys > Path/to/template > assign hotkey
-obsidian command id="templater-obsidian:create-Archives/Templates/Weekly Review (Template).md"
+# Create Weekly Review from template with zk
+zk new --no-input \
+  --title "$(date +'%Y-W%V')" \
+  --extra prevWeek="$(date -d "7 days ago" +'%Y-W%V' 2>/dev/null || date -v -7d +'%Y-W%V')" \
+  --extra nextWeek="$(date -d "7 days" +'%Y-W%V' 2>/dev/null || date -v +7d +'%Y-W%V')" \
+  "$ZK_NOTEBOOK_DIR/Areas/Write/Reviews/Weekly/"
 
 echo "🚀 Generating Weekly Review project for Sunday, $SUNDAY..."
 
-PARENT_OUTPUT=$(task add "Weekly Review $WEEK" project:review due:"$SUNDAY" wait:"$SUNDAY" +admin)
+PARENT_OUTPUT=$(task add "Weekly Review $WEEK" project:review due:"${SUNDAY}T12:00:00" wait:"$SUNDAY" +admin)
 PARENT_ID=$(echo "$PARENT_OUTPUT" | grep -oE '[0-9]+')
 
 if [ -z "$PARENT_ID" ]; then
@@ -24,13 +27,13 @@ if [ -z "$PARENT_ID" ]; then
   exit 1
 fi
 
-CHILD1_OUT=$(task add "review past week's logs in Obsidian" project:review due:"$SUNDAY" wait:"$SUNDAY")
+CHILD1_OUT=$(task add "review past week's logs in Obsidian" project:review due:"${SUNDAY}T12:00:00" wait:"$SUNDAY")
 CHILD1_ID=$(echo "$CHILD1_OUT" | grep -oE '[0-9]+')
 
-CHILD2_OUT=$(task add "triage inbox" project:review due:"$SUNDAY" wait:"$SUNDAY")
+CHILD2_OUT=$(task add "triage inbox" project:review due:"${SUNDAY}T12:00:00" wait:"$SUNDAY")
 CHILD2_ID=$(echo "$CHILD2_OUT" | grep -oE '[0-9]+')
 
-CHILD3_OUT=$(task add "write 3 intentions for next week in Obsidian" project:review due:"$SUNDAY" wait:"$SUNDAY")
+CHILD3_OUT=$(task add "write 3 intentions for next week in Obsidian" project:review due:"${SUNDAY}T12:00:00" wait:"$SUNDAY")
 CHILD3_ID=$(echo "$CHILD3_OUT" | grep -oE '[0-9]+')
 
 task "$PARENT_ID" modify depends:"$CHILD1_ID,$CHILD2_ID,$CHILD3_ID" > /dev/null
