@@ -64,10 +64,13 @@ zsh_add_file "zsh-aliases"
 # zsh_add_file "zsh-prompt"
 
 # Plugins
-zsh_add_plugin "Aloxaf/fzf-tab" # must be before zsh-autosuggestions & fast-syntax-highlighting
-zsh_add_plugin "zsh-users/zsh-autosuggestions"
-zsh_add_plugin "zdharma-continuum/fast-syntax-highlighting"
-zsh_add_plugin "hlissner/zsh-autopair"
+source "$ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
+source "$ZDOTDIR/plugins/fzf-tab/fzf-tab.zsh"
+source "$ZDOTDIR/plugins/zsh-autopair/zsh-autopair.plugin.zsh"
+# zsh_add_plugin "Aloxaf/fzf-tab" # must be before zsh-autosuggestions & fast-syntax-highlighting
+# zsh_add_plugin "zsh-users/zsh-autosuggestions"
+# # # zsh_add_plugin "zdharma-continuum/fast-syntax-highlighting"
+# zsh_add_plugin "hlissner/zsh-autopair"
 # zsh_add_plugin "zsh-users/zsh-completions"
 # For more plugins: https://github.com/unixorn/awesome-zsh-plugins
 # More completions https://github.com/zsh-users/zsh-completions

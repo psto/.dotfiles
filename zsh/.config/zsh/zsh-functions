@@ -3,10 +3,21 @@ function zsh_add_file() {
   [ -f "$ZDOTDIR/$1" ] && source "$ZDOTDIR/$1"
 }
 
+# function zsh_add_plugin() {
+#   PLUGIN_NAME=$(echo $1 | cut -d "/" -f 2)
+#   if [ -d "$ZDOTDIR/plugins/$PLUGIN_NAME" ]; then
+#     # For plugins
+#     zsh_add_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.plugin.zsh" || \
+#     zsh_add_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.zsh"
+#   else
+#     git clone "https://github.com/$1.git" "$ZDOTDIR/plugins/$PLUGIN_NAME"
+#   fi
+# }
+
 function zsh_add_plugin() {
-  PLUGIN_NAME=$(echo $1 | cut -d "/" -f 2)
+  local PLUGIN_NAME=${1##*/}
+
   if [ -d "$ZDOTDIR/plugins/$PLUGIN_NAME" ]; then
-    # For plugins
     zsh_add_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.plugin.zsh" || \
     zsh_add_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.zsh"
   else
@@ -168,7 +179,6 @@ function kebab() {
   echo "$*" | tr '[:upper:]' '[:lower:]' | sed 's/ /-/g' | tee >(wl-copy -n)
 }
 
-
 # fzf history with ctrl+d to delete
 modified-fzf-history-widget() {
   local selected
@@ -210,6 +220,17 @@ get-urls() {
   curl -sL "$1" | htmlq --attribute href a
 }
 
+# Select a task from the pending list and start it immediately
+tstart() {
+  local selected_task=$(task status:pending export | jq -r '.[] | "\(.id) [\(.project // "no project")] \(.description)"' | fzf --reverse --header "Select a task to START")
+
+  if [[ -n "$selected_task" ]]; then
+    local id="${selected_task%% *}"
+
+    task "$id" start
+  fi
+}
+
 # Select a task and set a due time for today
 ttime() {
   local task_id=$(task status:pending export | jq -r '.[] | "\(.id) [\(.project)] \(.description)"' | fzf --reverse --header "Set time for today (HH:MM)")
@@ -236,32 +257,31 @@ tann() {
 }
 
 # Log to both Taskwarrior and Timewarrior simultaneously
-tt_log() {
-  if [[ $# -lt 3 ]]; then
-    echo "Usage: tt_log \"Task Description\" START_TIME END_TIME"
-    echo "Example: tt_log \"work on project X\" 08:00 16:00"
+tt-log() {
+  if [[ $# -lt 3 || $# -gt 4 ]]; then
+    echo "Usage: tt-log \"Task Description\" HH:MM [ - ] HH:MM"
     return 1
   fi
 
   local desc="$1"
   local start_time="$2"
-  local end_time="$3"
-
+  # If 4 arguments are passed, ignore the 3rd (the hyphen) and take the 4th
+  local end_time="${4:-$3}"
   local today=$(date +%Y-%m-%d)
 
   echo "Logging to Taskwarrior..."
   task log "${desc}" entry:"${today}T${start_time}:00" end:"${today}T${end_time}:00"
 
-  echo "\nLogging to Timewarrior..."
+  echo -e "\nLogging to Timewarrior..."
   timew track "${start_time}" - "${end_time}" "${desc}"
 }
 
 # Fix the end time of a task in both Taskwarrior and Timewarrior
-tt_fix() {
+tt-fix() {
   if [[ $# -lt 2 ]]; then
-    echo "Usage:   tt_fix <task_id> <correct_end_time>"
-    echo "Example: tt_fix 141 21:00"
-    echo "Example: tt_fix 141 2026-06-03T21:00:00 (for specific dates)"
+    echo "Usage:   tt-fix <task_id> <correct_end_time>"
+    echo "Example: tt-fix 141 21:00"
+    echo "Example: tt-fix 141 2026-06-03T21:00:00 (for specific dates)"
     return 1
   fi
 
@@ -308,3 +328,41 @@ tt_fix() {
     fi
   fi
 }
+
+tzk() {
+  local choice
+  choice=$(task project:zk status:pending export | jq -r '.[] | "\(.id) | \(.description) \([.tags[]?] | if length > 0 then "[\(join(", "))]" else "" end)"' | \
+    fzf --header="Select a Zettelkasten note to start working on" \
+        --prompt="Task > " \
+        --height=40% \
+        --layout=reverse)
+
+  [[ -z "$choice" ]] && return 0
+
+  local task_id
+  task_id=$(echo "$choice" | awk -F ' | ' '{print $1}')
+
+  echo "Starting task $task_id..."
+  task "$task_id" start
+
+  taskopen "$task_id"
+}
+
+# remind
+remind() {
+    # If no file is explicitly provided in the arguments, append your XDG path
+    if [[ "$*" != *".rem"* ]]; then
+        command remind -m "$@" "$XDG_CONFIG_HOME/remind/reminders.rem"
+    else
+        command remind -m "$@"
+    fi
+}
+
+fnm() {
+  unset -f fnm node npm npx
+  eval "$(command fnm env --use-on-cd)"
+  fnm "$@"
+}
+node() { fnm env; command node "$@"; }
+npm()  { fnm env; command npm "$@"; }
+npx()  { fnm env; command npx "$@"; }
