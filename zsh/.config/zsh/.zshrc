@@ -35,12 +35,13 @@ unsetopt nomatch # fix "zsh: no matches found" https://github.com/ohmyzsh/ohmyzs
 fpath=("${ZDOTDIR}"/completion $fpath) # add completions path
 
 # Speed up zsh compinit by only checking cache once a day.
-autoload -Uz compinit
-if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
-	compinit;
+builtin setopt extendedglob
+if [[ -n ${ZDOTDIR:-$HOME}/.zcompdump(#qN.m-1) ]]; then
+  autoload -Uz compinit && compinit -C
 else
-	compinit -C;
-fi;
+  autoload -Uz compinit && compinit
+fi
+builtin unsetopt extendedglob
 
 # Load extra completion modules and options
 zmodload zsh/complist
@@ -61,7 +62,7 @@ source "$ZDOTDIR/zsh-functions"
 zsh_add_file "zsh-exports"
 zsh_add_file "zsh-vim-mode"
 zsh_add_file "zsh-aliases"
-# zsh_add_file "zsh-prompt"
+zsh_add_file "zsh-prompt"
 
 # Plugins
 source "$ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
@@ -111,18 +112,15 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza -1 --color=always $realpath'
 
 # z
-eval "$(zoxide init --cmd cd zsh)"
-eval "$(fasd --init auto)"
-unalias sd
+eval "$(zoxide init zsh)"
+# eval "$(fasd --init auto)"
+# unalias sd
 
 # atuin
 eval "$(atuin init zsh)"
 
+# patian highlighting
+eval "$(zsh-patina activate)"
+
 # starship prompt
-eval "$(starship init zsh)"
-
-# fzf-git
-source "$HOME/.local/bin/fzf-git.sh"
-
-# stoic quote
-stoicsay | lolcat
+# eval "$(starship init zsh)"
