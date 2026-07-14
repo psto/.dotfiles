@@ -39,5 +39,5 @@ zstyle ':vcs_info:git:*' formats " %{$fg[blue]%}(%{$fg[red]%}%m%u%c%{$fg[yellow]
 
 # minimal prompt
 PROMPT="%{$fg[cyan]%}%~%{$reset_color%}\$vcs_info_msg_0_
-%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
+%(?:%{$fg[green]%}➜ :%{$fg[red]%}➜ )"
 RPROMPT="%{$fg[white]%}%*" # show command time on right side

@@ -21,7 +21,7 @@ FZF_FTW
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # fnm for node
-eval "$(fnm env --use-on-cd)"
+# eval "$(fnm env --use-on-cd)"
 # npm for node.js
 export PATH="$XDG_DATA_HOME/npm/bin:$PATH"
 
