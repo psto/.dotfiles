@@ -83,6 +83,13 @@ return {
 			appearance = {
 				nerd_font_variant = "mono",
 			},
+			cmdline = {
+				enabled = true,
+				keymap = { preset = "cmdline" },
+				completion = {
+					menu = { auto_show = true },
+				},
+			},
 			completion = {
 				-- 'full' will fuzzy match on the text before _and_ after the cursor
 				keyword = { range = "full" },
@@ -93,9 +100,7 @@ return {
 				default = { "lsp", "path", "snippets", "buffer" },
 			},
 			fuzzy = { implementation = "prefer_rust_with_warning" },
-			snippets = {
-				preset = "luasnip",
-			},
+			snippets = { preset = "luasnip" },
 			signature = { enabled = true }, -- Experimental signature help support
 		},
 		-- allows extending the enabled_providers array elsewhere in your config

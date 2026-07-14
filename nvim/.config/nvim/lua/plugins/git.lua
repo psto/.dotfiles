@@ -1,6 +1,7 @@
 return {
 	{
-		"sindrets/diffview.nvim",
+		"dlyongemallo/diffview-plus.nvim",
+		version = "*",
 		lazy = "VeryLazy",
 	},
 	{

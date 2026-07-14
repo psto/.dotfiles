@@ -56,6 +56,7 @@ return {
 				desc = "Mason",
 				icon = { icon = require("util.icons").ui.Package, color = "orange" },
 			},
+			{ "<leader>o", group = "Obsidian" },
 			{
 				"<leader>r",
 				group = "Replace",
@@ -445,6 +446,23 @@ return {
 			"<cmd>Trouble loclist toggle<cr>",
 			desc = "Trouble loclist",
 		},
+		{ "<leader>od", "<cmd>silent !obsidian daily<cr>", desc = "Open Daily Note" },
+		{ "<leader>os", "<cmd>silent !obsidian search:open<cr>", desc = "Quick Switch / Search" },
+		{
+			"<leader>oo",
+			function()
+				local file_name = require("util/functions").get_current_file_name()
+				if file_name ~= "" then
+					vim.fn.system(string.format("obsidian open file='%s'", file_name))
+				else
+					vim.notify("No active file to open in Obsidian", vim.log.levels.WARN)
+				end
+			end,
+			desc = "Open Current Note in Obsidian",
+		},
+		{ "<leader>ol", "<cmd>ZkLinks<cr>", desc = "Note Links" },
+		{ "<leader>ob", "<cmd>ZkBacklinks<cr>", desc = "Note Backlinks" },
+		{ "<leader>ox", "<cmd>ZkTags<cr>", desc = "Browse Tags" },
 		{
 			"<leader>q",
 			'<cmd>lua require("util/functions").smart_quit()<CR>',

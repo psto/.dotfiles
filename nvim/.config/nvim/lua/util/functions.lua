@@ -76,4 +76,8 @@ function M.toggle_undotree()
 	require("undotree").open()
 end
 
+function M.get_current_file_name()
+	return vim.fn.expand("%:t:r")
+end
+
 return M

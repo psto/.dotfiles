@@ -1,7 +1,7 @@
 return {
 	"dmtrKovalenko/fff.nvim",
 	build = function()
-		require("fff.download").download_or_build_binary()
+		require("blink.pairs").download():pwait(60000)
 	end,
 	opts = {
 		debug = {
