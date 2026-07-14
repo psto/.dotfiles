@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+# @vicinae.schemaVersion 1
+# @vicinae.title idle
+# @vicinae.mode silent
+
+dms ipc call inhibit toggle
+
+DMS_STATUS=$(dms ipc call inhibit status )
+
+notify-send "$DMS_STATUS"
