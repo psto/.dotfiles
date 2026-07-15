@@ -1,0 +1,6 @@
+#!/bin/env sh
+# @vicinae.schemaVersion 1
+# @vicinae.title hyprpicker
+# @vicinae.mode silent
+
+(/usr/bin/hyprpicker) &
